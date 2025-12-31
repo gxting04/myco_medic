@@ -35,14 +35,14 @@ function Partners() {
           Trusted by Industry Leaders
         </p>
 
-        <div className='flex flex-wrap justify-center items-center gap-x-12 gap-y-12 opacity-80'>
+        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-8 md:gap-12 items-center justify-items-center opacity-80'>
           {partners.map((partner, index) => (
             <a
               key={index}
               href={partner.website}
               target='_blank'
               rel='noopener noreferrer'
-              className={`group transition-all duration-700 ${
+              className={`group transition-all duration-700 flex items-center justify-center w-full ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
               style={{ transitionDelay: `${index * 50}ms` }}
@@ -50,7 +50,7 @@ function Partners() {
               <img
                 src={partner.logo}
                 alt={partner.name}
-                className='h-12 w-auto object-contain grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-300'
+                className='h-12 w-auto max-w-full object-contain grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-300'
               />
             </a>
           ))}

@@ -9,12 +9,18 @@ import Footer from './Footer'
 
 function ProductDetail() {
   const { id } = useParams()
-  const productId = Number(id)
+  // Support IDs that may include variant codes from cart items, e.g. "121-OKT-T01"
+  const productId = useMemo(() => {
+    if (!id) return NaN
+    const base = String(id).split('-')[0]
+    return Number(base)
+  }, [id])
 
   const product = useMemo(() => {
     const saved = localStorage.getItem('myco_products')
     const list = saved ? JSON.parse(saved) : Data.initialProducts
-    return list.find(p => Number(p.id) === productId)
+    // First try to find in saved products, then fall back to initial products
+    return list.find(p => Number(p.id) === productId) || Data.initialProducts.find(p => Number(p.id) === productId)
   }, [productId])
 
   if (!product) {

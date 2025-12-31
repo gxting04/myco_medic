@@ -1,4 +1,4 @@
-const productGroups = [
+  const productGroups = [
     {
       id: 1,
       name: 'Airway Management',
@@ -52,6 +52,37 @@ const productGroups = [
       name: 'Positioning Devices',
       icon: 'https://cdn-icons-png.flaticon.com/128/1820/1820062.png',
       description: 'Supports and positioning aids for patient comfort and clinical procedures.'
+    },
+    {
+      id: 10,
+      name: 'Memory Foam Positioners',
+      icon: 'https://cdn-icons-png.flaticon.com/128/2910/2910768.png',
+      description: 'Memory foam-based head, body, limb and table positioners for pressure redistribution and patient comfort.'
+    },
+    {
+      id: 11,
+      name: 'Portable Breathing Oxygen Inhaler',
+      icon: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/u4kvox2b1621523622-1000x1000_orig.jpeg',
+      description:
+        'AWELD portable oxygen inhaler (600 ml) with >99.5% oxygen purity, built for travel, hiking and emergency relief and ready for a two-year storage shelf life.'
+    },
+    {
+      id: 12,
+      name: 'Sterilization',
+      icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
+      description: 'Sterilization equipment and supplies for ensuring medical instruments and equipment are properly sanitized and safe for use.'
+    },
+    {
+      id: 13,
+      name: 'Disposable',
+      icon: 'https://cdn-icons-png.flaticon.com/128/992/992651.png',
+      description: 'Single-use disposable medical products and supplies for hygiene and infection control.'
+    },
+    {
+      id: 14,
+      name: 'Circumcision/Sunat',
+      icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
+      description: 'Medical supplies and equipment for circumcision procedures and related care.'
     }
   ]
 
@@ -165,6 +196,137 @@ const productGroups = [
         'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=800'
       ],
       description: 'Positioning pads for head and neck support across surgical and imaging procedures.'
+    },
+    { 
+      id: 13, 
+      groupId: 9,
+      name: 'Arm and Shoulder Pads', 
+      icon: 'https://cdn-icons-png.flaticon.com/128/1820/1820040.png',
+      images: [
+        'https://images.unsplash.com/photo-1584466977773-352b5c8c9b17?q=80&w=800',
+        'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=800'
+      ],
+      description: 'Positioning pads that protect and support the arm, elbow, wrist and shoulder during procedures.'
+    },
+    { 
+      id: 14, 
+      groupId: 9,
+      name: 'Chest and Body Pads', 
+      icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966456.png',
+      images: [
+        'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800',
+        'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=800'
+      ],
+      description: 'Pads that support and protect the chest, hips and body in lateral, prone and supine procedures.'
+    },
+    { 
+      id: 15, 
+      groupId: 9,
+      name: 'Lower Limb Pads', 
+      icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966456.png',
+      images: [
+        'https://images.unsplash.com/photo-1584466977773-352b5c8c9b17?q=80&w=800',
+        'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=800'
+      ],
+      description: 'Positioning pads that support and protect the lower limbs, heels and tunnelled extremities during surgery.'
+    },
+    { 
+      id: 16, 
+      groupId: 10,
+      name: 'Memory Head and Neck Pads', 
+      icon: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/foam-positioner-removebg-preview_orig.png',
+      images: [
+        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/foam-positioner-removebg-preview_orig.png'
+      ],
+      description: 'Memory foam head and neck positioners for supine, prone and lateral procedures.'
+    },
+    { 
+      id: 17, 
+      groupId: 10,
+      name: 'Memory Chest and Body Pads', 
+      icon: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/prostate-pads-removebg-preview_orig.png',
+      images: [
+        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/prostate-pads-removebg-preview_orig.png'
+      ],
+      description: 'Memory foam chest and body pads that help redistribute pressure and support the torso in prone, supine and lateral procedures.'
+    }
+    ,
+    {
+      id: 18,
+      groupId: 10,
+      name: 'Universal Square Pads',
+      icon: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/universal-square-pads-1-removebg-preview_orig.png',
+      images: [
+        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/universal-square-pads-1-removebg-preview_orig.png',
+        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/pillow-shaped-pads-1-removebg-preview_orig.png'
+      ],
+      description: 'Universal memory foam pads including square and pillow-shaped options for versatile positioning support and pressure redistribution.'
+    },
+    {
+      id: 19,
+      groupId: 10,
+      name: 'Memory Lower Limb Pads',
+      icon: 'http://mycomedic.com.my/uploads/9/7/1/1/9711883/heel-pads-1-removebg-preview_orig.png',
+      images: [
+        'http://mycomedic.com.my/uploads/9/7/1/1/9711883/lower-limb-protector-pads-1-removebg-preview_orig.png',
+        'http://mycomedic.com.my/uploads/9/7/1/1/9711883/heel-pads-1-removebg-preview_orig.png'
+      ],
+      description: 'Memory foam lower-limb supports including protector pads, heel pads, and tunnel pads for pressure redistribution and stable positioning.'
+    },
+    {
+      id: 20,
+      groupId: 12,
+      name: 'Disinfection Tanks',
+      icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
+      images: [
+        'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+        'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800'
+      ],
+      description: 'Disinfection tanks for sterilizing medical instruments and equipment.'
+    },
+    {
+      id: 21,
+      groupId: 12,
+      name: 'Plastic Holloware',
+      icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
+      images: [
+        'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+        'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800'
+      ],
+      description: 'Plastic holloware containers and trays for sterilization and storage of medical instruments.'
+    },
+    {
+      id: 22,
+      groupId: 12,
+      name: 'Stainless Steel Dins',
+      icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
+      images: [
+        'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+        'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800'
+      ],
+      description: 'Stainless steel DIN containers for sterilization and organization of surgical instruments.'
+    },
+    {
+      id: 23,
+      groupId: 12,
+      name: 'Instrument Protectors',
+      icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
+      images: [
+        'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+        'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800'
+      ],
+      description: 'Protective covers and cases for medical instruments during sterilization and storage.'
+    },
+    {
+      id: 24,
+      groupId: 12,
+      name: 'Surgical Instrument Trays',
+      icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
+      images: [
+        'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+        'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800'
+      ],
+      description: 'Sterilization trays designed for organizing and sterilizing surgical instruments.'
     }
   ]
   
@@ -185,6 +347,37 @@ const productGroups = [
       category: null, 
       price: 14.99, 
       image: 'https://images.unsplash.com/photo-1588776814546-ec3bdf6d9b1d?q=80&w=800',
+      images: [
+        'https://images.unsplash.com/photo-1588776814546-ec3bdf6d9b1d?q=80&w=800',
+        'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+        'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800'
+      ],
+      variants: {
+        colors: [
+          { name: 'Blue', value: 'blue', hex: '#0066CC' },
+          { name: 'White', value: 'white', hex: '#FFFFFF' },
+          { name: 'Black', value: 'black', hex: '#000000' }
+        ],
+        sizes: [
+          { name: 'Small', value: 'small' },
+          { name: 'Medium', value: 'medium' },
+          { name: 'Large', value: 'large' },
+          { name: 'X-Large', value: 'xlarge' }
+        ]
+      },
+      stock: 25,
+      description: 'High-quality disposable gloves designed for medical professionals. These powder-free nitrile gloves provide excellent protection and tactile sensitivity. Perfect for clinical procedures, laboratory work, and general medical use.',
+      specifications: {
+        'Material': '100% Nitrile',
+        'Powder Free': 'Yes',
+        'Thickness': '5 mil',
+        'Certification': 'ASTM D6319, EN455'
+      },
+      dimensions: {
+        'Length': '9.5 inches',
+        'Width': '4 inches'
+      },
+      articleCode: 'DG-100-BL',
       pageId: 'disposable-gloves'
     },
     { 
@@ -192,7 +385,31 @@ const productGroups = [
       name: 'Surgical Mask (50 pcs)', 
       category: 'Protective Wear', 
       price: 9.99, 
+      salePrice: 7.99,
       image: 'https://images.unsplash.com/photo-1584466977773-352b5c8c9b17?q=80&w=800',
+      images: [
+        'https://images.unsplash.com/photo-1584466977773-352b5c8c9b17?q=80&w=800',
+        'https://images.unsplash.com/photo-1588774069241-bf1ce6f08c08?q=80&w=800'
+      ],
+      variants: {
+        colors: [
+          { name: 'Blue', value: 'blue', hex: '#0066CC' },
+          { name: 'White', value: 'white', hex: '#FFFFFF' }
+        ],
+        sizes: [
+          { name: 'Standard', value: 'standard' },
+          { name: 'Large', value: 'large' }
+        ]
+      },
+      stock: 8,
+      description: '3-ply surgical face masks designed for medical professionals. These masks provide excellent filtration and breathability. Features include: 3-layer protection, adjustable nose bridge, and comfortable ear loops. Suitable for clinical and surgical environments.',
+      specifications: {
+        'Layers': '3-ply',
+        'Filtration': 'BFE ≥ 95%',
+        'Material': 'Non-woven fabric',
+        'Certification': 'CE, FDA approved'
+      },
+      articleCode: 'SM-50-BL',
       pageId: 'surgical-mask'
     },
     { 
@@ -594,7 +811,7 @@ const productGroups = [
     {
       id: 50,
       name: 'Disposable Emergency Suture Pack',
-      groupId: 5,
+      groupId: 13,
       category: null,
       price: 89.99,
       image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/403154_2_orig.png',
@@ -603,7 +820,7 @@ const productGroups = [
     {
       id: 51,
       name: 'Disposable Circumcision Pack',
-      groupId: 5,
+      groupId: 13,
       category: null,
       price: 119.99,
       image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/editor/7475439-1.png?1489315151',
@@ -612,7 +829,7 @@ const productGroups = [
     {
       id: 52,
       name: 'Disposable Pre-Epidural Set',
-      groupId: 5,
+      groupId: 13,
       category: null,
       price: 89.99,
       image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/pre-epidural-sets_orig.png',
@@ -621,7 +838,7 @@ const productGroups = [
     {
       id: 53,
       name: 'Disposable / Sterile Basic Pack',
-      groupId: 5,
+      groupId: 13,
       category: null,
       price: 59.99,
       image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3826642_orig.jpg',
@@ -826,15 +1043,6 @@ const productGroups = [
       pageId: 'medical-protective-hood-cover'
     },
     {
-      id: 76,
-      name: 'Circumcision Underwear',
-      groupId: 8,
-      category: null,
-      price: 14.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/whatsapp-image-2024-01-26-at-11-36-07-am-removebg-preview_orig.png',
-      pageId: 'circumcision-underwear'
-    },
-    {
       id: 77,
       name: 'Medical Protective Boots Cover',
       groupId: 8,
@@ -959,6 +1167,635 @@ const productGroups = [
       price: 144.99,
       image: 'https://images.unsplash.com/photo-1580281780551-79626c0ed254?q=80&w=800',
       pageId: 'donut-head-pads-with-cissoid'
+    },
+    {
+      id: 91,
+      name: 'Universal Armboard Pads',
+      groupId: 9,
+      category: 'Arm and Shoulder Pads',
+      price: 89.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/presentation-gel-pads-2109-2-removebg-preview_orig.png',
+      pageId: 'universal-armboard-pads'
+    },
+    {
+      id: 92,
+      name: 'Wrist Protectors',
+      groupId: 9,
+      category: 'Arm and Shoulder Pads',
+      price: 49.99,
+      image: 'https://images.unsplash.com/photo-1584466977773-352b5c8c9b17?q=80&w=800',
+      pageId: 'wrist-protectors'
+    },
+    {
+      id: 93,
+      name: 'Presentation Gel Pads',
+      groupId: 9,
+      category: 'Arm and Shoulder Pads',
+      price: 119.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/presentation-gel-pads-2109-2-removebg-preview_orig.png',
+      pageId: 'presentation-gel-pads'
+    },
+    {
+      id: 94,
+      name: 'Elbow Protectors',
+      groupId: 9,
+      category: 'Arm and Shoulder Pads',
+      price: 59.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/2104-removebg-preview_orig.png',
+      pageId: 'elbow-protectors'
+    },
+    {
+      id: 95,
+      name: 'Arm Shield Pads',
+      groupId: 9,
+      category: 'Arm and Shoulder Pads',
+      price: 79.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/2104-removebg-preview_orig.png',
+      pageId: 'arm-shield-pads'
+    },
+    {
+      id: 96,
+      name: 'Lateral Pads',
+      groupId: 9,
+      category: 'Chest and Body Pads',
+      price: 139.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3105-fracture-removebg-preview_orig.png',
+      pageId: 'lateral-pads'
+    },
+    {
+      id: 97,
+      name: 'Chest-Hipbone Pads',
+      groupId: 9,
+      category: 'Chest and Body Pads',
+      price: 149.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3105-fracture-removebg-preview_orig.png',
+      pageId: 'chest-hipbone-pads'
+    },
+    {
+      id: 98,
+      name: 'Fracture Table Post Pads',
+      groupId: 9,
+      category: 'Chest and Body Pads',
+      price: 159.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3105-fracture-removebg-preview_orig.png',
+      pageId: 'fracture-table-post-pads'
+    },
+    {
+      id: 99,
+      name: 'Body Protectors',
+      groupId: 9,
+      category: 'Chest and Body Pads',
+      price: 169.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3105-fracture-removebg-preview_orig.png',
+      pageId: 'body-protectors'
+    },
+    {
+      id: 100,
+      name: 'Prostrate Pads',
+      groupId: 9,
+      category: 'Chest and Body Pads',
+      price: 179.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3105-fracture-removebg-preview_orig.png',
+      pageId: 'prostrate-pads'
+    },
+    {
+      id: 101,
+      name: 'Hip Pads',
+      groupId: 9,
+      category: 'Chest and Body Pads',
+      price: 189.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3105-fracture-removebg-preview_orig.png',
+      pageId: 'hip-pads'
+    },
+    {
+      id: 102,
+      name: 'Pillar Shaped Pads',
+      groupId: 9,
+      category: 'Chest and Body Pads',
+      price: 199.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3105-fracture-removebg-preview_orig.png',
+      pageId: 'pillar-shaped-pads'
+    },
+    {
+      id: 103,
+      name: 'Dome Shaped Pads',
+      groupId: 9,
+      category: 'Lower Limb Pads',
+      price: 79.99,
+      image: 'https://images.unsplash.com/photo-1584466977773-352b5c8c9b17?q=80&w=800',
+      pageId: 'dome-shaped-pads'
+    },
+    {
+      id: 104,
+      name: 'Heel Pads',
+      groupId: 9,
+      category: 'Lower Limb Pads',
+      price: 59.99,
+      image: 'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=800',
+      pageId: 'heel-pads'
+    },
+    {
+      id: 105,
+      name: 'Ankle Protectors',
+      groupId: 9,
+      category: 'Lower Limb Pads',
+      price: 69.99,
+      image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800',
+      pageId: 'ankle-protectors'
+    },
+    {
+      id: 106,
+      name: 'O.R. Table Pads',
+      groupId: 9,
+      category: 'Lower Limb Pads',
+      price: 189.99,
+      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800',
+      pageId: 'or-table-pads'
+    },
+    {
+      id: 107,
+      name: 'Contoured Arm/Leg Pads',
+      groupId: 9,
+      category: 'Lower Limb Pads',
+      price: 129.99,
+      image: 'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800',
+      pageId: 'contoured-armleg-pads'
+    },
+    {
+      id: 108,
+      name: 'Universal Square Pads',
+      groupId: 9,
+      category: 'Lower Limb Pads',
+      price: 89.99,
+      image: 'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=800',
+      pageId: 'universal-square-pads'
+    },
+    {
+      id: 109,
+      name: 'Tunnel Pads',
+      groupId: 9,
+      category: 'Lower Limb Pads',
+      price: 149.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/4107-tunnel-pad-removebg-preview_orig.png',
+      pageId: 'tunnel-pads'
+    },
+    {
+      id: 110,
+      name: 'Pillow Shaped Pad',
+      groupId: 9,
+      category: 'Lower Limb Pads',
+      price: 99.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/7101-pillow-shaped-removebg-preview-1.png?1671525877',
+      pageId: 'pillow-shaped-pad'
+    },
+    {
+      id: 111,
+      name: 'Face-Cradle® Prone Support System',
+      groupId: 9,
+      category: null,
+      price: 499.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/editor/screenshot-869.png?1488963255',
+      pageId: 'face-cradle-prone-support-system'
+    },
+    {
+      id: 112,
+      name: 'Adjustable Stirrups for Lithotomy Surgeries',
+      groupId: 9,
+      category: null,
+      price: 2999.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/editor/screenshot-870.png?1488963292',
+      pageId: 'adjustable-stirrups-for-lithotomy-surgeries'
+    },
+    {
+      id: 113,
+      name: 'Troop Elevation Pillow',
+      groupId: 9,
+      category: null,
+      price: 399.99,
+      image: 'https://images.unsplash.com/photo-1512678080530-569d2e3203f1?q=80&w=800',
+      pageId: 'troop-elevation-pillow'
+    },
+    {
+      id: 114,
+      name: 'Memory Supine Head Pads',
+      groupId: 10,
+      category: 'Memory Head and Neck Pads',
+      price: 149.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/foam-positioner-removebg-preview_orig.png',
+      pageId: 'memory-supine-head-pads'
+    },
+    {
+      id: 115,
+      name: 'Memory Prostrate Pads',
+      groupId: 10,
+      category: 'Memory Chest and Body Pads',
+      price: 159.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/prostate-pads-removebg-preview_orig.png',
+      pageId: 'memory-prostrate-pads'
+    },
+    {
+      id: 116,
+      name: 'Memory Lower Limb Pads',
+      groupId: 10,
+      category: null,
+      price: 139.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/heel-pads-removebg-preview_orig.png',
+      pageId: 'memory-lower-limb-pads'
+    },
+    {
+      id: 117,
+      name: 'Memory Arm Pads',
+      groupId: 10,
+      category: null,
+      price: 129.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/arm-pad-removebg-preview_orig.png',
+      pageId: 'memory-arm-pads'
+    },
+    {
+      id: 118,
+      name: 'Memory Universal Positioners',
+      groupId: 10,
+      category: null,
+      price: 159.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/memory-universal-removebg-preview_orig.png',
+      pageId: 'memory-universal-positioners'
+    },
+    {
+      id: 130,
+      name: 'Memory Universal Square Pads',
+      groupId: 10,
+      category: 'Universal Square Pads',
+      price: 159.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/okl-f01-removebg-preview_orig.png',
+      pageId: 'memory-universal-square-pads'
+    },
+    {
+      id: 131,
+      name: 'Memory Pillow Shaped Pads',
+      groupId: 10,
+      category: 'Universal Square Pads',
+      price: 159.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/pillow-shaped-pad-size-removebg-preview_orig.png',
+      pageId: 'memory-pillow-shaped-pads'
+    },
+    {
+      id: 132,
+      name: 'Memory Lower Limb Protector Pads',
+      groupId: 10,
+      category: 'Memory Lower Limb Pads',
+      price: 159.99,
+      image: 'http://mycomedic.com.my/uploads/9/7/1/1/9711883/lower-limb-protector-pads-1-removebg-preview_orig.png',
+      pageId: 'memory-lower-limb-protector-pads'
+    },
+    {
+      id: 133,
+      name: 'Memory Heel Pads',
+      groupId: 10,
+      category: 'Memory Lower Limb Pads',
+      price: 159.99,
+      image: 'http://mycomedic.com.my/uploads/9/7/1/1/9711883/heel-pads-1-removebg-preview_orig.png',
+      pageId: 'memory-heel-pads'
+    },
+    {
+      id: 134,
+      name: 'Memory Tunnel Pads',
+      groupId: 10,
+      category: 'Memory Lower Limb Pads',
+      price: 159.99,
+      // The "memory tunnel pads" image isn't shown in the snippet; reuse a related tunnel-pad visual for now.
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/4107-tunnel-pad-removebg-preview_orig.png',
+      pageId: 'memory-tunnel-pads'
+    },
+    {
+      id: 119,
+      name: 'Memory Positioning Table Pads',
+      groupId: 10,
+      category: null,
+      price: 199.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/or-table-pads-orig-removebg-preview_orig.png',
+      pageId: 'memory-positioning-tables-pads'
+    },
+    {
+      id: 120,
+      name: 'Memory Horseshoe Head Pads',
+      groupId: 10,
+      category: 'Memory Head and Neck Pads',
+      price: 149.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/horsseshoe-head-pad-removebg-preview_orig.png',
+      pageId: 'memory-horsseshoe-head-pads'
+    },
+    {
+      id: 121,
+      name: 'Memory Donut Head Pads',
+      groupId: 10,
+      category: 'Memory Head and Neck Pads',
+      price: 149.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/foam-positioner-removebg-preview_orig.png',
+      pageId: 'memory-donut-head-pads'
+    },
+    {
+      id: 122,
+      name: 'Memory Waist Pads',
+      groupId: 10,
+      category: 'Memory Chest and Body Pads',
+      price: 159.99,
+      image:
+        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/waist-pads-orig-removebg-preview.png?1671604495',
+      pageId: 'memory-waist-pads'
+    },
+    {
+      id: 123,
+      name: 'Memory Roll Shaped Pads',
+      groupId: 10,
+      category: 'Memory Chest and Body Pads',
+      price: 159.99,
+      image:
+        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/roll-shaped-pads-size-removebg-preview.png?1671604573',
+      pageId: 'memory-roll-shaped-pads'
+    },
+    {
+      id: 124,
+      name: 'Memory Chest-Hipbone Pads',
+      groupId: 10,
+      category: 'Memory Chest and Body Pads',
+      price: 159.99,
+      image:
+        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/chest-hipbone-pads-1-removebg-preview_orig.png',
+      pageId: 'memory-chest-hipbone-pads'
+    },
+    {
+      id: 125,
+      name: 'Memory Fracture Table Post Pads',
+      groupId: 10,
+      category: 'Memory Chest and Body Pads',
+      price: 159.99,
+      image:
+        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/fracture-table-post-pads-1-removebg-preview_orig.png',
+      pageId: 'memory-fracture-table-post-pads'
+    },
+    {
+      id: 126,
+      name: 'Memory Lateral Pads',
+      groupId: 10,
+      category: 'Memory Chest and Body Pads',
+      price: 159.99,
+      image:
+        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/lateral-pad-1-removebg-preview.png?1671604469',
+      pageId: 'memory-lateral-pads'
+    },
+    {
+      id: 127,
+      name: 'Memory Dome Shaped Pads',
+      groupId: 10,
+      category: 'Memory Chest and Body Pads',
+      price: 159.99,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/dome-shaped-pads-removebg-preview_orig.png',
+      pageId: 'memory-dome-shaped-pads'
+    },
+    {
+      id: 128,
+      name: 'Memory Pillar Shaped Pads',
+      groupId: 10,
+      category: 'Memory Chest and Body Pads',
+      price: 159.99,
+      image:
+        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/pillar-shaped-pads-1-removebg-preview.png?1671604615',
+      pageId: 'memory-pillar-shaped-pads'
+    },
+    {
+      id: 129,
+      name: 'Memory Slanting Shaped Pads',
+      groupId: 10,
+      category: 'Memory Chest and Body Pads',
+      price: 159.99,
+      image:
+        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/slanting-shaped-pads-1-removebg-preview_orig.png',
+      pageId: 'memory-slanting-shaped-pads'
+    },
+    {
+      id: 135,
+      name: 'AWELD Portable Breathing Oxygen Inhaler (600 ml)',
+      groupId: 11,
+      category: null,
+      price: 0,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/u4kvox2b1621523622-1000x1000_orig.jpeg',
+      pageId: 'aweld-portable-breathing-oxygen-inhaler'
+    },
+    {
+      id: 136,
+      name: 'Disinfection Tanks',
+      groupId: 12,
+      category: 'Disinfection Tanks',
+      price: 0,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/editor/timthumb.png?1646039323',
+      pageId: 'disinfection-tanks'
+    },
+    {
+      id: 137,
+      name: 'Gallipots',
+      groupId: 12,
+      category: 'Plastic Holloware',
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'gallipots'
+    },
+    {
+      id: 138,
+      name: 'Lotion Bowls',
+      groupId: 12,
+      category: 'Plastic Holloware',
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'lotion-bowls'
+    },
+    {
+      id: 139,
+      name: 'Kidney Dishes & Vomit Bowls',
+      groupId: 12,
+      category: 'Plastic Holloware',
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'kidney-dishes-vomit-bowls'
+    },
+    {
+      id: 140,
+      name: 'Washbowl',
+      groupId: 12,
+      category: 'Plastic Holloware',
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'washbowl'
+    },
+    {
+      id: 141,
+      name: 'Beakers & Feeder Tops',
+      groupId: 12,
+      category: 'Plastic Holloware',
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'beakers-feeder-tops'
+    },
+    {
+      id: 142,
+      name: 'Funnels',
+      groupId: 12,
+      category: 'Plastic Holloware',
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'funnels'
+    },
+    {
+      id: 143,
+      name: "St. Peter's Boat",
+      groupId: 12,
+      category: 'Plastic Holloware',
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'st-peters-boat'
+    },
+    {
+      id: 144,
+      name: 'Spatula',
+      groupId: 12,
+      category: 'Plastic Holloware',
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'spatula'
+    },
+    {
+      id: 145,
+      name: 'Instrument Tray',
+      groupId: 12,
+      category: 'Surgical Instrument Trays',
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'instrument-tray'
+    },
+    {
+      id: 146,
+      name: 'Compartmented Instrument Tray',
+      groupId: 12,
+      category: 'Surgical Instrument Trays',
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'compartmented-instrument-tray'
+    },
+    {
+      id: 147,
+      name: 'Instrument Tray Lid',
+      groupId: 12,
+      category: 'Surgical Instrument Trays',
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'instrument-tray-lid'
+    },
+    {
+      id: 148,
+      name: 'Instrument Tray with Lid',
+      groupId: 12,
+      category: 'Surgical Instrument Trays',
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'instrument-tray-with-lid'
+    },
+    {
+      id: 149,
+      name: 'Stainless Steel Dins',
+      groupId: 12,
+      category: 'Stainless Steel Dins',
+      price: 0,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/tray-dimension_orig.jpg',
+      pageId: 'stainless-steel-dins'
+    },
+    {
+      id: 150,
+      name: 'Shampoo Cap',
+      groupId: 13,
+      category: null,
+      price: 12,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'shampoo-cap'
+    },
+    {
+      id: 151,
+      name: 'Body Wipes',
+      groupId: 13,
+      category: null,
+      price: 10,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'body-wipes'
+    },
+    {
+      id: 152,
+      name: 'Suction Toothbrush',
+      groupId: 13,
+      category: null,
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'suction-toothbrush'
+    },
+    {
+      id: 153,
+      name: 'Suction Swab',
+      groupId: 13,
+      category: null,
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'suction-swab'
+    },
+    {
+      id: 154,
+      name: 'Oral Swab Sensory Brush',
+      groupId: 13,
+      category: null,
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'oral-swab-sensory-brush'
+    },
+    {
+      id: 155,
+      name: 'Sensory Brush 2.0',
+      groupId: 13,
+      category: null,
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'sensory-brush-2-0'
+    },
+    {
+      id: 156,
+      name: 'Sensory Brush',
+      groupId: 13,
+      category: null,
+      price: 0,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'sensory-brush'
+    },
+    {
+      id: 157,
+      name: 'Hypafix Adhesive Non Woven Fabric [Ready Stock]',
+      groupId: 13,
+      category: null,
+      price: 36.00,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'hypafix-adhesive-non-woven-fabric-ready-stock'
+    },
+    {
+      id: 158,
+      name: 'Adult & Pediatric- Tracheostomy Tube Holder / Neck Strap',
+      groupId: 13,
+      category: null,
+      price: 9.5,
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      pageId: 'adult-pediatric-tracheostomy-tube-holder-neck-strap'
+    },
+    {
+      id: 159,
+      name: 'Seluar Sunat Khatan / Circumcision Underwear',
+      groupId: 14,
+      category: null,
+      price: 10,
+      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/whatsapp-image-2024-01-26-at-11-36-07-am-removebg-preview_orig.png',
+      pageId: 'seluar-sunat-khatan-circumcision-underwear'
     }
   ]
   

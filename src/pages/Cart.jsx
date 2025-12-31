@@ -22,7 +22,7 @@ function Cart() {
             <p className='text-gray-600 mb-8'>Add some products to your cart to get started.</p>
             <Link 
               to='/products'
-              className='inline-block bg-primary text-white px-8 py-4 rounded-lg hover:bg-primary/90 transition-colors font-medium'
+              className='inline-block bg-primary text-white px-8 py-4 rounded-lg hover:bg-primary/90 transition-all duration-200 font-medium shadow-md hover:shadow-lg active:scale-[0.98]'
             >
               Browse Products
             </Link>
@@ -63,17 +63,17 @@ function Cart() {
                     <p className='text-2xl font-bold text-primary mt-2'>${item.price}</p>
                     
                     <div className='flex items-center gap-4 mt-4'>
-                      <div className='flex items-center border border-gray-300 rounded-lg'>
+                      <div className='flex items-center border-2 border-gray-300 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow'>
                         <button 
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className='px-3 py-1 hover:bg-gray-100 transition-colors'
+                          className='px-4 py-2 hover:bg-gray-100 active:bg-gray-200 transition-all duration-200 text-gray-700 font-medium'
                         >
                           -
                         </button>
-                        <span className='px-4 py-1 border-x border-gray-300'>{item.quantity}</span>
+                        <span className='px-4 py-2 border-x-2 border-gray-300 font-medium'>{item.quantity}</span>
                         <button 
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className='px-3 py-1 hover:bg-gray-100 transition-colors'
+                          className='px-4 py-2 hover:bg-gray-100 active:bg-gray-200 transition-all duration-200 text-gray-700 font-medium'
                         >
                           +
                         </button>
@@ -81,7 +81,7 @@ function Cart() {
                       
                       <button
                         onClick={() => removeFromCart(item.id)}
-                        className='text-red-600 hover:text-red-800 font-medium transition-colors'
+                        className='text-red-600 hover:text-red-800 font-medium transition-all duration-200 hover:bg-red-50 px-3 py-1.5 rounded-md active:scale-95'
                       >
                         Remove
                       </button>
@@ -98,7 +98,7 @@ function Cart() {
               
               <button
                 onClick={clearCart}
-                className='text-gray-600 hover:text-red-600 font-medium transition-colors mt-4'
+                className='text-gray-600 hover:text-red-600 font-medium transition-all duration-200 hover:bg-red-50 px-4 py-2 rounded-md mt-4 active:scale-95'
               >
                 Clear Cart
               </button>
@@ -126,7 +126,7 @@ function Cart() {
                 
                 <button
                   onClick={() => navigate('/checkout')}
-                  className='w-full bg-primary text-white px-6 py-4 rounded-lg hover:bg-primary/90 transition-colors font-medium text-lg mb-4'
+                  className='w-full bg-primary text-white px-6 py-4 rounded-lg hover:bg-primary/90 transition-all duration-200 font-medium text-lg mb-4 shadow-md hover:shadow-lg active:scale-[0.98]'
                 >
                   Proceed to Checkout
                 </button>

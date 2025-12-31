@@ -20,19 +20,32 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('myco_cart', JSON.stringify(cartItems))
   }, [cartItems])
 
-  const addToCart = (product, quantity = 1) => {
+  const addToCart = (product, quantity = 1, variantInfo = null) => {
     setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item.id === product.id)
+      // Create a unique key for this product variant combination
+      const variantKey = variantInfo 
+        ? `${product.id}-${variantInfo.color || 'default'}-${variantInfo.size || 'default'}`
+        : `${product.id}-default-default`
+      
+      const existingItem = prevItems.find(item => {
+        const itemVariantKey = item.variantInfo
+          ? `${item.id}-${item.variantInfo.color || 'default'}-${item.variantInfo.size || 'default'}`
+          : `${item.id}-default-default`
+        return itemVariantKey === variantKey
+      })
       
       if (existingItem) {
-        return prevItems.map(item =>
-          item.id === product.id
+        return prevItems.map(item => {
+          const itemVariantKey = item.variantInfo
+            ? `${item.id}-${item.variantInfo.color || 'default'}-${item.variantInfo.size || 'default'}`
+            : `${item.id}-default-default`
+          return itemVariantKey === variantKey
             ? { ...item, quantity: item.quantity + quantity }
             : item
-        )
+        })
       }
       
-      return [...prevItems, { ...product, quantity }]
+      return [...prevItems, { ...product, quantity, variantInfo }]
     })
   }
 

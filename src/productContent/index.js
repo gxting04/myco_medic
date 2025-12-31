@@ -70,6 +70,84 @@ import BootsCoverPage from './boots_cover'
 import IsolationGownPage from './isolation_gown'
 import CPEApronGownPage from './cpe_apron_gown'
 import DisposablePlasticApronPage from './disposable_plastic_apron'
+import ProstrateHeadPadsPage from './prostrate_head_pads'
+import DonutHeadPadsPage from './donut_head_pads'
+import HorseshoeHeadPadsPage from './horseshoe_head_pads'
+import ContouredSupineHeadPadsPage from './contoured_supine_head_pads'
+import OphthalmicHeadPadsPage from './ophthalmic_head_pads'
+import FlatSupineHeadPadsPage from './flat_supine_head_pads'
+import BowlShapedHeadPadsPage from './bowl_shaped_head_pads'
+import BowlShapedHorseshoeHeadPadsPage from './bowl_shaped_horseshoe_head_pads'
+import DonutHeadPadsWithCissoidPage from './donut_head_pads_with_cissoid'
+import ThyroidGlandPositioningPadsPage from './thyroid_gland_positioning_pads'
+import UniversalArmboardPadsPage from './universal_armboard_pads'
+import ElbowProtectorsPage from './elbow_protectors'
+import WristProtectorsPage from './wrist_protectors'
+import ArmShieldPadsPage from './arm_shield_pads'
+import PresentationGelPadsPage from './presentation_gel_pads'
+import LateralPadsPage from './lateral_pads'
+import ProstratePadsPage from './prostrate_pads'
+import ChestHipbonePadsPage from './chest_hipbone_pads'
+import HipPadsPage from './hip_pads'
+import FractureTablePostPadsPage from './fracture_table_post_pads'
+import PillarShapedPadsPage from './pillar_shaped_pads'
+import BodyProtectorsPage from './body_protectors'
+import DomeShapedPadsPage from './dome_shaped_pads'
+import ContouredArmLegPadsPage from './contoured_armleg_pads'
+import HeelPadsPage from './heel_pads'
+import UniversalSquarePadsPage from './universal_square_pads'
+import AnkleProtectorsPage from './ankle_protectors'
+import TunnelPadsPage from './tunnel_pads'
+import ORTablePadsPage from './or_table_pads'
+import PillowShapedPadPage from './pillow_shaped_pad'
+import FaceCradleProneSupportSystemPage from './face_cradle_prone_support_system'
+import AdjustableStirrupsForLithotomySurgeriesPage from './adjustable_stirrups_for_lithotomy_surgeries'
+import TroopElevationPillowPage from './troop_elevation_pillow'
+import MemorySupineHeadPadsPage from './memory_supine_head_pads'
+import MemoryHorseshoeHeadPadsPage from './memory_horsseshoe_head_pads'
+import MemoryDonutHeadPadsPage from './memory_donut_head_pads'
+import MemoryArmPadsPage from './memory_arm_pads'
+import MemoryProstratePadsPage from './memory_prostrate_pads'
+import MemoryChestHipbonePadsPage from './memory_chest_hipbone_pads'
+import MemoryPillarShapedPadsPage from './memory_pillar_shaped_pads'
+import MemoryLateralPadsPage from './memory_lateral_pads'
+import MemoryWaistPadsPage from './memory_waist_pads'
+import MemoryDomeShapedPadsPage from './memory_dome_shaped_pads'
+import MemoryRollShapedPadsPage from './memory_roll_shaped_pads'
+import MemorySlantingShapedPadsPage from './memory_slanting_shaped_pads'
+import MemoryFractureTablePostPadsPage from './memory_fracture_table_post_pads'
+import MemoryUniversalPositionersPage from './memory_universal_positioners'
+import MemoryUniversalSquarePadsPage from './memory_universal_square_pads'
+import MemoryPillowShapedPadsPage from './memory_pillow_shaped_pads'
+import MemoryLowerLimbPadsPage from './memory_lower_limb_pads'
+import MemoryLowerLimbProtectorPadsPage from './memory_lower_limb_protector_pads'
+import MemoryHeelPadsPage from './memory_heel_pads'
+import MemoryTunnelPadsPage from './memory_tunnel_pads'
+import AWELDPortableBreathingOxygenInhalerPage from './aweld-portable-breathing-oxygen-inhaler'
+import DisinfectionTanksPage from './disinfection_tanks'
+import GallipotsPage from './gallipots'
+import LotionBowlsPage from './lotion_bowls'
+import KidneyDishesVomitBowlsPage from './kidney_dishes_vomit_bowls'
+import WashbowlPage from './washbowl'
+import BeakersFeederTopsPage from './beakers_feeder_tops'
+import FunnelsPage from './funnels'
+import StPetersBoatPage from './st_peters_boat'
+import SpatulaPage from './spatula'
+import InstrumentTrayPage from './instrument_tray'
+import CompartmentedInstrumentTrayPage from './compartmented_instrument_tray'
+import InstrumentTrayLidPage from './instrument_tray_lid'
+import InstrumentTrayWithLidPage from './instrument_tray_with_lid'
+import StainlessSteelDinsPage from './stainless_steel_dins'
+import ShampooCapPage from './shampoo_cap'
+import BodyWipesPage from './body_wipes'
+import SuctionToothbrushPage from './suction_toothbrush'
+import SuctionSwabPage from './suction_swab'
+import OralSwabSensoryBrushPage from './oral_swab_sensory_brush'
+import SensoryBrush20Page from './sensory_brush_2_0'
+import SensoryBrushPage from './sensory_brush'
+import HypafixAdhesiveNonWovenFabricReadyStockPage from './hypafix_adhesive_non_woven_fabric_ready_stock'
+import AdultPediatricTracheostomyTubeHolderNeckStrapPage from './adult_pediatric_tracheostomy_tube_holder_neck_strap'
+import SeluarSunatKhatanCircumcisionUnderwearPage from './seluar_sunat_khatan_circumcision_underwear'
 
 const productContentRegistry = {
   'disposable-cpap-system': DisposableCPAPPage,
@@ -143,7 +221,85 @@ const productContentRegistry = {
   'boots-cover': BootsCoverPage,
   'isolation-gown': IsolationGownPage,
   'cpe-apron-gown': CPEApronGownPage,
-  'disposable-plastic-apron': DisposablePlasticApronPage
+  'disposable-plastic-apron': DisposablePlasticApronPage,
+  'prostrate-head-pads': ProstrateHeadPadsPage,
+  'donut-head-pads': DonutHeadPadsPage,
+  'horseshoe-head-pads': HorseshoeHeadPadsPage,
+  'contoured-supine-head-pads': ContouredSupineHeadPadsPage,
+  'ophthalmic-head-pads': OphthalmicHeadPadsPage,
+  'flat-supine-head-pads': FlatSupineHeadPadsPage,
+  'bowl-shaped-head-pads': BowlShapedHeadPadsPage,
+  'bowl-shaped-horseshoe-head-pads': BowlShapedHorseshoeHeadPadsPage,
+  'donut-head-pads-with-cissoid': DonutHeadPadsWithCissoidPage,
+  'thyroid-gland-positioning-pads': ThyroidGlandPositioningPadsPage,
+  'universal-armboard-pads': UniversalArmboardPadsPage,
+  'elbow-protectors': ElbowProtectorsPage,
+  'wrist-protectors': WristProtectorsPage,
+  'arm-shield-pads': ArmShieldPadsPage,
+  'presentation-gel-pads': PresentationGelPadsPage,
+  'lateral-pads': LateralPadsPage,
+  'prostrate-pads': ProstratePadsPage,
+  'chest-hipbone-pads': ChestHipbonePadsPage,
+  'hip-pads': HipPadsPage,
+  'fracture-table-post-pads': FractureTablePostPadsPage,
+  'pillar-shaped-pads': PillarShapedPadsPage,
+  'body-protectors': BodyProtectorsPage,
+  'dome-shaped-pads': DomeShapedPadsPage,
+  'contoured-armleg-pads': ContouredArmLegPadsPage,
+  'heel-pads': HeelPadsPage,
+  'universal-square-pads': UniversalSquarePadsPage,
+  'ankle-protectors': AnkleProtectorsPage,
+  'tunnel-pads': TunnelPadsPage,
+  'or-table-pads': ORTablePadsPage,
+  'pillow-shaped-pad': PillowShapedPadPage,
+  'face-cradle-prone-support-system': FaceCradleProneSupportSystemPage,
+  'adjustable-stirrups-for-lithotomy-surgeries': AdjustableStirrupsForLithotomySurgeriesPage,
+  'troop-elevation-pillow': TroopElevationPillowPage,
+  'memory-supine-head-pads': MemorySupineHeadPadsPage,
+  'memory-horsseshoe-head-pads': MemoryHorseshoeHeadPadsPage,
+  'memory-donut-head-pads': MemoryDonutHeadPadsPage,
+  'memory-arm-pads': MemoryArmPadsPage,
+  'memory-prostrate-pads': MemoryProstratePadsPage,
+  'memory-chest-hipbone-pads': MemoryChestHipbonePadsPage,
+  'memory-pillar-shaped-pads': MemoryPillarShapedPadsPage,
+  'memory-lateral-pads': MemoryLateralPadsPage,
+  'memory-waist-pads': MemoryWaistPadsPage,
+  'memory-dome-shaped-pads': MemoryDomeShapedPadsPage,
+  'memory-roll-shaped-pads': MemoryRollShapedPadsPage,
+  'memory-slanting-shaped-pads': MemorySlantingShapedPadsPage,
+  'memory-fracture-table-post-pads': MemoryFractureTablePostPadsPage,
+  'memory-universal-positioners': MemoryUniversalPositionersPage,
+  'memory-universal-square-pads': MemoryUniversalSquarePadsPage,
+  'memory-pillow-shaped-pads': MemoryPillowShapedPadsPage,
+  'memory-lower-limb-pads': MemoryLowerLimbPadsPage,
+  'memory-lower-limb-protector-pads': MemoryLowerLimbProtectorPadsPage,
+  'memory-heel-pads': MemoryHeelPadsPage,
+  'memory-tunnel-pads': MemoryTunnelPadsPage,
+  'aweld-portable-breathing-oxygen-inhaler': AWELDPortableBreathingOxygenInhalerPage,
+  'disinfection-tanks': DisinfectionTanksPage,
+  'gallipots': GallipotsPage,
+  'lotion-bowls': LotionBowlsPage,
+  'kidney-dishes-vomit-bowls': KidneyDishesVomitBowlsPage,
+  'washbowl': WashbowlPage,
+  'beakers-feeder-tops': BeakersFeederTopsPage,
+  'funnels': FunnelsPage,
+  'st-peters-boat': StPetersBoatPage,
+  'spatula': SpatulaPage,
+  'instrument-tray': InstrumentTrayPage,
+  'compartmented-instrument-tray': CompartmentedInstrumentTrayPage,
+  'instrument-tray-lid': InstrumentTrayLidPage,
+  'instrument-tray-with-lid': InstrumentTrayWithLidPage,
+  'stainless-steel-dins': StainlessSteelDinsPage,
+  'shampoo-cap': ShampooCapPage,
+  'body-wipes': BodyWipesPage,
+  'suction-toothbrush': SuctionToothbrushPage,
+  'suction-swab': SuctionSwabPage,
+  'oral-swab-sensory-brush': OralSwabSensoryBrushPage,
+  'sensory-brush-2-0': SensoryBrush20Page,
+  'sensory-brush': SensoryBrushPage,
+  'hypafix-adhesive-non-woven-fabric-ready-stock': HypafixAdhesiveNonWovenFabricReadyStockPage,
+  'adult-pediatric-tracheostomy-tube-holder-neck-strap': AdultPediatricTracheostomyTubeHolderNeckStrapPage,
+  'seluar-sunat-khatan-circumcision-underwear': SeluarSunatKhatanCircumcisionUnderwearPage
 }
 
 export default productContentRegistry
