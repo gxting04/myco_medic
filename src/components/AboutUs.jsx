@@ -9,9 +9,9 @@ function AboutUs() {
   const sectionRef = useRef(null)
 
   const images = [
-    '/public/header_2.png',
-    '/public/header_3.jpg',
-    '/public/header_4.jpg',
+    '/header_2.png',
+    '/header_3.jpg',
+    '/header_4.jpg',
   ]
 
   // Auto-slide

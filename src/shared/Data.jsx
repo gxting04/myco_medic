@@ -337,7 +337,7 @@
       groupId: 1, 
       category: null, 
       price: 49.99, 
-      image: '/public/cpap.png',
+      image: '/cpap.png',
       pageId: 'disposable-cpap-system'
     },
     { 

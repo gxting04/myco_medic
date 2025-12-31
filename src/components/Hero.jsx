@@ -9,7 +9,7 @@ function Hero() {
   const slides = [
     {
       id: 1,
-      image: '/public/Header.png',
+      image: '/Header.png',
       title: 'Advanced Respiratory Care',
       subtitle: 'Precision engineered for critical moments.',
       cta: 'View Products',
@@ -18,7 +18,7 @@ function Hero() {
     },
     {
       id: 2,
-      image: '/public/header_2.png',
+      image: '/header_2.png',
       title: 'Medical Consumables',
       subtitle: 'High-quality essentials for every procedure.',
       cta: 'Browse Catalog',
@@ -27,7 +27,7 @@ function Hero() {
     },
     {
       id: 3,
-      image: '/public/header_3.jpg',
+      image: '/header_3.jpg',
       title: 'Trusted Solutions',
       subtitle: 'Reliability when it matters most.',
       cta: 'Learn More',
@@ -36,7 +36,7 @@ function Hero() {
     },
     {
       id: 4,
-      image: '/public/header_4.jpg',
+      image: '/header_4.jpg',
       title: 'Innovation in Healthcare',
       subtitle: 'Leading the way in medical technology.',
       cta: 'Contact Us',
