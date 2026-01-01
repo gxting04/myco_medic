@@ -60,7 +60,7 @@ function Cart() {
                     {item.category && (
                       <p className='text-sm text-gray-500 mt-1'>{item.category}</p>
                     )}
-                    <p className='text-2xl font-bold text-primary mt-2'>${item.price}</p>
+                    <p className='text-2xl font-bold text-primary mt-2'>RM{item.price.toFixed(2)}</p>
                     
                     <div className='flex items-center gap-4 mt-4'>
                       <div className='flex items-center border-2 border-gray-300 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow'>
@@ -90,7 +90,7 @@ function Cart() {
                   
                   <div className='text-right'>
                     <p className='text-2xl font-bold text-gray-900'>
-                      ${(item.price * item.quantity).toFixed(2)}
+                      RM{(item.price * item.quantity).toFixed(2)}
                     </p>
                   </div>
                 </div>
@@ -112,7 +112,7 @@ function Cart() {
                 <div className='space-y-4 mb-6'>
                   <div className='flex justify-between text-gray-700'>
                     <span>Subtotal</span>
-                    <span>${getCartTotal().toFixed(2)}</span>
+                    <span>RM{getCartTotal().toFixed(2)}</span>
                   </div>
                   <div className='flex justify-between text-gray-700'>
                     <span>Shipping</span>
@@ -120,7 +120,7 @@ function Cart() {
                   </div>
                   <div className='border-t border-gray-300 pt-4 flex justify-between text-xl font-bold text-gray-900'>
                     <span>Total</span>
-                    <span>${getCartTotal().toFixed(2)}</span>
+                    <span>RM{getCartTotal().toFixed(2)}</span>
                   </div>
                 </div>
                 

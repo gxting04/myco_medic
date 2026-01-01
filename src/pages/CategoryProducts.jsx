@@ -104,7 +104,7 @@ function CategoryProducts() {
                       {product.name}
                     </h3>
                     <p className='text-sm text-gray-500 mb-3'>{product.category}</p>
-                    <p className='text-2xl font-bold text-primary mb-4'>${product.price}</p>
+                    <p className='text-2xl font-bold text-primary mb-4'>RM{product.price.toFixed(2)}</p>
                     
                     <div className='flex items-center text-primary opacity-0 group-hover:opacity-100 transition-opacity'>
                       <span className='text-sm font-medium mr-2'>View Details</span>

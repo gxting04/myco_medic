@@ -278,7 +278,7 @@ function Checkout() {
                       <div className='flex-1'>
                         <p className='font-semibold text-gray-900 text-sm'>{item.name}</p>
                         <p className='text-sm text-gray-600'>Qty: {item.quantity}</p>
-                        <p className='text-sm font-bold text-primary'>${(item.price * item.quantity).toFixed(2)}</p>
+                        <p className='text-sm font-bold text-primary'>RM{(item.price * item.quantity).toFixed(2)}</p>
                       </div>
                     </div>
                   ))}
@@ -287,7 +287,7 @@ function Checkout() {
                 <div className='border-t border-gray-200 pt-4 space-y-3'>
                   <div className='flex justify-between text-gray-700'>
                     <span>Subtotal</span>
-                    <span>${getCartTotal().toFixed(2)}</span>
+                    <span>RM{getCartTotal().toFixed(2)}</span>
                   </div>
                   <div className='flex justify-between text-gray-700'>
                     <span>Shipping</span>
@@ -295,7 +295,7 @@ function Checkout() {
                   </div>
                   <div className='border-t border-gray-200 pt-3 flex justify-between text-xl font-bold text-gray-900'>
                     <span>Total</span>
-                    <span>${getCartTotal().toFixed(2)}</span>
+                    <span>RM{getCartTotal().toFixed(2)}</span>
                   </div>
                 </div>
               </div>
