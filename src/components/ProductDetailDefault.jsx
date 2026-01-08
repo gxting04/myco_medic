@@ -6,6 +6,7 @@ import WhatsAppFloat from './WhatsAppFloat'
 import Data from '../shared/Data'
 import { useCart } from '../context/CartContext'
 import Button from './ui/button'
+import { ArrowLeft } from 'lucide-react'
 
 function ProductDetailDefault({ product }) {
   const navigate = useNavigate()
@@ -33,9 +34,10 @@ function ProductDetailDefault({ product }) {
   // Determine if product belongs to a category or group
   const hasCategory = product.category !== null && product.category !== undefined
   const displayName = hasCategory ? product.category : (group?.name || 'Products')
+  // Build back link - if product has no category, go to ProductsPage with groupId query param
   const backLink = hasCategory 
     ? `/products/category/${product.category.toLowerCase().replace(/\s+/g, '-')}`
-    : (group ? `/products/group/${group.name.toLowerCase().replace(/\s+/g, '-')}` : '/products')
+    : (group ? `/products?groupId=${group.id}` : '/products')
 
   // Get product images - support multiple images or fallback to single image
   const productImages = useMemo(() => {
@@ -151,8 +153,17 @@ function ProductDetailDefault({ product }) {
     <div>
       <Header/>
       
-      <div className='py-8 bg-white'>
+      <div className='pt-32 pb-8 bg-white'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6'>
+          {/* Back Button */}
+          <Link
+            to={backLink}
+            className='inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors group'
+          >
+            <ArrowLeft className='w-5 h-5 group-hover:-translate-x-1 transition-transform' />
+            <span className='text-sm font-medium'>Back</span>
+          </Link>
+
           {/* Breadcrumb */}
           <nav className='mb-6'>
             <div className='flex items-center space-x-2 text-sm text-gray-500'>
@@ -413,6 +424,21 @@ function ProductDetailDefault({ product }) {
                       return <br key={index} />
                     })}
                   </div>
+                  {product.video && (
+                    <div className='mt-6 pt-6 border-t border-gray-200'>
+                      <h3 className='font-semibold text-gray-900 mb-4'>Product Video</h3>
+                      <div className='rounded-lg overflow-hidden bg-gray-100'>
+                        <video 
+                          src={product.video}
+                          controls
+                          className='w-full h-auto max-h-[600px]'
+                          preload='metadata'
+                        >
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
+                    </div>
+                  )}
                   {product.specifications && (
                     <div className='mt-6 space-y-3 pt-6 border-t border-gray-200'>
                       <h3 className='font-semibold text-gray-900 mb-3'>Specifications</h3>

@@ -1,18 +1,47 @@
-import React, { useState, useMemo } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState, useMemo, useEffect } from 'react'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import WhatsAppFloat from '../components/WhatsAppFloat'
 import Data from '../shared/Data'
 import slugify from '../utils/slugify'
-import { ChevronDown, ChevronRight, Search } from 'lucide-react'
+import { ChevronDown, ChevronRight, Search, Filter, X } from 'lucide-react'
 
 function ProductsPage() {
+  const [searchParams] = useSearchParams()
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedGroupId, setSelectedGroupId] = useState(null)
-  const [selectedCategoryId, setSelectedCategoryId] = useState(null)
+  const [selectedGroupId, setSelectedGroupId] = useState(() => {
+    const groupIdParam = searchParams.get('groupId')
+    return groupIdParam ? parseInt(groupIdParam) : null
+  })
+  const [selectedCategoryId, setSelectedCategoryId] = useState(() => {
+    const categoryIdParam = searchParams.get('categoryId')
+    return categoryIdParam ? parseInt(categoryIdParam) : null
+  })
   const [expandedGroups, setExpandedGroups] = useState([])
+  const [sortBy, setSortBy] = useState('default')
+  const [priceRange, setPriceRange] = useState({ min: '', max: '' })
+  const [showFilters, setShowFilters] = useState(false)
   const navigate = useNavigate()
+
+  // Auto-show filters on desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setShowFilters(true)
+      }
+    }
+    handleResize() // Check on mount
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // Expand group if selected from URL params
+  useEffect(() => {
+    if (selectedGroupId && !expandedGroups.includes(selectedGroupId)) {
+      setExpandedGroups(prev => [...prev, selectedGroupId])
+    }
+  }, [selectedGroupId])
 
   // Get products from localStorage or initial data
   const allProducts = useMemo(() => {
@@ -20,7 +49,7 @@ function ProductsPage() {
     return saved ? JSON.parse(saved) : Data.initialProducts
   }, [])
 
-  // Filter products based on selection
+  // Filter and sort products based on selection
   const filteredProducts = useMemo(() => {
     let products = allProducts
 
@@ -62,8 +91,42 @@ function ProductsPage() {
       })
     }
 
-    return products
-  }, [allProducts, selectedGroupId, selectedCategoryId, searchTerm])
+    // Price range filter
+    if (priceRange.min !== '') {
+      const minPrice = parseFloat(priceRange.min)
+      if (!isNaN(minPrice)) {
+        products = products.filter(p => p.price >= minPrice)
+      }
+    }
+    if (priceRange.max !== '') {
+      const maxPrice = parseFloat(priceRange.max)
+      if (!isNaN(maxPrice)) {
+        products = products.filter(p => p.price <= maxPrice)
+      }
+    }
+
+    // Sort products
+    const sortedProducts = [...products]
+    switch (sortBy) {
+      case 'price-low':
+        sortedProducts.sort((a, b) => a.price - b.price)
+        break
+      case 'price-high':
+        sortedProducts.sort((a, b) => b.price - a.price)
+        break
+      case 'name-asc':
+        sortedProducts.sort((a, b) => a.name.localeCompare(b.name))
+        break
+      case 'name-desc':
+        sortedProducts.sort((a, b) => b.name.localeCompare(a.name))
+        break
+      default:
+        // Keep original order
+        break
+    }
+
+    return sortedProducts
+  }, [allProducts, selectedGroupId, selectedCategoryId, searchTerm, priceRange, sortBy])
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -83,6 +146,8 @@ function ProductsPage() {
   const handleGroupClick = (groupId) => {
     setSelectedGroupId(groupId)
     setSelectedCategoryId(null)
+    // Update URL with groupId
+    navigate(`/products?groupId=${groupId}`, { replace: true })
     // Expand the group if not already expanded
     if (!expandedGroups.includes(groupId)) {
       setExpandedGroups(prev => [...prev, groupId])
@@ -92,6 +157,8 @@ function ProductsPage() {
   const handleCategoryClick = (categoryId, groupId) => {
     setSelectedCategoryId(categoryId)
     setSelectedGroupId(groupId)
+    // Update URL with groupId and categoryId
+    navigate(`/products?groupId=${groupId}&categoryId=${categoryId}`, { replace: true })
     // Expand the group if not already expanded
     if (!expandedGroups.includes(groupId)) {
       setExpandedGroups(prev => [...prev, groupId])
@@ -101,6 +168,7 @@ function ProductsPage() {
   const handleShowAll = () => {
     setSelectedGroupId(null)
     setSelectedCategoryId(null)
+    navigate('/products', { replace: true })
   }
 
   // Get categories for each group
@@ -117,7 +185,7 @@ function ProductsPage() {
     <div className="bg-gray-50 min-h-screen">
       <Header/>
       
-      <div className="py-8">
+      <div className="pt-32 pb-8">
         <div className="max-w-7xl mx-auto px-6">
           {/* Page Header */}
           <div className="mb-8">
@@ -271,6 +339,104 @@ function ProductsPage() {
 
             {/* Right Side - Products Grid */}
             <main className="flex-1 min-w-0">
+              {/* Filter Bar */}
+              <div className="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+                <div className="flex items-center gap-4 flex-wrap">
+                  {/* Filter Toggle Button - Mobile */}
+                  <button
+                    onClick={() => setShowFilters(!showFilters)}
+                    className="md:hidden flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    <Filter className="w-4 h-4" />
+                    <span className="text-sm font-medium">Filters</span>
+                  </button>
+
+                  {/* Sort Dropdown */}
+                  <div className="flex items-center gap-2">
+                    <label htmlFor="sort" className="text-sm text-gray-600 font-medium whitespace-nowrap">
+                      Sort by:
+                    </label>
+                    <select
+                      id="sort"
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value)}
+                      className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                    >
+                      <option value="default">Default</option>
+                      <option value="price-low">Price: Low to High</option>
+                      <option value="price-high">Price: High to Low</option>
+                      <option value="name-asc">Name: A to Z</option>
+                      <option value="name-desc">Name: Z to A</option>
+                    </select>
+                  </div>
+
+                  {/* Results Count */}
+                  <div className="text-sm text-gray-600">
+                    <span className="font-medium">{filteredProducts.length}</span> product{filteredProducts.length !== 1 ? 's' : ''} found
+                  </div>
+                </div>
+
+                {/* Clear Filters Button */}
+                {(priceRange.min !== '' || priceRange.max !== '') && (
+                  <button
+                    onClick={() => {
+                      setPriceRange({ min: '', max: '' })
+                      setSortBy('default')
+                    }}
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                    Clear filters
+                  </button>
+                )}
+              </div>
+
+              {/* Filter Panel - Mobile/Desktop */}
+              <div className={`mb-6 p-4 bg-white border border-gray-200 rounded-lg ${showFilters ? 'block' : 'hidden md:block'}`}>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold text-gray-900">Price Range</h3>
+                    <button
+                      onClick={() => setShowFilters(false)}
+                      className="md:hidden text-gray-500 hover:text-gray-700"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="min-price" className="block text-sm font-medium text-gray-700 mb-1">
+                        Min Price (RM)
+                      </label>
+                      <input
+                        id="min-price"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        value={priceRange.min}
+                        onChange={(e) => setPriceRange({ ...priceRange, min: e.target.value })}
+                        placeholder="0.00"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="max-price" className="block text-sm font-medium text-gray-700 mb-1">
+                        Max Price (RM)
+                      </label>
+                      <input
+                        id="max-price"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        value={priceRange.max}
+                        onChange={(e) => setPriceRange({ ...priceRange, max: e.target.value })}
+                        placeholder="No limit"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                      />
+                    </div>
+                  </div>
+                </div>
+
               {filteredProducts.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {filteredProducts.map((product) => {
@@ -292,7 +458,7 @@ function ProductsPage() {
                         </div>
                         
                         <div className="p-4 flex flex-col flex-1">
-                          <h3 className="font-medium text-gray-900 mb-2 line-clamp-2 group-hover:text-primary transition-colors text-sm">
+                          <h3 className="font-medium text-gray-900 mb-2 group-hover:text-primary transition-colors text-sm">
                             {product.name}
                           </h3>
                           

@@ -4,6 +4,10 @@ import ProductDetailDefault from '@/components/ProductDetailDefault'
 function BodyWipesPage({ product }) {
   const enhancedProduct = {
     ...product,
+    images: [
+      '/body-wipes.jpeg',
+      '/body-wipes-2.jpeg'
+    ],
     description:
       product?.description ||
       `Great for - Nursing Care | Elderly | Bedridden | Bed Bound | Kid | Confinement

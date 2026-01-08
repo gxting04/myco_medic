@@ -9,6 +9,12 @@ const SIZE_OPTIONS = [
 function AdultPediatricTracheostomyTubeHolderNeckStrapPage({ product }) {
   const enhancedProduct = {
     ...product,
+    images: [
+      '/neck-strap.jpeg',
+      '/neck-strap-2.jpeg',
+      '/neck-strap-3.jpeg'
+    ],
+    video: '/neck-strap-video.mp4',
     variants: {
       sizes: SIZE_OPTIONS
     },

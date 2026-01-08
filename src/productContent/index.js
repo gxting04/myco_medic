@@ -48,6 +48,7 @@ import TrachealTubeBrushesPage from './tracheal_tube_brushes'
 import InstrumentCleaningBrushesPage from './instrument_cleaning_brushes'
 import SuctionTubeCleaningBrushesPage from './suction_tube_cleaning_brushes'
 import CannulaInstrumentPipeCleanersPage from './cannula_instrument_pipe_cleaners'
+import DoubleEndedCleaningBrushNylonBristlesPage from './double_ended_cleaning_brush_nylon_bristles'
 import DoubleEndValveBrushesPage from './double_end_valve_brushes'
 import SurgicalScrubBrushesDispenserPage from './surgical_scrub_brushes_dispenser'
 import LargeInstrumentCleaningBrushPage from './large_instrument_cleaning_brush'
@@ -299,7 +300,8 @@ const productContentRegistry = {
   'sensory-brush': SensoryBrushPage,
   'hypafix-adhesive-non-woven-fabric-ready-stock': HypafixAdhesiveNonWovenFabricReadyStockPage,
   'adult-pediatric-tracheostomy-tube-holder-neck-strap': AdultPediatricTracheostomyTubeHolderNeckStrapPage,
-  'seluar-sunat-khatan-circumcision-underwear': SeluarSunatKhatanCircumcisionUnderwearPage
+  'seluar-sunat-khatan-circumcision-underwear': SeluarSunatKhatanCircumcisionUnderwearPage,
+  'double-ended-cleaning-brush-nylon-bristles': DoubleEndedCleaningBrushNylonBristlesPage
 }
 
 export default productContentRegistry

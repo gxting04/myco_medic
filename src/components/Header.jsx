@@ -36,6 +36,7 @@ function Header() {
     { name: 'Home', path: '/' },
     { name: 'Products', path: '/products' },
     { name: 'About', path: '/about' },
+    { name: 'Career', path: '/career' },
     { name: 'Contact', path: '/contact' },
   ]
 
@@ -56,15 +57,15 @@ function Header() {
           : 'bg-transparent backdrop-blur-none'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 z-50">
+        <Link to="/" className="flex items-center gap-3 z-50">
           <img
             src="/Myco_Medic.png"
             alt="Myco Medic"
-            className="w-10 h-10 object-contain"
+            className="w-14 h-14 object-contain"
           />
-          <span className="text-lg font-semibold tracking-tight text-gray-900">
+          <span className="text-xl font-semibold tracking-tight text-gray-900">
             Myco Medic
           </span>
         </Link>
@@ -77,7 +78,7 @@ function Header() {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-xs font-medium tracking-wide transition-colors duration-200 ${
+                className={`text-sm font-medium tracking-wide transition-colors duration-200 ${
                   location.pathname === link.path
                     ? 'text-black'
                     : 'text-gray-500 hover:text-black'
@@ -91,19 +92,19 @@ function Header() {
           {/* Search Button - Desktop */}
           <button
             onClick={() => setSearchOpen(!searchOpen)}
-            className="hidden md:flex p-2 text-gray-500 hover:text-black transition-colors"
+            className="hidden md:flex p-2.5 text-gray-500 hover:text-black transition-colors"
             aria-label="Search"
           >
-            <Search className="w-5 h-5" />
+            <Search className="w-6 h-6" />
           </button>
 
           {/* Cart + Mobile Menu */}
           <Link
             to="/cart"
-            className="relative p-2 text-gray-500 hover:text-black transition-colors"
+            className="relative p-2.5 text-gray-500 hover:text-black transition-colors"
             aria-label="Cart"
           >
-            <ShoppingBag className="w-5 h-5" />
+            <ShoppingBag className="w-6 h-6" />
             {getCartCount() > 0 && (
               <span className="absolute top-1 right-0 bg-primary text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">
                 {getCartCount()}
@@ -113,10 +114,10 @@ function Header() {
           
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden p-2 text-gray-500 hover:text-black transition-all duration-200 rounded-lg hover:bg-gray-100 active:scale-95"
+            className="md:hidden p-2.5 text-gray-500 hover:text-black transition-all duration-200 rounded-lg hover:bg-gray-100 active:scale-95"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
           </button>
         </div>
       </div>
@@ -157,7 +158,7 @@ function Header() {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 bg-white z-40 flex flex-col pt-24 px-6 gap-6 transition-transform duration-300 md:hidden ${
+        className={`fixed inset-0 bg-white z-40 flex flex-col pt-28 px-6 gap-6 transition-transform duration-300 md:hidden ${
           mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
         }`}
       >

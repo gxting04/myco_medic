@@ -5,6 +5,8 @@ import {RouterProvider, createBrowserRouter} from 'react-router-dom'
 import Home from './home'
 import Contact from './contact'
 import About from './about'
+import Career from './career'
+import Internship from './internship'
 import ProductsPage from './pages/ProductsPage'
 import CategoryProducts from './pages/CategoryProducts'
 import GroupCategories from './pages/GroupCategories'
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
   {
     path:'/about',
     element:<About/>
+  },
+  {
+    path:'/career',
+    element:<Career/>
+  },
+  {
+    path:'/internship',
+    element:<Internship/>
   },
   {
     path:'/products',

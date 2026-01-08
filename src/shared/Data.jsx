@@ -1713,7 +1713,7 @@
       groupId: 13,
       category: null,
       price: 12,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/shampoo-cap.jpeg',
       pageId: 'shampoo-cap'
     },
     {
@@ -1722,7 +1722,7 @@
       groupId: 13,
       category: null,
       price: 10,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/body-wipes.jpeg',
       pageId: 'body-wipes'
     },
     {
@@ -1785,7 +1785,7 @@
       groupId: 13,
       category: null,
       price: 9.5,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/neck-strap.jpeg',
       pageId: 'adult-pediatric-tracheostomy-tube-holder-neck-strap'
     },
     {
@@ -1796,6 +1796,15 @@
       price: 10,
       image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/whatsapp-image-2024-01-26-at-11-36-07-am-removebg-preview_orig.png',
       pageId: 'seluar-sunat-khatan-circumcision-underwear'
+    },
+    {
+      id: 160,
+      name: 'Double Ended Cleaning Brush | Nylon Bristles',
+      groupId: 6,
+      category: null,
+      price: 19,
+      image: '/double-ended-cleaning-brush.jpeg',
+      pageId: 'double-ended-cleaning-brush-nylon-bristles'
     }
   ]
   

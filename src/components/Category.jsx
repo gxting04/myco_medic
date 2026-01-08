@@ -27,7 +27,7 @@ function Category() {
               <Link
                 key={group.id}
                 to={`/products/group/${slugify(group.name)}`}
-                className="group relative bg-white rounded-[2rem] p-8 h-[400px] flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 ease-out hover:-translate-y-1"
+                className="group relative p-8 h-[400px] flex flex-col justify-between overflow-hidden transition-all duration-500 ease-out hover:-translate-y-1"
               >
                 {/* Content */}
                 <div className="relative z-10">
@@ -43,12 +43,11 @@ function Category() {
                 </div>
 
                 {/* Icon/Image Area */}
-                <div className="relative h-32 w-full flex items-end justify-end">
-                  <div className="absolute -right-8 -bottom-8 w-48 h-48 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 ease-in-out" />
-                   <img
+                <div className="relative h-32 w-full flex items-center justify-center">
+                  <img
                     src={group.icon}
                     alt={group.name}
-                    className="relative z-10 w-24 h-24 object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
+                    className="w-32 h-32 object-contain transition-all duration-500"
                   />
                 </div>
                 
