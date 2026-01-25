@@ -40,7 +40,8 @@ function Checkout() {
 
     try {
       // Create Stripe Checkout Session
-      const response = await fetch('http://localhost:3001/api/create-checkout-session', {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+      const response = await fetch(`${API_URL}/api/create-checkout-session`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,6 +52,13 @@ function Checkout() {
           total: getCartTotal()
         }),
       })
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: `Server error: ${response.status}` }))
+        setError(errorData.error || `Server error: ${response.status}`)
+        setLoading(false)
+        return
+      }
 
       const session = await response.json()
 
@@ -63,25 +71,20 @@ function Checkout() {
       if (session.url) {
         window.location.href = session.url
       } else {
-        setError('Failed to create checkout session')
+        setError('Failed to create checkout session. Please check your backend server.')
         setLoading(false)
       }
     } catch (err) {
       console.error('Error:', err)
-      setError('An error occurred. Please try again.')
+      if (err.message === 'Failed to fetch') {
+        setError('Cannot connect to server. Please make sure the backend server is running on port 3001.')
+      } else {
+        setError(`An error occurred: ${err.message || 'Please try again.'}`)
+      }
       setLoading(false)
     }
   }
 
-  const handleDemoPayment = () => {
-    setLoading(true)
-    setTimeout(() => {
-      alert('Payment simulation successful! In production, this will integrate with Stripe for GrabPay and other payment methods.')
-      clearCart()
-      navigate('/')
-      setLoading(false)
-    }, 2000)
-  }
 
   if (cartItems.length === 0) {
     navigate('/cart')
@@ -220,26 +223,6 @@ function Checkout() {
                   </div>
 
                   <div className='space-y-4'>
-                    {/* For demo - remove this button in production */}
-                    <button
-                      type='button'
-                      onClick={handleDemoPayment}
-                      disabled={loading}
-                      className='w-full bg-green-600 text-white px-6 py-4 rounded-lg hover:bg-green-700 transition-all duration-200 font-medium text-lg disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg active:scale-[0.98] disabled:active:scale-100'
-                    >
-                      {loading ? (
-                        <span className='flex items-center justify-center gap-2'>
-                          <svg className='animate-spin w-5 h-5' fill='none' viewBox='0 0 24 24'>
-                            <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4' />
-                            <path className='opacity-75' fill='currentColor' d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z' />
-                          </svg>
-                          Processing...
-                        </span>
-                      ) : (
-                        'Demo Payment (For Testing)'
-                      )}
-                    </button>
-
                     <button
                       type='submit'
                       disabled={loading}

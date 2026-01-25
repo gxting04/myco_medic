@@ -6,6 +6,7 @@ import WhatsAppFloat from '../components/WhatsAppFloat'
 import Data from '../shared/Data'
 import slugify from '../utils/slugify'
 import { ChevronDown, ChevronRight, Search, Filter, X } from 'lucide-react'
+import { isPurchasableProduct } from '@/utils/purchasableProducts'
 
 function ProductsPage() {
   const [searchParams] = useSearchParams()
@@ -471,9 +472,13 @@ function ProductsPage() {
                           )}
                           
                           <div className="mt-auto">
-                            <p className="text-lg font-semibold text-gray-900">
-                              RM{product.price.toFixed(2)}
-                            </p>
+                            {isPurchasableProduct(product) ? (
+                              <p className="text-lg font-semibold text-gray-900">
+                                RM{product.price.toFixed(2)}
+                              </p>
+                            ) : (
+                              <p className="text-sm text-gray-500">Contact us for pricing</p>
+                            )}
                           </div>
                         </div>
                       </Link>

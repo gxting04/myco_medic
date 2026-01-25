@@ -7,6 +7,7 @@ import Data from '../shared/Data'
 import { useCart } from '../context/CartContext'
 import Button from './ui/button'
 import { ArrowLeft } from 'lucide-react'
+import { isPurchasableProduct } from '@/utils/purchasableProducts'
 
 function ProductDetailDefault({ product }) {
   const navigate = useNavigate()
@@ -14,6 +15,7 @@ function ProductDetailDefault({ product }) {
   const [quantity, setQuantity] = useState(1)
   const [addedToCart, setAddedToCart] = useState(false)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const isPurchasable = isPurchasableProduct(product)
   const [selectedColor, setSelectedColor] = useState(null)
   const [selectedSize, setSelectedSize] = useState(null)
   const [expandedSections, setExpandedSections] = useState({
@@ -234,14 +236,28 @@ function ProductDetailDefault({ product }) {
 
               {/* Price */}
               <div className='flex items-baseline gap-3'>
-                {product.salePrice && product.salePrice < product.price ? (
-                  <>
-                    <span className='text-3xl font-bold text-primary'>RM{product.salePrice.toFixed(2)}</span>
-                    <span className='text-xl text-gray-400 line-through'>RM{product.price.toFixed(2)}</span>
-                    <span className='text-sm text-red-600 font-medium bg-red-50 px-2 py-1 rounded'>Sale</span>
-                  </>
+                {isPurchasable ? (
+                  product.salePrice && product.salePrice < product.price ? (
+                    <>
+                      <span className='text-3xl font-bold text-primary'>
+                        RM{product.salePrice.toFixed(2)}
+                      </span>
+                      <span className='text-xl text-gray-400 line-through'>
+                        RM{product.price.toFixed(2)}
+                      </span>
+                      <span className='text-sm text-red-600 font-medium bg-red-50 px-2 py-1 rounded'>
+                        Sale
+                      </span>
+                    </>
+                  ) : (
+                    <span className='text-3xl font-bold text-primary'>
+                      RM{product.price.toFixed(2)}
+                    </span>
+                  )
                 ) : (
-                  <span className='text-3xl font-bold text-primary'>RM{product.price.toFixed(2)}</span>
+                  <span className='text-lg text-gray-500 font-semibold'>
+                    Contact us for pricing
+                  </span>
                 )}
               </div>
 
@@ -346,8 +362,16 @@ function ProductDetailDefault({ product }) {
               {/* Add to Cart Button */}
               <Button
                 onClick={handleAddToCart}
-                disabled={stockStatus.status === 'out_of_stock'}
-                variant={addedToCart ? 'success' : stockStatus.status === 'out_of_stock' ? 'secondary' : 'primary'}
+                disabled={!isPurchasable || stockStatus.status === 'out_of_stock'}
+                variant={
+                  !isPurchasable
+                    ? 'secondary'
+                    : addedToCart
+                      ? 'success'
+                      : stockStatus.status === 'out_of_stock'
+                        ? 'secondary'
+                        : 'primary'
+                }
                 size='xl'
                 className='w-full'
                 icon={addedToCart ? (
@@ -358,6 +382,8 @@ function ProductDetailDefault({ product }) {
               >
                 {addedToCart ? (
                   'Added to Cart'
+                ) : !isPurchasable ? (
+                  'Contact us to purchase'
                 ) : (
                   `Add to Cart • RM${((product.salePrice || product.price) * quantity).toFixed(2)}`
                 )}
@@ -365,7 +391,7 @@ function ProductDetailDefault({ product }) {
 
               {/* WhatsApp Contact */}
               <a 
-                href={`https://wa.me/60196649622?text=Hi, I'm interested in ${product.name} (RM${product.price.toFixed(2)})`}
+                href={`https://wa.me/60196649622?text=Hi, I'm interested in ${product.name}`}
                 target='_blank'
                 rel='noopener noreferrer'
                 className='block w-full border-2 border-primary text-primary py-3.5 rounded-lg hover:bg-primary hover:text-white transition-all duration-200 font-medium text-center shadow-sm hover:shadow-md active:scale-[0.98] flex items-center justify-center gap-2'

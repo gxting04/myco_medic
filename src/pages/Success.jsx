@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -9,10 +9,36 @@ function Success() {
   const [searchParams] = useSearchParams()
   const sessionId = searchParams.get('session_id')
   const { clearCart } = useCart()
+  const [notifyStatus, setNotifyStatus] = useState('')
 
   useEffect(() => {
     clearCart()
   }, [])
+
+  useEffect(() => {
+    if (!sessionId) return
+
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+    fetch(`${API_URL}/api/order-notify`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ sessionId })
+    })
+      .then(async (res) => {
+        const data = await res.json()
+        if (res.ok) {
+          setNotifyStatus('Order notification sent!')
+        } else {
+          setNotifyStatus(data.error || 'Failed to send order notification.')
+        }
+      })
+      .catch((err) => {
+        console.error(err)
+        setNotifyStatus('Failed to send order notification.')
+      })
+  }, [sessionId])
 
   return (
     <div>
@@ -49,6 +75,9 @@ function Success() {
             <p className='text-sm text-gray-500 mb-6'>
               Session ID: {sessionId.substring(0, 20)}...
             </p>
+          )}
+          {notifyStatus && (
+            <p className='text-sm text-teal-600 mb-4'>{notifyStatus}</p>
           )}
 
           <div className='bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6'>

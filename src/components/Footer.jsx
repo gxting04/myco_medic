@@ -14,7 +14,7 @@ function Footer() {
     Company: [
       { name: "About Us", href: "/about" },
       { name: "Contact", href: "/contact" },
-      { name: "Careers", href: "#" },
+      { name: "Careers", href: "/career" },
       { name: "News", href: "#" },
     ],
     Support: [

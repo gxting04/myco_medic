@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import WhatsAppFloat from '../components/WhatsAppFloat'
 import Data from '../shared/Data'
+import { isPurchasableProduct } from '@/utils/purchasableProducts'
 
 function SearchResults() {
   const [searchParams] = useSearchParams()
@@ -118,7 +119,11 @@ function SearchResults() {
                           {group && (
                             <p className='text-xs text-primary font-medium'>{group.name}</p>
                           )}
-                          <p className='text-2xl font-bold text-primary'>RM{product.price.toFixed(2)}</p>
+                          {isPurchasableProduct(product) ? (
+                            <p className='text-2xl font-bold text-primary'>RM{product.price.toFixed(2)}</p>
+                          ) : (
+                            <p className='text-sm text-gray-500'>Contact us for pricing</p>
+                          )}
                         </div>
                         
                         <div className='mt-4 flex items-center text-primary opacity-0 group-hover:opacity-100 transition-opacity'>

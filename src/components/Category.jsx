@@ -22,6 +22,8 @@ function Category() {
             const categoriesCount = Data.productCategories.filter(
               category => category.groupId === group.id
             ).length
+            const firstProduct = Data.initialProducts.find(product => product.groupId === group.id && Boolean(product.image))
+            const heroImage = firstProduct?.image || group.icon
             
             return (
               <Link
@@ -45,7 +47,7 @@ function Category() {
                 {/* Icon/Image Area */}
                 <div className="relative h-32 w-full flex items-center justify-center">
                   <img
-                    src={group.icon}
+                    src={heroImage}
                     alt={group.name}
                     className="w-32 h-32 object-contain transition-all duration-500"
                   />

@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import WhatsAppFloat from '../components/WhatsAppFloat'
 import { useCart } from '../context/CartContext'
+import { isPurchasableProduct } from '@/utils/purchasableProducts'
 
 function Cart() {
   const navigate = useNavigate()
@@ -89,9 +90,13 @@ function Cart() {
                   </div>
                   
                   <div className='text-right'>
-                    <p className='text-2xl font-bold text-gray-900'>
-                      RM{(item.price * item.quantity).toFixed(2)}
-                    </p>
+                    {isPurchasableProduct(item) ? (
+                      <p className='text-2xl font-bold text-gray-900'>
+                        RM{(item.price * item.quantity).toFixed(2)}
+                      </p>
+                    ) : (
+                      <p className='text-sm text-gray-500'>Contact us for pricing</p>
+                    )}
                   </div>
                 </div>
               ))}
