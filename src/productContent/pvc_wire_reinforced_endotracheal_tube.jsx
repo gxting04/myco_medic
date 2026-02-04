@@ -37,7 +37,7 @@ function PvcWireReinforcedEndotrachealTubePage({ product }) {
             </p>
             <div className='flex flex-wrap gap-4'>
               <a 
-                href={`https://wa.me/60196649622?text=Hi, I'm interested in ${product.name} ($${product.price})`}
+                href={`https://wa.me/60123822001?text=Hi, I'm interested in ${product.name} ($${product.price})`}
                 className='px-6 py-3 bg-primary text-black rounded-lg font-medium hover:bg-primary/90 transition-colors'
                 target='_blank'
                 rel='noopener noreferrer'
@@ -272,7 +272,7 @@ function PvcWireReinforcedEndotrachealTubePage({ product }) {
             </p>
           </div>
           <a 
-            href={`https://wa.me/60196649622?text=Hi, I'm interested in ${product.name} ($${product.price})`}
+            href={`https://wa.me/60123822001?text=Hi, I'm interested in ${product.name} ($${product.price})`}
             className='px-6 py-3 bg-white text-primary font-semibold rounded-lg hover:bg-white/90 transition-colors'
             target='_blank'
             rel='noopener noreferrer'
@@ -283,7 +283,7 @@ function PvcWireReinforcedEndotrachealTubePage({ product }) {
       </section>
 
       <Footer />
-      <WhatsAppFloat phone='+60196649622' message={`Hi, I'm interested in ${product.name}`} />
+      <WhatsAppFloat phone='+60123822001' message={`Hi, I'm interested in ${product.name}`} />
     </div>
   )
 }

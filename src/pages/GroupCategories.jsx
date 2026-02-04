@@ -147,7 +147,7 @@ function GroupCategories() {
       </div>
 
       <Footer/>
-      <WhatsAppFloat phone='+60196649622' message={`Hi, I'm interested in products from ${group.name}`} />
+      <WhatsAppFloat phone='+60123822001' message={`Hi, I'm interested in products from ${group.name}`} />
     </div>
   )
 }

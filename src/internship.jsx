@@ -234,7 +234,7 @@ function Internship() {
       </section>
 
       <Footer />
-      <WhatsAppFloat phone="+60196649622" message="Hi Myco Medic!" />
+      <WhatsAppFloat phone="+60123822001" message="Hi Myco Medic!" />
     </div>
   )
 }

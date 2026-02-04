@@ -26,7 +26,7 @@ function Home() {
       <Category />
 
       {/* WhatsApp Floating Button */}
-      <WhatsAppFloat phone='+60196649622' message='Hi Myco Medic!' />
+      <WhatsAppFloat phone='+60123822001' message='Hi Myco Medic!' />
 
       {/* Footer */}
       <Footer />

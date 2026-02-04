@@ -391,7 +391,7 @@ function ProductDetailDefault({ product }) {
 
               {/* WhatsApp Contact */}
               <a 
-                href={`https://wa.me/60196649622?text=Hi, I'm interested in ${product.name}`}
+                href={`https://wa.me/60123822001?text=Hi, I'm interested in ${product.name}`}
                 target='_blank'
                 rel='noopener noreferrer'
                 className='block w-full border-2 border-primary text-primary py-3.5 rounded-lg hover:bg-primary hover:text-white transition-all duration-200 font-medium text-center shadow-sm hover:shadow-md active:scale-[0.98] flex items-center justify-center gap-2'
@@ -627,7 +627,7 @@ function ProductDetailDefault({ product }) {
       </div>
       
       <Footer/>
-      <WhatsAppFloat phone='+60196649622' message={`Hi, I'm interested in ${product.name}`} />
+      <WhatsAppFloat phone='+60123822001' message={`Hi, I'm interested in ${product.name}`} />
     </div>
   )
 }

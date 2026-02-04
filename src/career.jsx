@@ -498,7 +498,7 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
       </AnimatePresence>
 
       <Footer />
-      <WhatsAppFloat phone="+60196649622" message="Hi Myco Medic!" />
+      <WhatsAppFloat phone="+60123822001" message="Hi Myco Medic!" />
     </div>
   )
 

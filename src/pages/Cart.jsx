@@ -148,7 +148,7 @@ function Cart() {
         </div>
       </div>
       <Footer />
-      <WhatsAppFloat phone='+60196649622' message='Hi, I want to inquire about my cart items' />
+      <WhatsAppFloat phone='+60123822001' message='Hi, I want to inquire about my cart items' />
     </div>
   )
 }

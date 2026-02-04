@@ -133,7 +133,7 @@ function MemoryLowerLimbPadsPage({ product }) {
         </div>
       </section>
 
-      <WhatsAppFloat phone='+60196649622' message={`Hi, I'm interested in ${product?.name || 'lower limb pads'}`} />
+      <WhatsAppFloat phone='+60123822001' message={`Hi, I'm interested in ${product?.name || 'lower limb pads'}`} />
       <Footer />
     </div>
   )

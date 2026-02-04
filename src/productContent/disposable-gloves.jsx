@@ -45,7 +45,7 @@ function DisposableGlovesPage({ product }) {
       </main>
 
       <Footer />
-      <WhatsAppFloat phone='+60196649622' message={`Hi, I'm interested in ${product.name}`} />
+      <WhatsAppFloat phone='+60123822001' message={`Hi, I'm interested in ${product.name}`} />
     </div>
   )
 }
@@ -187,7 +187,7 @@ function ContactCard({ product }) {
         We support hospitals with monthly replenishment schedules, bulk pricing, and compliance documentation.
       </p>
       <a
-        href={`https://wa.me/60196649622?text=Hi, I'm interested in ${product.name} ($${product.price})`}
+        href={`https://wa.me/60123822001?text=Hi, I'm interested in ${product.name} ($${product.price})`}
         target='_blank'
         rel='noopener noreferrer'
         className='inline-flex items-center justify-center px-6 py-3 bg-white text-orange-600 font-semibold rounded-lg hover:bg-white/90 transition-colors w-full'

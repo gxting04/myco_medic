@@ -29,7 +29,7 @@ function UEScopeVideoLaryngoscopePage({ product }) {
             </h1>
             <div className='flex flex-wrap gap-4 mt-8'>
               <a 
-                href={`https://wa.me/60196649622?text=Hi, I'm interested in ${product.name} ($${product.price})`}
+                href={`https://wa.me/60123822001?text=Hi, I'm interested in ${product.name} ($${product.price})`}
                 className='px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors'
                 target='_blank'
                 rel='noopener noreferrer'
@@ -270,7 +270,7 @@ function UEScopeVideoLaryngoscopePage({ product }) {
             </p>
           </div>
           <a 
-            href={`https://wa.me/60196649622?text=Hi, I'm interested in ${product.name} ($${product.price})`}
+            href={`https://wa.me/60123822001?text=Hi, I'm interested in ${product.name} ($${product.price})`}
             className='px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors'
             target='_blank'
             rel='noopener noreferrer'
@@ -281,7 +281,7 @@ function UEScopeVideoLaryngoscopePage({ product }) {
       </section>
 
       <Footer />
-      <WhatsAppFloat phone='+60196649622' message={`Hi, I'm interested in ${product.name}`} />
+      <WhatsAppFloat phone='+60123822001' message={`Hi, I'm interested in ${product.name}`} />
     </div>
   )
 }

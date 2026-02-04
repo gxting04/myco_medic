@@ -222,7 +222,7 @@ function AWELDPortableBreathingOxygenInhalerPage({ product }) {
             </button>
 
             <a
-              href={`https://wa.me/60196649622?text=Hi, I'm interested in ${product?.name}`}
+              href={`https://wa.me/60123822001?text=Hi, I'm interested in ${product?.name}`}
               target='_blank'
               rel='noopener noreferrer'
               className='border border-primary text-primary px-8 py-4 rounded-lg hover:bg-primary hover:text-white transition-colors font-medium text-lg text-center'
@@ -285,7 +285,7 @@ function AWELDPortableBreathingOxygenInhalerPage({ product }) {
         </div>
       </section>
 
-      <WhatsAppFloat phone='+60196649622' message={`Hi, I'm interested in ${product?.name}`} />
+      <WhatsAppFloat phone='+60123822001' message={`Hi, I'm interested in ${product?.name}`} />
       <Footer />
     </div>
   )

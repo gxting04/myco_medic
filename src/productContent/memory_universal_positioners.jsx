@@ -116,7 +116,7 @@ function MemoryUniversalPositionersPage({ product }) {
         </div>
       </section>
 
-      <WhatsAppFloat phone='+60196649622' message={`Hi, I'm interested in ${product?.name || 'universal square pads'}`} />
+      <WhatsAppFloat phone='+60123822001' message={`Hi, I'm interested in ${product?.name || 'universal square pads'}`} />
       <Footer />
     </div>
   )

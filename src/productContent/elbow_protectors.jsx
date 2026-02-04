@@ -33,7 +33,7 @@ function ElbowProtectorsPage({ product }) {
             </p>
             <div className='flex flex-wrap gap-4 mt-8'>
               <a
-                href={`https://wa.me/60196649622?text=Hi, I'm interested in ${product?.name ?? 'Elbow Protectors'}`}
+                href={`https://wa.me/60123822001?text=Hi, I'm interested in ${product?.name ?? 'Elbow Protectors'}`}
                 className='px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors'
                 target='_blank'
                 rel='noopener noreferrer'

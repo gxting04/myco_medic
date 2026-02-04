@@ -156,7 +156,7 @@ function SearchResults() {
                     Browse All Products
                   </Link>
                   <a 
-                    href='https://wa.me/60196649622' 
+                    href='https://wa.me/60123822001' 
                     target='_blank' 
                     rel='noopener noreferrer'
                     className='border border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors font-medium'
@@ -196,7 +196,7 @@ function SearchResults() {
       </div>
       
       <Footer />
-      <WhatsAppFloat phone='+60196649622' message='Hi Myco Medic!' />
+      <WhatsAppFloat phone='+60123822001' message='Hi Myco Medic!' />
     </div>
   )
 }

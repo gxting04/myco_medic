@@ -42,7 +42,7 @@ function WoundAndSkinWashGlovesPage({ product }) {
             
             <div className='flex flex-col sm:flex-row gap-4'>
               <a 
-                href={`https://wa.me/60196649622?text=Hi, I'm interested in ${product.name} ($${product.price})`}
+                href={`https://wa.me/60123822001?text=Hi, I'm interested in ${product.name} ($${product.price})`}
                 className='inline-flex justify-center items-center px-8 py-4 bg-primary text-white rounded-full font-medium hover:bg-blue-600 transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-blue-500/30'
                 target='_blank'
                 rel='noopener noreferrer'
@@ -117,7 +117,7 @@ function WoundAndSkinWashGlovesPage({ product }) {
       </section>
 
       <Footer />
-      <WhatsAppFloat phone='+60196649622' message={`Hi, I'm interested in ${product.name}`} />
+      <WhatsAppFloat phone='+60123822001' message={`Hi, I'm interested in ${product.name}`} />
     </div>
   )
 }

@@ -41,7 +41,7 @@ function ProductActionButtons({
       </Button>
 
       <a
-        href={`https://wa.me/60196649622?text=${encodeURIComponent(whatsappMessage)}`}
+        href={`https://wa.me/60123822001?text=${encodeURIComponent(whatsappMessage)}`}
         target='_blank'
         rel='noopener noreferrer'
         className='w-full border-2 border-primary text-primary px-6 py-4 font-medium text-base hover:bg-primary hover:text-white transition-all duration-200 text-center block rounded-lg shadow-sm hover:shadow-md active:scale-[0.98] flex items-center justify-center gap-2'

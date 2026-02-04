@@ -195,7 +195,7 @@ function MemorySlantingShapedPadsPage({ product }) {
               </button>
 
             <a
-              href={`https://wa.me/60196649622?text=Hi, I'm interested in ${
+              href={`https://wa.me/60123822001?text=Hi, I'm interested in ${
                 product?.name
               } (${selectedSize.code} - ${selectedSize.sizeText})`}
               target='_blank'
@@ -256,7 +256,7 @@ function MemorySlantingShapedPadsPage({ product }) {
         </div>
       </section>
 
-      <WhatsAppFloat phone='+60196649622' message={`Hi, I'm interested in ${product?.name}`} />
+      <WhatsAppFloat phone='+60123822001' message={`Hi, I'm interested in ${product?.name}`} />
       <Footer />
     </div>
   )
