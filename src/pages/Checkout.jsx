@@ -9,6 +9,9 @@ function Checkout() {
   const { cartItems, getCartTotal, clearCart } = useCart()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [deliveryFee, setDeliveryFee] = useState(0)
+  const [calculatingFee, setCalculatingFee] = useState(false)
+  const [deliveryFeeError, setDeliveryFeeError] = useState('')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,10 +23,67 @@ function Checkout() {
   })
 
   const handleInputChange = (e) => {
-    setFormData({
+    const newFormData = {
       ...formData,
       [e.target.name]: e.target.value
-    })
+    }
+    setFormData(newFormData)
+
+    // Calculate delivery fee when address fields are filled
+    if (['address', 'city', 'postcode', 'state'].includes(e.target.name)) {
+      calculateDeliveryFee(newFormData)
+    }
+  }
+
+  const calculateDeliveryFee = async (formDataToUse = formData) => {
+    // Only calculate if address is provided
+    if (!formDataToUse.address) {
+      setDeliveryFee(0)
+      return
+    }
+
+    setCalculatingFee(true)
+    setDeliveryFeeError('')
+
+    try {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+      const response = await fetch(`${API_URL}/api/calculate-delivery-fee`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          address: formDataToUse.address,
+          city: formDataToUse.city,
+          postcode: formDataToUse.postcode,
+          state: formDataToUse.state,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to calculate delivery fee')
+      }
+
+      const data = await response.json()
+      setDeliveryFee(data.fee || 0)
+      
+      // Show note/warning if present, but don't treat it as an error if fee is returned
+      if (data.note && !data.fee) {
+        setDeliveryFeeError(data.note)
+      } else if (data.note) {
+        // If we have a fee but also a note, show it as info
+        setDeliveryFeeError(data.note)
+      } else {
+        setDeliveryFeeError('')
+      }
+    } catch (err) {
+      console.error('Error calculating delivery fee:', err)
+      setDeliveryFeeError(`Unable to calculate delivery fee: ${err.message}. Default fee will be applied.`)
+      // Set a default fee
+      setDeliveryFee(15.00)
+    } finally {
+      setCalculatingFee(false)
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -49,7 +109,8 @@ function Checkout() {
         body: JSON.stringify({
           items: cartItems,
           customerInfo: formData,
-          total: getCartTotal()
+          total: getCartTotal() + deliveryFee,
+          deliveryFee: deliveryFee
         }),
       })
 
@@ -204,6 +265,40 @@ function Checkout() {
                     </div>
                   </div>
 
+                  {/* Delivery Fee Calculation */}
+                  {formData.address && (
+                    <div className={`border rounded-lg p-4 ${deliveryFeeError && deliveryFeeError.includes('Error') ? 'bg-amber-50 border-amber-200' : deliveryFeeError ? 'bg-blue-50 border-blue-200' : 'bg-green-50 border-green-200'}`}>
+                      <div className='flex items-center justify-between mb-2'>
+                        <span className='text-gray-700 font-medium'>Delivery Fee</span>
+                        {calculatingFee ? (
+                          <div className='flex items-center gap-2'>
+                            <svg className='animate-spin w-4 h-4 text-blue-600' fill='none' viewBox='0 0 24 24'>
+                              <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4' />
+                              <path className='opacity-75' fill='currentColor' d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z' />
+                            </svg>
+                            <span className='text-sm text-gray-600'>Calculating...</span>
+                          </div>
+                        ) : (
+                          <span className='font-semibold text-gray-900'>RM{deliveryFee.toFixed(2)}</span>
+                        )}
+                      </div>
+                      {deliveryFeeError && (
+                        <p className={`text-xs mt-1 ${deliveryFeeError.includes('Error') || deliveryFeeError.includes('Unable') ? 'text-amber-600' : 'text-blue-600'}`}>
+                          {deliveryFeeError}
+                        </p>
+                      )}
+                      {!calculatingFee && (
+                        <button
+                          type='button'
+                          onClick={() => calculateDeliveryFee()}
+                          className='text-xs text-blue-600 hover:text-blue-800 mt-2 underline'
+                        >
+                          Recalculate delivery fee
+                        </button>
+                      )}
+                    </div>
+                  )}
+
                   <div className='border-t border-gray-200 pt-6 mt-6'>
                     <h3 className='text-xl font-bold text-gray-900 mb-4'>Payment Method</h3>
                     <div className='bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4'>
@@ -273,12 +368,16 @@ function Checkout() {
                     <span>RM{getCartTotal().toFixed(2)}</span>
                   </div>
                   <div className='flex justify-between text-gray-700'>
-                    <span>Shipping</span>
-                    <span>TBD</span>
+                    <span>Delivery Fee</span>
+                    {calculatingFee ? (
+                      <span className='text-sm text-gray-500'>Calculating...</span>
+                    ) : (
+                      <span>RM{deliveryFee.toFixed(2)}</span>
+                    )}
                   </div>
                   <div className='border-t border-gray-200 pt-3 flex justify-between text-xl font-bold text-gray-900'>
                     <span>Total</span>
-                    <span>RM{getCartTotal().toFixed(2)}</span>
+                    <span>RM{(getCartTotal() + deliveryFee).toFixed(2)}</span>
                   </div>
                 </div>
               </div>

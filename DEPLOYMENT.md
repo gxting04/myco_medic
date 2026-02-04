@@ -34,9 +34,25 @@ NODE_ENV=production
 EMAIL_USER=you@example.com
 EMAIL_PASSWORD=your-gmail-app-password
 
+# Lalamove API Configuration (for delivery fee calculation)
+LALAMOVE_API_KEY=your_lalamove_api_key
+LALAMOVE_API_SECRET=your_lalamove_api_secret
+LALAMOVE_BASE_URL=https://rest.lalamove.com
+
+# Office Address (for delivery fee calculation)
+OFFICE_ADDRESS=NO, 2A-G, FLOOR JALAN SIERRA 10/3, SECTION, Bandar 16 Sierra
+OFFICE_CITY=Puchong
+OFFICE_POSTCODE=47120
+OFFICE_STATE=Selangor
+OFFICE_COUNTRY=MY
+OFFICE_LAT=3.0167
+OFFICE_LNG=101.6167
+
 # API URL (for frontend)
 VITE_API_URL=https://api.mycomedic.com
 ```
+<｜tool▁calls▁begin｜><｜tool▁call▁begin｜>
+todo_write
 
 ## Step 2: Build Frontend for Production
 

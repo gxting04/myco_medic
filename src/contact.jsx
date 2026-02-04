@@ -102,9 +102,9 @@ function Contact() {
               </div>
               <div className="space-y-2 text-gray-600 leading-relaxed">
                 <p className="font-medium text-gray-900">Myco Medic Sdn Bhd</p>
-                <p>No. 2A-G, Floor, Jalan Sierra 10/3,</p>
+                <p>NO, 2A-G, FLOOR JALAN SIERRA 10/3, SECTION,</p>
                 <p>Bandar 16 Sierra, 47120 Puchong,</p>
-                <p>Selangor Darul Ehsan, Malaysia.</p>
+                <p>Selangor, Malaysia.</p>
               </div>
             </motion.div>
             

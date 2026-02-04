@@ -24,7 +24,7 @@ if (!fs.existsSync(uploadsDir)) {
 
 app.post('/api/create-checkout-session', async (req, res) => {
   try {
-    const { items, customerInfo, total } = req.body;
+    const { items, customerInfo, total, deliveryFee = 0 } = req.body;
 
     // Validate CLIENT_URL
     const clientUrl = process.env.CLIENT_URL;
@@ -70,22 +70,39 @@ app.post('/api/create-checkout-session', async (req, res) => {
       cancelUrl 
     });
 
+    // Build line items including delivery fee if applicable
+    const lineItems = items.map(item => {
+      const imageUrl = getAbsoluteImageUrl(item.image);
+      return {
+        price_data: {
+          currency: 'myr',
+          product_data: {
+            name: item.name,
+            ...(imageUrl && { images: [imageUrl] }),
+          },
+          unit_amount: Math.round(item.price * 100), // Convert to cents
+        },
+        quantity: item.quantity,
+      };
+    });
+
+    // Add delivery fee as a line item if it exists
+    if (deliveryFee > 0) {
+      lineItems.push({
+        price_data: {
+          currency: 'myr',
+          product_data: {
+            name: 'Delivery Fee',
+          },
+          unit_amount: Math.round(deliveryFee * 100), // Convert to cents
+        },
+        quantity: 1,
+      });
+    }
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card', 'grabpay', 'fpx'],
-      line_items: items.map(item => {
-        const imageUrl = getAbsoluteImageUrl(item.image);
-        return {
-          price_data: {
-            currency: 'myr',
-            product_data: {
-              name: item.name,
-              ...(imageUrl && { images: [imageUrl] }),
-            },
-            unit_amount: Math.round(item.price * 100), // Convert to cents
-          },
-          quantity: item.quantity,
-        };
-      }),
+      line_items: lineItems,
       mode: 'payment',
       success_url: successUrl,
       cancel_url: cancelUrl,
@@ -94,6 +111,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
         customerName: customerInfo.name,
         customerPhone: customerInfo.phone,
         address: customerInfo.address,
+        deliveryFee: deliveryFee.toString(),
       },
     });
 
@@ -172,6 +190,187 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
     }
 
     res.status(500).json({ error: 'Failed to submit application. Please try again.' });
+  }
+});
+
+// Calculate Lalamove delivery fee
+app.post('/api/calculate-delivery-fee', async (req, res) => {
+  try {
+    const { address, city, postcode, state } = req.body;
+
+    // Validate required fields
+    if (!address) {
+      return res.status(400).json({ error: 'Delivery address is required' });
+    }
+
+    // Get office address from environment variables
+    const officeAddress = process.env.OFFICE_ADDRESS || '';
+    const officeCity = process.env.OFFICE_CITY || '';
+    const officePostcode = process.env.OFFICE_POSTCODE || '';
+    const officeState = process.env.OFFICE_STATE || '';
+    const officeCountry = process.env.OFFICE_COUNTRY || 'MY';
+
+    if (!officeAddress) {
+      return res.status(500).json({ error: 'Office address is not configured' });
+    }
+
+    // Lalamove API credentials
+    const lalamoveApiKey = process.env.LALAMOVE_API_KEY;
+    const lalamoveApiSecret = process.env.LALAMOVE_API_SECRET;
+    const lalamoveBaseUrl = process.env.LALAMOVE_BASE_URL || 'https://rest.lalamove.com';
+
+    if (!lalamoveApiKey || !lalamoveApiSecret) {
+      // If Lalamove credentials are not configured, calculate a simple distance-based fee
+      console.warn('Lalamove API credentials not configured. Using estimated delivery fee based on location.');
+      
+      // Simple fee calculation based on state/city
+      let estimatedFee = 15.00; // Base fee
+      
+      // Adjust fee based on location (you can customize this)
+      if (state && state.toLowerCase().includes('selangor')) {
+        if (city && city.toLowerCase().includes('puchong')) {
+          estimatedFee = 8.00; // Same area, lower fee
+        } else {
+          estimatedFee = 12.00; // Same state, moderate fee
+        }
+      } else if (state && state.toLowerCase().includes('kuala lumpur') || state.toLowerCase().includes('kl')) {
+        estimatedFee = 15.00; // KL area
+      } else {
+        estimatedFee = 20.00; // Other states, higher fee
+      }
+      
+      return res.json({ 
+        fee: estimatedFee, 
+        currency: 'MYR',
+        estimatedTime: '30-60 minutes',
+        note: 'Estimated delivery fee. Configure Lalamove API for accurate real-time pricing.'
+      });
+    }
+
+    // Construct addresses
+    const pickupAddress = `${officeAddress}, ${officeCity}, ${officePostcode}, ${officeState}, ${officeCountry}`;
+    const deliveryAddress = `${address}${city ? ', ' + city : ''}${postcode ? ', ' + postcode : ''}${state ? ', ' + state : ''}, ${officeCountry}`;
+
+    // Get OAuth token from Lalamove
+    const tokenResponse = await fetch(`${lalamoveBaseUrl}/v2/auth`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        key: lalamoveApiKey,
+        secret: lalamoveApiSecret
+      })
+    });
+
+    if (!tokenResponse.ok) {
+      throw new Error('Failed to authenticate with Lalamove API');
+    }
+
+    const tokenData = await tokenResponse.json();
+    const accessToken = tokenData.token;
+
+    // Try to geocode delivery address using a simple geocoding service
+    // For now, we'll use a basic approach - you can integrate Google Maps Geocoding API later
+    let deliveryLat = '';
+    let deliveryLng = '';
+
+    // Simple geocoding fallback - try to get coordinates from postcode/area
+    // In production, you should use Google Maps Geocoding API or similar
+    try {
+      // For Malaysia, we can use a simple postcode-based lookup or Google Geocoding
+      // For now, we'll proceed without coordinates and let Lalamove handle it
+      // Lalamove API might accept addresses without coordinates
+    } catch (geocodeError) {
+      console.warn('Geocoding failed, proceeding with address only:', geocodeError);
+    }
+
+    // Get quote from Lalamove
+    // Lalamove API format - check their latest documentation
+    const quotePayload = {
+      serviceType: 'MOTORCYCLE', // or 'CAR', 'VAN' depending on package size
+      specialRequests: [],
+      requesterContact: {
+        name: 'Myco Medic',
+        phone: '+60123822001'
+      },
+      stops: [
+        {
+          coordinates: {
+            lat: process.env.OFFICE_LAT || '3.0167',
+            lng: process.env.OFFICE_LNG || '101.6167'
+          },
+          address: pickupAddress
+        },
+        {
+          ...(deliveryLat && deliveryLng ? {
+            coordinates: {
+              lat: deliveryLat,
+              lng: deliveryLng
+            }
+          } : {}),
+          address: deliveryAddress
+        }
+      ],
+      paymentMethod: 'CASH'
+    };
+
+    const quoteResponse = await fetch(`${lalamoveBaseUrl}/v2/quotations`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`,
+        'X-LLM-Country': 'MY'
+      },
+      body: JSON.stringify(quotePayload)
+    });
+
+    if (!quoteResponse.ok) {
+      const errorData = await quoteResponse.json().catch(() => ({}));
+      const errorText = await quoteResponse.text().catch(() => 'Unknown error');
+      console.error('Lalamove API error:', {
+        status: quoteResponse.status,
+        statusText: quoteResponse.statusText,
+        errorData,
+        errorText
+      });
+      
+      // Return default fee if API fails
+      return res.json({ 
+        fee: 15.00, 
+        currency: 'MYR',
+        estimatedTime: '30-60 minutes',
+        note: `Unable to calculate exact fee (API Error: ${quoteResponse.status}). Default fee applied. Please configure Lalamove API properly.`
+      });
+    }
+
+    const quoteData = await quoteResponse.json();
+    console.log('Lalamove quote response:', quoteData);
+    
+    // Extract fee from Lalamove response (format may vary)
+    const fee = quoteData.feeBreakdown?.totalFee || quoteData.totalFee || quoteData.totalFeeAmount || 15.00;
+    const currency = quoteData.currency || 'MYR';
+    const estimatedTime = quoteData.estimatedTime || quoteData.estimatedArrivalTime || '30-60 minutes';
+
+    res.json({
+      fee: parseFloat(fee),
+      currency,
+      estimatedTime,
+      quoteId: quoteData.quotationId || quoteData.id || null
+    });
+
+  } catch (error) {
+    console.error('Error calculating delivery fee:', error);
+    console.error('Error stack:', error.stack);
+    
+    // Return default fee on error with more details
+    res.json({ 
+      fee: 15.00, 
+      currency: 'MYR',
+      estimatedTime: '30-60 minutes',
+      note: `Error calculating delivery fee: ${error.message}. Default fee applied. Please check server logs for details.`,
+      error: error.message
+    });
   }
 });
 
