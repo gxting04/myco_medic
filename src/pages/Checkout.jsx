@@ -237,7 +237,7 @@ function Checkout() {
                           Processing...
                         </span>
                       ) : (
-                        'Pay with Stripe (GrabPay / Card / FPX)'
+                        'Checkout'
                       )}
                     </button>
                   </div>

@@ -18,7 +18,10 @@ function Category() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {Data.productGroups.filter(group => group.id !== 5).map((group) => {
+          {Data.productGroups
+            .filter(group => !['Medical Equipment', 'Safety & Protection'].includes(group.name))
+            .filter(group => group.id !== 5)
+            .map((group) => {
             const categoriesCount = Data.productCategories.filter(
               category => category.groupId === group.id
             ).length

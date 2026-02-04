@@ -490,7 +490,7 @@
       groupId: 1, 
       category: null, 
       price: 199.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/laryngoscope.png',
       pageId: 'laryngoscopes'
     },
     { 
@@ -499,7 +499,7 @@
       groupId: 1, 
       category: null, 
       price: 599.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/video_laryngoscope.png',
       pageId: 'ue-scope-video-laryngoscope-vl300'
     },
     { 
@@ -559,7 +559,7 @@
       name: 'DISPOSABLE STANDARD ROTA-TRACH™ TRACHEOSTOMY TUBE', 
       category: 'Disposable Tracheostomy Tube', 
       price: 89.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/disposable-standard-rota-trach-tracheostomy-tube.png',
       pageId: 'disposable-standard-rota-trach-tracheostomy-tube'
     },
     { 
@@ -567,7 +567,7 @@
       name: 'Disposable Inner Cannula Rota-Trach™ Tracheostomy Tube', 
       category: 'Disposable Tracheostomy Tube', 
       price: 99.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/disposable-inner-cannula-rota-trach-tracheostomy-tube.png',
       pageId: 'disposable-inner-cannula-rota-trach-tracheostomy-tube'
     },
     { 
@@ -575,7 +575,7 @@
       name: 'Disposable Pediatric Rota-Trach™ Tracheostomy Tube', 
       category: 'Disposable Tracheostomy Tube', 
       price: 79.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/disposable-pediatric-rota-trach-tracheostomy-tube.png',
       pageId: 'disposable-pediatric-rota-trach-tracheostomy-tube'
     },
     { 
@@ -1084,7 +1084,7 @@
       groupId: 9,
       category: 'Head and Neck Pads',
       price: 129.99,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/prostrate_head_pad.png',
       pageId: 'prostrate-head-pads'
     },
     {
@@ -1093,7 +1093,7 @@
       groupId: 9,
       category: 'Head and Neck Pads',
       price: 134.99,
-      image: 'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800',
+      image: '/contoured_supine_head_pad.png',
       pageId: 'contoured-supine-head-pads'
     },
     {
@@ -1102,7 +1102,7 @@
       groupId: 9,
       category: 'Head and Neck Pads',
       price: 119.99,
-      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800',
+      image: '/donut_head_pad.png',
       pageId: 'donut-head-pads'
     },
     {
@@ -1111,7 +1111,7 @@
       groupId: 9,
       category: 'Head and Neck Pads',
       price: 139.99,
-      image: 'https://images.unsplash.com/photo-1584823539309-c6e1e33d0850?q=80&w=800',
+      image: '/ophthalmic_head_pad.png',
       pageId: 'ophthalmic-head-pads'
     },
     {
@@ -1120,7 +1120,7 @@
       groupId: 9,
       category: 'Head and Neck Pads',
       price: 124.99,
-      image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=800',
+      image: '/horseshoe_head_pad.png',
       pageId: 'horseshoe-head-pads'
     },
     {
@@ -1129,7 +1129,7 @@
       groupId: 9,
       category: 'Head and Neck Pads',
       price: 129.99,
-      image: 'https://images.unsplash.com/photo-1580281658627-73de2fc1089d?q=80&w=800',
+      image: '/flat_supine_head_pad.png',
       pageId: 'flat-supine-head-pads'
     },
     {
@@ -1138,7 +1138,7 @@
       groupId: 9,
       category: 'Head and Neck Pads',
       price: 149.99,
-      image: 'https://images.unsplash.com/photo-1584823539309-c6e1e33d0850?q=80&w=800',
+      image: '/bowl_shaped_head_pad.png',
       pageId: 'bowl-shaped-head-pads'
     },
     {
@@ -1147,7 +1147,7 @@
       groupId: 9,
       category: 'Head and Neck Pads',
       price: 154.99,
-      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800',
+      image: '/thyroid_gland.png',
       pageId: 'thyroid-gland-positioning-pads'
     },
     {
@@ -1156,7 +1156,7 @@
       groupId: 9,
       category: 'Head and Neck Pads',
       price: 159.99,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/bowl_shaped_horseshoe_head_pad.png',
       pageId: 'bowl-shaped-horseshoe-head-pads'
     },
     {
@@ -1165,7 +1165,7 @@
       groupId: 9,
       category: 'Head and Neck Pads',
       price: 144.99,
-      image: 'https://images.unsplash.com/photo-1580281780551-79626c0ed254?q=80&w=800',
+      image: '/donut_head_pads_with_cissoid.png',
       pageId: 'donut-head-pads-with-cissoid'
     },
     {
@@ -1174,7 +1174,7 @@
       groupId: 9,
       category: 'Arm and Shoulder Pads',
       price: 89.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/presentation-gel-pads-2109-2-removebg-preview_orig.png',
+      image: '/universal_armboard_pad.png',
       pageId: 'universal-armboard-pads'
     },
     {
@@ -1183,7 +1183,7 @@
       groupId: 9,
       category: 'Arm and Shoulder Pads',
       price: 49.99,
-      image: 'https://images.unsplash.com/photo-1584466977773-352b5c8c9b17?q=80&w=800',
+      image: 'wrist_protector.png',
       pageId: 'wrist-protectors'
     },
     {
@@ -1201,7 +1201,7 @@
       groupId: 9,
       category: 'Arm and Shoulder Pads',
       price: 59.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/2104-removebg-preview_orig.png',
+      image: '/elbow_protector.png',
       pageId: 'elbow-protectors'
     },
     {
@@ -1219,7 +1219,7 @@
       groupId: 9,
       category: 'Chest and Body Pads',
       price: 139.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3105-fracture-removebg-preview_orig.png',
+      image: ' lateral_pads.png',
       pageId: 'lateral-pads'
     },
     {
@@ -1228,7 +1228,7 @@
       groupId: 9,
       category: 'Chest and Body Pads',
       price: 149.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3105-fracture-removebg-preview_orig.png',
+      image: 'chest_hipbone.png',
       pageId: 'chest-hipbone-pads'
     },
     {
@@ -1237,7 +1237,7 @@
       groupId: 9,
       category: 'Chest and Body Pads',
       price: 159.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3105-fracture-removebg-preview_orig.png',
+      image: 'fracture_table_post.png',
       pageId: 'fracture-table-post-pads'
     },
     {
@@ -1264,7 +1264,7 @@
       groupId: 9,
       category: 'Chest and Body Pads',
       price: 189.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3105-fracture-removebg-preview_orig.png',
+      image: 'hip_pads.png',
       pageId: 'hip-pads'
     },
     {
@@ -1273,7 +1273,7 @@
       groupId: 9,
       category: 'Chest and Body Pads',
       price: 199.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3105-fracture-removebg-preview_orig.png',
+      image: 'pillar_shaped_pads.png',
       pageId: 'pillar-shaped-pads'
     },
     {
@@ -1309,7 +1309,7 @@
       groupId: 9,
       category: 'Lower Limb Pads',
       price: 189.99,
-      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800',
+      image: 'or_table_pad.png',
       pageId: 'or-table-pads'
     },
     {

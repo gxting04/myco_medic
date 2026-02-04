@@ -15,13 +15,6 @@ function Footer() {
       { name: "About Us", href: "/about" },
       { name: "Contact", href: "/contact" },
       { name: "Careers", href: "/career" },
-      { name: "News", href: "#" },
-    ],
-    Support: [
-      { name: "Help Center", href: "#" },
-      { name: "Terms of Service", href: "#" },
-      { name: "Privacy Policy", href: "#" },
-      { name: "Returns", href: "#" },
     ],
   };
 
@@ -43,49 +36,44 @@ function Footer() {
               Advancing healthcare with precision-engineered medical supplies and equipment. 
               Committed to quality, safety, and innovation.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
-            </div>
           </div>
 
           {/* Links Columns */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h3 className="font-semibold text-gray-900 mb-4">{category}</h3>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      to={link.href}
-                      className="text-sm text-gray-500 hover:text-blue-600 hover:underline transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div className="lg:col-span-2">
+            <h3 className="font-semibold text-gray-900 mb-4">Products</h3>
+            <ul className="space-y-3">
+              {footerLinks.Products.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.href}
+                    className="text-sm text-gray-500 hover:text-blue-600 hover:underline transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-1 lg:col-start-5">
+            <h3 className="font-semibold text-gray-900 mb-4">Company</h3>
+            <ul className="space-y-3">
+              {footerLinks.Company.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.href}
+                    className="text-sm text-gray-500 hover:text-blue-600 hover:underline transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+        <div className="border-t border-gray-200 pt-8 text-xs text-gray-500">
           <p>© {currentYear} Myco Medic. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-gray-900">Privacy Policy</a>
-            <a href="#" className="hover:text-gray-900">Terms of Use</a>
-            <a href="#" className="hover:text-gray-900">Site Map</a>
-          </div>
         </div>
       </div>
     </footer>
