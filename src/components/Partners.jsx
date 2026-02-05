@@ -35,7 +35,7 @@ function Partners() {
           Trusted by Industry Leaders
         </p>
 
-        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-8 md:gap-12 items-center justify-items-center opacity-80'>
+        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-8 md:gap-12 items-center justify-items-center'>
           {partners.map((partner, index) => (
             <a
               key={index}
@@ -50,7 +50,7 @@ function Partners() {
               <img
                 src={partner.logo}
                 alt={partner.name}
-                className='h-12 w-auto max-w-full object-contain grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-300'
+                className='h-20 md:h-24 lg:h-28 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300'
               />
             </a>
           ))}
