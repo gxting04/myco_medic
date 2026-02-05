@@ -47,6 +47,11 @@ function Checkout() {
 
     try {
       const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+      
+      // Add timeout to prevent hanging
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+      
       const response = await fetch(`${API_URL}/api/calculate-delivery-fee`, {
         method: 'POST',
         headers: {
@@ -58,10 +63,14 @@ function Checkout() {
           postcode: formDataToUse.postcode,
           state: formDataToUse.state,
         }),
+        signal: controller.signal
       })
 
+      clearTimeout(timeoutId)
+
       if (!response.ok) {
-        throw new Error('Failed to calculate delivery fee')
+        const errorText = await response.text().catch(() => 'Unknown error')
+        throw new Error(`API returned ${response.status}: ${errorText}`)
       }
 
       const data = await response.json()
@@ -78,8 +87,13 @@ function Checkout() {
       }
     } catch (err) {
       console.error('Error calculating delivery fee:', err)
-      setDeliveryFeeError(`Unable to calculate delivery fee: ${err.message}. Default fee will be applied.`)
-      // Set a default fee
+      // Don't block checkout - just set a default fee
+      if (err.name === 'AbortError') {
+        setDeliveryFeeError('Delivery fee calculation timed out. Default fee applied.')
+      } else {
+        setDeliveryFeeError(`Unable to calculate delivery fee. Default fee (RM15.00) will be applied.`)
+      }
+      // Set a default fee so checkout can proceed
       setDeliveryFee(15.00)
     } finally {
       setCalculatingFee(false)
@@ -137,8 +151,12 @@ function Checkout() {
       }
     } catch (err) {
       console.error('Error:', err)
-      if (err.message === 'Failed to fetch') {
-        setError('Cannot connect to server. Please make sure the backend server is running on port 3001.')
+      if (err.message === 'Failed to fetch' || err.name === 'TypeError') {
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+        setError(`Cannot connect to server at ${API_URL}. Please check:
+          1. Backend server is running
+          2. API URL is correct in environment variables
+          3. CORS is configured on the backend`)
       } else {
         setError(`An error occurred: ${err.message || 'Please try again.'}`)
       }
