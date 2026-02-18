@@ -341,52 +341,12 @@
       pageId: 'disposable-cpap-system'
     },
     { 
-      id: 2, 
-      name: 'Disposable Gloves (100 pcs)', 
-      groupId: 1, 
-      category: null, 
-      price: 14.99, 
-      image: 'https://images.unsplash.com/photo-1588776814546-ec3bdf6d9b1d?q=80&w=800',
-      images: [
-        'https://images.unsplash.com/photo-1588776814546-ec3bdf6d9b1d?q=80&w=800',
-        'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
-        'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800'
-      ],
-      variants: {
-        colors: [
-          { name: 'Blue', value: 'blue', hex: '#0066CC' },
-          { name: 'White', value: 'white', hex: '#FFFFFF' },
-          { name: 'Black', value: 'black', hex: '#000000' }
-        ],
-        sizes: [
-          { name: 'Small', value: 'small' },
-          { name: 'Medium', value: 'medium' },
-          { name: 'Large', value: 'large' },
-          { name: 'X-Large', value: 'xlarge' }
-        ]
-      },
-      stock: 25,
-      description: 'High-quality disposable gloves designed for medical professionals. These powder-free nitrile gloves provide excellent protection and tactile sensitivity. Perfect for clinical procedures, laboratory work, and general medical use.',
-      specifications: {
-        'Material': '100% Nitrile',
-        'Powder Free': 'Yes',
-        'Thickness': '5 mil',
-        'Certification': 'ASTM D6319, EN455'
-      },
-      dimensions: {
-        'Length': '9.5 inches',
-        'Width': '4 inches'
-      },
-      articleCode: 'DG-100-BL',
-      pageId: 'disposable-gloves'
-    },
-    { 
       id: 3, 
       name: 'Surgical Mask (50 pcs)', 
       category: 'Protective Wear', 
       price: 9.99, 
       salePrice: 7.99,
-      image: 'https://images.unsplash.com/photo-1584466977773-352b5c8c9b17?q=80&w=800',
+      image: 'surgical_mask.png',
       images: [
         'https://images.unsplash.com/photo-1584466977773-352b5c8c9b17?q=80&w=800',
         'https://images.unsplash.com/photo-1588774069241-bf1ce6f08c08?q=80&w=800'
@@ -463,7 +423,7 @@
       groupId: 1, 
       category: null, 
       price: 299.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: 'reusable_cpr_resuscitation_system.png',
       pageId: 'reusable-cpr-resuscitation-system'
     },
     { 
@@ -472,7 +432,7 @@
       groupId: 1, 
       category: null, 
       price: 199.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: 'infant_tpiece_resuscitator.png',
       pageId: 'infant-t-piece-resuscitator'
     },
     { 
@@ -481,7 +441,7 @@
       groupId: 1, 
       category: null, 
       price: 49.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: 'disposable_manometer.png',
       pageId: 'disposable-manometer'
     },
     { 
@@ -508,7 +468,7 @@
       groupId: 1, 
       category: null, 
       price: 399.99, 
-      image: 'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?q=80&w=800',
+      image: 'aspirator.png',
       pageId: 'asu-200-rechargeable-aspirator'
     },
     { 
@@ -517,7 +477,7 @@
       groupId: 1, 
       category: null, 
       price: 89.99, 
-      image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=800',
+      image: 'breathing_circuit.png',
       pageId: 'breathing-circuits'
     },
     { 
@@ -525,7 +485,7 @@
       name: 'Heat And Moisture Exchanger Filter (HMEF)', 
       category: 'Breathing System Filter', 
       price: 15.99, 
-      image: 'https://images.unsplash.com/photo-1584823539309-c6e1e33d0850?q=80&w=800',
+      image: 'hmef.png',
       pageId: 'hmef-filter'
     },
     { 
@@ -533,7 +493,7 @@
       name: 'Bacterial Virus Filter (BVF)', 
       category: 'Breathing System Filter', 
       price: 18.99, 
-      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800',
+      image: 'bacterial_virus_filter.png',
       pageId: 'bvf-filter'
     },
     { 
@@ -542,7 +502,7 @@
       groupId: 1, 
       category: null, 
       price: 29.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: 'catheter_mount.png',
       pageId: 'catheter-mount'
     },
     { 
@@ -551,7 +511,7 @@
       groupId: 1, 
       category: null, 
       price: 24.99, 
-      image: 'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?q=80&w=800',
+      image: 'disposable_air_cushion_face_mask.png',
       pageId: 'disposable-air-cushion-face-mask'
     },
     { 
@@ -583,7 +543,7 @@
       name: 'PVC Double Lumen Endobronchial Tube', 
       category: 'Double Lumen Endobronchial',
       price: 129.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: 'pvc_double_lumen_endobronchial_tube.png',
       pageId: 'pvc-double-lumen-endobronchial-tube'
     },
     { 
@@ -591,7 +551,7 @@
       name: 'Silicone Double Lumen Endobronchial Tube', 
       category: 'Double Lumen Endobronchial',
       price: 159.99, 
-      image: 'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800',
+      image: 'silicone_double_lumen_endobronchial_tube.png',
       pageId: 'silicone-double-lumen-endobronchial-tube'
     },
     { 
@@ -599,7 +559,7 @@
       name: 'PVC Nasal Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
       price: 29.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: 'pvc_nasal_endotracheal_tube.png',
       pageId: 'pvc-nasal-endotracheal-tube'
     },
     { 
@@ -607,7 +567,7 @@
       name: 'PVC Oral Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
       price: 29.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: 'pvc_oral_endotracheal_tube.png',
       pageId: 'pvc-oral-endotracheal-tube'
     },
     { 
@@ -615,7 +575,7 @@
       name: 'PVC Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
       price: 27.99, 
-      image: 'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800',
+      image: 'pvc_endotracheal_tube.png',
       pageId: 'pvc-endotracheal-tube'
     },
     { 
@@ -623,7 +583,7 @@
       name: 'PVC Wire Reinforced Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
       price: 39.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: 'pvc_wire_reinforced_endotracheal_tube.png',
       pageId: 'pvc-wire-reinforced-endotracheal-tube'
     },
     { 
@@ -631,7 +591,7 @@
       name: 'Endotracheal Tube with Evacuation Lumen', 
       category: 'Endotracheal Tube',
       price: 44.99, 
-      image: 'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800',
+      image: 'endotracheal_tube_evacuation_lumen.png',
       pageId: 'endotracheal-tube-evacuation-lumen'
     },
     { 
@@ -639,7 +599,7 @@
       name: 'Bite Block Silicone Reinforced Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
       price: 54.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: 'bite_block_silicone_reinforced_endotracheal_tube.png',
       pageId: 'bite-block-silicone-reinforced-endotracheal-tube'
     },
     { 
@@ -647,7 +607,7 @@
       name: 'Silicone Reinforced Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
       price: 49.99, 
-      image: 'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800',
+      image: 'silicone_reinforced_endotracheal_tube.png',
       pageId: 'silicone-reinforced-endotracheal-tube'
     },
     { 
@@ -655,7 +615,7 @@
       name: 'Auto-inflation Endobronchial Blocker Tube', 
       category: 'Endobronchial Blocker Tube',
       price: 189.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: 'auto_inflation_endobronchial_blocker_tube.png',
       pageId: 'auto-inflation-endobronchial-blocker-tube'
     },
     { 
@@ -663,7 +623,7 @@
       name: 'Endobronchial Blocker Tube (Without Auto-inflation)', 
       category: 'Endobronchial Blocker Tube',
       price: 149.99, 
-      image: 'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800',
+      image: 'endobronchial_blocker_tube_without_auto_inflation.png',
       pageId: 'endobronchial-blocker-tube-without-auto-inflation'
     },
     { 
@@ -672,7 +632,7 @@
       groupId: 1,
       category: null,
       price: 19.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: 'intubating_stylet.png',
       pageId: 'intubating-stylet'
     },
     { 
@@ -680,7 +640,7 @@
       name: 'One Way Silicone Laryngeal Mask', 
       category: 'Laryngeal Mask',
       price: 29.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: 'one_way_silicone_laryngeal_mask.png',
       pageId: 'one-way-silicone-laryngeal-mask'
     },
     { 
@@ -688,7 +648,7 @@
       name: 'One Way Steel Reinforced Laryngeal Mask', 
       category: 'Laryngeal Mask',
       price: 39.99, 
-      image: 'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800',
+      image: 'one_way_steel_reinforced_laryngeal_mask.png',
       pageId: 'one-way-steel-reinforced-laryngeal-mask'
     },
     { 
@@ -697,7 +657,7 @@
       groupId: 1,
       category: null,
       price: 9.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: 'nasopharyngeal_airway.png',
       pageId: 'nasopharyngeal-airway'
     },
     { 
@@ -706,7 +666,7 @@
       groupId: 1,
       category: null,
       price: 7.99, 
-      image: 'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800',
+      image: 'oropharyngeal_airway.png',
       pageId: 'oropharyngeal-airway'
     },
     { 

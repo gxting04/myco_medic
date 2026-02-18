@@ -15,6 +15,18 @@ function ReusableCPRResuscitationPage({ product }) {
     ? `/products/group/${group.name.toLowerCase().replace(/\s+/g, '-')}`
     : '/products'
 
+  // Get product images - support multiple images or fallback to single image
+  const productImages = product.images && Array.isArray(product.images) && product.images.length > 0
+    ? product.images
+    : product.image ? [product.image] : []
+
+  // Helper function to format image path
+  const formatImagePath = (img) => {
+    if (!img) return 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600'
+    if (img.startsWith('http')) return img
+    return img.startsWith('/') ? img : `/${img}`
+  }
+
   return (
     <div className='bg-white text-black'>
       <Header />
@@ -50,15 +62,20 @@ function ReusableCPRResuscitationPage({ product }) {
       </section>
 
       {/* Image Section */}
-      <section className='max-w-6xl mx-auto px-6 py-16 lg:py-24'>
-        <div className='rounded-2xl overflow-hidden shadow-xl'>
-          <img
-            src={product.image || 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600'}
-            alt='Reusable CPR Resuscitation System'
-            className='w-full h-auto object-cover'
-          />
-        </div>
-      </section>
+      {productImages.length > 0 && (
+        <section className='max-w-6xl mx-auto px-6 py-16 lg:py-24'>
+          <div className='rounded-2xl overflow-hidden shadow-xl'>
+            <img
+              src={formatImagePath(productImages[0])}
+              alt='Reusable CPR Resuscitation System'
+              className='w-full h-auto object-cover'
+              onError={(e) => {
+                e.target.src = 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600'
+              }}
+            />
+          </div>
+        </section>
+      )}
 
       {/* Product Description Section */}
       <section className='max-w-6xl mx-auto px-6 py-16 lg:py-24'>
@@ -99,16 +116,25 @@ function ReusableCPRResuscitationPage({ product }) {
         </ol>
       </section>
 
-      {/* Second Image Section */}
-      <section className='max-w-6xl mx-auto px-6 pb-16'>
-        <div className='rounded-2xl overflow-hidden shadow-xl'>
-          <img
-            src={product.image || 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600'}
-            alt='Reusable CPR Resuscitation System'
-            className='w-full h-auto object-cover'
-          />
-        </div>
-      </section>
+      {/* Additional Images Section */}
+      {productImages.length > 1 && (
+        <section className='max-w-6xl mx-auto px-6 pb-16'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+            {productImages.slice(1).map((img, index) => (
+              <div key={index} className='rounded-2xl overflow-hidden shadow-xl'>
+                <img
+                  src={formatImagePath(img)}
+                  alt={`Reusable CPR Resuscitation System - View ${index + 2}`}
+                  className='w-full h-auto object-cover'
+                  onError={(e) => {
+                    e.target.src = 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600'
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Call to Action */}
       <section className='max-w-6xl mx-auto px-6 pb-16'>
