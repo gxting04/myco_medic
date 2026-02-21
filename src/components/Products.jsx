@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom'
 function Products() {
   const [products, setProducts] = useState(() => {
     const saved = localStorage.getItem('myco_products')
-    return saved ? JSON.parse(saved) : Data.initialProducts
+    const allProducts = saved ? JSON.parse(saved) : Data.initialProducts
+    // Exclude Medical Furniture products (groupId: 7)
+    return allProducts.filter(p => p.groupId !== 7)
   })
 
   useEffect(() => {
@@ -18,11 +20,11 @@ function Products() {
   }
 
   return (
-    <div className='mx-24 my-12'>
-      <div className='flex items-start gap-6'>
+    <div className='mx-4 sm:mx-8 md:mx-12 lg:mx-24 my-8 md:my-12'>
+      <div className='flex flex-col lg:flex-row items-start gap-6'>
         <div className='w-full'>
-          <h2 className='font-bold text-3xl mb-6'>Products</h2>
-          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+          <h2 className='font-bold text-2xl sm:text-3xl mb-6'>Products</h2>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6'>
             {products.map(p => (
               <Link to={`/product/${p.id}`} key={p.id} className='border rounded-xl overflow-hidden p-3 h-full flex flex-col hover:shadow-md transition-shadow'>
                 <img src={p.image} className='w-full h-40 object-cover rounded-md'/>
@@ -35,7 +37,7 @@ function Products() {
             ))}
           </div>
         </div>
-        <div className='min-w-[300px]'>
+        <div className='w-full lg:min-w-[300px] lg:w-auto'>
           <ProductForm onAdd={handleAdd} />
         </div>
       </div>

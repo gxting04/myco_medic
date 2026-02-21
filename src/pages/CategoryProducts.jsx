@@ -11,9 +11,10 @@ function CategoryProducts() {
   const [category, setCategory] = useState(null)
 
   useEffect(() => {
-    // Get saved products from localStorage
+    // Get saved products from localStorage, excluding Medical Furniture (groupId: 7)
     const savedProducts = localStorage.getItem('myco_products')
-    const allProducts = savedProducts ? JSON.parse(savedProducts) : Data.initialProducts
+    const allProducts = (savedProducts ? JSON.parse(savedProducts) : Data.initialProducts)
+      .filter(p => p.groupId !== 7)
 
     // Find the category
     const foundCategory = Data.productCategories.find(cat => 
@@ -52,8 +53,8 @@ function CategoryProducts() {
     <div>
       <Header/>
       
-      <div className='py-16 bg-white'>
-        <div className='max-w-7xl mx-auto px-6'>
+      <div className='pt-24 md:pt-32 pb-8 md:pb-16 bg-white'>
+        <div className='max-w-7xl mx-auto px-4 sm:px-6'>
           {/* Breadcrumb */}
           <nav className='mb-8'>
             <div className='flex items-center space-x-2 text-sm text-gray-500'>
@@ -74,8 +75,8 @@ function CategoryProducts() {
                 className='w-12 h-12 object-contain'
               />
             </div>
-            <h1 className='text-4xl font-bold text-gray-900 mb-4'>{category.name} Products</h1>
-            <p className='text-lg text-gray-600 max-w-2xl mx-auto'>
+            <h1 className='text-3xl sm:text-4xl font-bold text-gray-900 mb-4'>{category.name} Products</h1>
+            <p className='text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4'>
               Discover our range of {category.name.toLowerCase()} equipment and devices
             </p>
             <div className='w-24 h-1 bg-primary mx-auto mt-4'></div>
@@ -83,7 +84,7 @@ function CategoryProducts() {
 
           {/* Products Grid */}
           {products.length > 0 ? (
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8'>
               {products.map((product) => (
                 <Link
                   key={product.id}

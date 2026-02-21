@@ -1,38 +1,61 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import Data from '@/shared/Data'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import slugify from '@/utils/slugify'
 
 function Category() {
+  // Get products from localStorage or initial data, excluding Medical Furniture (groupId: 7)
+  const allProducts = useMemo(() => {
+    const saved = localStorage.getItem('myco_products')
+    const products = saved ? JSON.parse(saved) : Data.initialProducts
+    return products.filter(p => p.groupId !== 7)
+  }, [])
+
   return (
-    <section className="py-32 bg-[#f5f5f7]">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-6">
+    <section className="py-16 md:py-32 bg-[#f5f5f7]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-12 md:mb-20">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-4 md:mb-6">
             Explore Our Products
           </h2>
-          <p className="text-xl text-gray-500 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto px-4">
             Find the essential medical supplies designed for performance and reliability.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           {Data.productGroups
             .filter(group => !['Medical Equipment', 'Safety & Protection'].includes(group.name))
-            .filter(group => group.id !== 5)
+            .filter(group => group.id !== 5 && group.id !== 7)
             .map((group) => {
             const categoriesCount = Data.productCategories.filter(
               category => category.groupId === group.id
             ).length
-            const firstProduct = Data.initialProducts.find(product => product.groupId === group.id && Boolean(product.image))
-            const heroImage = firstProduct?.image || group.icon
+            
+            // Get ALL products for this group (both with and without categories)
+            const allGroupProducts = allProducts.filter(
+              product => product.groupId === group.id
+            )
+            
+            // Get direct products (without category) for display count
+            const directProducts = allGroupProducts.filter(
+              product => !product.category || product.category === null
+            )
+            
+            // Find first product with a valid image (check all products, not just direct ones)
+            const firstProduct = allGroupProducts.find(product => {
+              const img = product.image || (product.images && product.images[0])
+              return img && img.trim() !== ''
+            })
+            
+            const heroImage = firstProduct?.image || (firstProduct?.images && firstProduct.images[0]) || group.icon
             
             return (
               <Link
                 key={group.id}
                 to={`/products/group/${slugify(group.name)}`}
-                className="group relative p-8 h-[400px] flex flex-col justify-between overflow-hidden transition-all duration-500 ease-out hover:-translate-y-1"
+                className="group relative p-6 sm:p-8 h-auto sm:h-[400px] flex flex-col justify-between overflow-hidden transition-all duration-500 ease-out hover:-translate-y-1 bg-white rounded-lg border border-gray-200"
               >
                 {/* Content */}
                 <div className="relative z-10">
@@ -40,7 +63,15 @@ function Category() {
                     {group.name}
                   </h3>
                   <p className="text-gray-500 font-medium mb-4 text-sm">
-                     {categoriesCount} {categoriesCount === 1 ? 'Category' : 'Categories'}
+                    {categoriesCount > 0 && allGroupProducts.length > 0 ? (
+                      <>
+                        {categoriesCount} {categoriesCount === 1 ? 'Category' : 'Categories'} • {allGroupProducts.length} {allGroupProducts.length === 1 ? 'Product' : 'Products'}
+                      </>
+                    ) : categoriesCount > 0 ? (
+                      <>{categoriesCount} {categoriesCount === 1 ? 'Category' : 'Categories'}</>
+                    ) : (
+                      <>{allGroupProducts.length} {allGroupProducts.length === 1 ? 'Product' : 'Products'}</>
+                    )}
                   </p>
                   <p className="text-gray-600 leading-relaxed">
                     {group.description}

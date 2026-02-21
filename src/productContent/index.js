@@ -183,6 +183,7 @@ const productContentRegistry = {
   'disposable-tracheal-tube-kit': DisposableTrachealTubeKitPage,
   'iob-forced-air-warming-system': IOBForcedAirWarmingSystemPage,
   'c-bona-closed-suction-systems': CBonaClosedSuctionSystemsPage,
+  'c-bona-closed-suction-systems-pediatric': CBonaClosedSuctionSystemsPage,
   'pressure-transducer': PressureTransducerPage,
   'central-venous-catheter': CentralVenousCatheterPage,
   'easydrop-flow-regulator': EasydropFlowRegulatorPage,

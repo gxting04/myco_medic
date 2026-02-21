@@ -2,7 +2,7 @@ import React from 'react'
 
 function Hero() {
   return (
-    <div className='relative h-[85vh] w-full overflow-hidden bg-black'>
+    <div className='relative h-[60vh] sm:h-[75vh] md:h-[85vh] w-full overflow-hidden bg-black'>
       <img
         src="/Header.png"
         alt="Myco Medic"

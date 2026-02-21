@@ -44,10 +44,11 @@ function ProductsPage() {
     }
   }, [selectedGroupId])
 
-  // Get products from localStorage or initial data
+  // Get products from localStorage or initial data, excluding Medical Furniture (groupId: 7)
   const allProducts = useMemo(() => {
     const saved = localStorage.getItem('myco_products')
-    return saved ? JSON.parse(saved) : Data.initialProducts
+    const products = saved ? JSON.parse(saved) : Data.initialProducts
+    return products.filter(p => p.groupId !== 7)
   }, [])
 
   // Filter and sort products based on selection
@@ -186,18 +187,18 @@ function ProductsPage() {
     <div className="bg-gray-50 min-h-screen">
       <Header/>
       
-      <div className="pt-32 pb-8">
-        <div className="max-w-7xl mx-auto px-6">
+      <div className="pt-24 md:pt-32 pb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {/* Page Header */}
-          <div className="mb-8">
-            <h1 className="text-4xl font-light text-gray-900 mb-2">Products</h1>
-            <div className="flex items-center justify-between flex-wrap gap-4">
+            <div className="mb-8">
+            <h1 className="text-3xl sm:text-4xl font-light text-gray-900 mb-2">Products</h1>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <p className="text-gray-500 text-sm">
                 Showing {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
               </p>
               
               {/* Search Bar */}
-              <form onSubmit={handleSearch} className="flex gap-2 max-w-md w-full">
+              <form onSubmit={handleSearch} className="flex gap-2 w-full sm:max-w-md">
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <input
@@ -218,10 +219,10 @@ function ProductsPage() {
             </div>
           </div>
 
-          <div className="flex gap-8">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-8">
             {/* Left Sidebar - Product Groups & Categories */}
-            <aside className="w-80 flex-shrink-0">
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm sticky top-24 overflow-hidden">
+            <aside className="w-full md:w-80 flex-shrink-0">
+              <div className={`bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden ${showFilters ? 'block' : 'hidden md:block'} md:sticky md:top-24`}>
                 {/* Header */}
                 <div className="px-6 py-5 border-b border-gray-100">
                   <div className="flex items-center justify-between">
@@ -252,7 +253,7 @@ function ProductsPage() {
 
                   {/* Product Groups */}
                   {Data.productGroups
-                    .filter(group => group.id !== 5)
+                    .filter(group => group.id !== 5 && group.id !== 7)
                     .map((group) => {
                       const categories = getCategoriesForGroup(group.id)
                       const directProductsCount = getDirectProductsCount(group.id)
@@ -399,6 +400,7 @@ function ProductsPage() {
                     <button
                       onClick={() => setShowFilters(false)}
                       className="md:hidden text-gray-500 hover:text-gray-700"
+                      aria-label="Close filters"
                     >
                       <X className="w-5 h-5" />
                     </button>

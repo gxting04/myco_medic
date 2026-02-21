@@ -20,6 +20,9 @@ function SearchResults() {
     const lowerQuery = query.toLowerCase().trim()
     
     return allProducts.filter(product => {
+      // Exclude Medical Furniture products (groupId: 7)
+      if (product.groupId === 7) return false
+      
       // Search in product name
       const nameMatch = product.name?.toLowerCase().includes(lowerQuery)
       
@@ -48,25 +51,25 @@ function SearchResults() {
     <div>
       <Header />
       
-      <div className='py-16 bg-white min-h-screen'>
-        <div className='max-w-7xl mx-auto px-6'>
+      <div className='pt-24 md:pt-32 pb-8 md:pb-16 bg-white min-h-screen'>
+        <div className='max-w-7xl mx-auto px-4 sm:px-6'>
           {/* Search Header */}
-          <div className='mb-12'>
-            <h1 className='text-4xl font-bold text-gray-900 mb-6'>Search Results</h1>
+          <div className='mb-8 md:mb-12'>
+            <h1 className='text-3xl sm:text-4xl font-bold text-gray-900 mb-4 md:mb-6'>Search Results</h1>
             
             {/* Search Bar */}
             <form onSubmit={handleSearch} className='max-w-2xl'>
-              <div className='flex gap-4'>
+              <div className='flex flex-col sm:flex-row gap-2 sm:gap-4'>
                 <input
                   type='text'
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder='Search for products...'
-                  className='flex-1 px-6 py-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary text-lg'
+                  className='flex-1 px-4 sm:px-6 py-3 sm:py-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary text-base sm:text-lg'
                 />
                 <button
                   type='submit'
-                  className='px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium flex items-center gap-2'
+                  className='px-6 sm:px-8 py-3 sm:py-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium flex items-center justify-center gap-2'
                 >
                   <svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                     <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />
@@ -90,7 +93,7 @@ function SearchResults() {
           {/* Search Results */}
           {query ? (
             filteredProducts.length > 0 ? (
-              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'>
+              <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8'>
                 {filteredProducts.map((product) => {
                   const group = Data.productGroups.find(g => g.id === product.groupId)
                   return (

@@ -155,7 +155,7 @@ function ProductDetailDefault({ product }) {
     <div>
       <Header/>
       
-      <div className='pt-32 pb-8 bg-white'>
+      <div className='pt-24 md:pt-32 pb-8 bg-white'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6'>
           {/* Back Button */}
           <Link
@@ -181,7 +181,7 @@ function ProductDetailDefault({ product }) {
             </div>
           </nav>
 
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-16'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-16 mb-12 md:mb-16'>
             {/* Product Images */}
             <div className='space-y-4'>
               {/* Main Image */}
@@ -228,7 +228,7 @@ function ProductDetailDefault({ product }) {
             <div className='space-y-6'>
               {/* Product Title */}
               <div>
-                <h1 className='text-3xl sm:text-4xl font-bold text-gray-900 mb-3'>{product.name}</h1>
+                <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3'>{product.name}</h1>
                 {product.articleCode && (
                   <p className='text-sm text-gray-500'>Article Code: {product.articleCode}</p>
                 )}

@@ -519,7 +519,7 @@
       name: 'DISPOSABLE STANDARD ROTA-TRACH™ TRACHEOSTOMY TUBE', 
       category: 'Disposable Tracheostomy Tube', 
       price: 89.99, 
-      image: '/disposable-standard-rota-trach-tracheostomy-tube.png',
+      image: 'disposable_standard_rota_trach_tracheostomy_tube.png',
       pageId: 'disposable-standard-rota-trach-tracheostomy-tube'
     },
     { 
@@ -527,7 +527,7 @@
       name: 'Disposable Inner Cannula Rota-Trach™ Tracheostomy Tube', 
       category: 'Disposable Tracheostomy Tube', 
       price: 99.99, 
-      image: '/disposable-inner-cannula-rota-trach-tracheostomy-tube.png',
+      image: 'disposable_inner_cannula_rota_trach_tracheostomy_tube.png',
       pageId: 'disposable-inner-cannula-rota-trach-tracheostomy-tube'
     },
     { 
@@ -535,7 +535,7 @@
       name: 'Disposable Pediatric Rota-Trach™ Tracheostomy Tube', 
       category: 'Disposable Tracheostomy Tube', 
       price: 79.99, 
-      image: '/disposable-pediatric-rota-trach-tracheostomy-tube.png',
+      image: 'disposable_pediatric_rota_trach_tracheostomy_tube.png',
       pageId: 'disposable-pediatric-rota-trach-tracheostomy-tube'
     },
     { 
@@ -591,7 +591,7 @@
       name: 'Endotracheal Tube with Evacuation Lumen', 
       category: 'Endotracheal Tube',
       price: 44.99, 
-      image: 'endotracheal_tube_evacuation_lumen.png',
+      image: 'endotracheal_tube_with_evacuation_lumen.png',
       pageId: 'endotracheal-tube-evacuation-lumen'
     },
     { 
@@ -675,7 +675,7 @@
       groupId: 1,
       category: null,
       price: 12.99, 
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: 'tracheal_tubes_holder.png',
       pageId: 'tracheal-tubes-holder'
     },
     { 
@@ -684,7 +684,7 @@
       groupId: 1,
       category: null,
       price: 89.99, 
-      image: 'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800',
+      image: 'disposable_tracheal_tube_kit.png',
       pageId: 'disposable-tracheal-tube-kit'
     },
     {
@@ -693,7 +693,7 @@
       groupId: 4,
       category: null,
       price: 1499.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/iob-removebg-preview-1_orig.png',
+      image: 'iob_forced_air_warming_system.png',
       pageId: 'iob-forced-air-warming-system'
     },
     {
@@ -702,8 +702,17 @@
       groupId: 4,
       category: null,
       price: 49.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/c-bona-removebg-preview_orig.png', 
+      image: 'cbona_closed_suction_adult.png', 
       pageId: 'c-bona-closed-suction-systems'
+    },
+    {
+      id: 46,
+      name: 'C-Bona Closed Suction Systems (Pediatric)',
+      groupId: 4,
+      category: null,
+      price: 49.99,
+      image: 'cbona_closed_suction_pediatric.png', 
+      pageId: 'c-bona-closed-suction-systems-pediatric'
     },
     {
       id: 43,
@@ -711,7 +720,7 @@
       groupId: 4,
       category: null,
       price: 129.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/trans-1_orig.jpg',
+      image: 'pressure_transducer.png',
       pageId: 'pressure-transducer'
     },
     {
@@ -720,7 +729,7 @@
       groupId: 4,
       category: null,
       price: 199.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/flow-13_orig.jpg',
+      image: 'central_venous_catheter.png',
       pageId: 'central-venous-catheter'
     },
     {
@@ -729,43 +738,26 @@
       groupId: 4,
       category: null,
       price: 29.99,
-      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800', // Placeholder as specific image wasn't in snippet
+      image: 'easydrop_flow_regulator.png', // Placeholder as specific image wasn't in snippet
       pageId: 'easydrop-flow-regulator'
     },
-    {
-      id: 46,
-      name: 'Moistened Shampoo Cap',
-      groupId: 4,
-      category: null,
-      price: 9.99, 
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/myco-cap-2-orig-removebg-preview.png?1671679136',
-      pageId: 'moistened-shampoo-cap'
-    },
-    {
-      id: 47,
-      name: 'Wound and Skin Wash Gloves',
-      groupId: 4,
-      category: null,
-      price: 14.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/editor/whatsapp-image-2021-09-27-at-1-49-18-pm-removebg-preview.png?1646269010',
-      pageId: 'wound-and-skin-wash-gloves'
-    },
+    
     {
       id: 48,
-      name: 'MEDCAPTAIN Infusion Pump (SYS-6010)',
+      name: 'Infusion Pump (SYS-6010)',
       groupId: 4,
       category: null,
       price: 1299.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/infusion-pump-removebg-preview.png?1668649327',
+      image: 'infusion_pump.png',
       pageId: 'medcaptain-infusion-pump'
     },
     {
       id: 49,
-      name: 'MEDCAPTAIN Syringe Pump (SYS-50)',
+      name: 'Syringe Pump (SYS-50)',
       groupId: 4,
       category: null,
       price: 1199.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/syringe-pump-removebg-preview_orig.png',
+      image: 'syringe_pump.png',
       pageId: 'medcaptain-syringe-pump'
     },
     {
@@ -774,7 +766,7 @@
       groupId: 13,
       category: null,
       price: 89.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/403154_2_orig.png',
+      image: 'disposable_emergency_suture_pack.png',
       pageId: 'disposable-emergency-suture-pack'
     },
     {
@@ -783,7 +775,7 @@
       groupId: 13,
       category: null,
       price: 119.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/editor/7475439-1.png?1489315151',
+      image: 'disposable_circumcision_pack.png',
       pageId: 'disposable-circumcision-pack'
     },
     {
@@ -792,7 +784,7 @@
       groupId: 13,
       category: null,
       price: 89.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/pre-epidural-sets_orig.png',
+      image: 'disposable_preepidural_set.png',
       pageId: 'disposable-pre-epidural-set'
     },
     {
@@ -801,7 +793,7 @@
       groupId: 13,
       category: null,
       price: 59.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3826642_orig.jpg',
+      image: 'disposable_sterile_basic_pack.png',
       pageId: 'disposable-basic-pack'
     },
     {
@@ -810,7 +802,7 @@
       groupId: 6,
       category: null,
       price: 24.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/cannula-cleaning-brushes-removebg-preview_orig.png',
+      image: 'cannula_cleaning_brushes.png',
       pageId: 'cannula-cleaning-brushes'
     },
     {
@@ -819,7 +811,7 @@
       groupId: 6,
       category: null,
       price: 29.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/untitled-4-orig-removebg-preview.png?1671672497',
+      image: 'tracheal_tube_brushes.png',
       pageId: 'tracheal-tube-brushes'
     },
     {
@@ -828,7 +820,13 @@
       groupId: 6,
       category: null,
       price: 34.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/untitled_5.png?1642672384',
+      image: 'stainless_bristles.png',
+      images: [
+        'stainless_bristles.png',
+        'nylon_bristles.png',
+        'double_ended.png',
+        'double_tapered.png'
+      ],
       pageId: 'instrument-cleaning-brushes'
     },
     {
@@ -837,7 +835,7 @@
       groupId: 6,
       category: null,
       price: 32.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/screenshot-2022-12-22-091258-removebg-preview_orig.png',
+      image: 'suction_tube_cleaning_brushes.png',
       pageId: 'suction-tube-cleaning-brushes'
     },
     {
@@ -846,7 +844,7 @@
       groupId: 6,
       category: null,
       price: 27.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/untitled-17-removebg-preview.png?1671671380',
+      image: 'cannula_instrument_pipe_cleaners.png',
       pageId: 'cannula-instrument-pipe-cleaners'
     },
     {
@@ -855,7 +853,7 @@
       groupId: 6,
       category: null,
       price: 24.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/untitled_19_orig.png',
+      image: 'double_end_valve_brushes.png',
       pageId: 'double-end-valve-brushes'
     },
     {
@@ -864,16 +862,21 @@
       groupId: 6,
       category: null,
       price: 49.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/untitled_1_orig.png',
+      image: 'surgical_scrub_brushes.png',
+      images: [
+        'surgical_scrub_brushes.png',
+        'surgical_scrub_brush_dispenser.png'
+      ],
       pageId: 'surgical-scrub-brushes-dispenser'
     },
+    
     {
       id: 61,
       name: 'Large Instrument Cleaning Brush',
       groupId: 6,
       category: null,
       price: 34.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/untitled-22-orig-removebg-preview_orig.png',
+      image: 'large_instrument_cleaning_brush.png',
       pageId: 'large-instrument-cleaning-brush'
     },
     {
@@ -954,7 +957,7 @@
       groupId: 8,
       category: null,
       price: 9.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/face-mask-circle-cropped_orig.png',
+      image: 'surgical_mask.png',
       pageId: '3ply-surgical-face-mask'
     },
     {
@@ -963,7 +966,7 @@
       groupId: 8,
       category: null,
       price: 12.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/image-4.png?1671607201',
+      image: 'medical_protective_face_shield.png',
       pageId: 'medical-protective-face-shield'
     },
     {
@@ -972,7 +975,11 @@
       groupId: 8,
       category: null,
       price: 59.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/c9043edf9ce9449f41d692256ed8e471-removebg-preview_orig.png',
+      image: 'infrared_thermometer.png',
+      images: [
+        'infrared_thermometer.png',
+        'infrared_thermometer_2.png'
+      ],
       pageId: 'infrared-thermometer'
     },
     {
@@ -981,7 +988,7 @@
       groupId: 8,
       category: null,
       price: 24.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/image-5-removebg-preview_orig.png',
+      image: 'non_sterile_coverall.png',
       pageId: 'non-sterile-coverall'
     },
     {
@@ -1534,11 +1541,15 @@
     },
     {
       id: 135,
-      name: 'AWELD Portable Breathing Oxygen Inhaler (600 ml)',
+      name: 'Portable Breathing Oxygen Inhaler (600 ml)',
       groupId: 11,
       category: null,
       price: 0,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/u4kvox2b1621523622-1000x1000_orig.jpeg',
+      image: 'portable_breathing_oxygen_inhaler.png',
+      images: [
+        'portable_breathing_oxygen_inhaler.png',
+        'portable_breathing_oxygen_inhaler_2.png'
+      ],
       pageId: 'aweld-portable-breathing-oxygen-inhaler'
     },
     {

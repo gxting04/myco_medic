@@ -57,7 +57,7 @@ function AboutUs() {
       <div className="absolute -top-20 -left-20 w-72 h-72 bg-primary/10 blur-3xl rounded-full"></div>
       <div className="absolute top-1/3 -right-40 w-96 h-96 bg-primary/5 blur-3xl rounded-full"></div>
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center relative z-10">
         {/* ===== Left Image Section ===== */}
         <div
           className={`relative transition-all duration-1000 ${
@@ -107,11 +107,11 @@ function AboutUs() {
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
           }`}
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
             Transforming <span className="text-primary">Healthcare Solutions</span>
           </h2>
 
-          <p className="text-lg text-gray-700 leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
             Since <strong>2010</strong>, <span className="text-primary font-semibold">Myco Medic</span>{' '}
             has been at the forefront of delivering high-quality medical devices and surgical
             equipment across Malaysia. Our dedication ensures that every hospital and clinic we

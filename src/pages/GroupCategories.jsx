@@ -28,8 +28,10 @@ function GroupCategories() {
       : []
     
     // Get products that belong directly to this group (have groupId but no category)
+    // Exclude Medical Furniture products (groupId: 7)
     const saved = localStorage.getItem('myco_products')
-    const allProducts = saved ? JSON.parse(saved) : Data.initialProducts
+    const allProducts = (saved ? JSON.parse(saved) : Data.initialProducts)
+      .filter(p => p.groupId !== 7)
     const directProds = foundGroup
       ? allProducts.filter(p => p.groupId === foundGroup.id && (!p.category || p.category === null))
       : []
@@ -59,10 +61,10 @@ function GroupCategories() {
     <div>
       <Header/>
       
-      <div className='py-16 bg-[#f5f5f7] min-h-screen'>
-        <div className='max-w-7xl mx-auto px-6'>
+      <div className='pt-24 md:pt-32 pb-8 md:pb-16 bg-[#f5f5f7] min-h-screen'>
+        <div className='max-w-7xl mx-auto px-4 sm:px-6'>
           {/* Breadcrumbs */}
-          <div className='flex items-center gap-2 text-sm text-gray-500 mb-8'>
+          <div className='flex items-center gap-2 text-xs sm:text-sm text-gray-500 mb-6 md:mb-8 flex-wrap'>
             <Link to='/' className='hover:text-primary'>Home</Link>
             <span>/</span>
             <Link to='/products' className='hover:text-primary'>Products</Link>
@@ -71,18 +73,18 @@ function GroupCategories() {
           </div>
 
           {/* Group Header */}
-          <div className='text-center mb-16'>
-            <h1 className='text-4xl font-bold text-gray-900 mb-4'>{group.name}</h1>
-            <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+          <div className='text-center mb-12 md:mb-16'>
+            <h1 className='text-3xl sm:text-4xl font-bold text-gray-900 mb-4'>{group.name}</h1>
+            <p className='text-base sm:text-xl text-gray-600 max-w-2xl mx-auto px-4'>
               {group.description}
             </p>
           </div>
 
           {/* Categories Grid (if any) */}
           {categories.length > 0 && (
-            <div className='mb-16'>
-              <h2 className='text-2xl font-semibold text-gray-900 mb-8'>Categories</h2>
-              <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+            <div className='mb-12 md:mb-16'>
+              <h2 className='text-2xl font-semibold text-gray-900 mb-6 md:mb-8'>Categories</h2>
+              <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8'>
                 {categories.map((category) => (
                   <Link
                     key={category.id}
@@ -111,8 +113,8 @@ function GroupCategories() {
           {/* Direct Products Grid (if any) */}
           {directProducts.length > 0 && (
             <div>
-              <h2 className='text-2xl font-semibold text-gray-900 mb-8'>Products</h2>
-              <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8'>
+              <h2 className='text-2xl font-semibold text-gray-900 mb-6 md:mb-8'>Products</h2>
+              <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8'>
                 {directProducts.map((product) => (
                   <Link
                     key={product.id}

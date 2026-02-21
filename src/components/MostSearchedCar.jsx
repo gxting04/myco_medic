@@ -12,7 +12,9 @@ import {
 function MostSearchedCar() {
   const [products, setProducts] = useState(() => {
     const saved = localStorage.getItem('myco_products')
-    return saved ? JSON.parse(saved) : Data.initialProducts
+    const allProducts = saved ? JSON.parse(saved) : Data.initialProducts
+    // Exclude Medical Furniture products (groupId: 7)
+    return allProducts.filter(p => p.groupId !== 7)
   })
   return (
     <div className='mx-24'>

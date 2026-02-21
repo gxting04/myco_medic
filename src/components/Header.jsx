@@ -57,21 +57,21 @@ function Header() {
           : 'bg-transparent backdrop-blur-none'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 md:h-24 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 z-50">
+        <Link to="/" className="flex items-center gap-2 sm:gap-3 z-50">
           <img
             src="/Myco_Medic.png"
             alt="Myco Medic"
-            className="w-14 h-14 object-contain"
+            className="w-10 h-10 sm:w-14 sm:h-14 object-contain"
           />
-          <span className="text-xl font-semibold tracking-tight text-gray-900">
+          <span className="text-lg sm:text-xl font-semibold tracking-tight text-gray-900">
             Myco Medic
           </span>
         </Link>
 
         {/* Right Side - Navigation + Actions */}
-        <div className="flex items-center gap-4 md:gap-8 z-50">
+        <div className="flex items-center gap-2 sm:gap-4 md:gap-8 z-50">
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
@@ -125,7 +125,7 @@ function Header() {
       {/* Search Bar - Desktop Dropdown */}
       {searchOpen && (
         <div className="absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg z-40">
-          <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
             <form onSubmit={handleSearch} className="flex gap-4">
               <input
                 type="text"
@@ -158,7 +158,7 @@ function Header() {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 bg-white z-40 flex flex-col pt-28 px-6 gap-6 transition-transform duration-300 md:hidden ${
+        className={`fixed inset-0 bg-white z-40 flex flex-col pt-24 px-4 sm:px-6 gap-6 transition-transform duration-300 md:hidden ${
           mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
