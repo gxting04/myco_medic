@@ -20,9 +20,7 @@ function ProductDetailDefault({ product }) {
   const [selectedSize, setSelectedSize] = useState(null)
   const [expandedSections, setExpandedSections] = useState({
     description: true,
-    sizeGuide: false,
-    returnPolicy: false,
-    faq: false
+    sizeGuide: false
   })
 
   // Get group information if product has no category
@@ -538,77 +536,6 @@ function ProductDetailDefault({ product }) {
               </div>
             )}
 
-            {/* Return & Refund Policy */}
-            <div>
-              <button
-                onClick={() => toggleSection('returnPolicy')}
-                className='w-full flex items-center justify-between text-left py-4 border-b border-gray-200 hover:bg-gray-50 px-2 -mx-2 rounded-lg transition-colors duration-200 group'
-              >
-                <h2 className='text-xl font-semibold text-gray-900 group-hover:text-primary transition-colors'>Return & Refund Policy</h2>
-                <svg 
-                  className={`w-5 h-5 text-gray-500 transition-transform duration-300 group-hover:text-primary ${expandedSections.returnPolicy ? 'rotate-180' : ''}`}
-                  fill='none' 
-                  stroke='currentColor' 
-                  viewBox='0 0 24 24'
-                >
-                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M19 9l-7 7-7-7' />
-                </svg>
-              </button>
-              {expandedSections.returnPolicy && (
-                <div className='py-6 text-gray-700 space-y-4'>
-                  <div>
-                    <h3 className='font-semibold mb-2'>Returns</h3>
-                    <p>We provide returns for all items except sale & promotion items and specifically stated non-returnable & non-exchange items. Products sold at mark down prices cannot be returned or exchanged. We reserve the right for final decision.</p>
-                  </div>
-                  <div>
-                    <h3 className='font-semibold mb-2'>Refund</h3>
-                    <p>Refund via Account's Store Credit at our website only.</p>
-                  </div>
-                  <div>
-                    <h3 className='font-semibold mb-2'>Exchange</h3>
-                    <p>You may exchange your item(s) size (except sales items) via postage and at our physical store, depending on item availability.</p>
-                  </div>
-                  <div>
-                    <h3 className='font-semibold mb-2'>Defective</h3>
-                    <p>Products must be in original condition with proof of receipt. We're unable to accept your return as it had been washed.</p>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* FAQ */}
-            <div>
-              <button
-                onClick={() => toggleSection('faq')}
-                className='w-full flex items-center justify-between text-left py-4 border-b border-gray-200 hover:bg-gray-50 px-2 -mx-2 rounded-lg transition-colors duration-200 group'
-              >
-                <h2 className='text-xl font-semibold text-gray-900 group-hover:text-primary transition-colors'>Frequently Asked Questions</h2>
-                <svg 
-                  className={`w-5 h-5 text-gray-500 transition-transform duration-300 group-hover:text-primary ${expandedSections.faq ? 'rotate-180' : ''}`}
-                  fill='none' 
-                  stroke='currentColor' 
-                  viewBox='0 0 24 24'
-                >
-                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M19 9l-7 7-7-7' />
-                </svg>
-              </button>
-              {expandedSections.faq && (
-                <div className='py-6 space-y-4'>
-                  <div>
-                    <h3 className='font-semibold text-gray-900 mb-2'>How long does it normally take to ship out items once payment is made?</h3>
-                    <p className='text-gray-700'>We will process your order within 24 hours and ship your orders within 5-7 working days, except wishlist item(s).</p>
-                  </div>
-                  <div>
-                    <h3 className='font-semibold text-gray-900 mb-2'>Where can I find my tracking number?</h3>
-                    <p className='text-gray-700'>Tracking numbers will be provided by email once shipped.</p>
-                  </div>
-                  <div>
-                    <h3 className='font-semibold text-gray-900 mb-2'>Where can I track my parcel?</h3>
-                    <p className='text-gray-700'>Local orders are delivered via Skynet/Poslaju/Pgeon/EasyParcel. Orders can be tracked at the provided tracking link.</p>
-                  </div>
-                </div>
-              )}
-            </div>
           </div>
 
           {/* Back Navigation */}

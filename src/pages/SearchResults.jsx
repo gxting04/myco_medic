@@ -20,8 +20,8 @@ function SearchResults() {
     const lowerQuery = query.toLowerCase().trim()
     
     return allProducts.filter(product => {
-      // Exclude Medical Furniture products (groupId: 7)
-      if (product.groupId === 7) return false
+      // Exclude Medical Furniture (groupId: 7) and Medical Equipment (groupId: 2) products
+      if (product.groupId === 2 || product.groupId === 7) return false
       
       // Search in product name
       const nameMatch = product.name?.toLowerCase().includes(lowerQuery)

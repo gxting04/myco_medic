@@ -28,10 +28,10 @@ function GroupCategories() {
       : []
     
     // Get products that belong directly to this group (have groupId but no category)
-    // Exclude Medical Furniture products (groupId: 7)
+    // Exclude Medical Furniture (groupId: 7) and Medical Equipment (groupId: 2) products
     const saved = localStorage.getItem('myco_products')
     const allProducts = (saved ? JSON.parse(saved) : Data.initialProducts)
-      .filter(p => p.groupId !== 7)
+      .filter(p => p.groupId !== 2 && p.groupId !== 7)
     const directProds = foundGroup
       ? allProducts.filter(p => p.groupId === foundGroup.id && (!p.category || p.category === null))
       : []

@@ -11,10 +11,10 @@ function CategoryProducts() {
   const [category, setCategory] = useState(null)
 
   useEffect(() => {
-    // Get saved products from localStorage, excluding Medical Furniture (groupId: 7)
+    // Get saved products from localStorage, excluding Medical Furniture (groupId: 7) and Medical Equipment (groupId: 2)
     const savedProducts = localStorage.getItem('myco_products')
     const allProducts = (savedProducts ? JSON.parse(savedProducts) : Data.initialProducts)
-      .filter(p => p.groupId !== 7)
+      .filter(p => p.groupId !== 2 && p.groupId !== 7)
 
     // Find the category
     const foundCategory = Data.productCategories.find(cat => 

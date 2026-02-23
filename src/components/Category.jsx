@@ -5,11 +5,11 @@ import { ArrowRight } from 'lucide-react'
 import slugify from '@/utils/slugify'
 
 function Category() {
-  // Get products from localStorage or initial data, excluding Medical Furniture (groupId: 7)
+  // Get products from localStorage or initial data, excluding Medical Furniture (groupId: 7) and Medical Equipment (groupId: 2)
   const allProducts = useMemo(() => {
     const saved = localStorage.getItem('myco_products')
     const products = saved ? JSON.parse(saved) : Data.initialProducts
-    return products.filter(p => p.groupId !== 7)
+    return products.filter(p => p.groupId !== 2 && p.groupId !== 7)
   }, [])
 
   return (

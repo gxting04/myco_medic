@@ -346,7 +346,7 @@
       category: 'Protective Wear', 
       price: 9.99, 
       salePrice: 7.99,
-      image: 'surgical_mask.png',
+      image: '/surgical_mask.png',
       images: [
         'https://images.unsplash.com/photo-1584466977773-352b5c8c9b17?q=80&w=800',
         'https://images.unsplash.com/photo-1588774069241-bf1ce6f08c08?q=80&w=800'
@@ -410,12 +410,22 @@
     },
     { 
       id: 8, 
-      name: 'CPAP Disposable Filter Pack', 
+      name: 'Disposable CPR Resuscitation System', 
       groupId: 1, 
       category: null, 
       price: 18.9, 
-      image: 'https://images.unsplash.com/photo-1513224502586-d1e602410265?q=80&w=800',
-      pageId: 'cpap-disposable-filter-pack'
+      image: '/disposable_cpr_resuscitation_system.png',
+      pageId: 'disposable-cpr-resuscitation-system',
+      description: `The Disposable CPR Resuscitation System features self-inflating bags that provide reliable positive pressure ventilation for emergency respiratory support.
+
+**Key Features:**
+• Self-inflating design – automatically fills after compression, pulling oxygen or air into the bag
+• Always inflated – remains ready for immediate use at all times
+• No compressed gas required – can deliver positive pressure ventilation without a compressed gas source
+• High oxygen delivery – with oxygen reservoir attachment, delivers 90% to 100% oxygen concentration
+• Cost-effective solution – designed to manage healthcare costs efficiently
+
+Mercury Medical® offers comprehensive resuscitation systems engineered for superior performance and reliability in critical care situations.`
     },
     { 
       id: 9, 
@@ -423,7 +433,7 @@
       groupId: 1, 
       category: null, 
       price: 299.99, 
-      image: 'reusable_cpr_resuscitation_system.png',
+      image: '/reusable_cpr_resuscitation_system.png',
       pageId: 'reusable-cpr-resuscitation-system'
     },
     { 
@@ -432,7 +442,7 @@
       groupId: 1, 
       category: null, 
       price: 199.99, 
-      image: 'infant_tpiece_resuscitator.png',
+      image: '/infant_tpiece_resuscitator.png',
       pageId: 'infant-t-piece-resuscitator'
     },
     { 
@@ -441,7 +451,7 @@
       groupId: 1, 
       category: null, 
       price: 49.99, 
-      image: 'disposable_manometer.png',
+      image: '/disposable_manometer.png',
       pageId: 'disposable-manometer'
     },
     { 
@@ -468,7 +478,7 @@
       groupId: 1, 
       category: null, 
       price: 399.99, 
-      image: 'aspirator.png',
+      image: '/aspirator.png',
       pageId: 'asu-200-rechargeable-aspirator'
     },
     { 
@@ -477,7 +487,7 @@
       groupId: 1, 
       category: null, 
       price: 89.99, 
-      image: 'breathing_circuit.png',
+      image: '/breathing_circuit.png',
       pageId: 'breathing-circuits'
     },
     { 
@@ -485,7 +495,7 @@
       name: 'Heat And Moisture Exchanger Filter (HMEF)', 
       category: 'Breathing System Filter', 
       price: 15.99, 
-      image: 'hmef.png',
+      image: '/hmef.png',
       pageId: 'hmef-filter'
     },
     { 
@@ -493,7 +503,7 @@
       name: 'Bacterial Virus Filter (BVF)', 
       category: 'Breathing System Filter', 
       price: 18.99, 
-      image: 'bacterial_virus_filter.png',
+      image: '/bacterial_virus_filter.png',
       pageId: 'bvf-filter'
     },
     { 
@@ -502,7 +512,7 @@
       groupId: 1, 
       category: null, 
       price: 29.99, 
-      image: 'catheter_mount.png',
+      image: '/catheter_mount.png',
       pageId: 'catheter-mount'
     },
     { 
@@ -511,7 +521,7 @@
       groupId: 1, 
       category: null, 
       price: 24.99, 
-      image: 'disposable_air_cushion_face_mask.png',
+      image: '/disposable_air_cushion_face_mask.png',
       pageId: 'disposable-air-cushion-face-mask'
     },
     { 
@@ -519,7 +529,7 @@
       name: 'DISPOSABLE STANDARD ROTA-TRACH™ TRACHEOSTOMY TUBE', 
       category: 'Disposable Tracheostomy Tube', 
       price: 89.99, 
-      image: 'disposable_standard_rota_trach_tracheostomy_tube.png',
+      image: '/disposable_standard_rota_trach_tracheostomy_tube.png',
       pageId: 'disposable-standard-rota-trach-tracheostomy-tube'
     },
     { 
@@ -527,7 +537,7 @@
       name: 'Disposable Inner Cannula Rota-Trach™ Tracheostomy Tube', 
       category: 'Disposable Tracheostomy Tube', 
       price: 99.99, 
-      image: 'disposable_inner_cannula_rota_trach_tracheostomy_tube.png',
+      image: '/disposable_inner_cannula_rota_trach_tracheostomy_tube.png',
       pageId: 'disposable-inner-cannula-rota-trach-tracheostomy-tube'
     },
     { 
@@ -535,7 +545,7 @@
       name: 'Disposable Pediatric Rota-Trach™ Tracheostomy Tube', 
       category: 'Disposable Tracheostomy Tube', 
       price: 79.99, 
-      image: 'disposable_pediatric_rota_trach_tracheostomy_tube.png',
+      image: '/disposable_pediatric_rota_trach_tracheostomy_tube.png',
       pageId: 'disposable-pediatric-rota-trach-tracheostomy-tube'
     },
     { 
@@ -543,7 +553,7 @@
       name: 'PVC Double Lumen Endobronchial Tube', 
       category: 'Double Lumen Endobronchial',
       price: 129.99, 
-      image: 'pvc_double_lumen_endobronchial_tube.png',
+      image: '/pvc_double_lumen_endobronchial_tube.png',
       pageId: 'pvc-double-lumen-endobronchial-tube'
     },
     { 
@@ -551,7 +561,7 @@
       name: 'Silicone Double Lumen Endobronchial Tube', 
       category: 'Double Lumen Endobronchial',
       price: 159.99, 
-      image: 'silicone_double_lumen_endobronchial_tube.png',
+      image: '/silicone_double_lumen_endobronchial_tube.png',
       pageId: 'silicone-double-lumen-endobronchial-tube'
     },
     { 
@@ -559,7 +569,7 @@
       name: 'PVC Nasal Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
       price: 29.99, 
-      image: 'pvc_nasal_endotracheal_tube.png',
+      image: '/pvc_nasal_endotracheal_tube.png',
       pageId: 'pvc-nasal-endotracheal-tube'
     },
     { 
@@ -567,7 +577,7 @@
       name: 'PVC Oral Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
       price: 29.99, 
-      image: 'pvc_oral_endotracheal_tube.png',
+      image: '/pvc_oral_endotracheal_tube.png',
       pageId: 'pvc-oral-endotracheal-tube'
     },
     { 
@@ -575,7 +585,7 @@
       name: 'PVC Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
       price: 27.99, 
-      image: 'pvc_endotracheal_tube.png',
+      image: '/pvc_endotracheal_tube.png',
       pageId: 'pvc-endotracheal-tube'
     },
     { 
@@ -583,7 +593,7 @@
       name: 'PVC Wire Reinforced Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
       price: 39.99, 
-      image: 'pvc_wire_reinforced_endotracheal_tube.png',
+      image: '/pvc_wire_reinforced_endotracheal_tube.png',
       pageId: 'pvc-wire-reinforced-endotracheal-tube'
     },
     { 
@@ -591,7 +601,7 @@
       name: 'Endotracheal Tube with Evacuation Lumen', 
       category: 'Endotracheal Tube',
       price: 44.99, 
-      image: 'endotracheal_tube_with_evacuation_lumen.png',
+      image: '/endotracheal_tube_with_evacuation_lumen.png',
       pageId: 'endotracheal-tube-evacuation-lumen'
     },
     { 
@@ -599,7 +609,7 @@
       name: 'Bite Block Silicone Reinforced Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
       price: 54.99, 
-      image: 'bite_block_silicone_reinforced_endotracheal_tube.png',
+      image: '/bite_block_silicone_reinforced_endotracheal_tube.png',
       pageId: 'bite-block-silicone-reinforced-endotracheal-tube'
     },
     { 
@@ -607,7 +617,7 @@
       name: 'Silicone Reinforced Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
       price: 49.99, 
-      image: 'silicone_reinforced_endotracheal_tube.png',
+      image: '/silicone_reinforced_endotracheal_tube.png',
       pageId: 'silicone-reinforced-endotracheal-tube'
     },
     { 
@@ -615,7 +625,7 @@
       name: 'Auto-inflation Endobronchial Blocker Tube', 
       category: 'Endobronchial Blocker Tube',
       price: 189.99, 
-      image: 'auto_inflation_endobronchial_blocker_tube.png',
+      image: '/auto_inflation_endobronchial_blocker_tube.png',
       pageId: 'auto-inflation-endobronchial-blocker-tube'
     },
     { 
@@ -623,7 +633,7 @@
       name: 'Endobronchial Blocker Tube (Without Auto-inflation)', 
       category: 'Endobronchial Blocker Tube',
       price: 149.99, 
-      image: 'endobronchial_blocker_tube_without_auto_inflation.png',
+      image: '/endobronchial_blocker_tube_without_auto_inflation.png',
       pageId: 'endobronchial-blocker-tube-without-auto-inflation'
     },
     { 
@@ -632,7 +642,7 @@
       groupId: 1,
       category: null,
       price: 19.99, 
-      image: 'intubating_stylet.png',
+      image: '/intubating_stylet.png',
       pageId: 'intubating-stylet'
     },
     { 
@@ -640,7 +650,7 @@
       name: 'One Way Silicone Laryngeal Mask', 
       category: 'Laryngeal Mask',
       price: 29.99, 
-      image: 'one_way_silicone_laryngeal_mask.png',
+      image: '/one_way_silicone_laryngeal_mask.png',
       pageId: 'one-way-silicone-laryngeal-mask'
     },
     { 
@@ -648,7 +658,7 @@
       name: 'One Way Steel Reinforced Laryngeal Mask', 
       category: 'Laryngeal Mask',
       price: 39.99, 
-      image: 'one_way_steel_reinforced_laryngeal_mask.png',
+      image: '/one_way_steel_reinforced_laryngeal_mask.png',
       pageId: 'one-way-steel-reinforced-laryngeal-mask'
     },
     { 
@@ -657,7 +667,7 @@
       groupId: 1,
       category: null,
       price: 9.99, 
-      image: 'nasopharyngeal_airway.png',
+      image: '/nasopharyngeal_airway.png',
       pageId: 'nasopharyngeal-airway'
     },
     { 
@@ -666,7 +676,7 @@
       groupId: 1,
       category: null,
       price: 7.99, 
-      image: 'oropharyngeal_airway.png',
+      image: '/oropharyngeal_airway.png',
       pageId: 'oropharyngeal-airway'
     },
     { 
@@ -675,7 +685,7 @@
       groupId: 1,
       category: null,
       price: 12.99, 
-      image: 'tracheal_tubes_holder.png',
+      image: '/tracheal_tubes_holder.png',
       pageId: 'tracheal-tubes-holder'
     },
     { 
@@ -684,7 +694,7 @@
       groupId: 1,
       category: null,
       price: 89.99, 
-      image: 'disposable_tracheal_tube_kit.png',
+      image: '/disposable_tracheal_tube_kit.png',
       pageId: 'disposable-tracheal-tube-kit'
     },
     {
@@ -693,7 +703,7 @@
       groupId: 4,
       category: null,
       price: 1499.99,
-      image: 'iob_forced_air_warming_system.png',
+      image: '/iob_forced_air_warming_system.png',
       pageId: 'iob-forced-air-warming-system'
     },
     {
@@ -702,7 +712,7 @@
       groupId: 4,
       category: null,
       price: 49.99,
-      image: 'cbona_closed_suction_adult.png', 
+      image: '/cbona_closed_suction_adult.png', 
       pageId: 'c-bona-closed-suction-systems'
     },
     {
@@ -711,7 +721,7 @@
       groupId: 4,
       category: null,
       price: 49.99,
-      image: 'cbona_closed_suction_pediatric.png', 
+      image: '/cbona_closed_suction_pediatric.png', 
       pageId: 'c-bona-closed-suction-systems-pediatric'
     },
     {
@@ -720,7 +730,7 @@
       groupId: 4,
       category: null,
       price: 129.99,
-      image: 'pressure_transducer.png',
+      image: '/pressure_transducer.png',
       pageId: 'pressure-transducer'
     },
     {
@@ -729,7 +739,7 @@
       groupId: 4,
       category: null,
       price: 199.99,
-      image: 'central_venous_catheter.png',
+      image: '/central_venous_catheter.png',
       pageId: 'central-venous-catheter'
     },
     {
@@ -738,7 +748,7 @@
       groupId: 4,
       category: null,
       price: 29.99,
-      image: 'easydrop_flow_regulator.png', // Placeholder as specific image wasn't in snippet
+      image: '/easydrop_flow_regulator.png', // Placeholder as specific image wasn't in snippet
       pageId: 'easydrop-flow-regulator'
     },
     
@@ -748,7 +758,7 @@
       groupId: 4,
       category: null,
       price: 1299.99,
-      image: 'infusion_pump.png',
+      image: '/infusion_pump.png',
       pageId: 'medcaptain-infusion-pump'
     },
     {
@@ -757,7 +767,7 @@
       groupId: 4,
       category: null,
       price: 1199.99,
-      image: 'syringe_pump.png',
+      image: '/syringe_pump.png',
       pageId: 'medcaptain-syringe-pump'
     },
     {
@@ -766,7 +776,7 @@
       groupId: 13,
       category: null,
       price: 89.99,
-      image: 'disposable_emergency_suture_pack.png',
+      image: '/disposable_emergency_suture_pack.png',
       pageId: 'disposable-emergency-suture-pack'
     },
     {
@@ -775,7 +785,7 @@
       groupId: 13,
       category: null,
       price: 119.99,
-      image: 'disposable_circumcision_pack.png',
+      image: '/disposable_circumcision_pack.png',
       pageId: 'disposable-circumcision-pack'
     },
     {
@@ -784,7 +794,7 @@
       groupId: 13,
       category: null,
       price: 89.99,
-      image: 'disposable_preepidural_set.png',
+      image: '/disposable_preepidural_set.png',
       pageId: 'disposable-pre-epidural-set'
     },
     {
@@ -793,7 +803,7 @@
       groupId: 13,
       category: null,
       price: 59.99,
-      image: 'disposable_sterile_basic_pack.png',
+      image: '/disposable_sterile_basic_pack.png',
       pageId: 'disposable-basic-pack'
     },
     {
@@ -802,7 +812,7 @@
       groupId: 6,
       category: null,
       price: 24.99,
-      image: 'cannula_cleaning_brushes.png',
+      image: '/cannula_cleaning_brushes.png',
       pageId: 'cannula-cleaning-brushes'
     },
     {
@@ -811,7 +821,7 @@
       groupId: 6,
       category: null,
       price: 29.99,
-      image: 'tracheal_tube_brushes.png',
+      image: '/tracheal_tube_brushes.png',
       pageId: 'tracheal-tube-brushes'
     },
     {
@@ -820,12 +830,12 @@
       groupId: 6,
       category: null,
       price: 34.99,
-      image: 'stainless_bristles.png',
+      image: '/stainless_bristles.png',
       images: [
-        'stainless_bristles.png',
-        'nylon_bristles.png',
-        'double_ended.png',
-        'double_tapered.png'
+        '/stainless_bristles.png',
+        '/nylon_bristles.png',
+        '/double_ended.png',
+        '/double_tapered.png'
       ],
       pageId: 'instrument-cleaning-brushes'
     },
@@ -835,7 +845,7 @@
       groupId: 6,
       category: null,
       price: 32.99,
-      image: 'suction_tube_cleaning_brushes.png',
+      image: '/suction_tube_cleaning_brushes.png',
       pageId: 'suction-tube-cleaning-brushes'
     },
     {
@@ -844,7 +854,7 @@
       groupId: 6,
       category: null,
       price: 27.99,
-      image: 'cannula_instrument_pipe_cleaners.png',
+      image: '/cannula_instrument_pipe_cleaners.png',
       pageId: 'cannula-instrument-pipe-cleaners'
     },
     {
@@ -853,7 +863,7 @@
       groupId: 6,
       category: null,
       price: 24.99,
-      image: 'double_end_valve_brushes.png',
+      image: '/double_end_valve_brushes.png',
       pageId: 'double-end-valve-brushes'
     },
     {
@@ -862,10 +872,10 @@
       groupId: 6,
       category: null,
       price: 49.99,
-      image: 'surgical_scrub_brushes.png',
+      image: '/surgical_scrub_brushes.png',
       images: [
-        'surgical_scrub_brushes.png',
-        'surgical_scrub_brush_dispenser.png'
+        '/surgical_scrub_brushes.png',
+        '/surgical_scrub_brush_dispenser.png'
       ],
       pageId: 'surgical-scrub-brushes-dispenser'
     },
@@ -876,7 +886,7 @@
       groupId: 6,
       category: null,
       price: 34.99,
-      image: 'large_instrument_cleaning_brush.png',
+      image: '/large_instrument_cleaning_brush.png',
       pageId: 'large-instrument-cleaning-brush'
     },
     {
@@ -957,7 +967,7 @@
       groupId: 8,
       category: null,
       price: 9.99,
-      image: 'surgical_mask.png',
+      image: '/surgical_mask.png',
       pageId: '3ply-surgical-face-mask'
     },
     {
@@ -966,7 +976,7 @@
       groupId: 8,
       category: null,
       price: 12.99,
-      image: 'medical_protective_face_shield.png',
+      image: '/medical_protective_face_shield.png',
       pageId: 'medical-protective-face-shield'
     },
     {
@@ -975,10 +985,10 @@
       groupId: 8,
       category: null,
       price: 59.99,
-      image: 'infrared_thermometer.png',
+      image: '/infrared_thermometer.png',
       images: [
-        'infrared_thermometer.png',
-        'infrared_thermometer_2.png'
+        '/infrared_thermometer.png',
+        '/infrared_thermometer_2.png'
       ],
       pageId: 'infrared-thermometer'
     },
@@ -988,7 +998,7 @@
       groupId: 8,
       category: null,
       price: 24.99,
-      image: 'non_sterile_coverall.png',
+      image: '/non_sterile_coverall.png',
       pageId: 'non-sterile-coverall'
     },
     {
@@ -997,7 +1007,7 @@
       groupId: 8,
       category: null,
       price: 29.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/capture-1-orig-removebg-preview_orig.png',
+      image: '/sterile_coverall.png',
       pageId: 'sterile-coverall'
     },
     {
@@ -1006,7 +1016,7 @@
       groupId: 8,
       category: null,
       price: 7.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/62be04410ebed283f7472e69b24d5f6a-orig-removebg-preview_orig.png',
+      image: '/hood_cover.png',
       pageId: 'medical-protective-hood-cover'
     },
     {
@@ -1015,7 +1025,7 @@
       groupId: 8,
       category: null,
       price: 9.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/2faf4507e7abc8ccee5811ab63302ba6.jpeg?1645173719',
+      image: '/boots_cover.png',
       pageId: 'boots-cover'
     },
     {
@@ -1024,7 +1034,7 @@
       groupId: 8,
       category: null,
       price: 19.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/20489ed2011cf37614faf07f292d6347-removebg-preview_orig.png',
+      image: '/isolation_gown.png',
       pageId: 'isolation-gown'
     },
     {
@@ -1033,7 +1043,7 @@
       groupId: 8,
       category: null,
       price: 6.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/image-8-removebg-preview_orig.png',
+      image: '/cpe_apron.png',
       pageId: 'cpe-apron-gown'
     },
     {
@@ -1042,7 +1052,7 @@
       groupId: 8,
       category: null,
       price: 4.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/plastic-apron.png?1645177848',
+      image: '/disposable_plastic_apron_sleeveless.png',
       pageId: 'disposable-plastic-apron'
     },
     {
@@ -1150,7 +1160,7 @@
       groupId: 9,
       category: 'Arm and Shoulder Pads',
       price: 49.99,
-      image: 'wrist_protector.png',
+      image: '/wrist_protector.png',
       pageId: 'wrist-protectors'
     },
     {
@@ -1159,7 +1169,7 @@
       groupId: 9,
       category: 'Arm and Shoulder Pads',
       price: 119.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/presentation-gel-pads-2109-2-removebg-preview_orig.png',
+      image: '/presentation_gel_pads.png',
       pageId: 'presentation-gel-pads'
     },
     {
@@ -1177,7 +1187,12 @@
       groupId: 9,
       category: 'Arm and Shoulder Pads',
       price: 79.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/2104-removebg-preview_orig.png',
+      image: '/arm_shield_pads.png',
+      images: [
+        '/arm_shield_pads.png',
+        '/arm_shield_pads_2.png',
+        '/arm_shield_pads_3.png'
+      ],
       pageId: 'arm-shield-pads'
     },
     {
@@ -1186,7 +1201,7 @@
       groupId: 9,
       category: 'Chest and Body Pads',
       price: 139.99,
-      image: ' lateral_pads.png',
+      image: '/lateral_pads.png',
       pageId: 'lateral-pads'
     },
     {
@@ -1195,7 +1210,7 @@
       groupId: 9,
       category: 'Chest and Body Pads',
       price: 149.99,
-      image: 'chest_hipbone.png',
+      image: '/chest_hipbone.png',
       pageId: 'chest-hipbone-pads'
     },
     {
@@ -1204,7 +1219,7 @@
       groupId: 9,
       category: 'Chest and Body Pads',
       price: 159.99,
-      image: 'fracture_table_post.png',
+      image: '/fracture_table_post.png',
       pageId: 'fracture-table-post-pads'
     },
     {
@@ -1213,7 +1228,7 @@
       groupId: 9,
       category: 'Chest and Body Pads',
       price: 169.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3105-fracture-removebg-preview_orig.png',
+      image: '/body_protectors.png',
       pageId: 'body-protectors'
     },
     {
@@ -1222,7 +1237,7 @@
       groupId: 9,
       category: 'Chest and Body Pads',
       price: 179.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/3105-fracture-removebg-preview_orig.png',
+      image: '/prostrate_pads.png',
       pageId: 'prostrate-pads'
     },
     {
@@ -1231,7 +1246,7 @@
       groupId: 9,
       category: 'Chest and Body Pads',
       price: 189.99,
-      image: 'hip_pads.png',
+      image: '/hip_pads.png',
       pageId: 'hip-pads'
     },
     {
@@ -1240,7 +1255,7 @@
       groupId: 9,
       category: 'Chest and Body Pads',
       price: 199.99,
-      image: 'pillar_shaped_pads.png',
+      image: '/pillar_shaped_pads.png',
       pageId: 'pillar-shaped-pads'
     },
     {
@@ -1276,7 +1291,7 @@
       groupId: 9,
       category: 'Lower Limb Pads',
       price: 189.99,
-      image: 'or_table_pad.png',
+      image: '/or_table_pad.png',
       pageId: 'or-table-pads'
     },
     {
@@ -1545,10 +1560,10 @@
       groupId: 11,
       category: null,
       price: 0,
-      image: 'portable_breathing_oxygen_inhaler.png',
+      image: '/portable_breathing_oxygen_inhaler.png',
       images: [
-        'portable_breathing_oxygen_inhaler.png',
-        'portable_breathing_oxygen_inhaler_2.png'
+        '/portable_breathing_oxygen_inhaler.png',
+        '/portable_breathing_oxygen_inhaler_2.png'
       ],
       pageId: 'aweld-portable-breathing-oxygen-inhaler'
     },
@@ -1558,7 +1573,7 @@
       groupId: 12,
       category: 'Disinfection Tanks',
       price: 0,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/editor/timthumb.png?1646039323',
+      image: '/disinfection_tank.png',
       pageId: 'disinfection-tanks'
     },
     {
@@ -1567,7 +1582,7 @@
       groupId: 12,
       category: 'Plastic Holloware',
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/gallipots.png',
       pageId: 'gallipots'
     },
     {
@@ -1576,7 +1591,7 @@
       groupId: 12,
       category: 'Plastic Holloware',
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/lotion_bowls.png',
       pageId: 'lotion-bowls'
     },
     {
@@ -1585,7 +1600,7 @@
       groupId: 12,
       category: 'Plastic Holloware',
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/kidney_dish.png',
       pageId: 'kidney-dishes-vomit-bowls'
     },
     {
@@ -1594,7 +1609,7 @@
       groupId: 12,
       category: 'Plastic Holloware',
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/wash_bowl.png',
       pageId: 'washbowl'
     },
     {
@@ -1603,7 +1618,7 @@
       groupId: 12,
       category: 'Plastic Holloware',
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/beakers.png',
       pageId: 'beakers-feeder-tops'
     },
     {
@@ -1612,7 +1627,7 @@
       groupId: 12,
       category: 'Plastic Holloware',
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/funnel.png',
       pageId: 'funnels'
     },
     {
@@ -1621,7 +1636,7 @@
       groupId: 12,
       category: 'Plastic Holloware',
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/st_peter_boat.png',
       pageId: 'st-peters-boat'
     },
     {
@@ -1630,7 +1645,7 @@
       groupId: 12,
       category: 'Plastic Holloware',
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/spatula.png',
       pageId: 'spatula'
     },
     {
@@ -1639,7 +1654,7 @@
       groupId: 12,
       category: 'Surgical Instrument Trays',
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/instrument_tray.png',
       pageId: 'instrument-tray'
     },
     {
@@ -1648,7 +1663,7 @@
       groupId: 12,
       category: 'Surgical Instrument Trays',
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/compartmented_instrument_tray.png',
       pageId: 'compartmented-instrument-tray'
     },
     {
@@ -1657,7 +1672,7 @@
       groupId: 12,
       category: 'Surgical Instrument Trays',
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/instrument_tray_lid.png',
       pageId: 'instrument-tray-lid'
     },
     {
@@ -1666,7 +1681,7 @@
       groupId: 12,
       category: 'Surgical Instrument Trays',
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/instrument_tray_with_lid.png',
       pageId: 'instrument-tray-with-lid'
     },
     {
@@ -1675,7 +1690,7 @@
       groupId: 12,
       category: 'Stainless Steel Dins',
       price: 0,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/tray-dimension_orig.jpg',
+      image: '/stainless_steel_dins.png',
       pageId: 'stainless-steel-dins'
     },
     {
@@ -1765,7 +1780,7 @@
       groupId: 14,
       category: null,
       price: 10,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/whatsapp-image-2024-01-26-at-11-36-07-am-removebg-preview_orig.png',
+      image: '/circumcision_underwear.png',
       pageId: 'seluar-sunat-khatan-circumcision-underwear'
     },
     {

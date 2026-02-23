@@ -44,11 +44,11 @@ function ProductsPage() {
     }
   }, [selectedGroupId])
 
-  // Get products from localStorage or initial data, excluding Medical Furniture (groupId: 7)
+  // Get products from localStorage or initial data, excluding Medical Furniture (groupId: 7) and Medical Equipment (groupId: 2)
   const allProducts = useMemo(() => {
     const saved = localStorage.getItem('myco_products')
     const products = saved ? JSON.parse(saved) : Data.initialProducts
-    return products.filter(p => p.groupId !== 7)
+    return products.filter(p => p.groupId !== 2 && p.groupId !== 7)
   }, [])
 
   // Filter and sort products based on selection
@@ -253,7 +253,7 @@ function ProductsPage() {
 
                   {/* Product Groups */}
                   {Data.productGroups
-                    .filter(group => group.id !== 5 && group.id !== 7)
+                    .filter(group => group.id !== 2 && group.id !== 5 && group.id !== 7)
                     .map((group) => {
                       const categories = getCategoriesForGroup(group.id)
                       const directProductsCount = getDirectProductsCount(group.id)

@@ -7,8 +7,8 @@ function Products() {
   const [products, setProducts] = useState(() => {
     const saved = localStorage.getItem('myco_products')
     const allProducts = saved ? JSON.parse(saved) : Data.initialProducts
-    // Exclude Medical Furniture products (groupId: 7)
-    return allProducts.filter(p => p.groupId !== 7)
+    // Exclude Medical Furniture (groupId: 7) and Medical Equipment (groupId: 2) products
+    return allProducts.filter(p => p.groupId !== 2 && p.groupId !== 7)
   })
 
   useEffect(() => {
