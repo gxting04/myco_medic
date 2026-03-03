@@ -391,7 +391,8 @@
 • High oxygen delivery – with oxygen reservoir attachment, delivers 90% to 100% oxygen concentration
 • Cost-effective solution – designed to manage healthcare costs efficiently
 
-Mercury Medical® offers comprehensive resuscitation systems engineered for superior performance and reliability in critical care situations.`
+Mercury Medical® offers comprehensive resuscitation systems engineered for superior performance and reliability in critical care situations.`,
+      youtubeUrl: 'https://youtu.be/0u7APoa3274'
     },
     { 
       id: 9, 

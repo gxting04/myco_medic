@@ -448,19 +448,49 @@ function ProductDetailDefault({ product }) {
                       return <br key={index} />
                     })}
                   </div>
-                  {product.video && (
+                  {(product.video || product.youtubeUrl) && (
                     <div className='mt-6 pt-6 border-t border-gray-200'>
                       <h3 className='font-semibold text-gray-900 mb-4'>Product Video</h3>
-                      <div className='rounded-lg overflow-hidden bg-gray-100'>
-                        <video 
-                          src={product.video}
-                          controls
-                          className='w-full h-auto max-h-[600px]'
-                          preload='metadata'
-                        >
-                          Your browser does not support the video tag.
-                        </video>
-                      </div>
+                      {product.youtubeUrl ? (
+                        <div className='rounded-lg overflow-hidden bg-gray-100 aspect-video'>
+                          <iframe
+                            src={(() => {
+                              const url = product.youtubeUrl
+                              // Handle youtu.be format
+                              if (url.includes('youtu.be/')) {
+                                const videoId = url.split('youtu.be/')[1].split('?')[0]
+                                return `https://www.youtube.com/embed/${videoId}`
+                              }
+                              // Handle youtube.com format
+                              if (url.includes('youtube.com/watch?v=')) {
+                                const videoId = url.split('v=')[1].split('&')[0]
+                                return `https://www.youtube.com/embed/${videoId}`
+                              }
+                              // Handle youtube.com/embed format (already correct)
+                              if (url.includes('youtube.com/embed/')) {
+                                return url
+                              }
+                              // Default: try to extract ID from end of URL
+                              return `https://www.youtube.com/embed/${url.split('/').pop().split('?')[0]}`
+                            })()}
+                            title={`${product.name} - Product Video`}
+                            className='w-full h-full'
+                            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                            allowFullScreen
+                          ></iframe>
+                        </div>
+                      ) : (
+                        <div className='rounded-lg overflow-hidden bg-gray-100'>
+                          <video 
+                            src={product.video}
+                            controls
+                            className='w-full h-auto max-h-[600px]'
+                            preload='metadata'
+                          >
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
+                      )}
                     </div>
                   )}
                   {product.specifications && (
