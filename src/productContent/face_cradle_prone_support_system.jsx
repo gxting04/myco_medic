@@ -12,6 +12,11 @@ function FaceCradleProneSupportSystemPage({ product }) {
 
   const backLink = category ? `/products/category/${category.name.toLowerCase().replace(/\s+/g, '-')}` : '/products'
 
+  // Get product images - support multiple images or fallback to single image
+  const productImages = product?.images && Array.isArray(product.images) && product.images.length > 0
+    ? product.images
+    : product?.image ? [product.image] : []
+
   return (
     <div className='bg-white text-black'>
       <Header />
@@ -51,12 +56,28 @@ function FaceCradleProneSupportSystemPage({ product }) {
 
       <section className='max-w-6xl mx-auto px-6 py-16 space-y-10'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-start'>
-          <div>
-            <img
-              src={product?.image}
-              alt='Face-Cradle Prone Support System'
-              className='w-full h-auto object-cover rounded-lg shadow-lg'
-            />
+          <div className='space-y-4'>
+            {/* Main Image */}
+            {productImages.length > 0 && (
+              <img
+                src={productImages[0]}
+                alt='Face-Cradle Prone Support System'
+                className='w-full h-auto object-cover rounded-lg shadow-lg'
+              />
+            )}
+            {/* Additional Images Gallery */}
+            {productImages.length > 1 && (
+              <div className='grid grid-cols-2 gap-3'>
+                {productImages.slice(1).map((img, index) => (
+                  <img
+                    key={index}
+                    src={img}
+                    alt={`Face-Cradle Prone Support System view ${index + 2}`}
+                    className='w-full h-auto object-cover rounded-lg shadow-md'
+                  />
+                ))}
+              </div>
+            )}
           </div>
           <div className='space-y-4 text-gray-700'>
             <h2 className='text-3xl font-bold text-black'>Key benefits</h2>
@@ -118,11 +139,25 @@ function FaceCradleProneSupportSystemPage({ product }) {
             </p>
           </div>
           <div>
-            <img
-              src={product?.image}
-              alt='Face-Cradle clinical positioning'
-              className='w-full h-auto object-cover rounded-lg shadow-lg'
-            />
+            {productImages.length > 2 ? (
+              <img
+                src={productImages[2]}
+                alt='Face-Cradle clinical positioning'
+                className='w-full h-auto object-cover rounded-lg shadow-lg'
+              />
+            ) : productImages.length > 1 ? (
+              <img
+                src={productImages[1]}
+                alt='Face-Cradle clinical positioning'
+                className='w-full h-auto object-cover rounded-lg shadow-lg'
+              />
+            ) : productImages.length > 0 ? (
+              <img
+                src={productImages[0]}
+                alt='Face-Cradle clinical positioning'
+                className='w-full h-auto object-cover rounded-lg shadow-lg'
+              />
+            ) : null}
           </div>
         </div>
       </section>

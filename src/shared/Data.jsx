@@ -266,7 +266,7 @@
       id: 19,
       groupId: 10,
       name: 'Memory Lower Limb Pads',
-      icon: 'http://mycomedic.com.my/uploads/9/7/1/1/9711883/heel-pads-1-removebg-preview_orig.png',
+      icon: 'memory_lower_limb_pads.png',
       images: [
         'http://mycomedic.com.my/uploads/9/7/1/1/9711883/lower-limb-protector-pads-1-removebg-preview_orig.png',
         'http://mycomedic.com.my/uploads/9/7/1/1/9711883/heel-pads-1-removebg-preview_orig.png'
@@ -372,42 +372,8 @@
       articleCode: 'SM-50-BL',
       pageId: 'surgical-mask'
     },
-    { 
-      id: 4, 
-      name: 'CPAP Breathing Circuit (Single Use)', 
-      groupId: 1, 
-      category: null, 
-      price: 39.95, 
-      image: 'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800',
-      pageId: 'cpap-breathing-circuit'
-    },
-    { 
-      id: 5, 
-      name: 'CPAP Humidifier Chamber Kit', 
-      groupId: 1, 
-      category: null, 
-      price: 24.5, 
-      image: 'https://images.unsplash.com/photo-1580281780551-79626c0ed254?q=80&w=800',
-      pageId: 'cpap-humidifier-chamber'
-    },
-    { 
-      id: 6, 
-      name: 'Disposable CPAP Nasal Mask', 
-      groupId: 1, 
-      category: null, 
-      price: 34.0, 
-      image: 'https://images.unsplash.com/photo-1580281658627-73de2fc1089d?q=80&w=800',
-      pageId: 'cpap-nasal-mask'
-    },
-    { 
-      id: 7, 
-      name: 'CPAP Airflow Tubing (Set of 5)', 
-      groupId: 1, 
-      category: null, 
-      price: 29.75, 
-      image: 'https://images.unsplash.com/photo-1550831109-1553da8c8464?q=80&w=800',
-      pageId: 'cpap-airflow-tubing'
-    },
+    
+    
     { 
       id: 8, 
       name: 'Disposable CPR Resuscitation System', 
@@ -1264,7 +1230,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 9,
       category: 'Lower Limb Pads',
       price: 79.99,
-      image: 'https://images.unsplash.com/photo-1584466977773-352b5c8c9b17?q=80&w=800',
+      image: '/dome_shaped_pads.png',
       pageId: 'dome-shaped-pads'
     },
     {
@@ -1273,7 +1239,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 9,
       category: 'Lower Limb Pads',
       price: 59.99,
-      image: 'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=800',
+      image: '/heel_pads.png',
       pageId: 'heel-pads'
     },
     {
@@ -1282,7 +1248,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 9,
       category: 'Lower Limb Pads',
       price: 69.99,
-      image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800',
+      image: '/ankle_protectors.png',
       pageId: 'ankle-protectors'
     },
     {
@@ -1300,7 +1266,11 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 9,
       category: 'Lower Limb Pads',
       price: 129.99,
-      image: 'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800',
+      image: '/contoured_arm_leg_pads.png',
+      images: [
+        '/contoured_arm_leg_pads.png',
+        '/contoured_arm_leg_pads_2.png'
+      ],
       pageId: 'contoured-armleg-pads'
     },
     {
@@ -1309,7 +1279,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 9,
       category: 'Lower Limb Pads',
       price: 89.99,
-      image: 'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=800',
+      image: '/universal_square_pads.png',
       pageId: 'universal-square-pads'
     },
     {
@@ -1318,7 +1288,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 9,
       category: 'Lower Limb Pads',
       price: 149.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/4107-tunnel-pad-removebg-preview_orig.png',
+      image: '/tunnel_pads.png',
       pageId: 'tunnel-pads'
     },
     {
@@ -1327,7 +1297,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 9,
       category: 'Lower Limb Pads',
       price: 99.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/7101-pillow-shaped-removebg-preview-1.png?1671525877',
+      image: '/pillow_shaped_pad.png',
       pageId: 'pillow-shaped-pad'
     },
     {
@@ -1336,7 +1306,12 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 9,
       category: null,
       price: 499.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/editor/screenshot-869.png?1488963255',
+      image: '/face_cradle_prone_support_system.png',
+      images: [
+        '/face_cradle_prone_support_system.png',
+        '/face_cradle_prone_support_system_2.png',
+        '/face_cradle_prone_support_system_3.png'
+      ],
       pageId: 'face-cradle-prone-support-system'
     },
     {
@@ -1345,7 +1320,11 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 9,
       category: null,
       price: 2999.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/editor/screenshot-870.png?1488963292',
+      image: '/adjustable_stirrups_for_lithotomy_surgeries.png',
+      images: [
+        '/adjustable_stirrups_for_lithotomy_surgeries.png',
+        '/adjustable_stirrups_for_lithotomy_surgeries_2.png'
+      ],
       pageId: 'adjustable-stirrups-for-lithotomy-surgeries'
     },
     {
@@ -1354,7 +1333,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 9,
       category: null,
       price: 399.99,
-      image: 'https://images.unsplash.com/photo-1512678080530-569d2e3203f1?q=80&w=800',
+      image: '/troop_elevation_pillow.png',
       pageId: 'troop-elevation-pillow'
     },
     {
@@ -1363,7 +1342,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 10,
       category: 'Memory Head and Neck Pads',
       price: 149.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/foam-positioner-removebg-preview_orig.png',
+      image: '/memory_supine_head_pads.png',
       pageId: 'memory-supine-head-pads'
     },
     {
@@ -1372,16 +1351,16 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 10,
       category: 'Memory Chest and Body Pads',
       price: 159.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/prostate-pads-removebg-preview_orig.png',
+      image: '/memory_prostrate_pads.png',
       pageId: 'memory-prostrate-pads'
     },
     {
       id: 116,
-      name: 'Memory Lower Limb Pads',
+      name: 'Memory Lower Limb ProtectorPads',
       groupId: 10,
       category: null,
       price: 139.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/heel-pads-removebg-preview_orig.png',
+      image: '/memory_lower_limb_pads.png',
       pageId: 'memory-lower-limb-pads'
     },
     {
@@ -1390,17 +1369,13 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 10,
       category: null,
       price: 129.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/arm-pad-removebg-preview_orig.png',
+      image: '/memory_arm_pads.png',
+      images: [
+        '/memory_arm_pads.png',
+        '/memory_arm_pads_2.png',
+        '/memory_arm_pads_3.png'
+      ],
       pageId: 'memory-arm-pads'
-    },
-    {
-      id: 118,
-      name: 'Memory Universal Positioners',
-      groupId: 10,
-      category: null,
-      price: 159.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/memory-universal-removebg-preview_orig.png',
-      pageId: 'memory-universal-positioners'
     },
     {
       id: 130,
@@ -1408,7 +1383,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 10,
       category: 'Universal Square Pads',
       price: 159.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/okl-f01-removebg-preview_orig.png',
+      image: 'memory_universal_square_pads.png',
       pageId: 'memory-universal-square-pads'
     },
     {
@@ -1417,25 +1392,17 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 10,
       category: 'Universal Square Pads',
       price: 159.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/pillow-shaped-pad-size-removebg-preview_orig.png',
+      image: 'memory_pillow_shaped_pads.png',
       pageId: 'memory-pillow-shaped-pads'
     },
-    {
-      id: 132,
-      name: 'Memory Lower Limb Protector Pads',
-      groupId: 10,
-      category: 'Memory Lower Limb Pads',
-      price: 159.99,
-      image: 'http://mycomedic.com.my/uploads/9/7/1/1/9711883/lower-limb-protector-pads-1-removebg-preview_orig.png',
-      pageId: 'memory-lower-limb-protector-pads'
-    },
+    
     {
       id: 133,
       name: 'Memory Heel Pads',
       groupId: 10,
       category: 'Memory Lower Limb Pads',
       price: 159.99,
-      image: 'http://mycomedic.com.my/uploads/9/7/1/1/9711883/heel-pads-1-removebg-preview_orig.png',
+      image: 'memory_heel_pads.png',
       pageId: 'memory-heel-pads'
     },
     {
@@ -1445,17 +1412,8 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       category: 'Memory Lower Limb Pads',
       price: 159.99,
       // The "memory tunnel pads" image isn't shown in the snippet; reuse a related tunnel-pad visual for now.
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/4107-tunnel-pad-removebg-preview_orig.png',
+      image: 'memory_tunnel_pads.png',
       pageId: 'memory-tunnel-pads'
-    },
-    {
-      id: 119,
-      name: 'Memory Positioning Table Pads',
-      groupId: 10,
-      category: null,
-      price: 199.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/or-table-pads-orig-removebg-preview_orig.png',
-      pageId: 'memory-positioning-tables-pads'
     },
     {
       id: 120,
@@ -1463,7 +1421,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 10,
       category: 'Memory Head and Neck Pads',
       price: 149.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/horsseshoe-head-pad-removebg-preview_orig.png',
+      image: '/memory_horsseshoe_head_pads.png',
       pageId: 'memory-horsseshoe-head-pads'
     },
     {
@@ -1472,7 +1430,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 10,
       category: 'Memory Head and Neck Pads',
       price: 149.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/foam-positioner-removebg-preview_orig.png',
+      image: 'memory_donut_head_pads.png',
       pageId: 'memory-donut-head-pads'
     },
     {
@@ -1482,7 +1440,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       category: 'Memory Chest and Body Pads',
       price: 159.99,
       image:
-        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/waist-pads-orig-removebg-preview.png?1671604495',
+        'memory_waist_pads.png',
       pageId: 'memory-waist-pads'
     },
     {
@@ -1492,7 +1450,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       category: 'Memory Chest and Body Pads',
       price: 159.99,
       image:
-        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/roll-shaped-pads-size-removebg-preview.png?1671604573',
+        'memory_roll_shaped_pads.png',
       pageId: 'memory-roll-shaped-pads'
     },
     {
@@ -1502,7 +1460,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       category: 'Memory Chest and Body Pads',
       price: 159.99,
       image:
-        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/chest-hipbone-pads-1-removebg-preview_orig.png',
+        'memory_chest_hipbone_pads.png',
       pageId: 'memory-chest-hipbone-pads'
     },
     {
@@ -1512,7 +1470,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       category: 'Memory Chest and Body Pads',
       price: 159.99,
       image:
-        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/fracture-table-post-pads-1-removebg-preview_orig.png',
+        'memory_fracture_table_post_pads.png',
       pageId: 'memory-fracture-table-post-pads'
     },
     {
@@ -1522,7 +1480,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       category: 'Memory Chest and Body Pads',
       price: 159.99,
       image:
-        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/lateral-pad-1-removebg-preview.png?1671604469',
+        'memory_lateral_pads.png',
       pageId: 'memory-lateral-pads'
     },
     {
@@ -1531,7 +1489,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 10,
       category: 'Memory Chest and Body Pads',
       price: 159.99,
-      image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/dome-shaped-pads-removebg-preview_orig.png',
+      image: 'memory_dome_shaped_pads.png',
       pageId: 'memory-dome-shaped-pads'
     },
     {
@@ -1541,7 +1499,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       category: 'Memory Chest and Body Pads',
       price: 159.99,
       image:
-        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/pillar-shaped-pads-1-removebg-preview.png?1671604615',
+        'memory_pillar_shaped_pads.png',
       pageId: 'memory-pillar-shaped-pads'
     },
     {
@@ -1551,7 +1509,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       category: 'Memory Chest and Body Pads',
       price: 159.99,
       image:
-        'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/slanting-shaped-pads-1-removebg-preview_orig.png',
+        'memory_slanting_shaped_pads.png',
       pageId: 'memory-slanting-shaped-pads'
     },
     {
@@ -1717,7 +1675,11 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 13,
       category: null,
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/suction_toothbrush.png',
+      images: [
+        '/suction_toothbrush.png',
+        '/suction_toothbrush_2.png'
+      ],
       pageId: 'suction-toothbrush'
     },
     {
@@ -1726,7 +1688,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 13,
       category: null,
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/suction_swab.png',
       pageId: 'suction-swab'
     },
     {
@@ -1735,7 +1697,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 13,
       category: null,
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/oral_swab_sensory_brush.png',
       pageId: 'oral-swab-sensory-brush'
     },
     {
@@ -1744,7 +1706,11 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 13,
       category: null,
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/sensory_brush_2_0.png',
+      images: [
+        '/sensory_brush_2_0.png',
+        '/sensory_brush_2_0_1.png'
+      ],
       pageId: 'sensory-brush-2-0'
     },
     {
@@ -1753,7 +1719,12 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 13,
       category: null,
       price: 0,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/sensory_brush.png',
+      images: [
+        '/sensory_brush.png',
+        '/sensory_brush_2.png',
+        '/sensory_brush_3.png'
+      ],
       pageId: 'sensory-brush'
     },
     {
@@ -1762,7 +1733,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
       groupId: 13,
       category: null,
       price: 36.00,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
+      image: '/hypafix_adhesive_non_woven_fabric.png',
       pageId: 'hypafix-adhesive-non-woven-fabric-ready-stock'
     },
     {
