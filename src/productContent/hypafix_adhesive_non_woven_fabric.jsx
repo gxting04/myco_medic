@@ -9,7 +9,7 @@ import Button from '../components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import { isPurchasableProduct } from '@/utils/purchasableProducts'
 
-function SeluarSunatKhatanCircumcisionUnderwearPage({ product }) {
+function HypafixAdhesiveNonWovenFabricPage({ product }) {
   const navigate = useNavigate()
   const { addToCart } = useCart()
   const [quantity, setQuantity] = useState(1)
@@ -88,37 +88,38 @@ function SeluarSunatKhatanCircumcisionUnderwearPage({ product }) {
   }, [product])
 
   // Product description defined in this page
-  const description = `The Seluar Sunat Khatan / Circumcision Underwear is a specialized garment designed for post-circumcision care and comfort. This innovative underwear provides protection, support, and comfort during the healing process following circumcision procedures.
+  const description = `The Hypafix Adhesive Non-Woven Fabric is a versatile, breathable adhesive tape designed for securing dressings, catheters, and medical devices. This high-quality tape provides secure fixation while maintaining skin integrity and allowing air circulation.
 
 **Key Features:**
-• Specialized design – accommodates post-circumcision healing needs
-• Comfortable material – soft, breathable fabric reduces irritation
-• Protective design – shields surgical site from friction and trauma
-• Easy to use – simple garment design for easy application
-• Washable and reusable – designed for multiple uses
-• Multiple sizes available – accommodates various patient sizes
+• Breathable non-woven fabric – allows air circulation and moisture evaporation
+• Strong adhesive – provides secure fixation without aggressive adhesives
+• Gentle on skin – reduces risk of skin irritation and damage
+• Water-resistant – maintains adhesion in moist environments
+• Easy to remove – gentle removal without skin trauma
+• Versatile application – suitable for various medical uses
 
 **Clinical Applications:**
-• Post-circumcision care
-• Pediatric circumcision recovery
-• Adult circumcision recovery
-• Wound protection during healing
-• Comfort management post-surgery
+• Wound dressing fixation
+• Catheter and tube securement
+• IV line fixation
+• Medical device attachment
+• Post-operative dressing care
+• Long-term device securement
 
 **Clinical Benefits:**
-• Wound protection – shields surgical site from trauma
-• Patient comfort – reduces discomfort during healing
-• Easy care – simple garment for patient and caregiver use
-• Cost-effective – reusable design provides value
+• Secure fixation – reliable device and dressing attachment
+• Skin protection – gentle adhesive reduces skin damage
+• Breathability – allows air circulation for skin health
+• Patient comfort – well-tolerated for extended use
 
 **Technical Specifications:**
-• Specialized garment design
-• Soft, breathable material
-• Protective construction
-• Available in various sizes
-• Washable and reusable
+• Non-woven fabric construction
+• Breathable adhesive design
+• Water-resistant properties
+• Available in various widths and lengths
+• Single-use disposable design
 
-The Seluar Sunat Khatan / Circumcision Underwear provides patients with a comfortable, protective solution for post-circumcision care, ensuring optimal healing conditions and patient comfort during recovery.`
+The Hypafix Adhesive Non-Woven Fabric provides healthcare professionals with a reliable, skin-friendly solution for securing dressings and medical devices, ensuring patient comfort and device stability.`
 
   const handleAddToCart = () => {
     const selectedColorObj = colors.find(c => c.value === selectedColor)
@@ -557,4 +558,4 @@ The Seluar Sunat Khatan / Circumcision Underwear provides patients with a comfor
   )
 }
 
-export default SeluarSunatKhatanCircumcisionUnderwearPage
+export default HypafixAdhesiveNonWovenFabricPage

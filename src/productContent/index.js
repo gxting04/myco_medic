@@ -295,7 +295,7 @@ const productContentRegistry = {
   // 'tunnel-pads': TunnelPadsPage,
   // 'or-table-pads': ORTablePadsPage,
   // 'pillow-shaped-pad': PillowShapedPadPage,
-  // 'face-cradle-prone-support-system': FaceCradleProneSupportSystemPage,
+  'face-cradle-prone-support-system': FaceCradleProneSupportSystemPage,
   // 'adjustable-stirrups-for-lithotomy-surgeries': AdjustableStirrupsForLithotomySurgeriesPage,
   // 'troop-elevation-pillow': TroopElevationPillowPage,
   // 'memory-supine-head-pads': MemorySupineHeadPadsPage,
@@ -339,10 +339,10 @@ const productContentRegistry = {
   // 'suction-swab': SuctionSwabPage,
   // 'oral-swab-sensory-brush': OralSwabSensoryBrushPage,
   // 'sensory-brush-2-0': SensoryBrush20Page,
-  // 'sensory-brush': SensoryBrushPage,
-  // 'hypafix-adhesive-non-woven-fabric-ready-stock': HypafixAdhesiveNonWovenFabricReadyStockPage,
-  // 'adult-pediatric-tracheostomy-tube-holder-neck-strap': AdultPediatricTracheostomyTubeHolderNeckStrapPage,
-  // 'seluar-sunat-khatan-circumcision-underwear': SeluarSunatKhatanCircumcisionUnderwearPage,
+  'sensory-brush': SensoryBrushPage,
+  'hypafix-adhesive-non-woven-fabric-ready-stock': HypafixAdhesiveNonWovenFabricPage,
+  'adult-pediatric-tracheostomy-tube-holder-neck-strap': AdultPediatricTracheostomyTubeHolderNeckStrapPage,
+  'seluar-sunat-khatan-circumcision-underwear': SeluarSunatKhatanCircumcisionUnderwearPage,
   // 'double-ended-cleaning-brush-nylon-bristles': DoubleEndedCleaningBrushNylonBristlesPage
 }
 
