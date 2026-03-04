@@ -9,7 +9,7 @@ import Button from '../components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import { isPurchasableProduct } from '@/utils/purchasableProducts'
 
-function MoistenedShampooCapPage({ product }) {
+function CBonaClosedSuctionSystemsPediatricPage({ product }) {
   const navigate = useNavigate()
   const { addToCart } = useCart()
   const [quantity, setQuantity] = useState(1)
@@ -88,37 +88,37 @@ function MoistenedShampooCapPage({ product }) {
   }, [product])
 
   // Product description defined in this page
-  const description = `The Moistened Shampoo Cap is a convenient, waterless hair cleaning solution designed for patients who are unable to shower or bathe. This innovative cap contains pre-moistened cleaning solution that effectively cleans hair without requiring water, making it ideal for bedridden patients, post-surgical care, and long-term care settings.
+  const description = `The C-Bona Closed Suction Systems provide a closed-circuit method for removing secretions from the airway without disconnecting the patient from the ventilator. This advanced system maintains ventilation while enabling safe, effective airway hygiene, reducing the risk of complications associated with open suctioning.
 
 **Key Features:**
-• Waterless cleaning – effective hair cleaning without water or rinsing
-• Pre-moistened solution – ready-to-use convenience
-• Gentle formula – suitable for sensitive scalps and various hair types
-• Easy application – simple cap design for straightforward use
-• Disposable design – single-patient-use ensures hygiene
-• Comfortable fit – accommodates various head sizes
+• Closed-circuit design – maintains ventilation during suctioning procedures
+• In-line suction capability – eliminates need to disconnect from ventilator
+• Reduced infection risk – closed system prevents environmental contamination
+• Single-patient-use catheter – disposable design ensures infection control
+• Easy to use – simple operation for healthcare providers
+• Compatible with standard endotracheal and tracheostomy tubes
 
 **Clinical Applications:**
-• Bedridden patient care
-• Post-surgical hair care
-• Long-term care facilities
-• Intensive care unit patient hygiene
-• Home healthcare settings
+• Long-term mechanical ventilation in intensive care units
+• Patients requiring frequent airway suctioning
+• Ventilator-dependent patients
+• Critical care airway management
+• Infection control-sensitive environments
 
 **Clinical Benefits:**
-• Maintains hygiene – effective hair cleaning without water
-• Patient comfort – gentle cleaning solution
-• Convenience – eliminates need for traditional shampooing
-• Time-saving – quick application for healthcare providers
+• Maintains ventilation – continuous respiratory support during suctioning
+• Reduced VAP risk – closed system reduces risk of ventilator-associated pneumonia
+• Improved patient safety – eliminates desaturation events from disconnection
+• Enhanced infection control – closed circuit prevents cross-contamination
 
 **Technical Specifications:**
-• Pre-moistened cleaning solution
-• Disposable, single-patient-use design
-• Comfortable cap fit
-• Gentle, pH-balanced formula
-• Suitable for various hair types
+• Closed-circuit suction design
+• Compatible with standard breathing circuits
+• Single-patient-use disposable catheters
+• Available in pediatric-specific sizing
+• Easy-to-use control mechanism
 
-The Moistened Shampoo Cap provides healthcare professionals and caregivers with a convenient, effective solution for maintaining patient hair hygiene, ensuring comfort and cleanliness for patients unable to shower.`
+The C-Bona Closed Suction Systems provide healthcare professionals with an advanced solution for airway hygiene, combining effective secretion removal with enhanced patient safety and infection control.`
 
   const handleAddToCart = () => {
     const selectedColorObj = colors.find(c => c.value === selectedColor)
@@ -557,4 +557,4 @@ The Moistened Shampoo Cap provides healthcare professionals and caregivers with 
   )
 }
 
-export default MoistenedShampooCapPage
+export default CBonaClosedSuctionSystemsPediatricPage

@@ -51,6 +51,7 @@ import TrachealTubesHolderPage from './tracheal_tubes_holder'
 import DisposableTrachealTubeKitPage from './disposable_tracheal_tube_kit'
 import IOBForcedAirWarmingSystemPage from './iob_forced_air_warming_system'
 import CBonaClosedSuctionSystemsPage from './c_bona_closed_suction_systems'
+import CBonaClosedSuctionSystemsPediatricPage from './c_bona_closed_suction_systems_pediatric'
 import PressureTransducerPage from './pressure_transducer'
 import CentralVenousCatheterPage from './central_venous_catheter'
 import EasydropFlowRegulatorPage from './easydrop_flow_regulator'
@@ -207,15 +208,14 @@ const productContentRegistry = {
   'one-way-steel-reinforced-laryngeal-mask': OneWaySteelReinforcedLaryngealMaskPage,
   'nasopharyngeal-airway': NasopharyngealAirwayPage,
   'oropharyngeal-airway': OropharyngealAirwayPage,
-  // 'tracheal-tubes-holder': TrachealTubesHolderPage,
-  // 'disposable-tracheal-tube-kit': DisposableTrachealTubeKitPage,
-  // 'iob-forced-air-warming-system': IOBForcedAirWarmingSystemPage,
-  // 'c-bona-closed-suction-systems': CBonaClosedSuctionSystemsPage,
-  // 'c-bona-closed-suction-systems-pediatric': CBonaClosedSuctionSystemsPage,
-  // 'pressure-transducer': PressureTransducerPage,
-  // 'central-venous-catheter': CentralVenousCatheterPage,
-  // 'easydrop-flow-regulator': EasydropFlowRegulatorPage,
-  // 'moistened-shampoo-cap': MoistenedShampooCapPage,
+  'tracheal-tubes-holder': TrachealTubesHolderPage,
+  'disposable-tracheal-tube-kit': DisposableTrachealTubeKitPage,
+  'iob-forced-air-warming-system': IOBForcedAirWarmingSystemPage,
+  'c-bona-closed-suction-systems': CBonaClosedSuctionSystemsPage,
+  'c-bona-closed-suction-systems-pediatric': CBonaClosedSuctionSystemsPediatricPage,
+  'pressure-transducer': PressureTransducerPage,
+  'central-venous-catheter': CentralVenousCatheterPage,
+  'easydrop-flow-regulator': EasydropFlowRegulatorPage,
   // 'wound-and-skin-wash-gloves': WoundAndSkinWashGlovesPage,
   // 'medcaptain-infusion-pump': MedcaptainInfusionPumpPage,
   // 'medcaptain-syringe-pump': MedcaptainSyringePumpPage,
