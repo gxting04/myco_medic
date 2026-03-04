@@ -9,7 +9,7 @@ import Button from '../components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import { isPurchasableProduct } from '@/utils/purchasableProducts'
 
-function LotionBowlsPage({ product }) {
+function AWELDPortableBreathingOxygenInhalerPage({ product }) {
   const navigate = useNavigate()
   const { addToCart } = useCart()
   const [quantity, setQuantity] = useState(1)
@@ -88,38 +88,38 @@ function LotionBowlsPage({ product }) {
   }, [product])
 
   // Product description defined in this page
-  const description = `The Lotion Bowls are specialized containers designed for holding lotions, solutions, and liquids during medical procedures. These bowls provide convenient containment for various liquids used in clinical care and procedures.
+  const description = `The AWELD Portable Breathing Oxygen Inhaler (600 ml) is a portable oxygen delivery device designed for patients requiring supplemental oxygen therapy. This convenient device provides oxygen enrichment for breathing support in various clinical and home care settings.
 
 **Key Features:**
-• Solution containment design – suitable for holding lotions and solutions
-• Easy to handle – convenient size for clinical use
-• Durable construction – designed for repeated clinical use
-• Easy to clean – smooth surfaces facilitate cleaning
-• Multiple sizes available – accommodates various clinical needs
-• Versatile application – suitable for various medical procedures
+• Portable design – lightweight, easy-to-carry oxygen delivery system
+• 600ml capacity – provides adequate oxygen volume for extended use
+• Easy to use – simple operation for patients and caregivers
+• Comfortable interface – patient-friendly breathing interface
+• Durable construction – designed for reliable clinical use
+• Versatile application – suitable for various oxygen therapy needs
 
 **Clinical Applications:**
-• Lotion and solution containment
-• Wound care procedures
-• Patient care activities
-• Operating room procedures
-• Clinical procedure organization
-• Liquid material containment
+• Supplemental oxygen therapy
+• Home oxygen therapy
+• Post-operative oxygen support
+• Chronic respiratory conditions
+• Emergency oxygen delivery
+• Patient mobility support
 
 **Clinical Benefits:**
-• Organized workflow – facilitates efficient procedure organization
-• Versatile application – suitable for various clinical needs
-• Easy to use – convenient size for clinical handling
-• Durable design – withstands repeated clinical use
+• Portable oxygen delivery – enables patient mobility during oxygen therapy
+• Patient comfort – comfortable interface improves patient tolerance
+• Easy operation – simple design for patient and caregiver use
+• Versatile application – suitable for various clinical settings
 
 **Technical Specifications:**
-• Solution containment design
-• Durable construction material
-• Multiple sizes available
-• Easy-to-clean surfaces
-• Compatible with standard clinical procedures
+• 600ml capacity
+• Portable design
+• Comfortable breathing interface
+• Durable clinical construction
+• Compatible with standard oxygen sources
 
-The Lotion Bowls provide healthcare professionals with convenient containers for holding lotions and solutions during medical procedures, ensuring efficient workflow and organization.`
+The AWELD Portable Breathing Oxygen Inhaler provides healthcare professionals and patients with a convenient, portable solution for oxygen therapy, ensuring effective oxygen delivery while maintaining patient mobility.`
 
   const handleAddToCart = () => {
     const selectedColorObj = colors.find(c => c.value === selectedColor)
@@ -558,4 +558,4 @@ The Lotion Bowls provide healthcare professionals with convenient containers for
   )
 }
 
-export default LotionBowlsPage
+export default AWELDPortableBreathingOxygenInhalerPage

@@ -167,6 +167,16 @@ import MemoryWaistPadsPage from './memory_waist_pads'
 import MemoryDomeShapedPadsPage from './memory_dome_shaped_pads'
 import MemoryRollShapedPadsPage from './memory_roll_shaped_pads'
 import MemorySlantingShapedPadsPage from './memory_slanting_shaped_pads'
+import AWELDPortableBreathingOxygenInhalerPage from './aweld_portable_breathing_oxygen_inhaler'
+import DisinfectionTanksPage from './disinfection_tanks'
+import GallipotsPage from './gallipots'
+import LotionBowlsPage from './lotion_bowls'
+import KidneyDishesVomitBowlsPage from './kidney_dishes_vomit_bowls'
+import WashbowlPage from './washbowl'
+import BeakersFeederTopsPage from './beakers_feeder_tops'
+import FunnelsPage from './funnels'
+import StPetersBoatPage from './st_peters_boat'
+import MemorySlantingShapedPadsPage from './memory_slanting_shaped_pads'
 import MemoryFractureTablePostPadsPage from './memory_fracture_table_post_pads'
 import MemoryUniversalPositionersPage from './memory_universal_positioners'
 import MemoryUniversalSquarePadsPage from './memory_universal_square_pads'
@@ -341,15 +351,16 @@ const productContentRegistry = {
   'memory-roll-shaped-pads': MemoryRollShapedPadsPage,
   'memory-fracture-table-post-pads': MemoryFractureTablePostPadsPage,
   'memory-tunnel-pads': MemoryTunnelPadsPage,
-  // 'aweld-portable-breathing-oxygen-inhaler': AWELDPortableBreathingOxygenInhalerPage,
-  // 'disinfection-tanks': DisinfectionTanksPage,
-  // 'gallipots': GallipotsPage,
-  // 'lotion-bowls': LotionBowlsPage,
-  // 'kidney-dishes-vomit-bowls': KidneyDishesVomitBowlsPage,
-  // 'washbowl': WashbowlPage,
-  // 'beakers-feeder-tops': BeakersFeederTopsPage,
-  // 'funnels': FunnelsPage,
-  // 'st-peters-boat': StPetersBoatPage,
+  'memory-slanting-shaped-pads': MemorySlantingShapedPadsPage,
+  'aweld-portable-breathing-oxygen-inhaler': AWELDPortableBreathingOxygenInhalerPage,
+  'disinfection-tanks': DisinfectionTanksPage,
+  'gallipots': GallipotsPage,
+  'lotion-bowls': LotionBowlsPage,
+  'kidney-dishes-vomit-bowls': KidneyDishesVomitBowlsPage,
+  'washbowl': WashbowlPage,
+  'beakers-feeder-tops': BeakersFeederTopsPage,
+  'funnels': FunnelsPage,
+  'st-peters-boat': StPetersBoatPage,
   // 'spatula': SpatulaPage,
   // 'instrument-tray': InstrumentTrayPage,
   // 'compartmented-instrument-tray': CompartmentedInstrumentTrayPage,
