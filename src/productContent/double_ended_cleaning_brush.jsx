@@ -9,7 +9,7 @@ import Button from '../components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import { isPurchasableProduct } from '@/utils/purchasableProducts'
 
-function SurgicalScrubBrushesDispenserPage({ product }) {
+function DoubleEndedCleaningBrushPage({ product }) {
   const navigate = useNavigate()
   const { addToCart } = useCart()
   const [quantity, setQuantity] = useState(1)
@@ -88,38 +88,38 @@ function SurgicalScrubBrushesDispenserPage({ product }) {
   }, [product])
 
   // Product description defined in this page
-  const description = `The Surgical Scrub Brushes & Dispenser system provides healthcare professionals with a convenient, hygienic solution for surgical hand scrubbing. This system includes disposable scrub brushes and a wall-mounted dispenser, ensuring proper hand hygiene before surgical procedures.
+  const description = `The Double Ended Cleaning Brush with Nylon Bristles is a versatile cleaning tool designed for thorough cleaning and maintenance of various medical devices and instruments. This brush features nylon bristles on both ends, providing efficient cleaning of different-sized components.
 
 **Key Features:**
-• Disposable scrub brushes – single-use design ensures hygiene
-• Wall-mounted dispenser – convenient, accessible placement
-• Effective scrubbing surface – removes microorganisms effectively
-• Antiseptic compatibility – works with standard surgical scrub solutions
-• Easy dispensing – simple one-handed operation
-• Multiple brush sizes – accommodates various hand sizes
+• Double-ended design – provides two cleaning surfaces for efficient use
+• Nylon bristles – gentle yet effective cleaning without scratching surfaces
+• Versatile application – suitable for various instrument types
+• Effective cleaning – removes debris and biological material
+• Multiple sizes available – accommodates various device sizes
+• Reusable design – can be sterilized for multiple uses
 
 **Clinical Applications:**
-• Surgical hand scrubbing
-• Pre-operative hand hygiene
-• Operating room hand preparation
-• Healthcare worker hand hygiene
-• Infection control protocols
-• Hospital and clinic hand hygiene
+• Medical instrument cleaning
+• Device maintenance
+• Central sterile supply cleaning
+• Device reprocessing
+• Operating room instrument care
+• General medical device cleaning
 
 **Clinical Benefits:**
-• Infection control – proper hand scrubbing reduces surgical site infections
-• Convenience – easy-to-use dispenser system
-• Hygiene – disposable brushes eliminate cross-contamination
-• Standardization – ensures consistent hand hygiene practices
+• Effective cleaning – ensures thorough removal of debris
+• Device maintenance – prolongs device lifespan
+• Infection control – proper cleaning reduces infection risk
+• Versatile design – suitable for various cleaning tasks
 
 **Technical Specifications:**
-• Disposable scrub brush design
-• Wall-mounted dispenser
-• Compatible with standard antiseptic solutions
-• Multiple brush sizes available
-• Single-use disposable brushes
+• Double-ended brush design
+• Nylon bristle construction
+• Multiple sizes available
+• Designed for sterilization and reuse
+• Compatible with standard cleaning protocols
 
-The Surgical Scrub Brushes & Dispenser system provides healthcare professionals with a convenient, hygienic solution for surgical hand scrubbing, ensuring proper hand hygiene and infection control before surgical procedures.`
+The Double Ended Cleaning Brush provides healthcare professionals with a versatile tool for maintaining cleanliness and functionality of medical devices and instruments, ensuring proper device care and infection control.`
 
   const handleAddToCart = () => {
     const selectedColorObj = colors.find(c => c.value === selectedColor)
@@ -558,4 +558,4 @@ The Surgical Scrub Brushes & Dispenser system provides healthcare professionals 
   )
 }
 
-export default SurgicalScrubBrushesDispenserPage
+export default DoubleEndedCleaningBrushPage
