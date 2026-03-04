@@ -400,7 +400,7 @@
     },
     { 
       id: 10, 
-      name: 'Infant T-Piece Resuscitator', 
+      name: 'Neo-Tee® Infant T-Piece Resuscitator', 
       groupId: 1, 
       category: null, 
       price: 199.99, 

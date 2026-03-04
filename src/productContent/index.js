@@ -160,7 +160,7 @@ const productContentRegistry = {
   'disposable-cpr-resuscitation-system': DisposableCPRResuscitationSystemPage,
   'reusable-cpr-resuscitation-system': ReusableCPRResuscitationSystemPage,
   'infant-t-piece-resuscitator': InfantTPieceResuscitatorPage,
-  // 'disposable-manometer': DisposableManometerPage,
+  'disposable-manometer': DisposableManometerPage,
   // 'laryngoscopes': LaryngoscopesPage,
   // 'ue-scope-video-laryngoscope-vl300': UEScopeVideoLaryngoscopePage,
   // 'asu-200-rechargeable-aspirator': RechargeableAspiratorPage,
