@@ -382,16 +382,6 @@
       price: 18.9, 
       image: '/disposable_cpr_resuscitation_system.png',
       pageId: 'disposable-cpr-resuscitation-system',
-      description: `The Disposable CPR Resuscitation System features self-inflating bags that provide reliable positive pressure ventilation for emergency respiratory support.
-
-**Key Features:**
-• Self-inflating design – automatically fills after compression, pulling oxygen or air into the bag
-• Always inflated – remains ready for immediate use at all times
-• No compressed gas required – can deliver positive pressure ventilation without a compressed gas source
-• High oxygen delivery – with oxygen reservoir attachment, delivers 90% to 100% oxygen concentration
-• Cost-effective solution – designed to manage healthcare costs efficiently
-
-Mercury Medical® offers comprehensive resuscitation systems engineered for superior performance and reliability in critical care situations.`,
       youtubeUrl: 'https://youtu.be/0u7APoa3274'
     },
     { 
@@ -406,20 +396,7 @@ Mercury Medical® offers comprehensive resuscitation systems engineered for supe
         '/reusable_cpr_resuscitation_system_2.png',
         '/reusable_cpr_resuscitation_system_3.png'
       ],
-      pageId: 'reusable-cpr-resuscitation-system',
-      description: `The Reusable CPR Resuscitation System is a full line of resuscitators manufactured with Silicone and Polysulfone material providing superior lung compliance "feel" with exceptional responsiveness.
-
-Designed to be fully autoclavable, with the exception of certain accessories and replacement items such as the reservoir bag, oxygen tubing and accessories.
-
-**Benefits:**
-• Optional Colour-Coded Manometer, accuracy is ± 3 cm H₂O between 0 - 15cm H₂O
-• Monitors both Airway and PEEP Pressure
-• Fast re-expansion/high breath-per-minute capability
-• Medical-grade Silicone and Polysulfone material
-• Autoclavable temperature 132°C (except reservoir bag, oxygen tubing and disposable accessories)
-• Optional CO₂ detector accessory
-• Patient valve detaches to add Omni-Link tubing that provides greater reach capability. Ideal for neonatal and MRI needs
-• Optional Exhalation Filter and MR Conditional Peep Valve accessory`
+      pageId: 'reusable-cpr-resuscitation-system'
     },
     { 
       id: 10, 

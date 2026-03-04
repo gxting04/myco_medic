@@ -1,5 +1,7 @@
 import DisposableCPAPPage from './disposable_cpap'
 import SurgicalMaskPage from './surgical-mask'
+import DisposableCPRResuscitationSystemPage from './disposable_cpr_resuscitation_system'
+import ReusableCPRResuscitationSystemPage from './reusable_cpr_resuscitation_system'
 import InfantTPieceResuscitatorPage from './infant_t_piece_resuscitator'
 import DisposableManometerPage from './disposable_manometer'
 import LaryngoscopesPage from './laryngoscopes'
@@ -151,6 +153,8 @@ import SeluarSunatKhatanCircumcisionUnderwearPage from './seluar_sunat_khatan_ci
 const productContentRegistry = {
   'disposable-cpap-system': DisposableCPAPPage,
   'surgical-mask': SurgicalMaskPage,
+  'disposable-cpr-resuscitation-system': DisposableCPRResuscitationSystemPage,
+  'reusable-cpr-resuscitation-system': ReusableCPRResuscitationSystemPage,
   'infant-t-piece-resuscitator': InfantTPieceResuscitatorPage,
   'disposable-manometer': DisposableManometerPage,
   'laryngoscopes': LaryngoscopesPage,
