@@ -56,6 +56,18 @@ import PressureTransducerPage from './pressure_transducer'
 import CentralVenousCatheterPage from './central_venous_catheter'
 import EasydropFlowRegulatorPage from './easydrop_flow_regulator'
 import MoistenedShampooCapPage from './moistened_shampoo_cap'
+import MedcaptainInfusionPumpPage from './medcaptain_infusion_pump'
+import MedcaptainSyringePumpPage from './medcaptain_syringe_pump'
+import DisposableEmergencySuturePackPage from './disposable_emergency_suture_pack'
+import DisposableCPAPSystemPage from './disposable_cpap_system'
+import DisposableCircumcisionPackPage from './disposable_circumcision_pack'
+import DisposablePreEpiduralSetPage from './disposable_pre_epidural_set'
+import DisposableBasicPackPage from './disposable_basic_pack'
+import CannulaCleaningBrushesPage from './cannula_cleaning_brushes'
+import TrachealTubeBrushesPage from './tracheal_tube_brushes'
+import InstrumentCleaningBrushesPage from './instrument_cleaning_brushes'
+import SuctionTubeCleaningBrushesPage from './suction_tube_cleaning_brushes'
+import CannulaInstrumentPipeCleanersPage from './cannula_instrument_pipe_cleaners'
 import WoundAndSkinWashGlovesPage from './wound_and_skin_wash_gloves'
 import MedcaptainInfusionPumpPage from './medcaptain_infusion_pump'
 import MedcaptainSyringePumpPage from './medcaptain_syringe_pump'
@@ -217,16 +229,18 @@ const productContentRegistry = {
   'central-venous-catheter': CentralVenousCatheterPage,
   'easydrop-flow-regulator': EasydropFlowRegulatorPage,
   // 'wound-and-skin-wash-gloves': WoundAndSkinWashGlovesPage,
-  // 'medcaptain-infusion-pump': MedcaptainInfusionPumpPage,
-  // 'medcaptain-syringe-pump': MedcaptainSyringePumpPage,
-  // 'disposable-emergency-suture-pack': DisposableEmergencySuturePackPage,
-  // 'disposable-circumcision-pack': DisposableCircumcisionPackPage,
-  // 'disposable-pre-epidural-set': DisposablePreEpiduralSetPage,
-  // 'disposable-basic-pack': DisposableBasicPackPage,
-  // 'cannula-cleaning-brushes': CannulaCleaningBrushesPage,
-  // 'tracheal-tube-brushes': TrachealTubeBrushesPage,
-  // 'instrument-cleaning-brushes': InstrumentCleaningBrushesPage,
-  // 'suction-tube-cleaning-brushes': SuctionTubeCleaningBrushesPage,
+  'medcaptain-infusion-pump': MedcaptainInfusionPumpPage,
+  'medcaptain-syringe-pump': MedcaptainSyringePumpPage,
+  'disposable-emergency-suture-pack': DisposableEmergencySuturePackPage,
+  'disposable-cpap-system': DisposableCPAPSystemPage,
+  'disposable-circumcision-pack': DisposableCircumcisionPackPage,
+  'disposable-pre-epidural-set': DisposablePreEpiduralSetPage,
+  'disposable-basic-pack': DisposableBasicPackPage,
+  'cannula-cleaning-brushes': CannulaCleaningBrushesPage,
+  'tracheal-tube-brushes': TrachealTubeBrushesPage,
+  'instrument-cleaning-brushes': InstrumentCleaningBrushesPage,
+  'suction-tube-cleaning-brushes': SuctionTubeCleaningBrushesPage,
+  'cannula-instrument-pipe-cleaners': CannulaInstrumentPipeCleanersPage,
   // 'cannula-instrument-pipe-cleaners': CannulaInstrumentPipeCleanersPage,
   // 'double-end-valve-brushes': DoubleEndValveBrushesPage,
   // 'surgical-scrub-brushes-dispenser': SurgicalScrubBrushesDispenserPage,

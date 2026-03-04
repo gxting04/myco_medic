@@ -9,7 +9,7 @@ import Button from '../components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import { isPurchasableProduct } from '@/utils/purchasableProducts'
 
-function InstrumentCleaningBrushesPage({ product }) {
+function DisposableCPAPSystemPage({ product }) {
   const navigate = useNavigate()
   const { addToCart } = useCart()
   const [quantity, setQuantity] = useState(1)
@@ -88,38 +88,38 @@ function InstrumentCleaningBrushesPage({ product }) {
   }, [product])
 
   // Product description defined in this page
-  const description = `The Instrument Cleaning Brushes are versatile cleaning tools designed for thorough cleaning and maintenance of various surgical and medical instruments. These brushes effectively remove debris, blood, and biological material from instrument surfaces and crevices, ensuring proper hygiene and device functionality.
+  const description = `The Disposable CPAP System is a single-patient-use continuous positive airway pressure device designed for respiratory support in various clinical settings. This convenient system provides non-invasive positive pressure ventilation, helping maintain airway patency and improve oxygenation without requiring endotracheal intubation.
 
 **Key Features:**
-• Versatile design – suitable for various instrument types
-• Effective cleaning – removes debris and biological material
-• Durable bristles – stainless steel or nylon bristles withstand repeated use
-• Multiple sizes and styles – accommodates various instrument sizes
-• Double-ended options – provides multiple cleaning surfaces
-• Reusable design – can be sterilized for multiple uses
+• Single-patient-use design – eliminates infection control concerns
+• Non-invasive ventilation – provides respiratory support without intubation
+• Adjustable pressure settings – allows customization for patient needs
+• Easy to use – simple setup and operation for healthcare providers
+• Complete system – includes mask, tubing, and pressure delivery components
+• Lightweight design – comfortable for patient use
 
 **Clinical Applications:**
-• Surgical instrument cleaning
-• Medical device maintenance
-• Central sterile supply cleaning
-• Device reprocessing
-• Operating room instrument care
-• Endoscopy equipment cleaning
+• Respiratory distress management
+• Post-operative respiratory support
+• Sleep apnea treatment
+• Chronic obstructive pulmonary disease (COPD) management
+• Emergency respiratory support
+• Pediatric and adult patient care
 
 **Clinical Benefits:**
-• Effective cleaning – ensures thorough removal of debris
-• Device maintenance – prolongs device lifespan
-• Infection control – proper cleaning reduces infection risk
-• Versatile application – suitable for various instrument types
+• Non-invasive – avoids complications of endotracheal intubation
+• Patient comfort – well-tolerated alternative to invasive ventilation
+• Infection control – disposable design eliminates cross-contamination
+• Versatile application – suitable for various respiratory conditions
 
 **Technical Specifications:**
-• Stainless steel or nylon bristles
-• Multiple sizes and styles available
-• Double-ended options
-• Designed for sterilization and reuse
-• Compatible with standard cleaning protocols
+• Adjustable CPAP pressure
+• Non-invasive mask interface
+• Single-patient-use disposable design
+• Compatible with standard oxygen delivery systems
+• Available in various sizes
 
-The Instrument Cleaning Brushes provide healthcare professionals with versatile tools for maintaining cleanliness and functionality of surgical and medical instruments, ensuring proper device care and infection control.`
+The Disposable CPAP System provides healthcare professionals with a convenient, non-invasive solution for respiratory support, ensuring effective airway management while maintaining patient comfort and infection control standards.`
 
   const handleAddToCart = () => {
     const selectedColorObj = colors.find(c => c.value === selectedColor)
@@ -558,4 +558,4 @@ The Instrument Cleaning Brushes provide healthcare professionals with versatile 
   )
 }
 
-export default InstrumentCleaningBrushesPage
+export default DisposableCPAPSystemPage
