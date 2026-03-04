@@ -143,6 +143,15 @@ import AnkleProtectorsPage from './ankle_protectors'
 import TunnelPadsPage from './tunnel_pads'
 import ORTablePadsPage from './or_table_pads'
 import PillowShapedPadPage from './pillow_shaped_pad'
+import MemorySupineHeadPadsPage from './memory_supine_head_pads'
+import MemoryProstratePadsPage from './memory_prostrate_pads'
+import MemoryArmPadsPage from './memory_arm_pads'
+import MemoryHeelPadsPage from './memory_heel_pads'
+import MemoryUniversalSquarePadsPage from './memory_universal_square_pads'
+import MemoryPillowShapedPadsPage from './memory_pillow_shaped_pads'
+import MemoryLowerLimbPadsPage from './memory_lower_limb_pads'
+import AdjustableStirrupsForLithotomySurgeriesPage from './adjustable_stirrups_for_lithotomy_surgeries'
+import TroopElevationPillowPage from './troop_elevation_pillow'
 import FaceCradleProneSupportSystemPage from './face_cradle_prone_support_system'
 import AdjustableStirrupsForLithotomySurgeriesPage from './adjustable_stirrups_for_lithotomy_surgeries'
 import TroopElevationPillowPage from './troop_elevation_pillow'
@@ -313,13 +322,15 @@ const productContentRegistry = {
   'hip-pads': HipPadsPage,
   'pillar-shaped-pads': PillarShapedPadsPage,
   'face-cradle-prone-support-system': FaceCradleProneSupportSystemPage,
-  // 'adjustable-stirrups-for-lithotomy-surgeries': AdjustableStirrupsForLithotomySurgeriesPage,
-  // 'troop-elevation-pillow': TroopElevationPillowPage,
-  // 'memory-supine-head-pads': MemorySupineHeadPadsPage,
-  // 'memory-horsseshoe-head-pads': MemoryHorseshoeHeadPadsPage,
-  // 'memory-donut-head-pads': MemoryDonutHeadPadsPage,
-  // 'memory-arm-pads': MemoryArmPadsPage,
-  // 'memory-prostrate-pads': MemoryProstratePadsPage,
+  'adjustable-stirrups-for-lithotomy-surgeries': AdjustableStirrupsForLithotomySurgeriesPage,
+  'troop-elevation-pillow': TroopElevationPillowPage,
+  'memory-supine-head-pads': MemorySupineHeadPadsPage,
+  'memory-arm-pads': MemoryArmPadsPage,
+  'memory-prostrate-pads': MemoryProstratePadsPage,
+  'memory-heel-pads': MemoryHeelPadsPage,
+  'memory-universal-square-pads': MemoryUniversalSquarePadsPage,
+  'memory-pillow-shaped-pads': MemoryPillowShapedPadsPage,
+  'memory-lower-limb-pads': MemoryLowerLimbPadsPage,
   // 'memory-chest-hipbone-pads': MemoryChestHipbonePadsPage,
   // 'memory-pillar-shaped-pads': MemoryPillarShapedPadsPage,
   // 'memory-lateral-pads': MemoryLateralPadsPage,
