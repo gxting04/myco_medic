@@ -4,6 +4,25 @@ import DisposableCPRResuscitationSystemPage from './disposable_cpr_resuscitation
 import ReusableCPRResuscitationSystemPage from './reusable_cpr_resuscitation_system'
 import InfantTPieceResuscitatorPage from './infant_t_piece_resuscitator'
 import DisposableManometerPage from './disposable_manometer'
+import DisposableStandardRotaTrachTracheostomyTubePage from './disposable_standard_rota_trach_tracheostomy_tube'
+import DisposableInnerCannulaRotaTrachTracheostomyTubePage from './disposable_inner_cannula_rota_trach_tracheostomy_tube'
+import DisposablePediatricRotaTrachTracheostomyTubePage from './disposable_pediatric_rota_trach_tracheostomy_tube'
+import PVCDoubleLumenEndobronchialTubePage from './pvc_double_lumen_endobronchial_tube'
+import SiliconeDoubleLumenEndobronchialTubePage from './silicone_double_lumen_endobronchial_tube'
+import PvcNasalEndotrachealTubePage from './pvc_nasal_endotracheal_tube'
+import PvcOralEndotrachealTubePage from './pvc_oral_endotracheal_tube'
+import PvcEndotrachealTubePage from './pvc_endotracheal_tube'
+import PvcWireReinforcedEndotrachealTubePage from './pvc_wire_reinforced_endotracheal_tube'
+import EndotrachealTubeEvacuationLumenPage from './endotracheal_tube_evacuation_lumen'
+import BiteBlockSiliconeReinforcedEndotrachealTubePage from './bite_block_silicone_reinforced_endotracheal_tube'
+import SiliconeReinforcedEndotrachealTubePage from './silicone_reinforced_endotracheal_tube'
+import AutoInflationEndobronchialBlockerTubePage from './auto_inflation_endobronchial_blocker_tube'
+import EndobronchialBlockerTubeWithoutAutoInflationPage from './endobronchial_blocker_tube_without_auto_inflation'
+import IntubatingStyletPage from './intubating_stylet'
+import OneWaySiliconeLaryngealMaskPage from './one_way_silicone_laryngeal_mask'
+import OneWaySteelReinforcedLaryngealMaskPage from './one_way_steel_reinforced_laryngeal_mask'
+import NasopharyngealAirwayPage from './nasopharyngeal_airway'
+import OropharyngealAirwayPage from './oropharyngeal_airway'
 import LaryngoscopesPage from './laryngoscopes'
 import UEScopeVideoLaryngoscopePage from './ue_scope_video_laryngoscope'
 import RechargeableAspiratorPage from './rechargeable_aspirator'
@@ -169,22 +188,25 @@ const productContentRegistry = {
   'bvf-filter': BVFFilterPage,
   'catheter-mount': CatheterMountPage,
   'disposable-air-cushion-face-mask': DisposableAirCushionFaceMaskPage,
-  // 'pvc-double-lumen-endobronchial-tube': PVCDoubleLumenEndobronchialTubePage,
-  // 'silicone-double-lumen-endobronchial-tube': SiliconeDoubleLumenEndobronchialTubePage,
-  // 'pvc-nasal-endotracheal-tube': PvcNasalEndotrachealTubePage,
-  // 'pvc-oral-endotracheal-tube': PvcOralEndotrachealTubePage,
-  // 'pvc-endotracheal-tube': PvcEndotrachealTubePage,
-  // 'pvc-wire-reinforced-endotracheal-tube': PvcWireReinforcedEndotrachealTubePage,
-  // 'endotracheal-tube-evacuation-lumen': EndotrachealTubeEvacuationLumenPage,
-  // 'bite-block-silicone-reinforced-endotracheal-tube': BiteBlockSiliconeReinforcedEndotrachealTubePage,
-  // 'silicone-reinforced-endotracheal-tube': SiliconeReinforcedEndotrachealTubePage,
-  // 'auto-inflation-endobronchial-blocker-tube': AutoInflationEndobronchialBlockerTubePage,
-  // 'endobronchial-blocker-tube-without-auto-inflation': EndobronchialBlockerTubeWithoutAutoInflationPage,
-  // 'intubating-stylet': IntubatingStyletPage,
-  // 'one-way-silicone-laryngeal-mask': OneWaySiliconeLaryngealMaskPage,
-  // 'one-way-steel-reinforced-laryngeal-mask': OneWaySteelReinforcedLaryngealMaskPage,
-  // 'nasopharyngeal-airway': NasopharyngealAirwayPage,
-  // 'oropharyngeal-airway': OropharyngealAirwayPage,
+  'disposable-standard-rota-trach-tracheostomy-tube': DisposableStandardRotaTrachTracheostomyTubePage,
+  'disposable-inner-cannula-rota-trach-tracheostomy-tube': DisposableInnerCannulaRotaTrachTracheostomyTubePage,
+  'disposable-pediatric-rota-trach-tracheostomy-tube': DisposablePediatricRotaTrachTracheostomyTubePage,
+  'pvc-double-lumen-endobronchial-tube': PVCDoubleLumenEndobronchialTubePage,
+  'silicone-double-lumen-endobronchial-tube': SiliconeDoubleLumenEndobronchialTubePage,
+  'pvc-nasal-endotracheal-tube': PvcNasalEndotrachealTubePage,
+  'pvc-oral-endotracheal-tube': PvcOralEndotrachealTubePage,
+  'pvc-endotracheal-tube': PvcEndotrachealTubePage,
+  'pvc-wire-reinforced-endotracheal-tube': PvcWireReinforcedEndotrachealTubePage,
+  'endotracheal-tube-evacuation-lumen': EndotrachealTubeEvacuationLumenPage,
+  'bite-block-silicone-reinforced-endotracheal-tube': BiteBlockSiliconeReinforcedEndotrachealTubePage,
+  'silicone-reinforced-endotracheal-tube': SiliconeReinforcedEndotrachealTubePage,
+  'auto-inflation-endobronchial-blocker-tube': AutoInflationEndobronchialBlockerTubePage,
+  'endobronchial-blocker-tube-without-auto-inflation': EndobronchialBlockerTubeWithoutAutoInflationPage,
+  'intubating-stylet': IntubatingStyletPage,
+  'one-way-silicone-laryngeal-mask': OneWaySiliconeLaryngealMaskPage,
+  'one-way-steel-reinforced-laryngeal-mask': OneWaySteelReinforcedLaryngealMaskPage,
+  'nasopharyngeal-airway': NasopharyngealAirwayPage,
+  'oropharyngeal-airway': OropharyngealAirwayPage,
   // 'tracheal-tubes-holder': TrachealTubesHolderPage,
   // 'disposable-tracheal-tube-kit': DisposableTrachealTubeKitPage,
   // 'iob-forced-air-warming-system': IOBForcedAirWarmingSystemPage,

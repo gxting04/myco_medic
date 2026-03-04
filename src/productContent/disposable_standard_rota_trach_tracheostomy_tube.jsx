@@ -9,7 +9,7 @@ import Button from '../components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import { isPurchasableProduct } from '@/utils/purchasableProducts'
 
-function AutoInflationEndobronchialBlockerTubePage({ product }) {
+function DisposableStandardRotaTrachTracheostomyTubePage({ product }) {
   const navigate = useNavigate()
   const { addToCart } = useCart()
   const [quantity, setQuantity] = useState(1)
@@ -88,38 +88,33 @@ function AutoInflationEndobronchialBlockerTubePage({ product }) {
   }, [product])
 
   // Product description defined in this page
-  const description = `The Auto-inflation Endobronchial Blocker Tube features an innovative auto-inflation mechanism that simplifies lung isolation procedures. This advanced device enables selective lung deflation for thoracic surgeries while maintaining ventilation of the non-operative lung.
+  const description = `The Disposable Standard Rota-Trach™ Tracheostomy Tube is a single-patient-use airway management device designed for secure tracheostomy procedures. This innovative tracheostomy tube features a rotatable design that facilitates easy positioning and optimal patient comfort during long-term airway management.
 
 **Key Features:**
-• Auto-inflation mechanism – automatic cuff inflation simplifies lung isolation setup
-• Selective lung deflation – enables controlled collapse of operative lung
-• High-volume, low-pressure cuff – reduces risk of bronchial trauma
-• Flexible design – accommodates bronchial anatomy for optimal placement
+• Rotatable design – allows 360-degree rotation for optimal positioning without disconnecting from the breathing circuit
+• Disposable construction – single-patient-use design eliminates infection control concerns and cross-contamination risks
+• Cuffed and uncuffed options available – accommodates various clinical requirements and patient needs
+• Standard connector – universal 15mm connector compatible with breathing circuits and ventilators
+• Soft, flexible material – reduces risk of tracheal trauma and enhances patient comfort
+• Clear pilot balloon – enables easy cuff pressure monitoring and inflation control
 • Radiopaque line – visible on X-ray for accurate positioning verification
-• Standard connector – compatible with standard breathing circuits
-• Color-coded components – facilitates identification and setup
+• Available in multiple sizes – accommodates pediatric through adult patients
 
 **Clinical Applications:**
-• Thoracic surgical procedures requiring lung isolation
-• Video-assisted thoracoscopic surgery (VATS)
-• Lung resection surgeries
-• Esophageal surgeries
-• Procedures requiring selective lung ventilation
-
-**Clinical Benefits:**
-• Simplified setup – auto-inflation reduces procedure complexity
-• Precise lung isolation – enables controlled deflation of target lung
-• Reduced setup time – automatic mechanism accelerates procedure preparation
-• Enhanced safety – high-volume, low-pressure cuff minimizes trauma risk
+• Long-term airway management in intensive care units
+• Surgical procedures requiring secure airway access
+• Chronic respiratory support in home care settings
+• Emergency tracheostomy procedures
+• Post-operative airway maintenance
 
 **Technical Specifications:**
-• Auto-inflation cuff mechanism
-• High-volume, low-pressure cuff design
+• Standard 15mm universal connector
+• Multiple sizes available (typically 6.0mm to 10.0mm inner diameter)
+• Cuffed and uncuffed variants
 • Radiopaque material for X-ray visibility
-• Standard connectors
-• Available in multiple sizes
+• Single-patient-use disposable design
 
-The Auto-inflation Endobronchial Blocker Tube provides anesthesiologists with an advanced, user-friendly solution for lung isolation, simplifying complex thoracic surgical procedures.`
+The Disposable Standard Rota-Trach™ Tracheostomy Tube provides healthcare professionals with a reliable, hygienic solution for tracheostomy airway management, combining innovative rotatable design with infection control benefits.`
 
   const handleAddToCart = () => {
     const selectedColorObj = colors.find(c => c.value === selectedColor)
@@ -558,4 +553,4 @@ The Auto-inflation Endobronchial Blocker Tube provides anesthesiologists with an
   )
 }
 
-export default AutoInflationEndobronchialBlockerTubePage
+export default DisposableStandardRotaTrachTracheostomyTubePage

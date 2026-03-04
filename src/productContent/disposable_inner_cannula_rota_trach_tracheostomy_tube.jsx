@@ -9,7 +9,7 @@ import Button from '../components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import { isPurchasableProduct } from '@/utils/purchasableProducts'
 
-function AutoInflationEndobronchialBlockerTubePage({ product }) {
+function DisposableInnerCannulaRotaTrachTracheostomyTubePage({ product }) {
   const navigate = useNavigate()
   const { addToCart } = useCart()
   const [quantity, setQuantity] = useState(1)
@@ -88,38 +88,39 @@ function AutoInflationEndobronchialBlockerTubePage({ product }) {
   }, [product])
 
   // Product description defined in this page
-  const description = `The Auto-inflation Endobronchial Blocker Tube features an innovative auto-inflation mechanism that simplifies lung isolation procedures. This advanced device enables selective lung deflation for thoracic surgeries while maintaining ventilation of the non-operative lung.
+  const description = `The Disposable Inner Cannula Rota-Trach™ Tracheostomy Tube features a removable inner cannula design, providing enhanced airway maintenance and hygiene management. This advanced tracheostomy tube combines the benefits of rotatable positioning with the convenience of replaceable inner cannula for optimal long-term airway care.
 
 **Key Features:**
-• Auto-inflation mechanism – automatic cuff inflation simplifies lung isolation setup
-• Selective lung deflation – enables controlled collapse of operative lung
-• High-volume, low-pressure cuff – reduces risk of bronchial trauma
-• Flexible design – accommodates bronchial anatomy for optimal placement
-• Radiopaque line – visible on X-ray for accurate positioning verification
-• Standard connector – compatible with standard breathing circuits
-• Color-coded components – facilitates identification and setup
-
-**Clinical Applications:**
-• Thoracic surgical procedures requiring lung isolation
-• Video-assisted thoracoscopic surgery (VATS)
-• Lung resection surgeries
-• Esophageal surgeries
-• Procedures requiring selective lung ventilation
+• Removable inner cannula – allows for easy cleaning, replacement, and maintenance without removing the outer tube
+• Rotatable outer tube – 360-degree rotation capability for optimal positioning and patient comfort
+• Disposable design – both outer tube and inner cannula are single-patient-use, ensuring infection control
+• Easy cannula replacement – quick-release mechanism facilitates rapid inner cannula exchange
+• Reduced occlusion risk – replaceable inner cannula prevents buildup of secretions and maintains clear airway
+• Standard connector compatibility – universal 15mm connector fits standard breathing circuits
+• Cuffed and uncuffed options – accommodates various clinical requirements
+• Clear visualization – transparent materials allow monitoring of inner cannula condition
 
 **Clinical Benefits:**
-• Simplified setup – auto-inflation reduces procedure complexity
-• Precise lung isolation – enables controlled deflation of target lung
-• Reduced setup time – automatic mechanism accelerates procedure preparation
-• Enhanced safety – high-volume, low-pressure cuff minimizes trauma risk
+• Enhanced airway hygiene – replaceable inner cannula reduces risk of occlusion and infection
+• Extended use capability – inner cannula can be replaced while maintaining outer tube position
+• Reduced patient discomfort – eliminates need for frequent complete tube changes
+• Improved infection control – disposable components eliminate cross-contamination risks
+
+**Clinical Applications:**
+• Long-term tracheostomy care in intensive care settings
+• Chronic respiratory support requiring frequent airway maintenance
+• Home care tracheostomy management
+• Post-surgical airway maintenance
+• Patients requiring frequent secretion management
 
 **Technical Specifications:**
-• Auto-inflation cuff mechanism
-• High-volume, low-pressure cuff design
-• Radiopaque material for X-ray visibility
-• Standard connectors
-• Available in multiple sizes
+• Removable inner cannula design
+• Standard 15mm universal connector
+• Multiple sizes available for various patient populations
+• Cuffed and uncuffed variants
+• Single-patient-use disposable construction
 
-The Auto-inflation Endobronchial Blocker Tube provides anesthesiologists with an advanced, user-friendly solution for lung isolation, simplifying complex thoracic surgical procedures.`
+The Disposable Inner Cannula Rota-Trach™ Tracheostomy Tube offers healthcare professionals an advanced solution for long-term tracheostomy management, combining rotatable positioning with enhanced airway maintenance capabilities.`
 
   const handleAddToCart = () => {
     const selectedColorObj = colors.find(c => c.value === selectedColor)
@@ -558,4 +559,4 @@ The Auto-inflation Endobronchial Blocker Tube provides anesthesiologists with an
   )
 }
 
-export default AutoInflationEndobronchialBlockerTubePage
+export default DisposableInnerCannulaRotaTrachTracheostomyTubePage
