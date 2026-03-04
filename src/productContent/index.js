@@ -159,7 +159,7 @@ const productContentRegistry = {
   // 'surgical-mask': SurgicalMaskPage,
   'disposable-cpr-resuscitation-system': DisposableCPRResuscitationSystemPage,
   'reusable-cpr-resuscitation-system': ReusableCPRResuscitationSystemPage,
-  // 'infant-t-piece-resuscitator': InfantTPieceResuscitatorPage,
+  'infant-t-piece-resuscitator': InfantTPieceResuscitatorPage,
   // 'disposable-manometer': DisposableManometerPage,
   // 'laryngoscopes': LaryngoscopesPage,
   // 'ue-scope-video-laryngoscope-vl300': UEScopeVideoLaryngoscopePage,
