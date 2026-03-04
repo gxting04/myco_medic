@@ -184,11 +184,11 @@ function ProductDetailDefault({ product }) {
             <div className='space-y-4'>
               {/* Main Image */}
               {productImages.length > 0 && (
-                <div className='relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 aspect-square group shadow-lg'>
+                <div className='relative overflow-hidden rounded-xl bg-white aspect-square group shadow-lg'>
                   <img 
                     src={productImages[selectedImageIndex]} 
                     alt={product.name}
-                    className='w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 p-4'
+                    className='w-full h-full object-contain transition-transform duration-500 group-hover:scale-105'
                   />
                   {productImages.length > 1 && (
                     <div className='absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-semibold text-gray-800 shadow-lg border border-gray-200'>
