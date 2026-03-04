@@ -91,7 +91,7 @@ function DomeShapedPadsPage({ product }) {
               </div>
             </div>
 
-            <div className='mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg text-gray-800'>
+            <div className='mt-8 bg-blue-50 border border-blue-200 rounded-lg text-gray-800'>
               <h3 className='text-xl font-bold mb-2 text-black'>Models &amp; sizing</h3>
               <p>Includes Model 4101 and related sizes as per the Dome Shaped Pads series.</p>
             </div>

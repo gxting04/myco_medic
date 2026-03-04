@@ -81,7 +81,7 @@ function AWELDPortableBreathingOxygenInhalerPage({ product }) {
             <p className='text-lg text-gray-600'>AWELD Portable Oxygen Inhaler (600 ml)</p>
           </div>
 
-          <div className='bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto'>
+          <div className='bg-white rounded-lg shadow-lg max-w-4xl mx-auto'>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
               <div className='space-y-4'>
                 <div className='flex items-center gap-3'>

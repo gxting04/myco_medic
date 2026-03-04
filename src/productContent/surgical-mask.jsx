@@ -55,7 +55,7 @@ function SurgicalMaskPage({ product }) {
 
         <section className='max-w-6xl mx-auto px-6 py-16 grid lg:grid-cols-[1.7fr,1fr] gap-12'>
           <article className='space-y-10'>
-            <div className='bg-white rounded-3xl p-10 shadow-md border border-sky-100'>
+            <div className='bg-white rounded-3xl shadow-md border border-sky-100'>
               <h2 className='text-2xl font-semibold text-slate-900 mb-4'>Product narrative</h2>
               <p className='text-slate-600 leading-relaxed'>
                 Crafted with melt-blown filtration and hypoallergenic inner layers, the {product.name} delivers
@@ -66,14 +66,14 @@ function SurgicalMaskPage({ product }) {
 
             <div className='grid md:grid-cols-2 gap-6'>
               {keyHighlights.map((item) => (
-                <div key={item.title} className='bg-white rounded-3xl p-8 shadow-inner border border-sky-100'>
+                <div key={item.title} className='bg-white rounded-3xl shadow-inner border border-sky-100'>
                   <h3 className='text-lg font-semibold text-slate-900 mb-3'>{item.title}</h3>
                   <p className='text-sm text-slate-600 leading-relaxed'>{item.description}</p>
                 </div>
               ))}
             </div>
 
-            <div className='bg-white rounded-3xl p-10 shadow-md border border-sky-100'>
+            <div className='bg-white rounded-3xl shadow-md border border-sky-100'>
               <h2 className='text-2xl font-semibold text-slate-900 mb-4'>Implementation playbook</h2>
               <ul className='space-y-3 text-slate-600 leading-relaxed'>
                 <li>• Deploy color-coded batches to differentiate sterilized inventory.</li>
@@ -85,7 +85,7 @@ function SurgicalMaskPage({ product }) {
           </article>
 
           <aside className='space-y-8'>
-            <div className='bg-white rounded-3xl p-8 shadow-md border border-sky-100'>
+            <div className='bg-white rounded-3xl shadow-md border border-sky-100'>
               <h3 className='text-xl font-semibold text-slate-900 mb-4'>Specifications</h3>
               <ul className='space-y-3 text-slate-600'>
                 <li>Price per box (50 pcs): ${product.price}</li>
@@ -96,7 +96,7 @@ function SurgicalMaskPage({ product }) {
               </ul>
             </div>
 
-            <div className='bg-primary text-white rounded-3xl p-8 shadow-lg'>
+            <div className='bg-primary text-white rounded-3xl shadow-lg'>
               <h3 className='text-xl font-semibold mb-3'>Need a PPE bundle?</h3>
               <p className='text-sm text-primary-foreground/80 mb-6'>
                 Combine masks with disposable gowns, visors, and sanitizers in a single procurement contract.
@@ -109,7 +109,7 @@ function SurgicalMaskPage({ product }) {
               </a>
             </div>
 
-            <div className='bg-white rounded-3xl p-8 shadow-md border border-sky-100'>
+            <div className='bg-white rounded-3xl shadow-md border border-sky-100'>
               <h3 className='text-lg font-semibold text-slate-900 mb-3'>Supporting documents</h3>
               <ul className='space-y-2 text-sm text-primary'>
                 <li>

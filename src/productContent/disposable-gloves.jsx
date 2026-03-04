@@ -83,7 +83,7 @@ function Hero({ product }) {
             <li>• 200 gloves per dispenser box</li>
           </ul>
         </div>
-        <div className='relative bg-gradient-to-br from-orange-100 via-white to-orange-50 flex items-center justify-center p-10'>
+        <div className='relative bg-white flex items-center justify-center'>
           <img
             src={product.image}
             alt={product.name}
@@ -111,7 +111,7 @@ function UseCases() {
       <h2 className='text-2xl font-semibold mb-6'>Where teams rely on these gloves</h2>
       <div className='grid sm:grid-cols-2 gap-6'>
         {scenarios.map((scenario) => (
-          <div key={scenario.title} className='border border-gray-100 rounded-2xl p-6 hover:border-primary/30 transition-colors'>
+          <div key={scenario.title} className='border border-gray-100 rounded-2xl hover:border-primary/30 transition-colors'>
             <h3 className='font-semibold text-lg mb-2'>{scenario.title}</h3>
             <p className='text-gray-600 text-sm'>{scenario.description}</p>
           </div>
@@ -167,7 +167,7 @@ function VideoDemo() {
 
 function QuickFacts({ product }) {
   return (
-    <div className='bg-white rounded-3xl shadow-md p-8 mb-8'>
+    <div className='bg-white rounded-3xl shadow-md mb-8'>
       <h3 className='text-xl font-semibold mb-4'>Quick facts</h3>
       <ul className='space-y-3 text-gray-700'>
         <li><strong>Price:</strong> ${product.price}</li>
@@ -181,7 +181,7 @@ function QuickFacts({ product }) {
 
 function ContactCard({ product }) {
   return (
-    <div className='bg-orange-500 text-white rounded-3xl p-8 shadow-lg'>
+    <div className='bg-orange-500 text-white rounded-3xl shadow-lg'>
       <h3 className='text-xl font-semibold mb-3'>Need tailored glove programs?</h3>
       <p className='text-orange-50 mb-6 text-sm'>
         We support hospitals with monthly replenishment schedules, bulk pricing, and compliance documentation.

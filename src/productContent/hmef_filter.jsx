@@ -101,7 +101,7 @@ function HMEFFilterPage({ product }) {
               </div>
             </div>
 
-            <div className='mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg'>
+            <div className='mt-8 bg-blue-50 border border-blue-200 rounded-lg'>
               <h3 className='text-xl font-bold text-gray-900 mb-2'>Package</h3>
               <p className='text-gray-700'>1pcs/pouch, 100pcs/Carton</p>
             </div>

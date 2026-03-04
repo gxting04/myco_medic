@@ -18,7 +18,7 @@ function EasydropFlowRegulatorPage({ product }) {
       {/* Hero Section */}
       <section className='pt-32 pb-16 px-6'>
         <div className='max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
-          <div className='relative rounded-3xl overflow-hidden shadow-lg aspect-square lg:aspect-auto lg:h-[500px] bg-white p-8 flex items-center justify-center'>
+          <div className='relative rounded-3xl overflow-hidden shadow-lg aspect-square lg:aspect-auto lg:h-[500px] bg-white flex items-center justify-center'>
              <img
               src={product.image}
               alt={product.name}
@@ -62,7 +62,7 @@ function EasydropFlowRegulatorPage({ product }) {
 
       {/* Product Details Section */}
       <section className='py-16 px-6 max-w-7xl mx-auto'>
-        <div className='bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100'>
+        <div className='bg-white rounded-3xl md:p-12 shadow-sm border border-gray-100'>
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-16'>
             
             {/* Applications */}
@@ -99,7 +99,7 @@ function EasydropFlowRegulatorPage({ product }) {
             {/* Specifications */}
             <div>
               <h2 className='text-2xl font-bold text-gray-900 mb-6'>Specifications</h2>
-              <div className='bg-gray-50 rounded-2xl p-6 space-y-4 text-sm text-gray-700'>
+              <div className='bg-gray-50 rounded-2xl space-y-4 text-sm text-gray-700'>
                 <div className='grid grid-cols-2 border-b border-gray-200 pb-3'>
                   <span className='font-semibold'>Biosafety</span>
                   <span>Materials comply with USP class VI-121°C test and ISO 10993</span>

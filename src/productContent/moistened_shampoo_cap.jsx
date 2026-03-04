@@ -18,7 +18,7 @@ function MoistenedShampooCapPage({ product }) {
       {/* Hero Section */}
       <section className='pt-32 pb-16 px-6'>
         <div className='max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
-          <div className='relative rounded-3xl overflow-hidden shadow-lg aspect-square lg:aspect-auto lg:h-[500px] bg-white p-8 flex items-center justify-center'>
+          <div className='relative rounded-3xl overflow-hidden shadow-lg aspect-square lg:aspect-auto lg:h-[500px] bg-white flex items-center justify-center'>
              <img
               src={product.image}
               alt={product.name}
@@ -62,7 +62,7 @@ function MoistenedShampooCapPage({ product }) {
 
       {/* Features & Ingredients */}
       <section className='py-16 px-6 max-w-7xl mx-auto'>
-        <div className='bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100'>
+        <div className='bg-white rounded-3xl md:p-12 shadow-sm border border-gray-100'>
           <h2 className='text-3xl font-bold text-gray-900 mb-10'>Product Details</h2>
           
           <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>
@@ -96,7 +96,7 @@ function MoistenedShampooCapPage({ product }) {
               <div className='space-y-4 text-gray-600 text-sm'>
                 <p><strong>Ingredients List:</strong> Water, TEA Lauryl Sulphate, Phenopip, Diazolidinyl Urea, Cocoamide DEA, Propylene Glycol, Fragrance, Citric Acid.</p>
                 
-                <div className='bg-gray-50 rounded-xl p-4 space-y-2'>
+                <div className='bg-gray-50 rounded-xl space-y-2'>
                   <p className='font-medium text-gray-900 mb-2'>Key Ingredient Roles:</p>
                   <div className='grid grid-cols-[1fr,2fr] gap-2'>
                     <span className='font-medium'>TEA Lauryl Sulphate</span>

@@ -78,7 +78,7 @@ function OphthalmicHeadPadsPage({ product }) {
               </div>
             </div>
 
-            <div className='mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg text-gray-800'>
+            <div className='mt-8 bg-blue-50 border border-blue-200 rounded-lg text-gray-800'>
               <h3 className='text-xl font-bold mb-2 text-black'>Models</h3>
               <p className='mb-2'>
                 1105-1 and 1105-2 share the same shape in different sizes, while 1105-3 and 1105-4 offer

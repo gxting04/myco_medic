@@ -81,7 +81,7 @@ function FlatSupineHeadPadsPage({ product }) {
               </div>
             </div>
 
-            <div className='mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg text-gray-800'>
+            <div className='mt-8 bg-blue-50 border border-blue-200 rounded-lg text-gray-800'>
               <h3 className='text-xl font-bold mb-2 text-black'>Models</h3>
               <p className='mb-1'>1106 – Standard flat supine head pad.</p>
               <p>1106-3 – Variant suitable for lumbar support when combined with accessory stand.</p>

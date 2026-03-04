@@ -20,7 +20,7 @@ function IOBForcedAirWarmingSystemPage({ product }) {
       {/* Hero Section */}
       <section className='pt-32 pb-16 px-6'>
         <div className='max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
-          <div className='relative rounded-3xl overflow-hidden shadow-lg aspect-square lg:aspect-auto lg:h-[500px] bg-white p-8 flex items-center justify-center'>
+          <div className='relative rounded-3xl overflow-hidden shadow-lg aspect-square lg:aspect-auto lg:h-[500px] bg-white flex items-center justify-center'>
              <img
               src={product.image}
               alt={product.name}
@@ -64,7 +64,7 @@ function IOBForcedAirWarmingSystemPage({ product }) {
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
           
           {/* IOB Warming Unit */}
-          <div className='bg-white rounded-3xl p-8 shadow-sm border border-gray-100'>
+          <div className='bg-white rounded-3xl shadow-sm border border-gray-100'>
             <h2 className='text-2xl font-bold text-gray-900 mb-6'>IOB Warming Unit</h2>
             
             <div className='space-y-6 text-gray-600'>
@@ -106,7 +106,7 @@ function IOBForcedAirWarmingSystemPage({ product }) {
           </div>
 
           {/* IOB Warming Blankets */}
-          <div className='bg-white rounded-3xl p-8 shadow-sm border border-gray-100'>
+          <div className='bg-white rounded-3xl shadow-sm border border-gray-100'>
             <h2 className='text-2xl font-bold text-gray-900 mb-6'>IOB Warming Blankets</h2>
             <p className='text-gray-600 mb-6'>
               Designed for maximum effectiveness and patient comfort during procedures.

@@ -90,7 +90,7 @@ function MemoryFractureTablePostPadsPage({ product }) {
             </div>
 
             {/* Model & size info */}
-            <div className='bg-gray-50 rounded-xl p-6 space-y-3'>
+            <div className='bg-gray-50 rounded-xl space-y-3'>
               <h3 className='text-xl font-semibold text-black'>Model &amp; size</h3>
               <div className='flex justify-between'>
                 <span className='font-medium text-gray-700'>Model</span>

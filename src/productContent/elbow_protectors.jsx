@@ -72,7 +72,7 @@ function ElbowProtectorsPage({ product }) {
               </div>
             </div>
 
-            <div className='mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg text-gray-800'>
+            <div className='mt-8 bg-blue-50 border border-blue-200 rounded-lg text-gray-800'>
               <h3 className='text-xl font-bold mb-2 text-black'>Size</h3>
               <p>40 cm × 15 cm × 1.5 cm</p>
             </div>

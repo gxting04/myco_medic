@@ -78,7 +78,7 @@ function ThyroidGlandPositioningPadsPage({ product }) {
               </div>
             </div>
 
-            <div className='mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg text-gray-800'>
+            <div className='mt-8 bg-blue-50 border border-blue-200 rounded-lg text-gray-800'>
               <h3 className='text-xl font-bold mb-2 text-black'>Usage note</h3>
               <p>
                 It is suggested that model 1101-1 (from the prostrate head pads series) be used together with

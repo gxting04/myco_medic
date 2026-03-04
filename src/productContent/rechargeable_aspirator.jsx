@@ -109,7 +109,7 @@ function RechargeableAspiratorPage({ product }) {
       <section className='max-w-6xl mx-auto px-6 py-8 bg-gray-50'>
         <h2 className='text-3xl font-bold mb-6 text-black'>Standard Accessories</h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
-          <div className='bg-white p-6 rounded-lg shadow-sm'>
+          <div className='bg-white rounded-lg shadow-sm'>
             <div className='flex items-center gap-3'>
               <svg className='w-8 h-8 text-primary' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4' />
@@ -118,7 +118,7 @@ function RechargeableAspiratorPage({ product }) {
             </div>
           </div>
 
-          <div className='bg-white p-6 rounded-lg shadow-sm'>
+          <div className='bg-white rounded-lg shadow-sm'>
             <div className='flex items-center gap-3'>
               <svg className='w-8 h-8 text-primary' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M13 10V3L4 14h7v7l9-11h-7z' />
@@ -127,7 +127,7 @@ function RechargeableAspiratorPage({ product }) {
             </div>
           </div>
 
-          <div className='bg-white p-6 rounded-lg shadow-sm'>
+          <div className='bg-white rounded-lg shadow-sm'>
             <div className='flex items-center gap-3'>
               <svg className='w-8 h-8 text-primary' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M13 10V3L4 14h7v7l9-11h-7z' />
@@ -136,7 +136,7 @@ function RechargeableAspiratorPage({ product }) {
             </div>
           </div>
 
-          <div className='bg-white p-6 rounded-lg shadow-sm'>
+          <div className='bg-white rounded-lg shadow-sm'>
             <div className='flex items-center gap-3'>
               <svg className='w-8 h-8 text-primary' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z' />

@@ -106,7 +106,7 @@ function ORTablePadsPage({ product }) {
           </div>
         </div>
 
-        <div className='mt-4 p-6 bg-blue-50 border border-blue-200 rounded-lg text-gray-800'>
+        <div className='mt-4 bg-blue-50 border border-blue-200 rounded-lg text-gray-800'>
           <h3 className='text-xl font-bold mb-2 text-black'>Models &amp; sizing</h3>
           <p>
             The 5101 series includes models with and without cutouts, as well as full-size and ICU bed pad

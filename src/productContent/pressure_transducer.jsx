@@ -20,7 +20,7 @@ function PressureTransducerPage({ product }) {
       {/* Hero Section */}
       <section className='pt-32 pb-16 px-6'>
         <div className='max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
-          <div className='relative rounded-3xl overflow-hidden shadow-lg aspect-square lg:aspect-auto lg:h-[500px] bg-white p-8 flex items-center justify-center'>
+          <div className='relative rounded-3xl overflow-hidden shadow-lg aspect-square lg:aspect-auto lg:h-[500px] bg-white flex items-center justify-center'>
              <img
               src={product.image}
               alt={product.name}
@@ -64,7 +64,7 @@ function PressureTransducerPage({ product }) {
 
       {/* Product Details Section */}
       <section className='py-16 px-6 max-w-7xl mx-auto'>
-        <div className='bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100'>
+        <div className='bg-white rounded-3xl md:p-12 shadow-sm border border-gray-100'>
           <h2 className='text-3xl font-bold text-gray-900 mb-10'>Product Features & Benefits</h2>
           
           <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>

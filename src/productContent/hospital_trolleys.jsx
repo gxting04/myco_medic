@@ -15,7 +15,7 @@ function HospitalTrolleysPage({ product }) {
 
       <section className='pt-32 pb-16 px-6'>
         <div className='max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
-          <div className='relative rounded-3xl overflow-hidden shadow-lg aspect-square lg:aspect-auto lg:h-[520px] bg-white p-8 flex items-center justify-center'>
+          <div className='relative rounded-3xl overflow-hidden shadow-lg aspect-square lg:aspect-auto lg:h-[520px] bg-white flex items-center justify-center'>
             <img
               src={product.image}
               alt={product.name}
@@ -58,7 +58,7 @@ function HospitalTrolleysPage({ product }) {
       </section>
 
       <section className='py-16 px-6 max-w-7xl mx-auto'>
-        <div className='bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100'>
+        <div className='bg-white rounded-3xl md:p-12 shadow-sm border border-gray-100'>
           <h2 className='text-3xl font-bold text-gray-900 mb-10'>Highlights</h2>
           <ul className='space-y-3 text-gray-600 leading-relaxed'>
             <li className='flex gap-3'><span className='text-primary font-bold'>•</span><span>Medical instrument and lab dressing tables (T2001/T2002/T2003/T300x/T320x).</span></li>
