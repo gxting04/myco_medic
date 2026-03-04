@@ -160,13 +160,6 @@ const productContentRegistry = {
   'disposable-cpr-resuscitation-system': DisposableCPRResuscitationSystemPage,
   'reusable-cpr-resuscitation-system': ReusableCPRResuscitationSystemPage,
   // 'infant-t-piece-resuscitator': InfantTPieceResuscitatorPage,
-  // All products now use ProductDetailDefault for consistent structure
-  // Custom pages are kept for reference but not registered
-  // Uncomment specific entries below if you need custom pages for specific products
-  
-  // 'disposable-cpap-system': DisposableCPAPPage,
-  // 'surgical-mask': SurgicalMaskPage,
-  // 'infant-t-piece-resuscitator': InfantTPieceResuscitatorPage,
   // 'disposable-manometer': DisposableManometerPage,
   // 'laryngoscopes': LaryngoscopesPage,
   // 'ue-scope-video-laryngoscope-vl300': UEScopeVideoLaryngoscopePage,
