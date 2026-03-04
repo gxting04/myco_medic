@@ -178,6 +178,15 @@ import SuctionSwabPage from './suction_swab'
 import OralSwabSensoryBrushPage from './oral_swab_sensory_brush'
 import SensoryBrush20Page from './sensory_brush_2_0'
 import SensoryBrushPage from './sensory_brush'
+import MedicalProtectiveFaceShieldPage from './medical_protective_face_shield'
+import InfraredThermometerPage from './infrared_thermometer'
+import NonSterileCoverallPage from './non_sterile_coverall'
+import SterileCoverallPage from './sterile_coverall'
+import MedicalProtectiveHoodCoverPage from './medical_protective_hood_cover'
+import BootsCoverPage from './boots_cover'
+import IsolationGownPage from './isolation_gown'
+import CPEApronGownPage from './cpe_apron_gown'
+import DisposablePlasticApronPage from './disposable_plastic_apron'
 import HypafixAdhesiveNonWovenFabricReadyStockPage from './hypafix_adhesive_non_woven_fabric_ready_stock'
 import AdultPediatricTracheostomyTubeHolderNeckStrapPage from './adult_pediatric_tracheostomy_tube_holder_neck_strap'
 import SeluarSunatKhatanCircumcisionUnderwearPage from './seluar_sunat_khatan_circumcision_underwear'
@@ -255,16 +264,15 @@ const productContentRegistry = {
   // 'hospital-curve-curtain-tracking-system': HospitalCurveCurtainTrackingSystemPage,
   // 'janitor-room-cssd-furniture': JanitorRoomCSSDFurniturePage,
   // '3ply-surgical-face-mask': ThreePlySurgicalFaceMaskPage,
-  // 'medical-protective-face-shield': MedicalProtectiveFaceShieldPage,
-  // 'infrared-thermometer': InfraredThermometerPage,
-  // 'non-sterile-coverall': NonSterileCoverallPage,
-  // 'sterile-coverall': SterileCoverallPage,
-  // 'medical-protective-hood-cover': MedicalProtectiveHoodCoverPage,
-  // 'circumcision-underwear': CircumcisionUnderwearPage,
-  // 'boots-cover': BootsCoverPage,
-  // 'isolation-gown': IsolationGownPage,
-  // 'cpe-apron-gown': CPEApronGownPage,
-  // 'disposable-plastic-apron': DisposablePlasticApronPage,
+  'medical-protective-face-shield': MedicalProtectiveFaceShieldPage,
+  'infrared-thermometer': InfraredThermometerPage,
+  'non-sterile-coverall': NonSterileCoverallPage,
+  'sterile-coverall': SterileCoverallPage,
+  'medical-protective-hood-cover': MedicalProtectiveHoodCoverPage,
+  'boots-cover': BootsCoverPage,
+  'isolation-gown': IsolationGownPage,
+  'cpe-apron-gown': CPEApronGownPage,
+  'disposable-plastic-apron': DisposablePlasticApronPage,
   // 'prostrate-head-pads': ProstrateHeadPadsPage,
   // 'donut-head-pads': DonutHeadPadsPage,
   // 'horseshoe-head-pads': HorseshoeHeadPadsPage,
