@@ -11,49 +11,71 @@ function Partners() {
     { name: 'Tappa', logo: '/tappa.png', website: 'https://www.tappamed.com/en/index.aspx' },
     { name: 'IOB Medical', logo: '/iob.png', website: 'https://www.iobmedical.com/' },
     { name: 'OKLand Medical', logo: '/okland.png', website: 'https://en.okltj.com/' },
-    { name: 'Sklar', logo: '/sklar.png', website: 'https://www.sklarcorp.com/' },
     { name: 'UE Scope', logo: '/uescope.png', website: 'https://uescope.com/' },
     { name: 'Vitaltec', logo: '/vital.png', website: 'https://www.vitaltec-corp.com/en' },
     { name: 'WTK', logo: '/wtk.png', website: 'https://www.wtktechnologies.com.my/index.html' }
   ]
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true)
-      },
-      { threshold: 0.1 }
-    )
-    if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => observer.disconnect()
-  }, [])
+  // Duplicate partners array for seamless infinite loop
+  const duplicatedPartners = [...partners, ...partners]
 
   return (
-    <section ref={sectionRef} className='py-24 bg-white border-t border-gray-100'>
+    <section ref={sectionRef} className='py-24 bg-white border-t border-gray-100 overflow-hidden'>
       <div className='max-w-7xl mx-auto px-6'>
         <p className='text-center text-sm font-semibold text-gray-500 uppercase tracking-wider mb-12'>
           Trusted by Industry Leaders
         </p>
 
-        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-8 md:gap-12 items-center justify-items-center'>
-          {partners.map((partner, index) => (
-            <a
-              key={index}
-              href={partner.website}
-              target='_blank'
-              rel='noopener noreferrer'
-              className={`group transition-all duration-700 flex items-center justify-center w-full ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-              style={{ transitionDelay: `${index * 50}ms` }}
-            >
-              <img
-                src={partner.logo}
-                alt={partner.name}
-                className='h-20 md:h-24 lg:h-28 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300'
-              />
-            </a>
-          ))}
+        <div className='relative overflow-hidden'>
+          {/* Gradient overlays for fade effect on edges */}
+          <div className='absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white via-white to-transparent z-10 pointer-events-none' />
+          <div className='absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white via-white to-transparent z-10 pointer-events-none' />
+          
+          {/* Sliding marquee container */}
+          <div className='marquee-container'>
+            {/* First set of logos */}
+            <div className='marquee-track'>
+              {duplicatedPartners.map((partner, index) => (
+                <a
+                  key={`track1-${partner.name}-${index}`}
+                  href={partner.website}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='group flex items-center justify-center flex-shrink-0 px-8 md:px-12 lg:px-16 logo-item'
+                  style={{
+                    animationDelay: `${(index % partners.length) * 0.3}s`
+                  }}
+                >
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className='h-20 md:h-24 lg:h-28 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300'
+                  />
+                </a>
+              ))}
+            </div>
+            {/* Duplicate set for seamless loop */}
+            <div className='marquee-track' aria-hidden='true'>
+              {duplicatedPartners.map((partner, index) => (
+                <a
+                  key={`track2-${partner.name}-${index}`}
+                  href={partner.website}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='group flex items-center justify-center flex-shrink-0 px-8 md:px-12 lg:px-16 logo-item'
+                  style={{
+                    animationDelay: `${(index % partners.length) * 0.3}s`
+                  }}
+                >
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className='h-20 md:h-24 lg:h-28 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300'
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

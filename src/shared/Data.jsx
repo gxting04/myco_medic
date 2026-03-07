@@ -340,38 +340,6 @@
       image: '/cpap.png',
       pageId: 'disposable-cpap-system'
     },
-    { 
-      id: 3, 
-      name: 'Surgical Mask (50 pcs)', 
-      category: 'Protective Wear', 
-      price: 9.99, 
-      salePrice: 7.99,
-      image: '/surgical_mask.png',
-      images: [
-        'https://images.unsplash.com/photo-1584466977773-352b5c8c9b17?q=80&w=800',
-        'https://images.unsplash.com/photo-1588774069241-bf1ce6f08c08?q=80&w=800'
-      ],
-      variants: {
-        colors: [
-          { name: 'Blue', value: 'blue', hex: '#0066CC' },
-          { name: 'White', value: 'white', hex: '#FFFFFF' }
-        ],
-        sizes: [
-          { name: 'Standard', value: 'standard' },
-          { name: 'Large', value: 'large' }
-        ]
-      },
-      stock: 8,
-      description: '3-ply surgical face masks designed for medical professionals. These masks provide excellent filtration and breathability. Features include: 3-layer protection, adjustable nose bridge, and comfortable ear loops. Suitable for clinical and surgical environments.',
-      specifications: {
-        'Layers': '3-ply',
-        'Filtration': 'BFE ≥ 95%',
-        'Material': 'Non-woven fabric',
-        'Certification': 'CE, FDA approved'
-      },
-      articleCode: 'SM-50-BL',
-      pageId: 'surgical-mask'
-    },
     
     
     { 
