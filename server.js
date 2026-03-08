@@ -6,8 +6,12 @@ import nodemailer from 'nodemailer';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
+import dns from 'dns';
 
 dotenv.config();
+
+// Configure DNS to use Google DNS as fallback
+dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1']);
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -137,12 +141,24 @@ const upload = multer({
 // Configure nodemailer with multiple options for reliability
 let transporter;
 
+// Allow custom SMTP host via environment variable (useful for production)
+const SMTP_HOST = process.env.SMTP_HOST || 'smtp.gmail.com';
+const SMTP_PORT = process.env.SMTP_PORT || 587;
+const SMTP_SECURE = process.env.SMTP_SECURE === 'true' || false;
+
+console.log('Configuring email transporter:', {
+  host: SMTP_HOST,
+  port: SMTP_PORT,
+  secure: SMTP_SECURE,
+  hasAuth: !!(process.env.EMAIL_USER && process.env.EMAIL_PASSWORD)
+});
+
 // Try to create transporter with explicit DNS resolution
 try {
   transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false, // true for 465, false for other ports
+    host: SMTP_HOST,
+    port: parseInt(SMTP_PORT),
+    secure: SMTP_SECURE, // true for 465, false for other ports
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASSWORD,
@@ -151,25 +167,67 @@ try {
       rejectUnauthorized: false // Allow self-signed certificates (for local testing)
     },
     // Add connection timeout
-    connectionTimeout: 10000, // 10 seconds
-    greetingTimeout: 10000,
-    socketTimeout: 10000,
+    connectionTimeout: 15000, // 15 seconds
+    greetingTimeout: 15000,
+    socketTimeout: 15000,
     // Use IPv4 explicitly
-    family: 4
+    family: 4,
+    // Add DNS lookup options
+    dns: {
+      servers: ['8.8.8.8', '8.8.4.4'] // Use Google DNS as fallback
+    }
   });
   
-  console.log('Nodemailer transporter configured');
+  console.log('Nodemailer transporter configured successfully');
 } catch (error) {
   console.error('Error configuring nodemailer:', error);
-  // Fallback: try with service name
-  transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASSWORD,
-    },
-  });
+  // Fallback: try with service name (uses built-in DNS)
+  try {
+    transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+    console.log('Fallback transporter (service: gmail) configured');
+  } catch (fallbackError) {
+    console.error('Fallback transporter also failed:', fallbackError);
+    throw fallbackError;
+  }
 }
+
+// Test DNS resolution endpoint (for debugging)
+app.get('/api/test-dns', async (req, res) => {
+  try {
+    const testHost = 'smtp.gmail.com';
+    console.log('Testing DNS resolution for:', testHost);
+    
+    dns.lookup(testHost, { family: 4 }, (err, address) => {
+      if (err) {
+        console.error('DNS lookup failed:', err);
+        return res.status(500).json({
+          error: 'DNS resolution failed',
+          message: err.message,
+          code: err.code,
+          hostname: testHost,
+          suggestion: 'Check server DNS configuration or network connectivity'
+        });
+      }
+      
+      console.log('DNS resolution successful:', address);
+      res.json({
+        success: true,
+        hostname: testHost,
+        ip: address,
+        message: 'DNS resolution working correctly'
+      });
+    });
+  } catch (error) {
+    console.error('DNS test error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // Career Application Form Submission
 app.post('/api/career-application', upload.single('resume'), async (req, res) => {
@@ -298,6 +356,14 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
       errorMessage = 'Email authentication failed. Please contact the administrator.';
     } else if (error.code === 'ECONNECTION' || error.code === 'ETIMEDOUT') {
       errorMessage = 'Unable to connect to email service. Please try again later.';
+    } else if (error.code === 'ENOTFOUND' || error.message.includes('getaddrinfo')) {
+      errorMessage = 'DNS resolution failed. The server cannot resolve the SMTP hostname. Please check server DNS configuration or contact the administrator.';
+      console.error('DNS Resolution Error Details:', {
+        code: error.code,
+        message: error.message,
+        hostname: SMTP_HOST,
+        suggestion: 'Check if the server has internet access and DNS is configured correctly'
+      });
     } else if (error.message) {
       errorMessage = `Error: ${error.message}`;
     }
