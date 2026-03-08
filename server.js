@@ -138,62 +138,66 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit
 });
 
-// Configure nodemailer with multiple options for reliability
-let transporter;
+// Configure nodemailer - create transporter lazily (only when needed)
+// This prevents DNS errors at server startup
+let transporter = null;
 
-// Allow custom SMTP host via environment variable (useful for production)
-const SMTP_HOST = process.env.SMTP_HOST || 'smtp.gmail.com';
-const SMTP_PORT = process.env.SMTP_PORT || 587;
-const SMTP_SECURE = process.env.SMTP_SECURE === 'true' || false;
-
-console.log('Configuring email transporter:', {
-  host: SMTP_HOST,
-  port: SMTP_PORT,
-  secure: SMTP_SECURE,
-  hasAuth: !!(process.env.EMAIL_USER && process.env.EMAIL_PASSWORD)
-});
-
-// Try to create transporter with explicit DNS resolution
-try {
-  transporter = nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: parseInt(SMTP_PORT),
-    secure: SMTP_SECURE, // true for 465, false for other ports
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASSWORD,
-    },
-    tls: {
-      rejectUnauthorized: false // Allow self-signed certificates (for local testing)
-    },
-    // Add connection timeout
-    connectionTimeout: 15000, // 15 seconds
-    greetingTimeout: 15000,
-    socketTimeout: 15000,
-    // Use IPv4 explicitly
-    family: 4,
-    // Add DNS lookup options
-    dns: {
-      servers: ['8.8.8.8', '8.8.4.4'] // Use Google DNS as fallback
-    }
-  });
+// Function to create transporter only when needed (lazy initialization)
+function getTransporter() {
+  if (transporter) {
+    return transporter;
+  }
   
-  console.log('Nodemailer transporter configured successfully');
-} catch (error) {
-  console.error('Error configuring nodemailer:', error);
-  // Fallback: try with service name (uses built-in DNS)
+  // Only create transporter if Resend API is not available
+  if (process.env.RESEND_API_KEY) {
+    console.log('Resend API configured - SMTP transporter not needed');
+    return null;
+  }
+  
+  // Allow custom SMTP host via environment variable (useful for production)
+  const SMTP_HOST = process.env.SMTP_HOST || 'smtp.gmail.com';
+  const SMTP_PORT = process.env.SMTP_PORT || 587;
+  const SMTP_SECURE = process.env.SMTP_SECURE === 'true' || false;
+
+  console.log('Creating SMTP transporter:', {
+    host: SMTP_HOST,
+    port: SMTP_PORT,
+    secure: SMTP_SECURE,
+    hasAuth: !!(process.env.EMAIL_USER && process.env.EMAIL_PASSWORD)
+  });
+
+  // Try to create transporter with explicit DNS resolution
   try {
     transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: SMTP_HOST,
+      port: parseInt(SMTP_PORT),
+      secure: SMTP_SECURE, // true for 465, false for other ports
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD,
       },
+      tls: {
+        rejectUnauthorized: false // Allow self-signed certificates (for local testing)
+      },
+      // Add connection timeout
+      connectionTimeout: 15000, // 15 seconds
+      greetingTimeout: 15000,
+      socketTimeout: 15000,
+      // Use IPv4 explicitly
+      family: 4,
+      // Add DNS lookup options
+      dns: {
+        servers: ['8.8.8.8', '8.8.4.4'] // Use Google DNS as fallback
+      }
     });
-    console.log('Fallback transporter (service: gmail) configured');
-  } catch (fallbackError) {
-    console.error('Fallback transporter also failed:', fallbackError);
-    throw fallbackError;
+    
+    console.log('Nodemailer transporter configured successfully');
+    return transporter;
+  } catch (error) {
+    console.error('Error configuring nodemailer:', error.message);
+    // Don't throw - just return null, Resend API will be used instead
+    console.error('SMTP transporter creation failed - will use Resend API if available');
+    return null;
   }
 }
 
@@ -234,6 +238,13 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
   // Initialize emailSent and lastError at the start
   let emailSent = false;
   let lastError = null;
+  
+  // Log email configuration at start
+  console.log('Email configuration check:', {
+    hasResendKey: !!process.env.RESEND_API_KEY,
+    hasEmailUser: !!process.env.EMAIL_USER,
+    hasEmailPassword: !!process.env.EMAIL_PASSWORD
+  });
   
   // Wrap everything in try-catch to ensure DNS errors don't fail the request
   try {
@@ -277,43 +288,67 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
 
     // Option 1: Try Resend API (HTTP-based, no DNS needed for SMTP)
     if (process.env.RESEND_API_KEY) {
+      console.log('Resend API key found - using Resend API for email sending');
       try {
         console.log('Attempting to send email via Resend API...');
+        
+        // Resend requires verified domain - use your email domain or Resend's default
+        // For production, verify your domain in Resend dashboard
+        const fromEmail = process.env.RESEND_FROM_EMAIL || process.env.EMAIL_USER || 'onboarding@resend.dev';
+        
+        const emailPayload = {
+          from: fromEmail,
+          to: 'guangxun04@gmail.com',
+          subject: emailSubject,
+          html: emailHtml
+        };
+        
+        // Add attachments if resume file exists
+        if (resumeFile && fs.existsSync(resumeFile.path)) {
+          const fileContent = fs.readFileSync(resumeFile.path);
+          emailPayload.attachments = [{
+            filename: resumeFile.originalname || 'resume.pdf',
+            content: fileContent.toString('base64')
+          }];
+        }
+        
         const resendResponse = await fetch('https://api.resend.com/emails', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            from: process.env.EMAIL_USER || 'onboarding@resend.dev',
-            to: 'guangxun04@gmail.com',
-            subject: emailSubject,
-            html: emailHtml,
-            attachments: resumeFile ? [{
-              filename: resumeFile.originalname || 'resume.pdf',
-              content: fs.readFileSync(resumeFile.path).toString('base64'),
-            }] : []
-          })
+          body: JSON.stringify(emailPayload)
         });
 
+        const responseData = await resendResponse.json();
+
         if (resendResponse.ok) {
-          const result = await resendResponse.json();
-          console.log('Email sent successfully via Resend API:', result);
+          console.log('Email sent successfully via Resend API:', responseData);
           emailSent = true;
         } else {
-          const error = await resendResponse.json();
-          throw new Error(`Resend API error: ${error.message || resendResponse.statusText}`);
+          console.error('Resend API error response:', responseData);
+          throw new Error(`Resend API error: ${responseData.message || resendResponse.statusText}`);
         }
       } catch (resendError) {
-        console.error('Resend API failed:', resendError);
+        console.error('Resend API failed:', resendError.message || resendError);
         lastError = resendError;
         // Fall through to SMTP
       }
     }
 
     // Option 2: Fallback to SMTP (nodemailer) - but catch DNS errors gracefully
-    if (!emailSent && transporter) {
+    // IMPORTANT: Only try SMTP if Resend API key is NOT configured
+    // If Resend API key exists, never try SMTP (it will fail with DNS)
+    if (!emailSent && !process.env.RESEND_API_KEY) {
+      console.log('Resend API not configured - attempting SMTP fallback...');
+      transporter = getTransporter(); // Lazy initialization - only if Resend not available
+    } else if (!emailSent && process.env.RESEND_API_KEY) {
+      console.log('Resend API was configured but failed - skipping SMTP (DNS will fail)');
+      lastError = lastError || new Error('Resend API failed and SMTP unavailable due to DNS issues');
+    }
+    
+    if (!emailSent && transporter && !process.env.RESEND_API_KEY) {
       console.log('Falling back to SMTP...');
       const mailOptions = {
         from: process.env.EMAIL_USER,
@@ -374,9 +409,15 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
           lastError = smtpWrapperError;
         }
       }
-    } else if (!emailSent && !transporter) {
-      console.error('SMTP transporter not available - email cannot be sent');
-      lastError = new Error('Email service not configured');
+    } else if (!emailSent) {
+      // Email failed - log but don't fail the request
+      if (process.env.RESEND_API_KEY) {
+        console.error('Resend API was configured but failed, and SMTP fallback also unavailable');
+      } else {
+        console.error('SMTP transporter not available - email cannot be sent');
+        console.error('Resend API was not configured and SMTP transporter could not be created');
+      }
+      lastError = lastError || new Error('Email service not available');
     }
     
     // If email still failed, log it but don't fail the request (save application anyway)
