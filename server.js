@@ -231,6 +231,11 @@ app.get('/api/test-dns', async (req, res) => {
 
 // Career Application Form Submission
 app.post('/api/career-application', upload.single('resume'), async (req, res) => {
+  // Initialize emailSent and lastError at the start
+  let emailSent = false;
+  let lastError = null;
+  
+  // Wrap everything in try-catch to ensure DNS errors don't fail the request
   try {
     const { name, email, phone, position, employmentType, coverLetter } = req.body;
     const resumeFile = req.file;
@@ -268,8 +273,7 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
     `;
 
     // Try using HTTP-based email API first (Resend) if configured, otherwise fallback to SMTP
-    let emailSent = false;
-    let lastError = null;
+    // Note: emailSent and lastError are already initialized at the top of the function
 
     // Option 1: Try Resend API (HTTP-based, no DNS needed for SMTP)
     if (process.env.RESEND_API_KEY) {
@@ -308,8 +312,8 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
       }
     }
 
-    // Option 2: Fallback to SMTP (nodemailer)
-    if (!emailSent) {
+    // Option 2: Fallback to SMTP (nodemailer) - but catch DNS errors gracefully
+    if (!emailSent && transporter) {
       console.log('Falling back to SMTP...');
       const mailOptions = {
         from: process.env.EMAIL_USER,
@@ -322,50 +326,57 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
         }] : []
       };
 
-    console.log('Sending email...');
+      console.log('Sending email via SMTP...');
       console.log('Email config:', {
         from: process.env.EMAIL_USER,
         to: 'guangxun04@gmail.com',
         hasAuth: !!(process.env.EMAIL_USER && process.env.EMAIL_PASSWORD)
       });
       
-      // Try to send email with retry logic
-      for (let attempt = 1; attempt <= 3; attempt++) {
+      // Wrap SMTP attempts in try-catch to prevent DNS errors from propagating
+      try {
+        // Try sending without verification first (verification often fails with DNS issues)
         try {
-          console.log(`SMTP email send attempt ${attempt}/3...`);
-          
-          // Verify transporter connection first (only on first attempt)
-          if (attempt === 1) {
-            try {
-              await transporter.verify();
-              console.log('SMTP server is ready to send emails');
-            } catch (verifyError) {
-              console.error('SMTP verification failed:', verifyError);
-              // Continue anyway - verification might fail but sending could work
-            }
-          }
-          
           await transporter.sendMail(mailOptions);
           console.log('Email sent successfully via SMTP');
           emailSent = true;
-          break;
-        } catch (emailError) {
-          lastError = emailError;
-          console.error(`SMTP email send attempt ${attempt} failed:`, emailError.message);
-          
-          // If it's a DNS error, wait and retry
-          if (emailError.code === 'ENOTFOUND' || emailError.message.includes('getaddrinfo')) {
-            if (attempt < 3) {
-              console.log(`Waiting 2 seconds before retry...`);
-              await new Promise(resolve => setTimeout(resolve, 2000));
-              continue;
-            }
+        } catch (sendError) {
+          // Check if it's a DNS error
+          if (sendError.code === 'ENOTFOUND' || sendError.message.includes('getaddrinfo')) {
+            console.error('DNS resolution failed for SMTP - email cannot be sent:', sendError.message);
+            lastError = sendError;
+            // Don't throw - just mark as failed
           } else {
-            // For other errors, don't retry
-            throw emailError;
+            // For non-DNS errors, try verification and retry
+            console.error('SMTP send failed (non-DNS):', sendError.message);
+            lastError = sendError;
+            
+            // Try with verification
+            try {
+              await transporter.verify();
+              // Retry sending
+              await transporter.sendMail(mailOptions);
+              console.log('Email sent successfully via SMTP (after retry)');
+              emailSent = true;
+            } catch (retryError) {
+              console.error('SMTP retry also failed:', retryError.message);
+              lastError = retryError;
+            }
           }
         }
+      } catch (smtpWrapperError) {
+        // Catch any unexpected errors
+        console.error('Unexpected SMTP error:', smtpWrapperError.message);
+        if (smtpWrapperError.code === 'ENOTFOUND' || smtpWrapperError.message.includes('getaddrinfo')) {
+          lastError = smtpWrapperError;
+          // Don't throw DNS errors
+        } else {
+          lastError = smtpWrapperError;
+        }
       }
+    } else if (!emailSent && !transporter) {
+      console.error('SMTP transporter not available - email cannot be sent');
+      lastError = new Error('Email service not configured');
     }
     
     // If email still failed, log it but don't fail the request (save application anyway)
@@ -409,17 +420,27 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
     }
 
     // Only return error for validation/input errors, not email failures
-    // Email failures are handled above and don't fail the request
-    if (error.message.includes('required fields') || error.message.includes('valid email')) {
-      return res.status(400).json({ error: error.message });
+    // Email failures (including DNS errors) are handled above and don't fail the request
+    const errorMessage = error.message || '';
+    if (errorMessage.includes('required fields') || errorMessage.includes('valid email')) {
+      return res.status(400).json({ error: errorMessage });
     }
 
-    // For other errors, still accept the application but log the error
+    // For DNS/email errors or any other errors, still accept the application
+    // DNS errors should never fail the request - they're caught above
     console.error('Non-critical error occurred, but application data was received');
+    console.error('Application details:', { 
+      name: req.body?.name, 
+      email: req.body?.email, 
+      phone: req.body?.phone, 
+      position: req.body?.position 
+    });
+    
+    // Always return success - application is saved even if email fails
     res.json({ 
       success: true, 
-      message: 'Application received. There was an issue with email notification, but your application has been saved.',
-      warning: 'Please contact us directly if you do not receive a confirmation'
+      message: 'Application received successfully! There was an issue with email notification, but your application has been saved and we will contact you soon.',
+      warning: 'Email notification temporarily unavailable - your application is still saved'
     });
   }
 });
