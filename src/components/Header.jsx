@@ -53,8 +53,8 @@ function Header() {
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled || mobileMenuOpen
-          ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200/50'
-          : 'bg-transparent backdrop-blur-none'
+          ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-200/50'
+          : 'bg-white'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 md:h-24 flex items-center justify-between">
@@ -156,43 +156,63 @@ function Header() {
         </div>
       )}
 
-      {/* Mobile Menu */}
-      <div
-        className={`fixed inset-0 bg-white z-40 flex flex-col pt-24 px-4 sm:px-6 gap-6 transition-transform duration-300 md:hidden ${
-          mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
-        }`}
-      >
-        {/* Mobile Search */}
-        <form onSubmit={handleSearch} className="mb-4">
-          <div className="flex gap-2">
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search products..."
-              className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary"
-            />
-            <button
-              type="submit"
-              className="px-6 py-3 bg-primary text-white rounded-lg"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Search className="w-5 h-5" />
-            </button>
-          </div>
-        </form>
-
-        {navLinks.map((link) => (
-          <Link
-            key={link.name}
-            to={link.path}
-            className="text-2xl font-medium text-gray-900"
+      {/* Mobile Menu - Slides from left */}
+      {mobileMenuOpen && (
+        <>
+          {/* Backdrop overlay */}
+          <div
+            className="fixed inset-0 bg-black/50 z-40 md:hidden"
             onClick={() => setMobileMenuOpen(false)}
+          />
+          
+          {/* Side menu */}
+          <div
+            className={`fixed top-0 left-0 h-full w-64 bg-white z-50 flex flex-col pt-20 px-6 gap-6 transition-transform duration-300 md:hidden shadow-xl ${
+              mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+            }`}
           >
-            {link.name}
-          </Link>
-        ))}
-      </div>
+            {/* Close button */}
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="absolute top-4 right-4 p-2 text-gray-500 hover:text-black"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Mobile Search */}
+            <form onSubmit={handleSearch} className="mb-4">
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Search products..."
+                  className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary text-sm"
+                />
+                <button
+                  type="submit"
+                  className="px-4 py-3 bg-primary text-white rounded-lg"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Search className="w-5 h-5" />
+                </button>
+              </div>
+            </form>
+
+            {/* Navigation Links */}
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className="text-xl font-medium text-gray-900 hover:text-primary transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+        </>
+      )}
     </header>
   )
 }

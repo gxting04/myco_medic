@@ -63,7 +63,8 @@ function ProductsPage() {
         products = products.filter(p => p.category === selectedCategory.name)
       }
     } else if (selectedGroupId) {
-      products = products.filter(p => p.groupId === selectedGroupId && (!p.category || p.category === null))
+      // Show ALL products in the group (both with and without categories)
+      products = products.filter(p => p.groupId === selectedGroupId)
     }
 
     if (searchTerm.trim()) {
@@ -266,7 +267,16 @@ function ProductsPage() {
                           <button
                             onClick={() => {
                               if (categories.length > 0) {
-                                toggleGroup(group.id)
+                                // If group is already selected and expanded, just toggle expansion
+                                // Otherwise, select the group and expand it
+                                if (selectedGroupId === group.id && isExpanded) {
+                                  toggleGroup(group.id)
+                                } else {
+                                  handleGroupClick(group.id)
+                                  if (!isExpanded) {
+                                    toggleGroup(group.id)
+                                  }
+                                }
                               } else {
                                 handleGroupClick(group.id)
                               }
