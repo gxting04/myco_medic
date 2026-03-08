@@ -526,6 +526,19 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
     setIsSubmitting(true)
     setSubmitMessage('')
 
+    // Validate required fields
+    if (!formData.name || !formData.email || !formData.phone || !formData.position || !formData.employmentType) {
+      setSubmitMessage('Please fill in all required fields.')
+      setIsSubmitting(false)
+      return
+    }
+
+    if (!resumeFile) {
+      setSubmitMessage('Please upload your resume/CV.')
+      setIsSubmitting(false)
+      return
+    }
+
     try {
       const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
       const formDataToSend = new FormData()
@@ -534,7 +547,7 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
       formDataToSend.append('phone', formData.phone)
       formDataToSend.append('position', formData.position)
       formDataToSend.append('employmentType', formData.employmentType)
-      formDataToSend.append('coverLetter', formData.coverLetter)
+      formDataToSend.append('coverLetter', formData.coverLetter || '')
       if (resumeFile) {
         formDataToSend.append('resume', resumeFile)
       }
@@ -544,9 +557,24 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
         body: formDataToSend
       })
 
+      // Check if response is ok before trying to parse JSON
+      if (!response.ok) {
+        let errorMessage = 'Failed to submit application. Please try again.'
+        try {
+          const errorData = await response.json()
+          errorMessage = errorData.error || errorMessage
+        } catch (parseError) {
+          // If response is not JSON, use status text
+          errorMessage = `Server error: ${response.status} ${response.statusText}`
+        }
+        setSubmitMessage(errorMessage)
+        setIsSubmitting(false)
+        return
+      }
+
       const result = await response.json()
 
-      if (response.ok) {
+      if (result.success || response.ok) {
         setSubmitMessage('Application submitted successfully! We will contact you soon.')
         setTimeout(() => {
           setShowApplicationForm(false)
@@ -566,7 +594,12 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
       }
     } catch (error) {
       console.error('Error submitting application:', error)
-      setSubmitMessage('An error occurred. Please try again later.')
+      // Provide more specific error messages
+      if (error.name === 'TypeError' && error.message.includes('fetch')) {
+        setSubmitMessage('Unable to connect to server. Please check your internet connection and try again.')
+      } else {
+        setSubmitMessage(`Error: ${error.message || 'An error occurred. Please try again later.'}`)
+      }
     } finally {
       setIsSubmitting(false)
     }

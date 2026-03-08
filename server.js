@@ -149,14 +149,30 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
     const { name, email, phone, position, employmentType, coverLetter } = req.body;
     const resumeFile = req.file;
 
+    console.log('Received career application:', { name, email, phone, position, employmentType, hasResume: !!resumeFile });
+
+    // Validate required fields
     if (!name || !email || !phone || !position) {
+      console.error('Missing required fields:', { name: !!name, email: !!email, phone: !!phone, position: !!position });
       return res.status(400).json({ error: 'Please fill in all required fields' });
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: 'Please enter a valid email address' });
+    }
+
+    // Check if email configuration exists
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+      console.error('Email configuration missing');
+      return res.status(500).json({ error: 'Email service is not configured. Please contact the administrator.' });
     }
 
     // Email options
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'caylee.myco@gmail.com',
+      to: 'guangxun04@gmail.com',
       subject: `Career Application: ${position} - ${name}`,
       html: `
         <h2>New Career Application</h2>
@@ -173,7 +189,9 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
       }] : []
     };
 
+    console.log('Sending email...');
     await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully');
 
     // Clean up uploaded file
     if (resumeFile && fs.existsSync(resumeFile.path)) {
@@ -183,13 +201,32 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
     res.json({ success: true, message: 'Application submitted successfully!' });
   } catch (error) {
     console.error('Error sending career application email:', error);
+    console.error('Error details:', {
+      message: error.message,
+      stack: error.stack,
+      code: error.code
+    });
 
     // Clean up uploaded file on error
     if (req.file && fs.existsSync(req.file.path)) {
-      fs.unlinkSync(req.file.path);
+      try {
+        fs.unlinkSync(req.file.path);
+      } catch (unlinkError) {
+        console.error('Error deleting uploaded file:', unlinkError);
+      }
     }
 
-    res.status(500).json({ error: 'Failed to submit application. Please try again.' });
+    // Provide more specific error messages
+    let errorMessage = 'Failed to submit application. Please try again.';
+    if (error.code === 'EAUTH' || error.code === 'EENVELOPE') {
+      errorMessage = 'Email authentication failed. Please contact the administrator.';
+    } else if (error.code === 'ECONNECTION' || error.code === 'ETIMEDOUT') {
+      errorMessage = 'Unable to connect to email service. Please try again later.';
+    } else if (error.message) {
+      errorMessage = `Error: ${error.message}`;
+    }
+
+    res.status(500).json({ error: errorMessage });
   }
 });
 
