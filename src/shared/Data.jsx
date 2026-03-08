@@ -910,19 +910,6 @@
       pageId: 'medical-protective-face-shield'
     },
     {
-      id: 72,
-      name: 'Infrared Thermometer',
-      groupId: 8,
-      category: null,
-      price: 59.99,
-      image: '/infrared_thermometer.png',
-      images: [
-        '/infrared_thermometer.png',
-        '/infrared_thermometer_2.png'
-      ],
-      pageId: 'infrared-thermometer'
-    },
-    {
       id: 73,
       name: 'Non-Sterile Coverall',
       groupId: 8,

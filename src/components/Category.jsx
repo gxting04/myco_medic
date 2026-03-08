@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import Data from '@/shared/Data'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
@@ -43,60 +43,113 @@ function Category() {
               product => !product.category || product.category === null
             )
             
-            // Find first product with a valid image (check all products, not just direct ones)
-            const firstProduct = allGroupProducts.find(product => {
+            // Collect multiple product images (up to 6 images)
+            const productImages = []
+            for (const product of allGroupProducts) {
+              if (productImages.length >= 6) break
+              
+              // Try to get image from product.image or product.images array
               const img = product.image || (product.images && product.images[0])
-              return img && img.trim() !== ''
-            })
+              if (img && img.trim() !== '') {
+                productImages.push(img)
+              }
+            }
             
-            const heroImage = firstProduct?.image || (firstProduct?.images && firstProduct.images[0]) || group.icon
+            // Fallback to group icon if no product images found
+            const images = productImages.length > 0 ? productImages : [group.icon]
             
             return (
-              <Link
+              <ProductGroupCard
                 key={group.id}
-                to={`/products/group/${slugify(group.name)}`}
-                className="group relative p-6 sm:p-8 h-auto sm:h-[400px] flex flex-col justify-between overflow-hidden transition-all duration-500 ease-out hover:-translate-y-1 bg-white rounded-lg border border-gray-200"
-              >
-                {/* Content */}
-                <div className="relative z-10">
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors">
-                    {group.name}
-                  </h3>
-                  <p className="text-gray-500 font-medium mb-4 text-sm">
-                    {categoriesCount > 0 && allGroupProducts.length > 0 ? (
-                      <>
-                        {categoriesCount} {categoriesCount === 1 ? 'Category' : 'Categories'} • {allGroupProducts.length} {allGroupProducts.length === 1 ? 'Product' : 'Products'}
-                      </>
-                    ) : categoriesCount > 0 ? (
-                      <>{categoriesCount} {categoriesCount === 1 ? 'Category' : 'Categories'}</>
-                    ) : (
-                      <>{allGroupProducts.length} {allGroupProducts.length === 1 ? 'Product' : 'Products'}</>
-                    )}
-                  </p>
-                  <p className="text-gray-600 leading-relaxed">
-                    {group.description}
-                  </p>
-                </div>
-
-                {/* Icon/Image Area */}
-                <div className="relative h-32 w-full flex items-center justify-center">
-                  <img
-                    src={heroImage}
-                    alt={group.name}
-                    className="w-32 h-32 object-contain transition-all duration-500"
-                  />
-                </div>
-                
-                {/* Floating Arrow */}
-                <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
-                  <ArrowRight className="w-6 h-6 text-primary" />
-                </div>
-              </Link>
+                group={group}
+                categoriesCount={categoriesCount}
+                allGroupProducts={allGroupProducts}
+                images={images}
+              />
             )
           })}
         </div>
       </div>
     </section>
+  )
+}
+
+// Product Group Card Component with Auto-Sliding Images
+function ProductGroupCard({ group, categoriesCount, allGroupProducts, images }) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  // Auto-slide through images every 3 seconds
+  useEffect(() => {
+    if (images.length <= 1) return
+    
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length)
+    }, 3000)
+    
+    return () => clearInterval(timer)
+  }, [images.length])
+
+  return (
+    <Link
+      to="/products"
+      className="group relative p-6 sm:p-8 h-auto sm:h-[400px] flex flex-col justify-between overflow-hidden transition-all duration-500 ease-out hover:-translate-y-1 bg-white rounded-lg border border-gray-200"
+    >
+      {/* Content */}
+      <div className="relative z-10">
+        <h3 className="text-2xl font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors">
+          {group.name}
+        </h3>
+        <p className="text-gray-500 font-medium mb-4 text-sm">
+          {categoriesCount > 0 && allGroupProducts.length > 0 ? (
+            <>
+              {categoriesCount} {categoriesCount === 1 ? 'Category' : 'Categories'} • {allGroupProducts.length} {allGroupProducts.length === 1 ? 'Product' : 'Products'}
+            </>
+          ) : categoriesCount > 0 ? (
+            <>{categoriesCount} {categoriesCount === 1 ? 'Category' : 'Categories'}</>
+          ) : (
+            <>{allGroupProducts.length} {allGroupProducts.length === 1 ? 'Product' : 'Products'}</>
+          )}
+        </p>
+        <p className="text-gray-600 leading-relaxed">
+          {group.description}
+        </p>
+      </div>
+
+      {/* Image Carousel Area */}
+      <div className="relative h-32 w-full flex items-center justify-center overflow-hidden">
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt={`${group.name} - Product ${index + 1}`}
+            className={`absolute w-32 h-32 object-contain transition-opacity duration-1000 ${
+              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
+        
+        {/* Image Indicators */}
+        {images.length > 1 && (
+          <div className="absolute bottom-2 flex gap-1.5">
+            {images.map((_, index) => (
+              <div
+                key={index}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  index === currentImageIndex
+                    ? 'w-6 bg-primary'
+                    : 'w-1.5 bg-gray-300'
+                }`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+      
+      {/* Floating Arrow */}
+      <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+        <ArrowRight className="w-6 h-6 text-primary" />
+      </div>
+    </Link>
   )
 }
 

@@ -63,9 +63,9 @@ function Header() {
           <img
             src="/Myco_Medic.png"
             alt="Myco Medic"
-            className="w-10 h-10 sm:w-14 sm:h-14 object-contain"
+            className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain"
           />
-          <span className="text-lg sm:text-xl font-semibold tracking-tight text-gray-900">
+          <span className="text-lg sm:text-xl md:text-2xl font-semibold tracking-tight text-gray-900">
             Myco Medic
           </span>
         </Link>
@@ -78,7 +78,7 @@ function Header() {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-sm font-medium tracking-wide transition-colors duration-200 ${
+                className={`text-sm md:text-base font-medium tracking-wide transition-colors duration-200 ${
                   location.pathname === link.path
                     ? 'text-black'
                     : 'text-gray-500 hover:text-black'
