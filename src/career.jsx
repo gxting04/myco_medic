@@ -540,7 +540,11 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
     }
 
     try {
+      // For local development, use localhost; for production, use the configured URL
       const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+      console.log('Submitting application to:', `${API_URL}/api/career-application`)
+      console.log('Current environment:', import.meta.env.MODE)
+      
       const formDataToSend = new FormData()
       formDataToSend.append('name', formData.name)
       formDataToSend.append('email', formData.email)
@@ -554,7 +558,9 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
 
       const response = await fetch(`${API_URL}/api/career-application`, {
         method: 'POST',
-        body: formDataToSend
+        body: formDataToSend,
+        // Add timeout to detect connection issues faster
+        signal: AbortSignal.timeout(30000) // 30 second timeout
       })
 
       // Check if response is ok before trying to parse JSON
@@ -594,9 +600,20 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
       }
     } catch (error) {
       console.error('Error submitting application:', error)
+      console.error('Error details:', {
+        name: error.name,
+        message: error.message,
+        stack: error.stack
+      })
+      
       // Provide more specific error messages
-      if (error.name === 'TypeError' && error.message.includes('fetch')) {
-        setSubmitMessage('Unable to connect to server. Please check your internet connection and try again.')
+      if (error.name === 'AbortError' || error.name === 'TimeoutError') {
+        setSubmitMessage('Request timed out. The server may be slow or unavailable. Please try again.')
+      } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+        setSubmitMessage(`Unable to connect to server at ${API_URL}. Please ensure the backend server is running and accessible.`)
+      } else if (error.name === 'NetworkError' || error.message.includes('Failed to fetch')) {
+        setSubmitMessage('Network error. Please check your internet connection and try again.')
       } else {
         setSubmitMessage(`Error: ${error.message || 'An error occurred. Please try again later.'}`)
       }
