@@ -134,14 +134,42 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit
 });
 
-// Configure nodemailer
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD,
-  },
-});
+// Configure nodemailer with multiple options for reliability
+let transporter;
+
+// Try to create transporter with explicit DNS resolution
+try {
+  transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+    tls: {
+      rejectUnauthorized: false // Allow self-signed certificates (for local testing)
+    },
+    // Add connection timeout
+    connectionTimeout: 10000, // 10 seconds
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
+    // Use IPv4 explicitly
+    family: 4
+  });
+  
+  console.log('Nodemailer transporter configured');
+} catch (error) {
+  console.error('Error configuring nodemailer:', error);
+  // Fallback: try with service name
+  transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+}
 
 // Career Application Form Submission
 app.post('/api/career-application', upload.single('resume'), async (req, res) => {
@@ -190,8 +218,56 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
     };
 
     console.log('Sending email...');
-    await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully');
+    console.log('Email config:', {
+      from: process.env.EMAIL_USER,
+      to: 'guangxun04@gmail.com',
+      hasAuth: !!(process.env.EMAIL_USER && process.env.EMAIL_PASSWORD)
+    });
+    
+    // Try to send email with retry logic
+    let emailSent = false;
+    let lastError = null;
+    
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        console.log(`Email send attempt ${attempt}/3...`);
+        
+        // Verify transporter connection first (only on first attempt)
+        if (attempt === 1) {
+          try {
+            await transporter.verify();
+            console.log('SMTP server is ready to send emails');
+          } catch (verifyError) {
+            console.error('SMTP verification failed:', verifyError);
+            // Continue anyway - verification might fail but sending could work
+          }
+        }
+        
+        await transporter.sendMail(mailOptions);
+        console.log('Email sent successfully');
+        emailSent = true;
+        break;
+      } catch (emailError) {
+        lastError = emailError;
+        console.error(`Email send attempt ${attempt} failed:`, emailError.message);
+        
+        // If it's a DNS error, wait and retry
+        if (emailError.code === 'ENOTFOUND' || emailError.message.includes('getaddrinfo')) {
+          if (attempt < 3) {
+            console.log(`Waiting 2 seconds before retry...`);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            continue;
+          }
+        } else {
+          // For other errors, don't retry
+          throw emailError;
+        }
+      }
+    }
+    
+    if (!emailSent) {
+      throw new Error(`Failed to send email after 3 attempts: ${lastError?.message || 'Unknown error'}`);
+    }
 
     // Clean up uploaded file
     if (resumeFile && fs.existsSync(resumeFile.path)) {
