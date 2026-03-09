@@ -540,10 +540,24 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
     }
 
     try {
-      // For local development, use localhost; for production, use the configured URL
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+      // Determine API URL based on environment
+      // In production (on mycomedic.com.my), use production API URL
+      // In development (localhost), use localhost
+      let API_URL = import.meta.env.VITE_API_URL
+      
+      // Auto-detect production if VITE_API_URL is not set or is localhost
+      if (!API_URL || API_URL.includes('localhost')) {
+        // Check if we're running on production domain
+        if (window.location.hostname.includes('mycomedic.com')) {
+          API_URL = 'https://api.mycomedic.com'
+        } else {
+          API_URL = 'http://localhost:3001'
+        }
+      }
+      
       console.log('Submitting application to:', `${API_URL}/api/career-application`)
       console.log('Current environment:', import.meta.env.MODE)
+      console.log('Hostname:', window.location.hostname)
       
       const formDataToSend = new FormData()
       formDataToSend.append('name', formData.name)
@@ -610,7 +624,15 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
       if (error.name === 'AbortError' || error.name === 'TimeoutError') {
         setSubmitMessage('Request timed out. The server may be slow or unavailable. Please try again.')
       } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
-        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+        // Determine API URL for error message
+        let API_URL = import.meta.env.VITE_API_URL
+        if (!API_URL || API_URL.includes('localhost')) {
+          if (window.location.hostname.includes('mycomedic.com')) {
+            API_URL = 'https://api.mycomedic.com'
+          } else {
+            API_URL = 'http://localhost:3001'
+          }
+        }
         setSubmitMessage(`Unable to connect to server at ${API_URL}. Please ensure the backend server is running and accessible.`)
       } else if (error.name === 'NetworkError' || error.message.includes('Failed to fetch')) {
         setSubmitMessage('Network error. Please check your internet connection and try again.')
