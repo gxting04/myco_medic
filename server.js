@@ -210,6 +210,20 @@ function getTransporter() {
   }
 }
 
+// Test endpoint to verify Resend API key is loaded
+app.get('/api/test-resend-config', (req, res) => {
+  res.json({
+    hasResendKey: !!process.env.RESEND_API_KEY,
+    resendKeyPreview: process.env.RESEND_API_KEY ? process.env.RESEND_API_KEY.substring(0, 10) + '...' : 'NOT SET',
+    resendKeyLength: process.env.RESEND_API_KEY ? process.env.RESEND_API_KEY.length : 0,
+    hasEmailUser: !!process.env.EMAIL_USER,
+    nodeEnv: process.env.NODE_ENV,
+    message: process.env.RESEND_API_KEY 
+      ? 'Resend API key is configured - SMTP should NOT be used' 
+      : 'WARNING: Resend API key NOT found - SMTP will be attempted (will fail with DNS error)'
+  });
+});
+
 // Test DNS resolution endpoint (for debugging)
 app.get('/api/test-dns', async (req, res) => {
   try {
@@ -249,11 +263,20 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
   let lastError = null;
   
   // Log email configuration at start
+  const hasResendKey = !!process.env.RESEND_API_KEY;
+  console.log('=== Career Application Submission ===');
   console.log('Email configuration check:', {
-    hasResendKey: !!process.env.RESEND_API_KEY,
+    hasResendKey: hasResendKey,
+    resendKeyValue: hasResendKey ? process.env.RESEND_API_KEY.substring(0, 15) + '...' : 'NOT SET',
     hasEmailUser: !!process.env.EMAIL_USER,
     hasEmailPassword: !!process.env.EMAIL_PASSWORD
   });
+  
+  if (!hasResendKey) {
+    console.error('⚠️  WARNING: RESEND_API_KEY not found in environment variables!');
+    console.error('⚠️  SMTP will be attempted, which will fail with DNS error.');
+    console.error('⚠️  Please check your .env file and restart the server.');
+  }
   
   // Wrap everything in try-catch to ensure DNS errors don't fail the request
   try {
@@ -296,15 +319,18 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
     // Note: emailSent and lastError are already initialized at the top of the function
 
     // Option 1: Try Resend API (HTTP-based, no DNS needed for SMTP)
-    if (process.env.RESEND_API_KEY) {
-      console.log('Resend API key found - using Resend API for email sending');
-      console.log('Resend API key (first 10 chars):', process.env.RESEND_API_KEY.substring(0, 10) + '...');
+    const resendApiKey = process.env.RESEND_API_KEY;
+    if (resendApiKey) {
+      console.log('✅ Resend API key found - using Resend API for email sending');
+      console.log('Resend API key (first 15 chars):', resendApiKey.substring(0, 15) + '...');
       try {
         console.log('Attempting to send email via Resend API...');
         
-        // Resend requires verified domain - use your email domain or Resend's default
-        // For production, verify your domain in Resend dashboard
-        const fromEmail = process.env.RESEND_FROM_EMAIL || process.env.EMAIL_USER || 'onboarding@resend.dev';
+        // Resend "from" email address:
+        // - Use RESEND_FROM_EMAIL if you've verified a domain in Resend dashboard
+        // - Otherwise, use 'onboarding@resend.dev' (works without domain verification for testing)
+        // Note: For production, add and verify your domain in Resend dashboard for better deliverability
+        const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
         console.log('Resend from email:', fromEmail);
         
         const emailPayload = {
@@ -353,14 +379,16 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
     // IMPORTANT: Only try SMTP if Resend API key is NOT configured
     // If Resend API key exists, NEVER try SMTP (it will fail with DNS)
     if (!emailSent) {
-      if (process.env.RESEND_API_KEY) {
+      if (resendApiKey) {
         // Resend API key exists but email failed - don't try SMTP
-        console.log('Resend API was configured but failed - skipping SMTP (DNS will fail)');
-        console.log('Email will not be sent, but application will be saved');
+        console.error('❌ Resend API was configured but failed - skipping SMTP (DNS will fail)');
+        console.error('❌ Email will not be sent, but application will be saved');
+        console.error('❌ Resend error:', lastError?.message || 'Unknown error');
         lastError = lastError || new Error('Resend API failed and SMTP unavailable due to DNS issues');
       } else {
         // No Resend API key - try SMTP
-        console.log('Resend API not configured - attempting SMTP fallback...');
+        console.warn('⚠️  Resend API not configured - attempting SMTP fallback...');
+        console.warn('⚠️  This will likely fail with DNS error: getaddrinfo ENOTFOUND smtp.gmail.com');
         transporter = getTransporter(); // Lazy initialization - only if Resend not available
       }
     }
