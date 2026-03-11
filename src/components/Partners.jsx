@@ -52,6 +52,10 @@ function Partners() {
                     src={partner.logo}
                     alt={partner.name}
                     className='h-20 md:h-24 lg:h-28 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300'
+                    onError={(e) => {
+                      console.error(`Failed to load logo for ${partner.name}:`, partner.logo);
+                      e.target.style.display = 'none';
+                    }}
                   />
                 </a>
               ))}
@@ -73,6 +77,10 @@ function Partners() {
                     src={partner.logo}
                     alt={partner.name}
                     className='h-20 md:h-24 lg:h-28 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300'
+                    onError={(e) => {
+                      console.error(`Failed to load logo for ${partner.name}:`, partner.logo);
+                      e.target.style.display = 'none';
+                    }}
                   />
                 </a>
               ))}
