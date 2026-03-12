@@ -397,40 +397,6 @@ The Adult & Pediatric Tracheostomy Tube Holder provides healthcare professionals
                 </div>
               )}
 
-              {/* Add to Cart Button */}
-              <Button
-                onClick={handleAddToCart}
-                disabled={!isPurchasable || stockStatus.status === 'out_of_stock'}
-                variant={
-                  !isPurchasable
-                    ? 'secondary'
-                    : addedToCart
-                      ? 'success'
-                      : stockStatus.status === 'out_of_stock'
-                        ? 'secondary'
-                        : 'primary'
-                }
-                size='xl'
-                className='w-full shadow-lg hover:shadow-xl transition-shadow duration-200'
-                icon={addedToCart ? (
-                  <svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 13l4 4L19 7' />
-                  </svg>
-                ) : !isPurchasable ? (
-                  <svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z' />
-                  </svg>
-                ) : null}
-              >
-                {addedToCart ? (
-                  'Added to Cart'
-                ) : !isPurchasable ? (
-                  'Contact us to purchase'
-                ) : (
-                  `Add to Cart • RM${((product.salePrice || product.price) * quantity).toFixed(2)}`
-                )}
-              </Button>
-
               {/* WhatsApp Contact */}
               <a 
                 href={`https://wa.me/60123822001?text=Hi, I'm interested in ${product.name}`}
