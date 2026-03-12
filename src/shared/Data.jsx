@@ -342,18 +342,17 @@
       name: 'Disposable CPAP System', 
       groupId: 1, 
       category: null, 
-      price: 49.99, 
+
       image: '/cpap.png',
       pageId: 'disposable-cpap-system'
     },
-    
-    
+
     { 
       id: 8, 
       name: 'Disposable CPR Resuscitation System', 
       groupId: 1, 
       category: null, 
-      price: 18.9, 
+
       image: '/disposable_cpr_resuscitation_system.png',
       pageId: 'disposable-cpr-resuscitation-system',
       youtubeUrl: 'https://youtu.be/0u7APoa3274'
@@ -363,7 +362,7 @@
       name: 'Reusable CPR Resuscitation System', 
       groupId: 1, 
       category: null, 
-      price: 299.99, 
+
       image: '/reusable_cpr_resuscitation_system.png',
       images: [
         '/reusable_cpr_resuscitation_system.png',
@@ -377,7 +376,7 @@
       name: 'Neo-Tee® Infant T-Piece Resuscitator', 
       groupId: 1, 
       category: null, 
-      price: 199.99, 
+
       image: '/infant_tpiece_resuscitator.png',
       pageId: 'infant-t-piece-resuscitator'
     },
@@ -386,7 +385,7 @@
       name: 'Disposable Manometer', 
       groupId: 1, 
       category: null, 
-      price: 49.99, 
+
       image: '/disposable_manometer.png',
       pageId: 'disposable-manometer'
     },
@@ -395,7 +394,7 @@
       name: 'Laryngoscopes', 
       groupId: 1, 
       category: null, 
-      price: 199.99, 
+
       image: '/laryngoscope.png',
       pageId: 'laryngoscopes'
     },
@@ -404,7 +403,7 @@
       name: 'UE Scope© Video Laryngoscope (VL300 Series)', 
       groupId: 1, 
       category: null, 
-      price: 599.99, 
+
       image: '/video_laryngoscope.png',
       pageId: 'ue-scope-video-laryngoscope-vl300'
     },
@@ -413,7 +412,7 @@
       name: 'Asu-200 Battery and Rechargeable Aspirator', 
       groupId: 1, 
       category: null, 
-      price: 399.99, 
+
       image: '/aspirator.png',
       pageId: 'asu-200-rechargeable-aspirator'
     },
@@ -422,7 +421,7 @@
       name: 'Breathing Circuits', 
       groupId: 1, 
       category: null, 
-      price: 89.99, 
+
       image: '/breathing_circuit.png',
       pageId: 'breathing-circuits'
     },
@@ -430,7 +429,7 @@
       id: 19, 
       name: 'Heat And Moisture Exchanger Filter (HMEF)', 
       category: 'Breathing System Filter', 
-      price: 15.99, 
+
       image: '/hmef.png',
       pageId: 'hmef-filter'
     },
@@ -438,7 +437,7 @@
       id: 20, 
       name: 'Bacterial Virus Filter (BVF)', 
       category: 'Breathing System Filter', 
-      price: 18.99, 
+
       image: '/bacterial_virus_filter.png',
       pageId: 'bvf-filter'
     },
@@ -447,7 +446,7 @@
       name: 'Catheter Mount', 
       groupId: 1, 
       category: null, 
-      price: 29.99, 
+
       image: '/catheter_mount.png',
       pageId: 'catheter-mount'
     },
@@ -456,7 +455,7 @@
       name: 'Disposable Air Cushion Face Mask', 
       groupId: 1, 
       category: null, 
-      price: 24.99, 
+
       image: '/disposable_air_cushion_face_mask.png',
       pageId: 'disposable-air-cushion-face-mask'
     },
@@ -464,7 +463,7 @@
       id: 14, 
       name: 'DISPOSABLE STANDARD ROTA-TRACH™ TRACHEOSTOMY TUBE', 
       category: 'Disposable Tracheostomy Tube', 
-      price: 89.99, 
+
       image: '/disposable_standard_rota_trach_tracheostomy_tube.png',
       pageId: 'disposable-standard-rota-trach-tracheostomy-tube'
     },
@@ -472,7 +471,7 @@
       id: 15, 
       name: 'Disposable Inner Cannula Rota-Trach™ Tracheostomy Tube', 
       category: 'Disposable Tracheostomy Tube', 
-      price: 99.99, 
+
       image: '/disposable_inner_cannula_rota_trach_tracheostomy_tube.png',
       pageId: 'disposable-inner-cannula-rota-trach-tracheostomy-tube'
     },
@@ -480,7 +479,7 @@
       id: 16, 
       name: 'Disposable Pediatric Rota-Trach™ Tracheostomy Tube', 
       category: 'Disposable Tracheostomy Tube', 
-      price: 79.99, 
+
       image: '/disposable_pediatric_rota_trach_tracheostomy_tube.png',
       pageId: 'disposable-pediatric-rota-trach-tracheostomy-tube'
     },
@@ -488,7 +487,7 @@
       id: 23, 
       name: 'PVC Double Lumen Endobronchial Tube', 
       category: 'Double Lumen Endobronchial',
-      price: 129.99, 
+
       image: '/pvc_double_lumen_endobronchial_tube.png',
       pageId: 'pvc-double-lumen-endobronchial-tube'
     },
@@ -496,7 +495,7 @@
       id: 24, 
       name: 'Silicone Double Lumen Endobronchial Tube', 
       category: 'Double Lumen Endobronchial',
-      price: 159.99, 
+
       image: '/silicone_double_lumen_endobronchial_tube.png',
       pageId: 'silicone-double-lumen-endobronchial-tube'
     },
@@ -504,7 +503,7 @@
       id: 25, 
       name: 'PVC Nasal Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
-      price: 29.99, 
+
       image: '/pvc_nasal_endotracheal_tube.png',
       pageId: 'pvc-nasal-endotracheal-tube'
     },
@@ -512,7 +511,7 @@
       id: 26, 
       name: 'PVC Oral Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
-      price: 29.99, 
+
       image: '/pvc_oral_endotracheal_tube.png',
       pageId: 'pvc-oral-endotracheal-tube'
     },
@@ -520,7 +519,7 @@
       id: 27, 
       name: 'PVC Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
-      price: 27.99, 
+
       image: '/pvc_endotracheal_tube.png',
       pageId: 'pvc-endotracheal-tube'
     },
@@ -528,7 +527,7 @@
       id: 28, 
       name: 'PVC Wire Reinforced Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
-      price: 39.99, 
+
       image: '/pvc_wire_reinforced_endotracheal_tube.png',
       pageId: 'pvc-wire-reinforced-endotracheal-tube'
     },
@@ -536,7 +535,7 @@
       id: 29, 
       name: 'Endotracheal Tube with Evacuation Lumen', 
       category: 'Endotracheal Tube',
-      price: 44.99, 
+
       image: '/endotracheal_tube_with_evacuation_lumen.png',
       pageId: 'endotracheal-tube-evacuation-lumen'
     },
@@ -544,7 +543,7 @@
       id: 30, 
       name: 'Bite Block Silicone Reinforced Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
-      price: 54.99, 
+
       image: '/bite_block_silicone_reinforced_endotracheal_tube.png',
       pageId: 'bite-block-silicone-reinforced-endotracheal-tube'
     },
@@ -552,7 +551,7 @@
       id: 31, 
       name: 'Silicone Reinforced Endotracheal Tube (Cuffed & Uncuffed)', 
       category: 'Endotracheal Tube',
-      price: 49.99, 
+
       image: '/silicone_reinforced_endotracheal_tube.png',
       pageId: 'silicone-reinforced-endotracheal-tube'
     },
@@ -560,7 +559,7 @@
       id: 32, 
       name: 'Auto-inflation Endobronchial Blocker Tube', 
       category: 'Endobronchial Blocker Tube',
-      price: 189.99, 
+
       image: '/auto_inflation_endobronchial_blocker_tube.png',
       pageId: 'auto-inflation-endobronchial-blocker-tube'
     },
@@ -568,7 +567,7 @@
       id: 33, 
       name: 'Endobronchial Blocker Tube (Without Auto-inflation)', 
       category: 'Endobronchial Blocker Tube',
-      price: 149.99, 
+
       image: '/endobronchial_blocker_tube_without_auto_inflation.png',
       pageId: 'endobronchial-blocker-tube-without-auto-inflation'
     },
@@ -577,7 +576,7 @@
       name: 'Intubating Stylet', 
       groupId: 1,
       category: null,
-      price: 19.99, 
+
       image: '/intubating_stylet.png',
       pageId: 'intubating-stylet'
     },
@@ -585,7 +584,7 @@
       id: 35, 
       name: 'One Way Silicone Laryngeal Mask', 
       category: 'Laryngeal Mask',
-      price: 29.99, 
+
       image: '/one_way_silicone_laryngeal_mask.png',
       pageId: 'one-way-silicone-laryngeal-mask'
     },
@@ -593,7 +592,7 @@
       id: 36, 
       name: 'One Way Steel Reinforced Laryngeal Mask', 
       category: 'Laryngeal Mask',
-      price: 39.99, 
+
       image: '/one_way_steel_reinforced_laryngeal_mask.png',
       pageId: 'one-way-steel-reinforced-laryngeal-mask'
     },
@@ -602,7 +601,7 @@
       name: 'Nasopharyngeal Airway', 
       groupId: 1,
       category: null,
-      price: 9.99, 
+
       image: '/nasopharyngeal_airway.png',
       pageId: 'nasopharyngeal-airway'
     },
@@ -611,7 +610,7 @@
       name: 'Oropharyngeal Airway', 
       groupId: 1,
       category: null,
-      price: 7.99, 
+
       image: '/oropharyngeal_airway.png',
       pageId: 'oropharyngeal-airway'
     },
@@ -620,7 +619,7 @@
       name: 'Tracheal Tubes Holder', 
       groupId: 1,
       category: null,
-      price: 12.99, 
+
       image: '/tracheal_tubes_holder.png',
       pageId: 'tracheal-tubes-holder'
     },
@@ -629,7 +628,7 @@
       name: 'Disposable Tracheal Tube Kit', 
       groupId: 1,
       category: null,
-      price: 89.99, 
+
       image: '/disposable_tracheal_tube_kit.png',
       pageId: 'disposable-tracheal-tube-kit'
     },
@@ -638,7 +637,7 @@
       name: 'IOB Forced-Air Warming System',
       groupId: 4,
       category: null,
-      price: 1499.99,
+
       image: '/iob_forced_air_warming_system.png',
       pageId: 'iob-forced-air-warming-system'
     },
@@ -647,7 +646,7 @@
       name: 'C-Bona Closed Suction Systems (Adult)',
       groupId: 4,
       category: null,
-      price: 49.99,
+
       image: '/cbona_closed_suction_adult.png', 
       pageId: 'c-bona-closed-suction-systems'
     },
@@ -656,7 +655,7 @@
       name: 'C-Bona Closed Suction Systems (Pediatric)',
       groupId: 4,
       category: null,
-      price: 49.99,
+
       image: '/cbona_closed_suction_pediatric.png', 
       pageId: 'c-bona-closed-suction-systems-pediatric'
     },
@@ -665,7 +664,7 @@
       name: 'Pressure Transducer',
       groupId: 4,
       category: null,
-      price: 129.99,
+
       image: '/pressure_transducer.png',
       pageId: 'pressure-transducer'
     },
@@ -674,7 +673,7 @@
       name: 'Central Venous Catheter',
       groupId: 4,
       category: null,
-      price: 199.99,
+
       image: '/central_venous_catheter.png',
       pageId: 'central-venous-catheter'
     },
@@ -683,7 +682,7 @@
       name: 'Easydrop Flow Regulator',
       groupId: 4,
       category: null,
-      price: 29.99,
+
       image: '/easydrop_flow_regulator.png', // Placeholder as specific image wasn't in snippet
       pageId: 'easydrop-flow-regulator'
     },
@@ -693,7 +692,7 @@
       name: 'Infusion Pump (SYS-6010)',
       groupId: 4,
       category: null,
-      price: 1299.99,
+
       image: '/infusion_pump.png',
       pageId: 'medcaptain-infusion-pump'
     },
@@ -702,7 +701,7 @@
       name: 'Syringe Pump (SYS-50)',
       groupId: 4,
       category: null,
-      price: 1199.99,
+
       image: '/syringe_pump.png',
       pageId: 'medcaptain-syringe-pump'
     },
@@ -711,7 +710,7 @@
       name: 'Disposable Emergency Suture Pack',
       groupId: 13,
       category: null,
-      price: 89.99,
+
       image: '/disposable_emergency_suture_pack.png',
       pageId: 'disposable-emergency-suture-pack'
     },
@@ -720,7 +719,7 @@
       name: 'Disposable Circumcision Pack',
       groupId: 13,
       category: null,
-      price: 119.99,
+
       image: '/disposable_circumcision_pack.png',
       pageId: 'disposable-circumcision-pack'
     },
@@ -729,7 +728,7 @@
       name: 'Disposable Pre-Epidural Set',
       groupId: 13,
       category: null,
-      price: 89.99,
+
       image: '/disposable_preepidural_set.png',
       pageId: 'disposable-pre-epidural-set'
     },
@@ -738,7 +737,7 @@
       name: 'Disposable / Sterile Basic Pack',
       groupId: 13,
       category: null,
-      price: 59.99,
+
       image: '/disposable_sterile_basic_pack.png',
       pageId: 'disposable-basic-pack'
     },
@@ -747,7 +746,7 @@
       name: 'Cannula Cleaning Brushes',
       groupId: 6,
       category: null,
-      price: 24.99,
+
       image: '/cannula_cleaning_brushes.png',
       pageId: 'cannula-cleaning-brushes'
     },
@@ -756,7 +755,7 @@
       name: 'Tracheal Tube Brushes',
       groupId: 6,
       category: null,
-      price: 29.99,
+
       image: '/tracheal_tube_brushes.png',
       pageId: 'tracheal-tube-brushes'
     },
@@ -765,7 +764,7 @@
       name: 'Instrument Cleaning Brushes',
       groupId: 6,
       category: null,
-      price: 34.99,
+
       image: '/stainless_bristles.png',
       images: [
         '/stainless_bristles.png',
@@ -780,7 +779,7 @@
       name: 'Suction Tube Cleaning Brushes (Baron & Frazier)',
       groupId: 6,
       category: null,
-      price: 32.99,
+
       image: '/suction_tube_cleaning_brushes.png',
       pageId: 'suction-tube-cleaning-brushes'
     },
@@ -789,7 +788,7 @@
       name: 'Cannula Instrument (Pipe) Cleaners',
       groupId: 6,
       category: null,
-      price: 27.99,
+
       image: '/cannula_instrument_pipe_cleaners.png',
       pageId: 'cannula-instrument-pipe-cleaners'
     },
@@ -798,7 +797,7 @@
       name: 'Double End Valve Brushes',
       groupId: 6,
       category: null,
-      price: 24.99,
+
       image: '/double_end_valve_brushes.png',
       pageId: 'double-end-valve-brushes'
     },
@@ -807,7 +806,7 @@
       name: 'Surgical Scrub Brushes & Dispenser',
       groupId: 6,
       category: null,
-      price: 49.99,
+
       image: '/surgical_scrub_brushes.png',
       images: [
         '/surgical_scrub_brushes.png',
@@ -821,7 +820,7 @@
       name: 'Large Instrument Cleaning Brush',
       groupId: 6,
       category: null,
-      price: 34.99,
+
       image: '/large_instrument_cleaning_brush.png',
       pageId: 'large-instrument-cleaning-brush'
     },
@@ -830,7 +829,7 @@
       name: 'Medical Bed / Patient Transport Trolley',
       groupId: 7,
       category: null,
-      price: 2999.99,
+
       image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/screenshot-948.png?1643265275',
       pageId: 'medical-bed-patient-transport-trolley'
     },
@@ -839,7 +838,7 @@
       name: 'Hospital Cart',
       groupId: 7,
       category: null,
-      price: 899.99,
+
       image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/screenshot-960.png?1643266642',
       pageId: 'hospital-cart'
     },
@@ -848,7 +847,7 @@
       name: 'Hospital Trolleys',
       groupId: 7,
       category: null,
-      price: 799.99,
+
       image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/editor/screenshot-969.png?1724999947',
       pageId: 'hospital-trolleys'
     },
@@ -857,7 +856,7 @@
       name: 'Patient Room Items',
       groupId: 7,
       category: null,
-      price: 499.99,
+
       image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/7_3.png?1643273106',
       pageId: 'patient-room-items'
     },
@@ -866,7 +865,7 @@
       name: 'Examination Room Items',
       groupId: 7,
       category: null,
-      price: 1299.99,
+
       image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/screenshot-995.png?1643274041',
       pageId: 'examination-room-items'
     },
@@ -875,7 +874,7 @@
       name: 'Sleeper / Rehab / Rocking / Reclining Chair',
       groupId: 7,
       category: null,
-      price: 699.99,
+
       image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/screenshot-977_1.png?1643274608',
       pageId: 'sleeper-rehab-rocking-reclining-chair'
     },
@@ -884,7 +883,7 @@
       name: 'Hospital Curve Curtain Tracking System',
       groupId: 7,
       category: null,
-      price: 299.99,
+
       image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/hospital-curve-curtain-tracking-system.png?1730000000',
       pageId: 'hospital-curve-curtain-tracking-system'
     },
@@ -893,7 +892,7 @@
       name: 'Janitor Room / CSSD Furniture',
       groupId: 7,
       category: null,
-      price: 399.99,
+
       image: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/published/t1.jpg?1643275704',
       pageId: 'janitor-room-cssd-furniture'
     },
@@ -902,7 +901,7 @@
       name: '3-Ply Surgical Face Mask',
       groupId: 8,
       category: null,
-      price: 9.99,
+
       image: '/surgical_mask.png',
       pageId: '3ply-surgical-face-mask'
     },
@@ -911,7 +910,7 @@
       name: 'Medical Protective Face Shield',
       groupId: 8,
       category: null,
-      price: 12.99,
+
       image: '/medical_protective_face_shield.png',
       pageId: 'medical-protective-face-shield'
     },
@@ -920,7 +919,7 @@
       name: 'Non-Sterile Coverall',
       groupId: 8,
       category: null,
-      price: 24.99,
+
       image: '/non_sterile_coverall.png',
       pageId: 'non-sterile-coverall'
     },
@@ -929,7 +928,7 @@
       name: 'Sterile Coverall',
       groupId: 8,
       category: null,
-      price: 29.99,
+
       image: '/sterile_coverall.png',
       pageId: 'sterile-coverall'
     },
@@ -938,7 +937,7 @@
       name: 'Medical Protective Hood Cover',
       groupId: 8,
       category: null,
-      price: 7.99,
+
       image: '/hood_cover.png',
       pageId: 'medical-protective-hood-cover'
     },
@@ -947,7 +946,7 @@
       name: 'Medical Protective Boots Cover',
       groupId: 8,
       category: null,
-      price: 9.99,
+
       image: '/boots_cover.png',
       pageId: 'boots-cover'
     },
@@ -956,7 +955,7 @@
       name: 'Isolation Gown',
       groupId: 8,
       category: null,
-      price: 19.99,
+
       image: '/isolation_gown.png',
       pageId: 'isolation-gown'
     },
@@ -965,7 +964,7 @@
       name: 'CPE Apron Gown (Thumb Loop)',
       groupId: 8,
       category: null,
-      price: 6.99,
+
       image: '/cpe_apron.png',
       pageId: 'cpe-apron-gown'
     },
@@ -974,7 +973,7 @@
       name: 'Disposable Plastic Apron (Sleeveless)',
       groupId: 8,
       category: null,
-      price: 4.99,
+
       image: '/disposable_plastic_apron_sleeveless.png',
       pageId: 'disposable-plastic-apron'
     },
@@ -983,7 +982,7 @@
       name: 'Prostrate Head Pads',
       groupId: 9,
       category: 'Head and Neck Pads',
-      price: 129.99,
+
       image: '/prostrate_head_pad.png',
       pageId: 'prostrate-head-pads'
     },
@@ -992,7 +991,7 @@
       name: 'Contoured Supine Head Pads',
       groupId: 9,
       category: 'Head and Neck Pads',
-      price: 134.99,
+
       image: '/contoured_supine_head_pad.png',
       pageId: 'contoured-supine-head-pads'
     },
@@ -1001,7 +1000,7 @@
       name: 'Donut Head Pads',
       groupId: 9,
       category: 'Head and Neck Pads',
-      price: 119.99,
+
       image: '/donut_head_pad.png',
       pageId: 'donut-head-pads'
     },
@@ -1010,7 +1009,7 @@
       name: 'Ophthalmic Head Pads',
       groupId: 9,
       category: 'Head and Neck Pads',
-      price: 139.99,
+
       image: '/ophthalmic_head_pad.png',
       pageId: 'ophthalmic-head-pads'
     },
@@ -1019,7 +1018,7 @@
       name: 'Horseshoe Head Pads',
       groupId: 9,
       category: 'Head and Neck Pads',
-      price: 124.99,
+
       image: '/horseshoe_head_pad.png',
       pageId: 'horseshoe-head-pads'
     },
@@ -1028,7 +1027,7 @@
       name: 'Flat Supine Head Pads',
       groupId: 9,
       category: 'Head and Neck Pads',
-      price: 129.99,
+
       image: '/flat_supine_head_pad.png',
       pageId: 'flat-supine-head-pads'
     },
@@ -1037,7 +1036,7 @@
       name: 'Bowl Shaped Head Pads',
       groupId: 9,
       category: 'Head and Neck Pads',
-      price: 149.99,
+
       image: '/bowl_shaped_head_pad.png',
       pageId: 'bowl-shaped-head-pads'
     },
@@ -1046,7 +1045,7 @@
       name: 'Thyroid Gland Positioning Pads',
       groupId: 9,
       category: 'Head and Neck Pads',
-      price: 154.99,
+
       image: '/thyroid_gland.png',
       pageId: 'thyroid-gland-positioning-pads'
     },
@@ -1055,7 +1054,7 @@
       name: 'Bowl Shaped Horseshoe Head Pads',
       groupId: 9,
       category: 'Head and Neck Pads',
-      price: 159.99,
+
       image: '/bowl_shaped_horseshoe_head_pad.png',
       pageId: 'bowl-shaped-horseshoe-head-pads'
     },
@@ -1064,7 +1063,7 @@
       name: 'Donut Head Pads with Cissoid',
       groupId: 9,
       category: 'Head and Neck Pads',
-      price: 144.99,
+
       image: '/donut_head_pads_with_cissoid.png',
       pageId: 'donut-head-pads-with-cissoid'
     },
@@ -1073,7 +1072,7 @@
       name: 'Universal Armboard Pads',
       groupId: 9,
       category: 'Arm and Shoulder Pads',
-      price: 89.99,
+
       image: '/universal_armboard_pad.png',
       pageId: 'universal-armboard-pads'
     },
@@ -1082,7 +1081,7 @@
       name: 'Wrist Protectors',
       groupId: 9,
       category: 'Arm and Shoulder Pads',
-      price: 49.99,
+
       image: '/wrist_protector.png',
       pageId: 'wrist-protectors'
     },
@@ -1091,7 +1090,7 @@
       name: 'Presentation Gel Pads',
       groupId: 9,
       category: 'Arm and Shoulder Pads',
-      price: 119.99,
+
       image: '/presentation_gel_pads.png',
       pageId: 'presentation-gel-pads'
     },
@@ -1100,7 +1099,7 @@
       name: 'Elbow Protectors',
       groupId: 9,
       category: 'Arm and Shoulder Pads',
-      price: 59.99,
+
       image: '/elbow_protector.png',
       pageId: 'elbow-protectors'
     },
@@ -1109,7 +1108,7 @@
       name: 'Arm Shield Pads',
       groupId: 9,
       category: 'Arm and Shoulder Pads',
-      price: 79.99,
+
       image: '/arm_shield_pads.png',
       images: [
         '/arm_shield_pads.png',
@@ -1123,7 +1122,7 @@
       name: 'Lateral Pads',
       groupId: 9,
       category: 'Chest and Body Pads',
-      price: 139.99,
+
       image: '/lateral_pads.png',
       pageId: 'lateral-pads'
     },
@@ -1132,7 +1131,7 @@
       name: 'Chest-Hipbone Pads',
       groupId: 9,
       category: 'Chest and Body Pads',
-      price: 149.99,
+
       image: '/chest_hipbone.png',
       pageId: 'chest-hipbone-pads'
     },
@@ -1141,7 +1140,7 @@
       name: 'Fracture Table Post Pads',
       groupId: 9,
       category: 'Chest and Body Pads',
-      price: 159.99,
+
       image: '/fracture_table_post.png',
       pageId: 'fracture-table-post-pads'
     },
@@ -1150,7 +1149,7 @@
       name: 'Body Protectors',
       groupId: 9,
       category: 'Chest and Body Pads',
-      price: 169.99,
+
       image: '/body_protectors.png',
       pageId: 'body-protectors'
     },
@@ -1159,7 +1158,7 @@
       name: 'Prostrate Pads',
       groupId: 9,
       category: 'Chest and Body Pads',
-      price: 179.99,
+
       image: '/prostrate_pads.png',
       pageId: 'prostrate-pads'
     },
@@ -1168,7 +1167,7 @@
       name: 'Hip Pads',
       groupId: 9,
       category: 'Chest and Body Pads',
-      price: 189.99,
+
       image: '/hip_pads.png',
       pageId: 'hip-pads'
     },
@@ -1177,7 +1176,7 @@
       name: 'Pillar Shaped Pads',
       groupId: 9,
       category: 'Chest and Body Pads',
-      price: 199.99,
+
       image: '/pillar_shaped_pads.png',
       pageId: 'pillar-shaped-pads'
     },
@@ -1186,7 +1185,7 @@
       name: 'Dome Shaped Pads',
       groupId: 9,
       category: 'Lower Limb Pads',
-      price: 79.99,
+
       image: '/dome_shaped_pads.png',
       pageId: 'dome-shaped-pads'
     },
@@ -1195,7 +1194,7 @@
       name: 'Heel Pads',
       groupId: 9,
       category: 'Lower Limb Pads',
-      price: 59.99,
+
       image: '/heel_pads.png',
       pageId: 'heel-pads'
     },
@@ -1204,7 +1203,7 @@
       name: 'Ankle Protectors',
       groupId: 9,
       category: 'Lower Limb Pads',
-      price: 69.99,
+
       image: '/ankle_protectors.png',
       pageId: 'ankle-protectors'
     },
@@ -1213,7 +1212,7 @@
       name: 'O.R. Table Pads',
       groupId: 9,
       category: 'Lower Limb Pads',
-      price: 189.99,
+
       image: '/or_table_pad.png',
       pageId: 'or-table-pads'
     },
@@ -1222,7 +1221,7 @@
       name: 'Contoured Arm/Leg Pads',
       groupId: 9,
       category: 'Lower Limb Pads',
-      price: 129.99,
+
       image: '/contoured_arm_leg_pads.png',
       images: [
         '/contoured_arm_leg_pads.png',
@@ -1235,7 +1234,7 @@
       name: 'Universal Square Pads',
       groupId: 9,
       category: 'Lower Limb Pads',
-      price: 89.99,
+
       image: '/universal_square_pads.png',
       pageId: 'universal-square-pads'
     },
@@ -1244,7 +1243,7 @@
       name: 'Tunnel Pads',
       groupId: 9,
       category: 'Lower Limb Pads',
-      price: 149.99,
+
       image: '/tunnel_pads.png',
       pageId: 'tunnel-pads'
     },
@@ -1253,7 +1252,7 @@
       name: 'Pillow Shaped Pad',
       groupId: 9,
       category: 'Lower Limb Pads',
-      price: 99.99,
+
       image: '/pillow_shaped_pad.png',
       pageId: 'pillow-shaped-pad'
     },
@@ -1262,7 +1261,7 @@
       name: 'Face-Cradle® Prone Support System',
       groupId: 9,
       category: null,
-      price: 499.99,
+
       image: '/face_cradle_prone_support_system.png',
       images: [
         '/face_cradle_prone_support_system.png',
@@ -1276,7 +1275,7 @@
       name: 'Adjustable Stirrups for Lithotomy Surgeries',
       groupId: 9,
       category: null,
-      price: 2999.99,
+
       image: '/adjustable_stirrups_for_lithotomy_surgeries.png',
       images: [
         '/adjustable_stirrups_for_lithotomy_surgeries.png',
@@ -1289,7 +1288,7 @@
       name: 'Troop Elevation Pillow',
       groupId: 9,
       category: null,
-      price: 399.99,
+
       image: '/troop_elevation_pillow.png',
       pageId: 'troop-elevation-pillow'
     },
@@ -1298,7 +1297,7 @@
       name: 'Memory Supine Head Pads',
       groupId: 10,
       category: 'Memory Head and Neck Pads',
-      price: 149.99,
+
       image: '/memory_supine_head_pads.png',
       pageId: 'memory-supine-head-pads'
     },
@@ -1307,7 +1306,7 @@
       name: 'Memory Prostrate Pads',
       groupId: 10,
       category: 'Memory Chest and Body Pads',
-      price: 159.99,
+
       image: '/memory_prostrate_pads.png',
       pageId: 'memory-prostrate-pads'
     },
@@ -1316,7 +1315,7 @@
       name: 'Memory Lower Limb ProtectorPads',
       groupId: 10,
       category: null,
-      price: 139.99,
+
       image: '/memory_lower_limb_pads.png',
       pageId: 'memory-lower-limb-pads'
     },
@@ -1325,7 +1324,7 @@
       name: 'Memory Arm Pads',
       groupId: 10,
       category: null,
-      price: 129.99,
+
       image: '/memory_arm_pads.png',
       images: [
         '/memory_arm_pads.png',
@@ -1339,7 +1338,7 @@
       name: 'Memory Universal Square Pads',
       groupId: 10,
       category: 'Universal Square Pads',
-      price: 159.99,
+
       image: 'memory_universal_square_pads.png',
       pageId: 'memory-universal-square-pads'
     },
@@ -1348,7 +1347,7 @@
       name: 'Memory Pillow Shaped Pads',
       groupId: 10,
       category: 'Universal Square Pads',
-      price: 159.99,
+
       image: 'memory_pillow_shaped_pads.png',
       pageId: 'memory-pillow-shaped-pads'
     },
@@ -1358,7 +1357,7 @@
       name: 'Memory Heel Pads',
       groupId: 10,
       category: 'Memory Lower Limb Pads',
-      price: 159.99,
+
       image: 'memory_heel_pads.png',
       pageId: 'memory-heel-pads'
     },
@@ -1367,7 +1366,7 @@
       name: 'Memory Tunnel Pads',
       groupId: 10,
       category: 'Memory Lower Limb Pads',
-      price: 159.99,
+
       // The "memory tunnel pads" image isn't shown in the snippet; reuse a related tunnel-pad visual for now.
       image: 'memory_tunnel_pads.png',
       pageId: 'memory-tunnel-pads'
@@ -1377,7 +1376,7 @@
       name: 'Memory Horseshoe Head Pads',
       groupId: 10,
       category: 'Memory Head and Neck Pads',
-      price: 149.99,
+
       image: '/memory_horsseshoe_head_pads.png',
       pageId: 'memory-horsseshoe-head-pads'
     },
@@ -1386,7 +1385,7 @@
       name: 'Memory Donut Head Pads',
       groupId: 10,
       category: 'Memory Head and Neck Pads',
-      price: 149.99,
+
       image: 'memory_donut_head_pads.png',
       pageId: 'memory-donut-head-pads'
     },
@@ -1395,7 +1394,7 @@
       name: 'Memory Waist Pads',
       groupId: 10,
       category: 'Memory Chest and Body Pads',
-      price: 159.99,
+
       image:
         'memory_waist_pads.png',
       pageId: 'memory-waist-pads'
@@ -1405,7 +1404,7 @@
       name: 'Memory Roll Shaped Pads',
       groupId: 10,
       category: 'Memory Chest and Body Pads',
-      price: 159.99,
+
       image:
         'memory_roll_shaped_pads.png',
       pageId: 'memory-roll-shaped-pads'
@@ -1415,7 +1414,7 @@
       name: 'Memory Chest-Hipbone Pads',
       groupId: 10,
       category: 'Memory Chest and Body Pads',
-      price: 159.99,
+
       image:
         'memory_chest_hipbone_pads.png',
       pageId: 'memory-chest-hipbone-pads'
@@ -1425,7 +1424,7 @@
       name: 'Memory Fracture Table Post Pads',
       groupId: 10,
       category: 'Memory Chest and Body Pads',
-      price: 159.99,
+
       image:
         'memory_fracture_table_post_pads.png',
       pageId: 'memory-fracture-table-post-pads'
@@ -1435,7 +1434,7 @@
       name: 'Memory Lateral Pads',
       groupId: 10,
       category: 'Memory Chest and Body Pads',
-      price: 159.99,
+
       image:
         'memory_lateral_pads.png',
       pageId: 'memory-lateral-pads'
@@ -1445,7 +1444,7 @@
       name: 'Memory Dome Shaped Pads',
       groupId: 10,
       category: 'Memory Chest and Body Pads',
-      price: 159.99,
+
       image: 'memory_dome_shaped_pads.png',
       pageId: 'memory-dome-shaped-pads'
     },
@@ -1454,7 +1453,7 @@
       name: 'Memory Pillar Shaped Pads',
       groupId: 10,
       category: 'Memory Chest and Body Pads',
-      price: 159.99,
+
       image:
         'memory_pillar_shaped_pads.png',
       pageId: 'memory-pillar-shaped-pads'
@@ -1464,7 +1463,7 @@
       name: 'Memory Slanting Shaped Pads',
       groupId: 10,
       category: 'Memory Chest and Body Pads',
-      price: 159.99,
+
       image:
         'memory_slanting_shaped_pads.png',
       pageId: 'memory-slanting-shaped-pads'
@@ -1474,7 +1473,7 @@
       name: 'Portable Breathing Oxygen Inhaler (600 ml)',
       groupId: 11,
       category: null,
-      price: 0,
+
       image: '/portable_breathing_oxygen_inhaler.png',
       images: [
         '/portable_breathing_oxygen_inhaler.png',
@@ -1487,7 +1486,7 @@
       name: 'Disinfection Tanks',
       groupId: 12,
       category: 'Disinfection Tanks',
-      price: 0,
+
       image: '/disinfection_tank.png',
       pageId: 'disinfection-tanks'
     },
@@ -1496,7 +1495,7 @@
       name: 'Gallipots',
       groupId: 12,
       category: 'Plastic Holloware',
-      price: 0,
+
       image: '/gallipots.png',
       pageId: 'gallipots'
     },
@@ -1505,7 +1504,7 @@
       name: 'Lotion Bowls',
       groupId: 12,
       category: 'Plastic Holloware',
-      price: 0,
+
       image: '/lotion_bowls.png',
       pageId: 'lotion-bowls'
     },
@@ -1514,7 +1513,7 @@
       name: 'Kidney Dishes & Vomit Bowls',
       groupId: 12,
       category: 'Plastic Holloware',
-      price: 0,
+
       image: '/kidney_dish.png',
       pageId: 'kidney-dishes-vomit-bowls'
     },
@@ -1523,7 +1522,7 @@
       name: 'Washbowl',
       groupId: 12,
       category: 'Plastic Holloware',
-      price: 0,
+
       image: '/wash_bowl.png',
       pageId: 'washbowl'
     },
@@ -1532,7 +1531,7 @@
       name: 'Beakers & Feeder Tops',
       groupId: 12,
       category: 'Plastic Holloware',
-      price: 0,
+
       image: '/beakers.png',
       pageId: 'beakers-feeder-tops'
     },
@@ -1541,7 +1540,7 @@
       name: 'Funnels',
       groupId: 12,
       category: 'Plastic Holloware',
-      price: 0,
+
       image: '/funnel.png',
       pageId: 'funnels'
     },
@@ -1550,7 +1549,7 @@
       name: "St. Peter's Boat",
       groupId: 12,
       category: 'Plastic Holloware',
-      price: 0,
+
       image: '/st_peter_boat.png',
       pageId: 'st-peters-boat'
     },
@@ -1559,7 +1558,7 @@
       name: 'Spatula',
       groupId: 12,
       category: 'Plastic Holloware',
-      price: 0,
+
       image: '/spatula.png',
       pageId: 'spatula'
     },
@@ -1568,7 +1567,7 @@
       name: 'Instrument Tray',
       groupId: 12,
       category: 'Surgical Instrument Trays',
-      price: 0,
+
       image: '/instrument_tray.png',
       pageId: 'instrument-tray'
     },
@@ -1577,7 +1576,7 @@
       name: 'Compartmented Instrument Tray',
       groupId: 12,
       category: 'Surgical Instrument Trays',
-      price: 0,
+
       image: '/compartmented_instrument_tray.png',
       pageId: 'compartmented-instrument-tray'
     },
@@ -1586,7 +1585,7 @@
       name: 'Instrument Tray Lid',
       groupId: 12,
       category: 'Surgical Instrument Trays',
-      price: 0,
+
       image: '/instrument_tray_lid.png',
       pageId: 'instrument-tray-lid'
     },
@@ -1595,7 +1594,7 @@
       name: 'Instrument Tray with Lid',
       groupId: 12,
       category: 'Surgical Instrument Trays',
-      price: 0,
+
       image: '/instrument_tray_with_lid.png',
       pageId: 'instrument-tray-with-lid'
     },
@@ -1604,7 +1603,7 @@
       name: 'Stainless Steel Dins',
       groupId: 12,
       category: 'Stainless Steel Dins',
-      price: 0,
+
       image: '/stainless_steel_dins.png',
       pageId: 'stainless-steel-dins'
     },
@@ -1613,7 +1612,7 @@
       name: 'Shampoo Cap',
       groupId: 15,
       category: null,
-      price: 12,
+
       image: '/shampoo-cap.jpeg',
       pageId: 'shampoo-cap'
     },
@@ -1622,7 +1621,7 @@
       name: 'Body Wipes',
       groupId: 15,
       category: null,
-      price: 10,
+
       image: '/body-wipes.jpeg',
       pageId: 'body-wipes'
     },
@@ -1631,7 +1630,7 @@
       name: 'Suction Toothbrush',
       groupId: 15,
       category: null,
-      price: 0,
+
       image: '/suction_toothbrush.png',
       images: [
         '/suction_toothbrush.png',
@@ -1644,7 +1643,7 @@
       name: 'Suction Swab',
       groupId: 15,
       category: null,
-      price: 0,
+
       image: '/suction_swab.png',
       pageId: 'suction-swab'
     },
@@ -1653,7 +1652,7 @@
       name: 'Oral Swab Sensory Brush',
       groupId: 15,
       category: null,
-      price: 0,
+
       image: '/oral_swab_sensory_brush.png',
       pageId: 'oral-swab-sensory-brush'
     },
@@ -1662,7 +1661,7 @@
       name: 'Sensory Brush 2.0',
       groupId: 13,
       category: null,
-      price: 0,
+
       image: '/sensory_brush_2_0.png',
       images: [
         '/sensory_brush_2_0.png',
@@ -1675,7 +1674,7 @@
       name: 'Sensory Brush',
       groupId: 13,
       category: null,
-      price: 0,
+
       image: '/sensory_brush.png',
       images: [
         '/sensory_brush.png',
@@ -1689,7 +1688,7 @@
       name: 'Hypafix Adhesive Non Woven Fabric [Ready Stock]',
       groupId: 13,
       category: null,
-      price: 36.00,
+
       image: '/hypafix_adhesive_non_woven_fabric.png',
       pageId: 'hypafix-adhesive-non-woven-fabric-ready-stock'
     },
@@ -1698,7 +1697,7 @@
       name: 'Adult & Pediatric- Tracheostomy Tube Holder / Neck Strap',
       groupId: 13,
       category: null,
-      price: 9.5,
+
       image: '/neck-strap.jpeg',
       pageId: 'adult-pediatric-tracheostomy-tube-holder-neck-strap'
     },
@@ -1707,7 +1706,7 @@
       name: 'Seluar Sunat Khatan / Circumcision Underwear',
       groupId: 14,
       category: null,
-      price: 10,
+
       image: '/circumcision_underwear.png',
       pageId: 'seluar-sunat-khatan-circumcision-underwear'
     },
@@ -1716,7 +1715,7 @@
       name: 'Double Ended Cleaning Brush | Nylon Bristles',
       groupId: 6,
       category: null,
-      price: 19,
+
       image: '/double-ended-cleaning-brush.jpeg',
       pageId: 'double-ended-cleaning-brush-nylon-bristles'
     }
