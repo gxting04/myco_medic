@@ -717,7 +717,7 @@
     {
       id: 51,
       name: 'Disposable Circumcision Pack',
-      groupId: 13,
+      groupId: 14,
       category: null,
 
       image: '/disposable_circumcision_pack.png',
