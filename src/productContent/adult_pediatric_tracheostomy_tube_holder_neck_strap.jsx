@@ -314,26 +314,6 @@ The Adult & Pediatric Tracheostomy Tube Holder provides healthcare professionals
                 </div>
               )}
 
-              {/* Stock Status */}
-              {isPurchasable && (
-                <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold ${
-                  stockStatus.status === 'out_of_stock' 
-                    ? 'text-red-700 bg-red-50 border border-red-200' 
-                    : stockStatus.status === 'low_stock' 
-                      ? 'text-orange-700 bg-orange-50 border border-orange-200' 
-                      : 'text-green-700 bg-green-50 border border-green-200'
-                }`}>
-                  <div className={`w-2 h-2 rounded-full ${
-                    stockStatus.status === 'out_of_stock' 
-                      ? 'bg-red-600' 
-                      : stockStatus.status === 'low_stock' 
-                        ? 'bg-orange-600' 
-                        : 'bg-green-600'
-                  }`}></div>
-                  {stockStatus.message}
-                </div>
-              )}
-
               {/* WhatsApp Contact */}
               <a 
                 href={`https://wa.me/60123822001?text=Hi, I'm interested in ${product.name}`}
