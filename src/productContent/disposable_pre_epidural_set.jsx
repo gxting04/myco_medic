@@ -99,13 +99,11 @@ function DisposablePreEpiduralSetPage({ product }) {
 • Multiple sizes available – accommodates various patient populations
 
 **Kit Contents:**
-• Epidural needle (Tuohy or similar)
-• Epidural catheter
-• Syringes for local anesthetic
-• Filter for medication administration
-• Sterile drapes and gauze
-• Local anesthetic solutions
-• Skin preparation materials
+2 x Gallipots (60ml)
+5x Gauze Swabs (7.5 x 7.5cm x 8 Ply)
+1x Kidney Dish (750ml)
+1x Stainless Steel Rampley Sponge Holding Forceps
+1x Green Crepe Sterile Field (60cm x 60cm)
 
 **Clinical Applications:**
 • Labor and delivery epidural anesthesia

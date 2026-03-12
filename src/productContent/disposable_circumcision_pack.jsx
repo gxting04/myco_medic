@@ -99,12 +99,20 @@ function DisposableCircumcisionPackPage({ product }) {
 • Pediatric and adult options – accommodates various patient populations
 
 **Kit Contents:**
-• Surgical instruments (scissors, forceps, hemostats)
-• Sterile drapes and gauze
-• Sutures and needles
-• Antiseptic solutions
-• Local anesthetic syringes
-• Dressing materials
+1x Adson Forceps 12cm, Toothed
+1x Adson Forceps 13cm, Non-Toothed
+1x Kilner Needle Holder 13.5cm
+1x Iris Scissors Straight 11cm
+1x Rampley Sponge Holding Forceps 18cm
+1x Strabismus Dressing Scissors Straight 11cm
+4x Mosquito Artery Forceps Curve 13cm
+1x Tray Polypropene + 2 Gallipot Section
+1x Fenestrated Drape 60cm x 60cm (10ml)
+1x Adhesive Small Yellow Bag
+1x Folded Dressing Towel (43cm x 38cm)
+5x Plain Gauze Swabs (7.5cm x 7.5cm x 8ply)
+1x Kocher Forcep Straight 7 Inch
+1x Azo Resist Green 90cm x 90cm - sterile field
 
 **Clinical Applications:**
 • Elective circumcision procedures
