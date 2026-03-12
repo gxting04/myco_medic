@@ -13,7 +13,8 @@ import GroupCategories from './pages/GroupCategories'
 import ProductDetail from './components/ProductDetail'
 import SearchResults from './pages/SearchResults'
 import { CartProvider } from './context/CartContext'
-import Cart from './pages/Cart'
+// Cart page hidden
+// import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
 import Success from './pages/Success'
 
@@ -59,10 +60,11 @@ const router = createBrowserRouter([
     path:'/search',
     element:<SearchResults/>
   },
-  {
-    path:'/cart',
-    element:<Cart/>
-  },
+  // Cart page hidden
+  // {
+  //   path:'/cart',
+  //   element:<Cart/>
+  // },
   {
     path:'/checkout',
     element:<Checkout/>

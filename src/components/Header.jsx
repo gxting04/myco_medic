@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { useCart } from '../context/CartContext'
+// Cart functionality hidden
+// import { useCart } from '../context/CartContext'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { ShoppingBag, Menu, X, Search } from 'lucide-react'
 
 function Header() {
-  const { getCartCount } = useCart()
+  // Cart functionality hidden
+  // const { getCartCount } = useCart()
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
@@ -98,8 +100,8 @@ function Header() {
             <Search className="w-6 h-6" />
           </button>
 
-          {/* Cart + Mobile Menu */}
-          <Link
+          {/* Cart icon hidden */}
+          {/* <Link
             to="/cart"
             className="relative p-2.5 text-gray-500 hover:text-black transition-colors"
             aria-label="Cart"
@@ -110,7 +112,7 @@ function Header() {
                 {getCartCount()}
               </span>
             )}
-          </Link>
+          </Link> */}
           
           {/* Mobile Menu Toggle */}
           <button
