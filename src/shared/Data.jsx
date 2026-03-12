@@ -83,6 +83,12 @@
       name: 'Circumcision/Sunat',
       icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
       description: 'Medical supplies and equipment for circumcision procedures and related care.'
+    },
+    {
+      id: 15,
+      name: 'Patient Hygiene Care',
+      icon: 'https://cdn-icons-png.flaticon.com/128/3135/3135715.png',
+      description: 'Hygiene products and care supplies for patient comfort and cleanliness.'
     }
   ]
 
@@ -1605,7 +1611,7 @@
     {
       id: 150,
       name: 'Shampoo Cap',
-      groupId: 13,
+      groupId: 15,
       category: null,
       price: 12,
       image: '/shampoo-cap.jpeg',
@@ -1614,7 +1620,7 @@
     {
       id: 151,
       name: 'Body Wipes',
-      groupId: 13,
+      groupId: 15,
       category: null,
       price: 10,
       image: '/body-wipes.jpeg',
@@ -1623,7 +1629,7 @@
     {
       id: 152,
       name: 'Suction Toothbrush',
-      groupId: 13,
+      groupId: 15,
       category: null,
       price: 0,
       image: '/suction_toothbrush.png',
@@ -1636,7 +1642,7 @@
     {
       id: 153,
       name: 'Suction Swab',
-      groupId: 13,
+      groupId: 15,
       category: null,
       price: 0,
       image: '/suction_swab.png',
@@ -1645,7 +1651,7 @@
     {
       id: 154,
       name: 'Oral Swab Sensory Brush',
-      groupId: 13,
+      groupId: 15,
       category: null,
       price: 0,
       image: '/oral_swab_sensory_brush.png',
