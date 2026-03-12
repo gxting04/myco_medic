@@ -21,7 +21,6 @@ function ProductsPage() {
   })
   const [expandedGroups, setExpandedGroups] = useState([])
   const [sortBy, setSortBy] = useState('default')
-  const [priceRange, setPriceRange] = useState({ min: '', max: '' })
   const [showFilters, setShowFilters] = useState(false)
   const navigate = useNavigate()
 
@@ -94,29 +93,9 @@ function ProductsPage() {
       })
     }
 
-    // Price range filter
-    if (priceRange.min !== '') {
-      const minPrice = parseFloat(priceRange.min)
-      if (!isNaN(minPrice)) {
-        products = products.filter(p => p.price >= minPrice)
-      }
-    }
-    if (priceRange.max !== '') {
-      const maxPrice = parseFloat(priceRange.max)
-      if (!isNaN(maxPrice)) {
-        products = products.filter(p => p.price <= maxPrice)
-      }
-    }
-
     // Sort products
     const sortedProducts = [...products]
     switch (sortBy) {
-      case 'price-low':
-        sortedProducts.sort((a, b) => a.price - b.price)
-        break
-      case 'price-high':
-        sortedProducts.sort((a, b) => b.price - a.price)
-        break
       case 'name-asc':
         sortedProducts.sort((a, b) => a.name.localeCompare(b.name))
         break
@@ -129,7 +108,7 @@ function ProductsPage() {
     }
 
     return sortedProducts
-  }, [allProducts, selectedGroupId, selectedCategoryId, searchTerm, priceRange, sortBy])
+  }, [allProducts, selectedGroupId, selectedCategoryId, searchTerm, sortBy])
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -375,8 +354,6 @@ function ProductsPage() {
                       className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
                     >
                       <option value="default">Default</option>
-                      <option value="price-low">Price: Low to High</option>
-                      <option value="price-high">Price: High to Low</option>
                       <option value="name-asc">Name: A to Z</option>
                       <option value="name-desc">Name: Z to A</option>
                     </select>
@@ -387,68 +364,7 @@ function ProductsPage() {
                     <span className="font-medium">{filteredProducts.length}</span> product{filteredProducts.length !== 1 ? 's' : ''} found
                   </div>
                 </div>
-
-                {/* Clear Filters Button */}
-                {(priceRange.min !== '' || priceRange.max !== '') && (
-                  <button
-                    onClick={() => {
-                      setPriceRange({ min: '', max: '' })
-                      setSortBy('default')
-                    }}
-                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                  >
-                    <X className="w-4 h-4" />
-                    Clear filters
-                  </button>
-                )}
               </div>
-
-              {/* Filter Panel - Mobile/Desktop */}
-              <div className={`mb-6 p-4 bg-white border border-gray-200 rounded-lg ${showFilters ? 'block' : 'hidden md:block'}`}>
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-semibold text-gray-900">Price Range</h3>
-                    <button
-                      onClick={() => setShowFilters(false)}
-                      className="md:hidden text-gray-500 hover:text-gray-700"
-                      aria-label="Close filters"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="min-price" className="block text-sm font-medium text-gray-700 mb-1">
-                        Min Price (RM)
-                      </label>
-                      <input
-                        id="min-price"
-                        type="number"
-                        min="0"
-                        step="0.01"
-                        value={priceRange.min}
-                        onChange={(e) => setPriceRange({ ...priceRange, min: e.target.value })}
-                        placeholder="0.00"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="max-price" className="block text-sm font-medium text-gray-700 mb-1">
-                        Max Price (RM)
-                      </label>
-                      <input
-                        id="max-price"
-                        type="number"
-                        min="0"
-                        step="0.01"
-                        value={priceRange.max}
-                        onChange={(e) => setPriceRange({ ...priceRange, max: e.target.value })}
-                        placeholder="No limit"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                      />
-                    </div>
-                  </div>
-                </div>
 
               {filteredProducts.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -484,13 +400,7 @@ function ProductsPage() {
                           )}
                           
                           <div className="mt-auto">
-                            {isPurchasableProduct(product) ? (
-                              <p className="text-lg font-semibold text-gray-900">
-                                RM{product.price.toFixed(2)}
-                              </p>
-                            ) : (
-                              <p className="text-sm text-gray-500">Contact us for pricing</p>
-                            )}
+                            <p className="text-sm text-gray-500">Contact us for pricing</p>
                           </div>
                         </div>
                       </Link>
