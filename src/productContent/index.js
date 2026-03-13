@@ -47,6 +47,7 @@ import DisposableCPAPSystemPage from './disposable_cpap_system'
 import DisposableCircumcisionPackPage from './disposable_circumcision_pack'
 import DisposablePreEpiduralSetPage from './disposable_pre_epidural_set'
 import DisposableBasicPackPage from './disposable_basic_pack'
+import ENTPackPage from './ent_pack'
 import CannulaCleaningBrushesPage from './cannula_cleaning_brushes'
 import TrachealTubeBrushesPage from './tracheal_tube_brushes'
 import InstrumentCleaningBrushesPage from './instrument_cleaning_brushes'
@@ -313,6 +314,7 @@ const productContentRegistry = {
   'hypafix-adhesive-non-woven-fabric-ready-stock': HypafixAdhesiveNonWovenFabricReadyStockPage,
   'adult-pediatric-tracheostomy-tube-holder-neck-strap': AdultPediatricTracheostomyTubeHolderNeckStrapPage,
   'seluar-sunat-khatan-circumcision-underwear': SeluarSunatKhatanCircumcisionUnderwearPage,
+  'ent-pack': ENTPackPage,
   // 'double-ended-cleaning-brush-nylon-bristles': DoubleEndedCleaningBrushNylonBristlesPage
 }
 
