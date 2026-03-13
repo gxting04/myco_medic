@@ -1734,7 +1734,7 @@
     },
     {
       id: 162,
-      name: 'Basic Sterile Kit',
+      name: 'Sterile Basic Kit',
       groupId: 13,
       category: null,
 
@@ -1752,6 +1752,10 @@
       category: null,
 
       image: '/delivery_kit.png',
+      images: [
+        '/delivery_kit.png',
+        '/delivery_kit_2.png'
+      ],
       pageId: 'delivery-kit'
     }
   ]

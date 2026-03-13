@@ -47,22 +47,23 @@ function BasicSterileKitPage({ product }) {
   }
 
   // Product description
-  const description = `The Basic Sterile Kit is a comprehensive, sterile disposable pack designed for general medical procedures and examinations. This essential kit provides healthcare professionals with all fundamental sterile components needed for safe, effective patient care.
+  const description = `The Sterile Basic Kit is a comprehensive, sterile disposable pack designed for general medical procedures and examinations. This essential kit provides healthcare professionals with all fundamental sterile components needed for safe, effective patient care.
 
 **Key Features:**
-• Complete sterile kit – includes all essential sterile components
-• Sterile packaging – ensures aseptic technique during procedures
-• Single-patient-use design – eliminates cross-contamination risks
-• Standard components – universally compatible equipment
-• Convenient packaging – easy to store and access
-• Professional quality – meets medical standards for sterile procedures
+1.Isolation: isolating contaminated areas from operating areas.
+2.Barrier: preventing fluid and microbial penetration.
+3.Fluid Control: collecting body fluid and irrigation fluids.
+4.Comfortable: light gram, soft, breathable.
+5.Soft, lint free, lightweight, compact moisture resistant, nonirritating, and static free.
 
 **Components Included:**
-• Sterile drapes and covers
-• Sterile gloves
-• Sterile gauze and swabs
-• Disposable sterile components
-• All essential supplies in one convenient pack
+• 1 x Mayo Stand Cover
+• 1 x Limpet Bag
+• 2 x Absorbents Towels 30x40cm
+• 4 x Adhesive Drape
+• 1 x Fan Folded Drape 152cm x 112cm
+• 1 x Folded Drape 152cm x 193cm
+• 1 x Table Cover
 
 **Applications:**
 • General medical examinations

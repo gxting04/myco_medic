@@ -57,12 +57,15 @@ function DeliveryKitPage({ product }) {
 • Convenient packaging – easy to store and access
 • Professional quality – meets medical standards for delivery procedures
 
-**Components Included:**
-• Sterile drapes and covers for delivery procedures
-• Sterile gloves and protective equipment
-• Delivery instruments and supplies
-• Disposable sterile components
-• All essential supplies in one convenient pack
+**Components:**
+• 2 X SPENCER WELLS ARTERY FORCEPS 13CM
+• 1 X MAYO SCISSOR STRAIGHT 18CM
+• 1 X UMBILICAL CORD SCISSOR 10CM
+• 2 X CORD CLAMP GATED
+• 5 X GAUZE SWABS 10 X 10CM
+• 1 X TROLLEY COVER 112 X112 CM
+• 1 X POLYPROPYLENE TRAY WITH 2 INTEGRATED POTS
+• 1 X DRAPE 50 X 50CM
 
 **Applications:**
 • Obstetric delivery procedures
