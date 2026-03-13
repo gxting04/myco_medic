@@ -1724,6 +1724,7 @@
       name: 'ENT Pack',
       groupId: 13,
       category: null,
+      articleCode: '18189',
 
       image: '/ent_pack.png',
       images: [
@@ -1737,6 +1738,7 @@
       name: 'Sterile Basic Kit',
       groupId: 13,
       category: null,
+      articleCode: 'UKK201',
 
       image: '/basic_sterile_kit.png',
       images: [
@@ -1750,6 +1752,7 @@
       name: 'Delivery Kit',
       groupId: 13,
       category: null,
+      articleCode: '18187',
 
       image: '/delivery_kit.png',
       images: [

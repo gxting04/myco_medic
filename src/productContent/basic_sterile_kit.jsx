@@ -153,12 +153,11 @@ The Basic Sterile Kit streamlines medical procedures by providing a complete, re
             <div className='space-y-6 lg:pt-4'>
               {/* Product Title */}
               <div className='pb-2 border-b border-gray-100'>
-                <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 leading-tight'>{product.name}</h1>
+                <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 leading-tight'>{product.name}</h1>
                 {product.articleCode && (
-                  <div className='flex items-center gap-2 mt-2'>
-                    <span className='text-xs font-medium text-gray-500 uppercase tracking-wide'>Article Code:</span>
-                    <span className='text-sm font-semibold text-gray-700 bg-gray-50 px-2 py-1 rounded'>{product.articleCode}</span>
-                  </div>
+                  <p className='text-base sm:text-lg text-gray-600 font-medium mb-3'>
+                    Item Code: {product.articleCode}
+                  </p>
                 )}
               </div>
 
