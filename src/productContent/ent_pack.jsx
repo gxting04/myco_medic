@@ -57,6 +57,13 @@ function ENTPackPage({ product }) {
 • Convenient packaging – easy to store and access
 • Professional quality – meets medical standards for ENT procedures
 
+**Product Benefits:**
+• Isolation: isolating contaminated areas from operating areas
+• Barrier: preventing fluid and microbial penetration
+• Fluid Control: collecting body fluid and irrigation fluids
+• Comfortable: light gram, soft, breathable
+• Soft, lint free, lightweight, compact moisture resistant, nonirritating, and static free
+
 **Components Included:**
 • Examination instruments for ENT procedures
 • Sterile drapes and covers
