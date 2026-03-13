@@ -30,7 +30,6 @@ function Footer() {
                 alt="Myco Medic Logo"
                 className="w-12 h-12 object-contain"
               />
-              <span className="text-xl font-bold text-gray-900">Myco Medic</span>
             </Link>
             <p className="text-sm leading-relaxed mb-6 max-w-xs">
               Advancing healthcare with precision-engineered medical supplies and equipment. 

@@ -67,9 +67,6 @@ function Header() {
             alt="Myco Medic"
             className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain"
           />
-          <span className="text-lg sm:text-xl md:text-2xl font-semibold tracking-tight text-gray-900">
-            Myco Medic
-          </span>
         </Link>
 
         {/* Right Side - Navigation + Actions */}
