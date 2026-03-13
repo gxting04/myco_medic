@@ -1726,6 +1726,10 @@
       category: null,
 
       image: '/ent_pack.png',
+      images: [
+        '/ent_pack.png',
+        '/ent_pack_2.png'
+      ],
       pageId: 'ent-pack'
     }
   ]
