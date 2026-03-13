@@ -1731,6 +1731,15 @@
         '/ent_pack_2.png'
       ],
       pageId: 'ent-pack'
+    },
+    {
+      id: 162,
+      name: 'Basic Sterile Kit',
+      groupId: 13,
+      category: null,
+
+      image: '/basic_sterile_kit.png',
+      pageId: 'basic-sterile-kit'
     }
   ]
   
