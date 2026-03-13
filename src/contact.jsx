@@ -61,7 +61,7 @@ function Contact() {
           <div className="relative rounded-2xl overflow-hidden shadow-sm border border-gray-200">
             <div className="w-full h-[400px] md:h-[500px]">
               <iframe
-                src="https://www.google.com/maps?q=Myco+Medic+Sdn+Bhd,+No.+2A-G,+Jalan+Sierra+10/3,+Bandar+16+Sierra,+47120+Puchong,+Selangor,+Malaysia&output=embed"
+                src="https://www.google.com/maps?q=Myco+Medic+Sdn+Bhd,+No.+2A-G+Jalan+Sierra+10/3,+Bandar+16+Sierra,+47120+Puchong,+Selangor,+Malaysia&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -102,9 +102,10 @@ function Contact() {
               </div>
               <div className="space-y-2 text-gray-600 leading-relaxed">
                 <p className="font-medium text-gray-900">Myco Medic Sdn Bhd</p>
-                <p>NO, 2A-G, FLOOR JALAN SIERRA 10/3, SECTION,</p>
-                <p>Bandar 16 Sierra, 47120 Puchong,</p>
-                <p>Selangor, Malaysia.</p>
+                <p>No. 2A-G Jalan Sierra 10/3,</p>
+                <p>Bandar 16 Sierra,</p>
+                <p>47120 Puchong,</p>
+                <p>Selangor, Malaysia</p>
               </div>
             </motion.div>
             
