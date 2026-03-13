@@ -1739,7 +1739,20 @@
       category: null,
 
       image: '/basic_sterile_kit.png',
+      images: [
+        '/basic_sterile_kit.png',
+        '/basic_sterile_kit_2.png'
+      ],
       pageId: 'basic-sterile-kit'
+    },
+    {
+      id: 163,
+      name: 'Delivery Kit',
+      groupId: 13,
+      category: null,
+
+      image: '/delivery_kit.png',
+      pageId: 'delivery-kit'
     }
   ]
   
