@@ -154,7 +154,7 @@ The ENT Pack streamlines ENT procedures by providing a complete, ready-to-use ki
                 <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 leading-tight'>{product.name}</h1>
                 {product.articleCode && (
                   <p className='text-base sm:text-lg text-gray-600 font-medium mb-3'>
-                    Item Code: {product.articleCode}
+                    Product Code: {product.articleCode}
                   </p>
                 )}
               </div>
