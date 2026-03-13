@@ -49,6 +49,7 @@ import DisposablePreEpiduralSetPage from './disposable_pre_epidural_set'
 import DisposableBasicPackPage from './disposable_basic_pack'
 import ENTPackPage from './ent_pack'
 import BasicSterileKitPage from './basic_sterile_kit'
+import DeliveryKitPage from './delivery_kit'
 import CannulaCleaningBrushesPage from './cannula_cleaning_brushes'
 import TrachealTubeBrushesPage from './tracheal_tube_brushes'
 import InstrumentCleaningBrushesPage from './instrument_cleaning_brushes'
@@ -317,6 +318,7 @@ const productContentRegistry = {
   'seluar-sunat-khatan-circumcision-underwear': SeluarSunatKhatanCircumcisionUnderwearPage,
   'ent-pack': ENTPackPage,
   'basic-sterile-kit': BasicSterileKitPage,
+  'delivery-kit': DeliveryKitPage,
   // 'double-ended-cleaning-brush-nylon-bristles': DoubleEndedCleaningBrushNylonBristlesPage
 }
 
