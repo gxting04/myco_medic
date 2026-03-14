@@ -163,6 +163,11 @@ function ProductsPage() {
     return allProducts.filter(p => p.groupId === groupId && (!p.category || p.category === null)).length
   }
 
+  // Get direct products for a group (products without category)
+  const getDirectProducts = (groupId) => {
+    return allProducts.filter(p => p.groupId === groupId && (!p.category || p.category === null))
+  }
+
   return (
     <div className="bg-gray-50 min-h-screen">
       <Header/>
@@ -237,6 +242,7 @@ function ProductsPage() {
                     .map((group) => {
                       const categories = getCategoriesForGroup(group.id)
                       const directProductsCount = getDirectProductsCount(group.id)
+                      const directProducts = getDirectProducts(group.id)
                       const isExpanded = expandedGroups.includes(group.id)
                       const isSelected = selectedGroupId === group.id && !selectedCategoryId
 
@@ -286,6 +292,23 @@ function ProductsPage() {
                               </div>
                             )}
                           </button>
+
+                          {/* Direct Products under Group (products without category) */}
+                          {isExpanded && directProducts.length > 0 && (
+                            <div className="bg-gray-50/50 border-l-4 border-gray-200 ml-0">
+                              {directProducts.map((product) => {
+                                return (
+                                  <Link
+                                    key={product.id}
+                                    to={`/product/${product.id}`}
+                                    className="w-full text-left px-10 py-2.5 transition-all duration-200 flex items-center justify-between group text-gray-600 hover:bg-white hover:border-l-4 hover:border-gray-400 border-l-4 border-transparent"
+                                  >
+                                    <span className="text-sm font-normal truncate">{product.name}</span>
+                                  </Link>
+                                )
+                              })}
+                            </div>
+                          )}
 
                           {/* Categories under Group */}
                           {isExpanded && categories.length > 0 && (
