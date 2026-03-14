@@ -272,7 +272,8 @@ function ProductsPage() {
                           {/* Group Header */}
                           <button
                             onClick={() => {
-                              if (categories.length > 0) {
+                              // If group has categories or direct products, allow toggling
+                              if (categories.length > 0 || directProducts.length > 0) {
                                 // If group is already selected and expanded, just toggle expansion
                                 // Otherwise, select the group and expand it
                                 if (selectedGroupId === group.id && isExpanded) {
@@ -307,7 +308,7 @@ function ProductsPage() {
                                     {totalProductsCount}
                                   </span>
                                 )}
-                                {categories.length > 0 && (
+                                {(categories.length > 0 || directProducts.length > 0) && (
                                   <div className={`transition-transform duration-200 ${isExpanded ? 'rotate-0' : '-rotate-90'}`}>
                                     <ChevronDown className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-gray-400'}`} />
                                   </div>
