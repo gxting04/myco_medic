@@ -163,6 +163,11 @@ function ProductsPage() {
     return allProducts.filter(p => p.groupId === groupId && (!p.category || p.category === null)).length
   }
 
+  // Get total products count for a group (both direct and in categories)
+  const getTotalProductsCount = (groupId) => {
+    return allProducts.filter(p => p.groupId === groupId).length
+  }
+
   // Get direct products for a group (products without category)
   const getDirectProducts = (groupId) => {
     return allProducts.filter(p => p.groupId === groupId && (!p.category || p.category === null))
@@ -242,6 +247,7 @@ function ProductsPage() {
                     .map((group) => {
                       const categories = getCategoriesForGroup(group.id)
                       const directProductsCount = getDirectProductsCount(group.id)
+                      const totalProductsCount = getTotalProductsCount(group.id)
                       const directProducts = getDirectProducts(group.id)
                       const isExpanded = expandedGroups.includes(group.id)
                       const isSelected = selectedGroupId === group.id && !selectedCategoryId
@@ -275,20 +281,22 @@ function ProductsPage() {
                             <div className="flex items-center gap-3 flex-1 min-w-0">
                               <span className="font-medium text-sm truncate">{group.name}</span>
                             </div>
-                            {categories.length > 0 && (
+                            {(categories.length > 0 || totalProductsCount > 0) && (
                               <div className="flex items-center gap-2 flex-shrink-0">
-                                {directProductsCount > 0 && (
+                                {totalProductsCount > 0 && (
                                   <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
                                     isSelected 
                                       ? 'bg-white/20 text-white' 
                                       : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'
                                   }`}>
-                                    {directProductsCount}
+                                    {totalProductsCount}
                                   </span>
                                 )}
-                                <div className={`transition-transform duration-200 ${isExpanded ? 'rotate-0' : '-rotate-90'}`}>
-                                  <ChevronDown className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-gray-400'}`} />
-                                </div>
+                                {categories.length > 0 && (
+                                  <div className={`transition-transform duration-200 ${isExpanded ? 'rotate-0' : '-rotate-90'}`}>
+                                    <ChevronDown className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-gray-400'}`} />
+                                  </div>
+                                )}
                               </div>
                             )}
                           </button>
