@@ -1277,15 +1277,7 @@
       ],
       pageId: 'adjustable-stirrups-for-lithotomy-surgeries'
     },
-    {
-      id: 113,
-      name: 'Troop Elevation Pillow',
-      groupId: 9,
-      category: null,
 
-      image: '/troop_elevation_pillow.png',
-      pageId: 'troop-elevation-pillow'
-    },
     {
       id: 114,
       name: 'Memory Supine Head Pads',

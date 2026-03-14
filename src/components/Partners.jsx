@@ -9,9 +9,9 @@ function Partners() {
     { name: 'Cape Warwick', logo: '/cape.png', website: 'https://www.cape-warwick.co.uk/' },
     { name: 'Maizi', logo: '/maizi.png', website: 'https://maizi.en.alibaba.com/' },
     { name: 'Tappa', logo: '/tappa.png', website: 'https://www.tappamed.com/en/index.aspx' },
-    { name: 'Mercury Medical', logo: '/mercury_medical.jpeg', website: 'https://www.mercurymed.com/' },
+    { name: 'Mercury Medical', logo: '/mercury_medical.png', website: 'https://www.mercurymed.com/' },
     { name: 'Baihe', logo: '/baihe.png', website: 'https://www.baihemedical.eu/' },
-    { name: 'Haichuan', logo: '/haichuan.jpeg', website: 'https://www.haichuan-med.com/' },
+    { name: 'Haichuan', logo: '/haichuan.png', website: 'https://www.haichuan-med.com/' },
     { name: 'OKLand Medical', logo: '/okland.png', website: 'https://en.okltj.com/' },
     { name: 'UE Scope', logo: '/uescope.png', website: 'https://uescope.com/' },
     { name: 'Vitaltec', logo: '/vital.png', website: 'https://www.vitaltec-corp.com/en' },
@@ -22,9 +22,9 @@ function Partners() {
   const duplicatedPartners = [...partners, ...partners]
 
   return (
-    <section ref={sectionRef} className='py-24 bg-white border-t border-gray-100 overflow-hidden'>
+    <section ref={sectionRef} className='py-12 bg-white border-t border-gray-100 overflow-hidden'>
       <div className='max-w-7xl mx-auto px-6'>
-        <p className='text-center text-sm font-semibold text-gray-500 uppercase tracking-wider mb-12'>
+        <p className='text-center text-sm font-semibold text-gray-500 uppercase tracking-wider mb-8'>
           Trusted by Industry Leaders
         </p>
 
@@ -43,7 +43,7 @@ function Partners() {
                   href={partner.website}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='group flex items-center justify-center flex-shrink-0 px-8 md:px-12 lg:px-16 logo-item'
+                  className='group flex items-center justify-center flex-shrink-0 px-6 md:px-8 lg:px-12 logo-item'
                   style={{
                     animationDelay: `${(index % partners.length) * 0.3}s`
                   }}
@@ -51,7 +51,7 @@ function Partners() {
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className='h-20 md:h-24 lg:h-28 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300'
+                    className='h-24 md:h-32 lg:h-40 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300'
                     onError={(e) => {
                       console.error(`Failed to load logo for ${partner.name}:`, partner.logo);
                       e.target.style.display = 'none';
@@ -68,7 +68,7 @@ function Partners() {
                   href={partner.website}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='group flex items-center justify-center flex-shrink-0 px-8 md:px-12 lg:px-16 logo-item'
+                  className='group flex items-center justify-center flex-shrink-0 px-6 md:px-8 lg:px-12 logo-item'
                   style={{
                     animationDelay: `${(index % partners.length) * 0.3}s`
                   }}
@@ -76,7 +76,7 @@ function Partners() {
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className='h-20 md:h-24 lg:h-28 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300'
+                    className='h-24 md:h-32 lg:h-40 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300'
                     onError={(e) => {
                       console.error(`Failed to load logo for ${partner.name}:`, partner.logo);
                       e.target.style.display = 'none';

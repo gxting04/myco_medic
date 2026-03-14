@@ -28,13 +28,25 @@ function Footer() {
               <img
                 src="/Myco_Medic.png"
                 alt="Myco Medic Logo"
-                className="w-12 h-12 object-contain"
+                className="w-20 h-20 md:w-24 md:h-24 object-contain"
               />
             </Link>
             <p className="text-sm leading-relaxed mb-6 max-w-xs">
               Advancing healthcare with precision-engineered medical supplies and equipment. 
               Committed to quality, safety, and innovation.
             </p>
+            <a
+              href="https://shopee.com.my/healthcare_marts?categoryId=100001&entryPoint=ShopByPDP&itemId=8606053109"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mb-6 hover:opacity-80 transition-opacity"
+            >
+              <img
+                src="/shopee_logo.png"
+                alt="Shop on Shopee"
+                className="h-8 w-auto object-contain"
+              />
+            </a>
           </div>
 
           {/* Links Columns */}
