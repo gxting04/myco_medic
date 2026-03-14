@@ -167,7 +167,18 @@ function ProductsPage() {
 
   // Get total products count for a group (both direct and in categories)
   const getTotalProductsCount = (groupId) => {
-    return allProducts.filter(p => p.groupId === groupId).length
+    // Get categories that belong to this group
+    const groupCategories = Data.productCategories
+      .filter(cat => cat.groupId === groupId)
+      .map(cat => cat.name)
+    
+    // Count products that either:
+    // 1. Have this groupId directly, OR
+    // 2. Have a category that belongs to this group
+    return allProducts.filter(p => 
+      p.groupId === groupId || 
+      (p.category && groupCategories.includes(p.category))
+    ).length
   }
 
   // Get direct products for a group (products without category, sorted alphabetically)
