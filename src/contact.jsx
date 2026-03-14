@@ -103,7 +103,7 @@ function Contact() {
               <div className="space-y-2 text-gray-600 leading-relaxed">
                 <p className="font-medium text-gray-900">Myco Medic Sdn Bhd</p>
                 <p>No. 2A-G Jalan Sierra 10/3,</p>
-                <p>Bandar 16 Sierra,</p>
+                <p>Section 16 Sierra,</p>
                 <p>47120 Puchong,</p>
                 <p>Selangor, Malaysia</p>
               </div>

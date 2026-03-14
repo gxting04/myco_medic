@@ -12,12 +12,6 @@
       description: 'Capital equipment and precision devices for care delivery.'
     },
     {
-      id: 3,
-      name: 'Safety & Protection',
-      icon: 'https://cdn-icons-png.flaticon.com/128/3050/3050525.png',
-      description: 'Protective wear and related safety categories.'
-    },
-    {
       id: 4,
       name: 'Critical Care/ Day Care',
       icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966456.png',
