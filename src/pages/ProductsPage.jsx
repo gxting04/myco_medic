@@ -153,9 +153,11 @@ function ProductsPage() {
     navigate('/products', { replace: true })
   }
 
-  // Get categories for each group
+  // Get categories for each group (sorted alphabetically)
   const getCategoriesForGroup = (groupId) => {
-    return Data.productCategories.filter(cat => cat.groupId === groupId)
+    return Data.productCategories
+      .filter(cat => cat.groupId === groupId)
+      .sort((a, b) => a.name.localeCompare(b.name))
   }
 
   // Get direct products count for a group (products without category)
@@ -168,9 +170,11 @@ function ProductsPage() {
     return allProducts.filter(p => p.groupId === groupId).length
   }
 
-  // Get direct products for a group (products without category)
+  // Get direct products for a group (products without category, sorted alphabetically)
   const getDirectProducts = (groupId) => {
-    return allProducts.filter(p => p.groupId === groupId && (!p.category || p.category === null))
+    return allProducts
+      .filter(p => p.groupId === groupId && (!p.category || p.category === null))
+      .sort((a, b) => a.name.localeCompare(b.name))
   }
 
   return (
