@@ -123,8 +123,8 @@ function Header() {
 
                   {/* Products Dropdown */}
                   {productsDropdownOpen && (
-                    <div className="absolute left-1/2 top-full pt-1 -translate-x-1/2 z-50">
-                      <div className="bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden w-[min(90vw,900px)] min-w-[600px]">
+                    <div className="fixed left-0 right-0 top-20 md:top-24 z-50">
+                      <div className="bg-white shadow-2xl border-y border-gray-200 overflow-hidden w-full px-4 sm:px-6 lg:px-8 max-h-[50vh] overflow-y-auto">
                         <div className="flex">
                           {/* Left - Categories */}
                           <div className="w-56 border-r border-gray-100 bg-gray-50/50 p-4">
