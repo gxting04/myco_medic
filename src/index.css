@@ -149,7 +149,7 @@ button {
   align-items: center;
 }
 
-.logo-item {
-  animation: slideInLogo 0.8s ease-out forwards;
-  opacity: 0;
+/* Hide scrollbar for Partners drag-to-scroll */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

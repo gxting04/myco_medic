@@ -415,11 +415,7 @@ function ProductsPage() {
 
               {filteredProducts.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {filteredProducts.map((product) => {
-                    const group = Data.productGroups.find(g => g.id === product.groupId)
-                    const category = Data.productCategories.find(c => c.id === product.category)
-
-                    return (
+                  {filteredProducts.map((product) => (
                       <Link
                         key={product.id}
                         to={`/product/${product.id}`}
@@ -437,22 +433,10 @@ function ProductsPage() {
                           <h3 className="font-medium text-gray-900 mb-2 group-hover:text-primary transition-colors text-sm">
                             {product.name}
                           </h3>
-                          
-                          {category && (
-                            <p className="text-xs text-gray-500 mb-2">{category.name}</p>
-                          )}
-                          
-                          {group && (
-                            <p className="text-xs text-primary font-medium mb-3">{group.name}</p>
-                          )}
-                          
-                          <div className="mt-auto">
-                            <p className="text-sm text-gray-500">Contact us for pricing</p>
-                          </div>
                         </div>
                       </Link>
                     )
-                  })}
+                  )}
                 </div>
               ) : (
                 <div className="bg-white rounded-lg border border-gray-200 p-12 text-center">

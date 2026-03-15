@@ -132,7 +132,6 @@ function GroupCategories() {
                       <h3 className='font-semibold text-gray-900 mb-1 line-clamp-2 group-hover:text-primary transition-colors'>
                         {product.name}
                       </h3>
-                      <p className='text-gray-500 text-sm'>RM{product.price.toFixed(2)}</p>
                     </div>
                   </Link>
                 ))}

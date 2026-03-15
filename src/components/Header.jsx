@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 // Cart functionality hidden
 // import { useCart } from '../context/CartContext'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { ShoppingBag, Menu, X, Search } from 'lucide-react'
+import { ShoppingBag, Menu, X, Search, ChevronRight } from 'lucide-react'
+import Data from '../shared/Data'
 
 function Header() {
   // Cart functionality hidden
@@ -11,8 +12,29 @@ function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
+  const [productsDropdownOpen, setProductsDropdownOpen] = useState(false)
+  const [hoveredGroupId, setHoveredGroupId] = useState(null)
   const location = useLocation()
   const navigate = useNavigate()
+
+  // Product groups for dropdown (exclude Medical Furniture, Medical Equipment, Procedure Packs)
+  const dropdownGroups = useMemo(() => 
+    Data.productGroups.filter(g => g.id !== 2 && g.id !== 5 && g.id !== 7),
+    []
+  )
+
+  // All products for dropdown (exclude same groups)
+  const allDropdownProducts = useMemo(() => {
+    const saved = localStorage.getItem('myco_products')
+    const products = saved ? JSON.parse(saved) : Data.initialProducts
+    return products.filter(p => p.groupId !== 2 && p.groupId !== 5 && p.groupId !== 7)
+  }, [])
+
+  // Products to display - filtered by hovered group, or all when none hovered
+  const displayedProducts = useMemo(() => {
+    if (hoveredGroupId === null) return allDropdownProducts
+    return allDropdownProducts.filter(p => p.groupId === hoveredGroupId)
+  }, [allDropdownProducts, hoveredGroupId])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,17 +96,111 @@ function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={`text-sm md:text-base font-medium tracking-wide transition-colors duration-200 ${
-                  location.pathname === link.path
-                    ? 'text-black'
-                    : 'text-gray-500 hover:text-black'
-                }`}
-              >
-                {link.name}
-              </Link>
+              link.name === 'Products' ? (
+                <div
+                  key={link.name}
+                  className="relative"
+                  onMouseEnter={() => {
+                    setProductsDropdownOpen(true)
+                    setHoveredGroupId(null)
+                  }}
+                  onMouseLeave={() => {
+                    setProductsDropdownOpen(false)
+                    setHoveredGroupId(null)
+                  }}
+                >
+                  <Link
+                    to={link.path}
+                    className={`text-sm md:text-base font-medium tracking-wide transition-colors duration-200 flex items-center gap-1 ${
+                      location.pathname === link.path || location.pathname.startsWith('/products')
+                        ? 'text-black'
+                        : 'text-gray-500 hover:text-black'
+                    }`}
+                  >
+                    {link.name}
+                    <ChevronRight className={`w-4 h-4 transition-transform ${productsDropdownOpen ? 'rotate-90' : ''}`} />
+                  </Link>
+
+                  {/* Products Dropdown */}
+                  {productsDropdownOpen && (
+                    <div className="absolute left-1/2 top-full pt-1 -translate-x-1/2 z-50">
+                      <div className="bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden w-[min(90vw,900px)] min-w-[600px]">
+                        <div className="flex">
+                          {/* Left - Categories */}
+                          <div className="w-56 border-r border-gray-100 bg-gray-50/50 p-4">
+                            <Link
+                              to="/products"
+                              className={`flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-white hover:shadow-sm transition-all font-medium group ${
+                                hoveredGroupId === null ? 'bg-white shadow-sm text-primary' : 'text-gray-900'
+                              }`}
+                              onClick={() => setProductsDropdownOpen(false)}
+                              onMouseEnter={() => setHoveredGroupId(null)}
+                            >
+                              All Products
+                              <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-primary" />
+                            </Link>
+                            {dropdownGroups.map((group) => (
+                              <Link
+                                key={group.id}
+                                to={`/products?groupId=${group.id}`}
+                                className={`flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-white hover:shadow-sm transition-all group ${
+                                  hoveredGroupId === group.id ? 'bg-white shadow-sm text-primary' : 'text-gray-700 hover:text-primary'
+                                }`}
+                                onClick={() => setProductsDropdownOpen(false)}
+                                onMouseEnter={() => setHoveredGroupId(group.id)}
+                              >
+                                <span className="text-sm truncate">{group.name}</span>
+                                <ChevronRight className="w-4 h-4 text-gray-400 flex-shrink-0 group-hover:text-primary" />
+                              </Link>
+                            ))}
+                          </div>
+
+                          {/* Right - Products in columns (filtered by hovered group) */}
+                          <div className="flex-1 p-6">
+                            <div className="grid grid-cols-3 gap-x-8 gap-y-1">
+                              {displayedProducts.length > 0 ? (
+                                displayedProducts.map((product) => (
+                                  <Link
+                                    key={product.id}
+                                    to={`/product/${product.id}`}
+                                    className="text-sm text-gray-600 hover:text-primary py-1.5 truncate transition-colors flex items-center gap-1 group"
+                                    onClick={() => setProductsDropdownOpen(false)}
+                                  >
+                                    <span className="truncate">{product.name}</span>
+                                    <ChevronRight className="w-3.5 h-3.5 text-gray-300 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                  </Link>
+                                ))
+                              ) : (
+                                <p className="col-span-3 text-sm text-gray-400 py-4">No products in this group</p>
+                              )}
+                            </div>
+                            <Link
+                              to={hoveredGroupId ? `/products?groupId=${hoveredGroupId}` : '/products'}
+                              className="inline-flex items-center gap-1 mt-4 text-sm font-medium text-primary hover:text-primary/80"
+                              onClick={() => setProductsDropdownOpen(false)}
+                            >
+                              {hoveredGroupId ? 'View All in Group' : 'View All Products'}
+                              <ChevronRight className="w-4 h-4" />
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`text-sm md:text-base font-medium tracking-wide transition-colors duration-200 ${
+                    location.pathname === link.path
+                      ? 'text-black'
+                      : 'text-gray-500 hover:text-black'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              )
             ))}
           </nav>
 
@@ -200,14 +316,45 @@ function Header() {
 
             {/* Navigation Links */}
             {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className="text-xl font-medium text-gray-900 hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
+              link.name === 'Products' ? (
+                <div key={link.name} className="space-y-2">
+                  <Link
+                    to="/products"
+                    className="text-xl font-medium text-gray-900 hover:text-primary transition-colors py-2 block"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Products
+                  </Link>
+                  <div className="pl-4 space-y-1 border-l-2 border-gray-200">
+                    <Link
+                      to="/products"
+                      className="block text-base text-gray-600 hover:text-primary py-1"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      All Products
+                    </Link>
+                    {dropdownGroups.map((group) => (
+                      <Link
+                        key={group.id}
+                        to={`/products?groupId=${group.id}`}
+                        className="block text-base text-gray-600 hover:text-primary py-1"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {group.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className="text-xl font-medium text-gray-900 hover:text-primary transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              )
             ))}
           </div>
         </>

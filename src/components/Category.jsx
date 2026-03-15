@@ -91,7 +91,7 @@ function ProductGroupCard({ group, categoriesCount, allGroupProducts, images }) 
 
   return (
     <Link
-      to="/products"
+      to={`/products?groupId=${group.id}`}
       className="group relative p-6 sm:p-8 h-auto sm:h-[400px] flex flex-col justify-between overflow-hidden transition-all duration-500 ease-out hover:-translate-y-1 bg-white rounded-lg border border-gray-200"
     >
       {/* Content */}

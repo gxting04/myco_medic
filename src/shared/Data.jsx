@@ -13,19 +13,19 @@
     },
     {
       id: 4,
-      name: 'Critical Care/ Day Care',
+      name: 'Infusion & IV Products',
       icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966456.png',
       description: 'Specialized equipment and consumables for critical and day care settings.'
     },
     {
       id: 5,
-      name: 'Disposable Pack',
+      name: 'Procedure Packs & Surgical Instruments',
       icon: 'https://cdn-icons-png.flaticon.com/128/992/992651.png',
       description: 'Single-use procedure packs and disposables for efficient care.'
     },
     {
       id: 6,
-      name: 'General Cleaning Brushes & Accessories',
+      name: 'Medical Bowls & Utility Containers',
       icon: 'https://cdn-icons-png.flaticon.com/128/6392/6392521.png',
       description: 'Cleaning brushes and accessories for medical equipment maintenance.'
     },
@@ -47,40 +47,40 @@
       icon: 'https://cdn-icons-png.flaticon.com/128/1820/1820062.png',
       description: 'Supports and positioning aids for patient comfort and clinical procedures.'
     },
-    {
-      id: 10,
-      name: 'Memory Foam Positioners',
-      icon: 'https://cdn-icons-png.flaticon.com/128/2910/2910768.png',
-      description: 'Memory foam-based head, body, limb and table positioners for pressure redistribution and patient comfort.'
-    },
-    {
-      id: 11,
-      name: 'Portable Breathing Oxygen Inhaler',
-      icon: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/u4kvox2b1621523622-1000x1000_orig.jpeg',
-      description:
-        'AWELD portable oxygen inhaler (600 ml) with >99.5% oxygen purity, built for travel, hiking and emergency relief and ready for a two-year storage shelf life.'
-    },
-    {
-      id: 12,
-      name: 'Sterilization',
-      icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
-      description: 'Sterilization equipment and supplies for ensuring medical instruments and equipment are properly sanitized and safe for use.'
-    },
-    {
-      id: 13,
-      name: 'Disposable',
-      icon: 'https://cdn-icons-png.flaticon.com/128/992/992651.png',
-      description: 'Single-use disposable medical products and supplies for hygiene and infection control.'
-    },
-    {
-      id: 14,
-      name: 'Circumcision/Sunat',
-      icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
-      description: 'Medical supplies and equipment for circumcision procedures and related care.'
-    },
+    // {
+    //   id: 10,
+    //   name: 'Memory Foam Positioners',
+    //   icon: 'https://cdn-icons-png.flaticon.com/128/2910/2910768.png',
+    //   description: 'Memory foam-based head, body, limb and table positioners for pressure redistribution and patient comfort.'
+    // },
+    // {
+    //   id: 11,
+    //   name: 'Portable Breathing Oxygen Inhaler',
+    //   icon: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/u4kvox2b1621523622-1000x1000_orig.jpeg',
+    //   description:
+    //     'AWELD portable oxygen inhaler (600 ml) with >99.5% oxygen purity, built for travel, hiking and emergency relief and ready for a two-year storage shelf life.'
+    // },
+    // {
+    //   id: 12,
+    //   name: 'Sterilization',
+    //   icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
+    //   description: 'Sterilization equipment and supplies for ensuring medical instruments and equipment are properly sanitized and safe for use.'
+    // },
+    // {
+    //   id: 13,
+    //   name: 'Disposable',
+    //   icon: 'https://cdn-icons-png.flaticon.com/128/992/992651.png',
+    //   description: 'Single-use disposable medical products and supplies for hygiene and infection control.'
+    // },
+    // {
+    //   id: 14,
+    //   name: 'Circumcision/Sunat',
+    //   icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
+    //   description: 'Medical supplies and equipment for circumcision procedures and related care.'
+    // },
     {
       id: 15,
-      name: 'Patient Hygiene Care',
+      name: 'Patient Hygiene Care & Other Medical Supplies',
       icon: 'https://cdn-icons-png.flaticon.com/128/3135/3135715.png',
       description: 'Hygiene products and care supplies for patient comfort and cleanliness.'
     }
@@ -232,7 +232,7 @@
     },
     { 
       id: 16, 
-      groupId: 10,
+      groupId: 9,
       name: 'Memory Head and Neck Pads', 
       icon: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/foam-positioner-removebg-preview_orig.png',
       images: [
@@ -242,7 +242,7 @@
     },
     { 
       id: 17, 
-      groupId: 10,
+      groupId: 9,
       name: 'Memory Chest and Body Pads', 
       icon: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/prostate-pads-removebg-preview_orig.png',
       images: [
@@ -253,7 +253,7 @@
     ,
     {
       id: 18,
-      groupId: 10,
+      groupId: 9,
       name: 'Universal Square Pads',
       icon: 'https://www.mycomedic.com.my/uploads/9/7/1/1/9711883/universal-square-pads-1-removebg-preview_orig.png',
       images: [
@@ -264,7 +264,7 @@
     },
     {
       id: 19,
-      groupId: 10,
+      groupId: 9,
       name: 'Memory Lower Limb Pads',
       icon: 'memory_lower_limb_pads.png',
       images: [
@@ -275,7 +275,7 @@
     },
     {
       id: 20,
-      groupId: 12,
+      groupId: 6,
       name: 'Disinfection Tanks',
       icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
       images: [
@@ -286,7 +286,7 @@
     },
     {
       id: 21,
-      groupId: 12,
+      groupId: 6,
       name: 'Plastic Holloware',
       icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
       images: [
@@ -297,7 +297,7 @@
     },
     {
       id: 22,
-      groupId: 12,
+      groupId: 6,
       name: 'Stainless Steel Dins',
       icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
       images: [
@@ -319,7 +319,7 @@
     },
     {
       id: 24,
-      groupId: 12,
+      groupId: 6,
       name: 'Surgical Instrument Trays',
       icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
       images: [
@@ -638,7 +638,7 @@
     {
       id: 42,
       name: 'C-Bona Closed Suction Systems (Adult)',
-      groupId: 4,
+      groupId: 1,
       category: null,
 
       image: '/cbona_closed_suction_adult.png', 
@@ -647,7 +647,7 @@
     {
       id: 46,
       name: 'C-Bona Closed Suction Systems (Pediatric)',
-      groupId: 4,
+      groupId: 1,
       category: null,
 
       image: '/cbona_closed_suction_pediatric.png', 
@@ -702,7 +702,7 @@
     {
       id: 50,
       name: 'Disposable Emergency Suture Pack',
-      groupId: 13,
+      groupId: 5,
       category: null,
 
       image: '/disposable_emergency_suture_pack.png',
@@ -711,7 +711,7 @@
     {
       id: 51,
       name: 'Disposable Circumcision Pack',
-      groupId: 14,
+      groupId: 5,
       category: null,
 
       image: '/disposable_circumcision_pack.png',
@@ -720,7 +720,7 @@
     {
       id: 52,
       name: 'Disposable Pre-Epidural Set',
-      groupId: 13,
+      groupId: 5,
       category: null,
 
       image: '/disposable_preepidural_set.png',
@@ -728,8 +728,8 @@
     },
     {
       id: 53,
-      name: 'Disposable / Sterile Basic Pack',
-      groupId: 13,
+      name: 'Sterile Basic Pack',
+      groupId: 5,
       category: null,
 
       image: '/disposable_sterile_basic_pack.png',
@@ -1281,7 +1281,7 @@
     {
       id: 114,
       name: 'Memory Supine Head Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Memory Head and Neck Pads',
 
       image: '/memory_supine_head_pads.png',
@@ -1290,7 +1290,7 @@
     {
       id: 115,
       name: 'Memory Prostrate Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Memory Chest and Body Pads',
 
       image: '/memory_prostrate_pads.png',
@@ -1299,7 +1299,7 @@
     {
       id: 116,
       name: 'Memory Lower Limb ProtectorPads',
-      groupId: 10,
+      groupId: 9,
       category: null,
 
       image: '/memory_lower_limb_pads.png',
@@ -1308,7 +1308,7 @@
     {
       id: 117,
       name: 'Memory Arm Pads',
-      groupId: 10,
+      groupId: 9,
       category: null,
 
       image: '/memory_arm_pads.png',
@@ -1322,7 +1322,7 @@
     {
       id: 130,
       name: 'Memory Universal Square Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Universal Square Pads',
 
       image: 'memory_universal_square_pads.png',
@@ -1331,7 +1331,7 @@
     {
       id: 131,
       name: 'Memory Pillow Shaped Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Universal Square Pads',
 
       image: 'memory_pillow_shaped_pads.png',
@@ -1341,7 +1341,7 @@
     {
       id: 133,
       name: 'Memory Heel Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Memory Lower Limb Pads',
 
       image: 'memory_heel_pads.png',
@@ -1350,7 +1350,7 @@
     {
       id: 134,
       name: 'Memory Tunnel Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Memory Lower Limb Pads',
 
       // The "memory tunnel pads" image isn't shown in the snippet; reuse a related tunnel-pad visual for now.
@@ -1360,7 +1360,7 @@
     {
       id: 120,
       name: 'Memory Horseshoe Head Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Memory Head and Neck Pads',
 
       image: '/memory_horsseshoe_head_pads.png',
@@ -1369,7 +1369,7 @@
     {
       id: 121,
       name: 'Memory Donut Head Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Memory Head and Neck Pads',
 
       image: 'memory_donut_head_pads.png',
@@ -1378,7 +1378,7 @@
     {
       id: 122,
       name: 'Memory Waist Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Memory Chest and Body Pads',
 
       image:
@@ -1388,7 +1388,7 @@
     {
       id: 123,
       name: 'Memory Roll Shaped Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Memory Chest and Body Pads',
 
       image:
@@ -1398,7 +1398,7 @@
     {
       id: 124,
       name: 'Memory Chest-Hipbone Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Memory Chest and Body Pads',
 
       image:
@@ -1408,7 +1408,7 @@
     {
       id: 125,
       name: 'Memory Fracture Table Post Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Memory Chest and Body Pads',
 
       image:
@@ -1418,7 +1418,7 @@
     {
       id: 126,
       name: 'Memory Lateral Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Memory Chest and Body Pads',
 
       image:
@@ -1428,7 +1428,7 @@
     {
       id: 127,
       name: 'Memory Dome Shaped Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Memory Chest and Body Pads',
 
       image: 'memory_dome_shaped_pads.png',
@@ -1437,7 +1437,7 @@
     {
       id: 128,
       name: 'Memory Pillar Shaped Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Memory Chest and Body Pads',
 
       image:
@@ -1447,7 +1447,7 @@
     {
       id: 129,
       name: 'Memory Slanting Shaped Pads',
-      groupId: 10,
+      groupId: 9,
       category: 'Memory Chest and Body Pads',
 
       image:
@@ -1457,7 +1457,7 @@
     {
       id: 135,
       name: 'Portable Breathing Oxygen Inhaler (600 ml)',
-      groupId: 11,
+      groupId: 15,
       category: null,
 
       image: '/portable_breathing_oxygen_inhaler.png',
@@ -1645,7 +1645,7 @@
     {
       id: 155,
       name: 'Sensory Brush 2.0',
-      groupId: 13,
+      groupId: 15,
       category: null,
 
       image: '/sensory_brush_2_0.png',
@@ -1658,7 +1658,7 @@
     {
       id: 156,
       name: 'Sensory Brush',
-      groupId: 13,
+      groupId: 15,
       category: null,
 
       image: '/sensory_brush.png',
@@ -1672,7 +1672,7 @@
     {
       id: 157,
       name: 'Hypafix Adhesive Non Woven Fabric [Ready Stock]',
-      groupId: 13,
+      groupId: 15,
       category: null,
 
       image: '/hypafix_adhesive_non_woven_fabric.png',
@@ -1681,7 +1681,7 @@
     {
       id: 158,
       name: 'Adult & Pediatric- Tracheostomy Tube Holder / Neck Strap',
-      groupId: 13,
+      groupId: 15,
       category: null,
 
       image: '/neck-strap.jpeg',
@@ -1690,7 +1690,7 @@
     {
       id: 159,
       name: 'Seluar Sunat Khatan / Circumcision Underwear',
-      groupId: 14,
+      groupId: 15,
       category: null,
 
       image: '/circumcision_underwear.png',
@@ -1708,7 +1708,7 @@
     {
       id: 161,
       name: 'ENT Pack',
-      groupId: 13,
+      groupId: 5,
       category: null,
       articleCode: '18189',
 
@@ -1722,7 +1722,7 @@
     {
       id: 162,
       name: 'Sterile Basic Kit',
-      groupId: 13,
+      groupId: 5,
       category: null,
       articleCode: 'UKK201',
 
@@ -1736,7 +1736,7 @@
     {
       id: 163,
       name: 'Delivery Kit',
-      groupId: 13,
+      groupId: 5,
       category: null,
       articleCode: '18187',
 

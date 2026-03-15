@@ -4,7 +4,6 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import WhatsAppFloat from '../components/WhatsAppFloat'
 import Data from '../shared/Data'
-import { isPurchasableProduct } from '@/utils/purchasableProducts'
 
 function SearchResults() {
   const [searchParams] = useSearchParams()
@@ -94,9 +93,7 @@ function SearchResults() {
           {query ? (
             filteredProducts.length > 0 ? (
               <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8'>
-                {filteredProducts.map((product) => {
-                  const group = Data.productGroups.find(g => g.id === product.groupId)
-                  return (
+                {filteredProducts.map((product) => (
                     <Link
                       key={product.id}
                       to={`/product/${product.id}`}
@@ -115,19 +112,6 @@ function SearchResults() {
                         <h3 className='text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2'>
                           {product.name}
                         </h3>
-                        <div className='mt-auto space-y-2'>
-                          {product.category && (
-                            <p className='text-sm text-gray-500'>{product.category}</p>
-                          )}
-                          {group && (
-                            <p className='text-xs text-primary font-medium'>{group.name}</p>
-                          )}
-                          {isPurchasableProduct(product) ? (
-                            <p className='text-2xl font-bold text-primary'>RM{product.price.toFixed(2)}</p>
-                          ) : (
-                            <p className='text-sm text-gray-500'>Contact us for pricing</p>
-                          )}
-                        </div>
                         
                         <div className='mt-4 flex items-center text-primary opacity-0 group-hover:opacity-100 transition-opacity'>
                           <span className='text-sm font-medium mr-2'>View Details</span>
@@ -138,7 +122,7 @@ function SearchResults() {
                       </div>
                     </Link>
                   )
-                })}
+                )}
               </div>
             ) : (
               <div className='text-center py-16 bg-gray-50 rounded-2xl'>

@@ -1,8 +1,72 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 function Partners() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef(null)
+  const scrollRef = useRef(null)
+  const [isDragging, setIsDragging] = useState(false)
+  const startX = useRef(0)
+  const scrollLeft = useRef(0)
+  const hasDragged = useRef(false)
+  const autoScrollRef = useRef(null)
+
+  // Auto-slide when not dragging
+  useEffect(() => {
+    if (isDragging || !scrollRef.current) return
+    const scroll = () => {
+      if (!scrollRef.current || isDragging) return
+      scrollRef.current.scrollLeft += 1
+      if (scrollRef.current.scrollLeft >= scrollRef.current.scrollWidth / 2) {
+        scrollRef.current.scrollLeft = 0
+      }
+    }
+    autoScrollRef.current = setInterval(scroll, 30)
+    return () => clearInterval(autoScrollRef.current)
+  }, [isDragging])
+
+  const handlePointerDown = (e) => {
+    if (!scrollRef.current) return
+    e.preventDefault() // Prevent link drag and text selection - enables immediate drag on press
+    setIsDragging(true)
+    hasDragged.current = false
+    startX.current = e.clientX ?? e.touches?.[0]?.clientX ?? 0
+    scrollLeft.current = scrollRef.current.scrollLeft
+  }
+
+  const handlePointerMove = (e) => {
+    if (!isDragging || !scrollRef.current) return
+    const x = e.clientX ?? e.touches?.[0]?.clientX ?? 0
+    const walk = (x - startX.current) * 1.5
+    if (Math.abs(walk) > 5) hasDragged.current = true
+    e.preventDefault()
+    scrollRef.current.scrollLeft = scrollLeft.current - walk
+    startX.current = x
+    scrollLeft.current = scrollRef.current.scrollLeft
+  }
+
+  const handlePointerUp = () => setIsDragging(false)
+
+  // Listen to document-level events so dragging continues when cursor leaves the container
+  const handlersRef = useRef({ handlePointerMove, handlePointerUp })
+  handlersRef.current = { handlePointerMove, handlePointerUp }
+
+  useEffect(() => {
+    if (!isDragging) return
+    const handleMove = (e) => handlersRef.current.handlePointerMove(e)
+    const handleUp = () => handlersRef.current.handlePointerUp()
+    document.addEventListener('pointermove', handleMove)
+    document.addEventListener('pointerup', handleUp)
+    document.body.style.cursor = 'grabbing'
+    document.body.style.userSelect = 'none'
+    return () => {
+      document.removeEventListener('pointermove', handleMove)
+      document.removeEventListener('pointerup', handleUp)
+      document.body.style.cursor = ''
+      document.body.style.userSelect = ''
+    }
+  }, [isDragging])
+
+  const handleLinkClick = (e) => {
+    if (hasDragged.current) e.preventDefault()
+  }
 
   const partners = [
     { name: 'Dansu', logo: '/MPC.png', website: 'https://www.dansu-china.com/' },
@@ -22,31 +86,36 @@ function Partners() {
   const duplicatedPartners = [...partners, ...partners]
 
   return (
-    <section ref={sectionRef} className='py-12 bg-white border-t border-gray-100 overflow-hidden'>
+    <section className='py-12 bg-white border-t border-gray-100 overflow-hidden'>
       <div className='max-w-7xl mx-auto px-6'>
         <p className='text-center text-sm font-semibold text-gray-500 uppercase tracking-wider mb-8'>
           Trusted by Industry Leaders
         </p>
 
-        <div className='relative overflow-hidden'>
+        <div className='relative'>
           {/* Gradient overlays for fade effect on edges */}
           <div className='absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white via-white to-transparent z-10 pointer-events-none' />
           <div className='absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white via-white to-transparent z-10 pointer-events-none' />
           
-          {/* Sliding marquee container */}
-          <div className='marquee-container'>
-            {/* First set of logos */}
-            <div className='marquee-track'>
-              {duplicatedPartners.map((partner, index) => (
+          {/* Scrollable logos - drag to scroll */}
+          <div
+            ref={scrollRef}
+            className='flex overflow-x-auto overflow-y-hidden gap-0 cursor-grab active:cursor-grabbing select-none scrollbar-hide'
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', touchAction: 'none' }}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+          >
+            {duplicatedPartners.map((partner, index) => (
                 <a
-                  key={`track1-${partner.name}-${index}`}
+                  key={`${partner.name}-${index}`}
                   href={partner.website}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='group flex items-center justify-center flex-shrink-0 px-6 md:px-8 lg:px-12 logo-item'
-                  style={{
-                    animationDelay: `${(index % partners.length) * 0.3}s`
-                  }}
+                  onClick={handleLinkClick}
+                  draggable={false}
+                  onDragStart={(e) => e.preventDefault()}
+                  className='group flex items-center justify-center flex-shrink-0 px-6 md:px-8 lg:px-12'
                 >
                   <img
                     src={partner.logo}
@@ -59,32 +128,6 @@ function Partners() {
                   />
                 </a>
               ))}
-            </div>
-            {/* Duplicate set for seamless loop */}
-            <div className='marquee-track' aria-hidden='true'>
-              {duplicatedPartners.map((partner, index) => (
-                <a
-                  key={`track2-${partner.name}-${index}`}
-                  href={partner.website}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='group flex items-center justify-center flex-shrink-0 px-6 md:px-8 lg:px-12 logo-item'
-                  style={{
-                    animationDelay: `${(index % partners.length) * 0.3}s`
-                  }}
-                >
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    className='h-24 md:h-32 lg:h-40 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300'
-                    onError={(e) => {
-                      console.error(`Failed to load logo for ${partner.name}:`, partner.logo);
-                      e.target.style.display = 'none';
-                    }}
-                  />
-                </a>
-              ))}
-            </div>
           </div>
         </div>
       </div>
