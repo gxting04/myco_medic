@@ -1685,6 +1685,10 @@
       category: null,
 
       image: '/neck-strap.jpeg',
+      images: [
+        '/neck-strap.jpeg',
+        '/rota_trach_hero.png'
+      ],
       pageId: 'adult-pediatric-tracheostomy-tube-holder-neck-strap'
     },
     {

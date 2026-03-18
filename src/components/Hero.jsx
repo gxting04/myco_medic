@@ -6,7 +6,8 @@ function Hero() {
 
   const images = [
     '/Header.png',
-    '/airway_management.png'
+    '/airway_management.png',
+    '/rota_trach_hero.png'
   ]
 
   // Auto-slide through images every 4 seconds
