@@ -75,7 +75,6 @@ function Partners() {
     { name: 'Tappa', logo: '/tappa.png', website: 'https://www.tappamed.com/en/index.aspx' },
     { name: 'Mercury Medical', logo: '/mercury_medical.png', website: 'https://www.mercurymed.com/' },
     { name: 'Baihe', logo: '/baihe.png', website: 'https://www.baihemedical.eu/' },
-    { name: 'Haichuan', logo: '/haichuan.png', website: 'https://www.haichuan-med.com/' },
     { name: 'OKLand Medical', logo: '/okland.png', website: 'https://en.okltj.com/' },
     { name: 'UE Scope', logo: '/uescope.png', website: 'https://uescope.com/' },
     { name: 'Vitaltec', logo: '/vital.png', website: 'https://www.vitaltec-corp.com/en' },
