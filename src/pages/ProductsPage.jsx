@@ -376,7 +376,7 @@ function ProductsPage() {
             </aside>
 
             {/* Right Side - Products Grid */}
-            <main className="flex-1 min-w-0">
+            <main className="flex-1 min-w-0 bg-white rounded-xl p-6">
               {/* Filter Bar */}
               <div className="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                 <div className="flex items-center gap-4 flex-wrap">
@@ -414,14 +414,14 @@ function ProductsPage() {
               </div>
 
               {filteredProducts.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredProducts.map((product) => (
                       <Link
                         key={product.id}
                         to={`/product/${product.id}`}
-                        className="group bg-white rounded-lg border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all overflow-hidden flex flex-col"
+                        className="group bg-white rounded-lg hover:shadow-lg transition-all overflow-hidden flex flex-col"
                       >
-                        <div className="aspect-square bg-gray-50 p-4 flex items-center justify-center overflow-hidden">
+                        <div className="aspect-square bg-white p-4 flex items-center justify-center overflow-hidden">
                           <img
                             src={product.image}
                             alt={product.name}
@@ -429,7 +429,7 @@ function ProductsPage() {
                           />
                         </div>
                         
-                        <div className="p-4 flex flex-col flex-1">
+                        <div className="p-4 flex flex-col flex-1 text-center">
                           <h3 className="font-medium text-gray-900 mb-2 group-hover:text-primary transition-colors text-sm">
                             {product.name}
                           </h3>
