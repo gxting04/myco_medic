@@ -891,15 +891,6 @@
       pageId: 'janitor-room-cssd-furniture'
     },
     {
-      id: 70,
-      name: '3-Ply Surgical Face Mask',
-      groupId: 8,
-      category: null,
-
-      image: '/surgical_mask.png',
-      pageId: '3ply-surgical-face-mask'
-    },
-    {
       id: 71,
       name: 'Medical Protective Face Shield',
       groupId: 8,
@@ -1600,7 +1591,9 @@
       category: null,
 
       image: '/shampoo-cap.jpeg',
-      pageId: 'shampoo-cap'
+      pageId: 'shampoo-cap',
+      shopeeUrl:
+        'https://shopee.com.my/Shampoo-Cap-Patient-Body-Washing-Rinse-Free-Nursing-Care-Homecare-Hospital-l-Bedridden-l-Bed-Bound-Confinem-i.66003822.5848474453?extraParams=%7B%22display_model_id%22%3A186268840312%2C%22model_selection_logic%22%3A3%7D'
     },
     {
       id: 151,
@@ -1609,7 +1602,9 @@
       category: null,
 
       image: '/body-wipes.jpeg',
-      pageId: 'body-wipes'
+      pageId: 'body-wipes',
+      shopeeUrl:
+        'https://shopee.com.my/Patient-Body-Washing-Mitts-10Wipes-READY-BATH-80gsm-Rinse-Free-Hospital-l-Bedridden-Stroke-i.66003822.7235658350?extraParams=%7B%22display_model_id%22%3A258343286736%2C%22model_selection_logic%22%3A3%7D'
     },
     {
       id: 152,
@@ -1698,7 +1693,9 @@
       category: null,
 
       image: '/circumcision_underwear.png',
-      pageId: 'seluar-sunat-khatan-circumcision-underwear'
+      pageId: 'seluar-sunat-khatan-circumcision-underwear',
+      shopeeUrl:
+        'https://shopee.com.my/POS-SETIAP-HARI-Seluar-Sunat-Khatan-Circumcision-Underwear-Child-Adult-XS-S-M-L-XL-XXL-XXXL-Random-i.66003822.22449296952?extraParams=%7B%22display_model_id%22%3A272308654981%2C%22model_selection_logic%22%3A3%7D'
     },
     {
       id: 160,

@@ -17,10 +17,14 @@ function ProductDetail() {
   }, [id])
 
   const product = useMemo(() => {
+    const fromInitial = Data.initialProducts.find(p => Number(p.id) === productId)
     const saved = localStorage.getItem('myco_products')
-    const list = saved ? JSON.parse(saved) : Data.initialProducts
-    // First try to find in saved products, then fall back to initial products
-    return list.find(p => Number(p.id) === productId) || Data.initialProducts.find(p => Number(p.id) === productId)
+    const list = saved ? JSON.parse(saved) : []
+    const fromStorage = list.find(p => Number(p.id) === productId)
+    if (!fromInitial && !fromStorage) return null
+    if (!fromInitial) return fromStorage
+    if (!fromStorage) return fromInitial
+    return { ...fromInitial, ...fromStorage }
   }, [productId])
 
   if (!product) {

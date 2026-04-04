@@ -119,7 +119,7 @@ function Partners() {
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className='h-24 md:h-32 lg:h-40 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300'
+                    className='h-32 md:h-40 lg:h-52 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300'
                     onError={(e) => {
                       console.error(`Failed to load logo for ${partner.name}:`, partner.logo);
                       e.target.style.display = 'none';
