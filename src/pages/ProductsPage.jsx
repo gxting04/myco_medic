@@ -227,7 +227,7 @@ function ProductsPage() {
           <div className="flex flex-col md:flex-row gap-4 md:gap-8">
             {/* Left Sidebar - Product Groups & Categories */}
             <aside className="w-full md:w-80 flex-shrink-0">
-              <div className={`bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden ${showFilters ? 'block' : 'hidden md:block'} md:sticky md:top-24`}>
+              <div className={`bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden ${showFilters ? 'block' : 'hidden md:block'} md:sticky md:top-28`}>
                 {/* Header */}
                 <div className="px-6 py-5 border-b border-gray-100">
                   <div className="flex items-center justify-between">

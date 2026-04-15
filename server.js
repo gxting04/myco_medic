@@ -7,6 +7,7 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 import dns from 'dns';
+import crypto from 'crypto';
 
 dotenv.config();
 
@@ -39,8 +40,142 @@ app.get('/api/health', (req, res) => {
 
 // Create uploads directory if it doesn't exist
 const uploadsDir = 'uploads';
+const careersUploadDir = path.join(uploadsDir, 'careers');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
+}
+if (!fs.existsSync(careersUploadDir)) {
+  fs.mkdirSync(careersUploadDir, { recursive: true });
+}
+
+function safeCareerResumeBasename(original) {
+  const base = (original || 'resume')
+    .replace(/[/\\?%*:|"<>]/g, '_')
+    .replace(/\s+/g, '_')
+    .slice(0, 120);
+  return base || 'resume';
+}
+
+function signCareerResumeLink(fileId, expMs) {
+  const secret = process.env.CAREER_RESUME_SECRET;
+  if (!secret) return null;
+  return crypto.createHmac('sha256', secret).update(`${fileId}:${expMs}`).digest('hex');
+}
+
+function verifyCareerResumeSig(fileId, expMs, sigHex) {
+  const secret = process.env.CAREER_RESUME_SECRET;
+  if (!secret || !sigHex || !expMs) return false;
+  const expected = signCareerResumeLink(fileId, expMs);
+  if (!expected || expected.length !== sigHex.length) return false;
+  try {
+    return crypto.timingSafeEqual(Buffer.from(expected, 'hex'), Buffer.from(sigHex, 'hex'));
+  } catch {
+    return false;
+  }
+}
+
+function buildCareerResumeDownloadUrl(storedFileName) {
+  const base = (process.env.API_PUBLIC_URL || process.env.PUBLIC_API_URL || '').replace(/\/$/, '');
+  const secret = process.env.CAREER_RESUME_SECRET;
+  if (!base || !secret) return null;
+  const exp = Date.now() + 48 * 60 * 60 * 1000; // 48 hours
+  const sig = signCareerResumeLink(storedFileName, exp);
+  if (!sig) return null;
+  const enc = encodeURIComponent(storedFileName);
+  return `${base}/api/career-resume/${enc}?exp=${exp}&sig=${sig}`;
+}
+
+function truncateForWhatsApp(text, max = 900) {
+  if (!text || text.length <= max) return text || '';
+  return `${text.slice(0, max - 1)}…`;
+}
+
+async function sendCareerApplicationWhatsApp(payload) {
+  const {
+    name,
+    email,
+    phone,
+    position,
+    employmentType,
+    coverLetter,
+    resumeUrl,
+    hasResume
+  } = payload;
+
+  let body = `*New job application — Myco Medic*
+
+*Name:* ${name}
+*Email:* ${email}
+*Phone:* ${phone}
+*Position:* ${position}
+*Employment type:* ${employmentType || '—'}`;
+
+  if (coverLetter) {
+    body += `\n\n*Cover letter:*\n${truncateForWhatsApp(coverLetter, 1200)}`;
+  }
+
+  if (hasResume && resumeUrl) {
+    body += `\n\n*Resume (download, link expires in 48h):*\n${resumeUrl}`;
+  } else if (hasResume) {
+    body += '\n\n*Resume:* sent to email attachment — check inbox.';
+  } else {
+    body += '\n\n*Resume:* none uploaded.';
+  }
+
+  const sid = process.env.TWILIO_ACCOUNT_SID;
+  const token = process.env.TWILIO_AUTH_TOKEN;
+  const from = process.env.TWILIO_WHATSAPP_FROM;
+  const to = process.env.WHATSAPP_NOTIFY_TO;
+
+  if (sid && token && from && to) {
+    try {
+      const auth = Buffer.from(`${sid}:${token}`).toString('base64');
+      const params = new URLSearchParams({ From: from, To: to, Body: body });
+      const twResp = await fetch(
+        `https://api.twilio.com/2010-04-01/Accounts/${sid}/Messages.json`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Basic ${auth}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: params.toString()
+        }
+      );
+      const twJson = await twResp.json().catch(() => ({}));
+      if (twResp.ok) {
+        console.log('WhatsApp notification sent via Twilio:', twJson.sid || 'ok');
+        return true;
+      }
+      console.error('Twilio WhatsApp failed:', twResp.status, twJson);
+    } catch (e) {
+      console.error('Twilio WhatsApp error:', e.message);
+    }
+  }
+
+  const cbKey = process.env.CALLMEBOT_API_KEY;
+  const cbPhone = process.env.CALLMEBOT_PHONE;
+  if (cbKey && cbPhone) {
+    try {
+      const url =
+        `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(cbPhone)}` +
+        `&text=${encodeURIComponent(body)}&apikey=${encodeURIComponent(cbKey)}`;
+      const r = await fetch(url);
+      const t = await r.text();
+      if (r.ok && !t.toLowerCase().includes('error')) {
+        console.log('WhatsApp notification sent via CallMeBot');
+        return true;
+      }
+      console.error('CallMeBot WhatsApp failed:', r.status, t);
+    } catch (e) {
+      console.error('CallMeBot error:', e.message);
+    }
+  }
+
+  if (!sid && !cbKey) {
+    console.log('WhatsApp: skipped (set Twilio or CallMeBot env vars to enable)');
+  }
+  return false;
 }
 
 app.post('/api/create-checkout-session', async (req, res) => {
@@ -265,6 +400,35 @@ app.get('/api/test-dns', async (req, res) => {
   }
 });
 
+// Signed download for career resumes (link sent via WhatsApp)
+app.get('/api/career-resume/:fileId', (req, res) => {
+  try {
+    const fileId = path.basename(req.params.fileId || '');
+    const expRaw = req.query.exp;
+    const sig = req.query.sig;
+    const expMs = parseInt(String(expRaw), 10);
+    if (!fileId || !expRaw || !sig || Number.isNaN(expMs)) {
+      return res.status(400).send('Invalid request');
+    }
+    if (Date.now() > expMs) {
+      return res.status(410).send('This download link has expired.');
+    }
+    if (!verifyCareerResumeSig(fileId, expMs, String(sig))) {
+      return res.status(403).send('Invalid or tampered link.');
+    }
+    const filePath = path.join(careersUploadDir, fileId);
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).send('File not found.');
+    }
+    res.download(filePath, fileId.replace(/^[\d]+-[a-f0-9]+_/, '') || 'resume', (err) => {
+      if (err) console.error('career-resume download error:', err.message);
+    });
+  } catch (e) {
+    console.error('career-resume route error:', e);
+    res.status(500).send('Server error');
+  }
+});
+
 // Career Application Form Submission
 app.post('/api/career-application', upload.single('resume'), async (req, res) => {
   // Initialize emailSent and lastError at the start
@@ -311,6 +475,25 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
       console.error('Email configuration missing');
       return res.status(500).json({ error: 'Email service is not configured. Please contact the administrator.' });
     }
+
+    // Keep a copy for WhatsApp download link (signed URL, 48h)
+    let careerStoredResumeName = null;
+    if (resumeFile && fs.existsSync(resumeFile.path)) {
+      careerStoredResumeName = `${Date.now()}-${crypto.randomBytes(8).toString('hex')}_${safeCareerResumeBasename(resumeFile.originalname)}`;
+      try {
+        fs.copyFileSync(
+          resumeFile.path,
+          path.join(careersUploadDir, careerStoredResumeName)
+        );
+      } catch (copyErr) {
+        console.error('Failed to store resume copy for downloads:', copyErr.message);
+        careerStoredResumeName = null;
+      }
+    }
+
+    const resumeDownloadUrl = careerStoredResumeName
+      ? buildCareerResumeDownloadUrl(careerStoredResumeName)
+      : null;
 
     // Prepare email content
     const emailSubject = `Career Application: ${position} - ${name}`;
@@ -486,7 +669,22 @@ app.post('/api/career-application', upload.single('resume'), async (req, res) =>
       // You might want to save to database or log file for manual processing
     }
 
-    // Clean up uploaded file
+    try {
+      await sendCareerApplicationWhatsApp({
+        name,
+        email,
+        phone,
+        position,
+        employmentType,
+        coverLetter,
+        resumeUrl: resumeDownloadUrl,
+        hasResume: !!(resumeFile && resumeFile.path)
+      });
+    } catch (waErr) {
+      console.error('WhatsApp notification error (non-fatal):', waErr.message);
+    }
+
+    // Clean up multer temp file (retained copy lives under uploads/careers/)
     if (resumeFile && fs.existsSync(resumeFile.path)) {
       fs.unlinkSync(resumeFile.path);
     }

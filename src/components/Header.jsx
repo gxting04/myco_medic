@@ -81,13 +81,13 @@ function Header() {
           : 'bg-white'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 md:h-24 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-24 md:h-28 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 sm:gap-3 z-50">
           <img
             src="/Myco_Medic.png"
             alt="Myco Medic"
-            className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain"
+            className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain"
           />
         </Link>
 
@@ -123,7 +123,7 @@ function Header() {
 
                   {/* Products Dropdown */}
                   {productsDropdownOpen && (
-                    <div className="fixed left-0 right-0 top-20 md:top-24 z-50">
+                    <div className="fixed left-0 right-0 top-24 md:top-28 z-50">
                       <div className="bg-white shadow-2xl border-y border-gray-200 overflow-hidden w-full px-4 sm:px-6 lg:px-8 max-h-[50vh] overflow-y-auto">
                         <div className="flex">
                           {/* Left - Categories */}

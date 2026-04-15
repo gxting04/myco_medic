@@ -3,23 +3,11 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import WhatsAppFloat from './components/WhatsAppFloat'
 import { Link } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Briefcase, FileText, Users, Target, Award, MapPin, Clock, Share2, Mail, Phone, X, Upload } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Briefcase, FileText, MapPin, Clock, Share2, Mail, Phone } from 'lucide-react'
 
 function Career() {
   const [selectedJob, setSelectedJob] = useState(0)
-  const [showApplicationForm, setShowApplicationForm] = useState(false)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    position: '',
-    employmentType: '',
-    coverLetter: ''
-  })
-  const [resumeFile, setResumeFile] = useState(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitMessage, setSubmitMessage] = useState('')
 
   const jobs = [
     {
@@ -136,14 +124,12 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
             </h2>
             <p className="text-sm text-gray-500 mb-6">
               For direct job application or internship related queries, kindly drop your resume and email us at{' '}
-              <a href="mailto:careers@mycomedic.com.my" className="text-gray-900 font-medium hover:underline">
-                careers@mycomedic.com.my
+              <span className="text-gray-900 font-medium">bryan@mycomedic.com.my</span>
+              {' '}or contact us at{' '}
+              <a href="https://wa.me/60123375935" target="_blank" rel="noopener noreferrer" className="text-gray-900 font-medium hover:underline">
+                +60 12-337 5935
               </a>{' '}
-              or contact us at{' '}
-              <a href="https://wa.me/60123822001" target="_blank" rel="noopener noreferrer" className="text-gray-900 font-medium hover:underline">
-                +6012-382 2001
-              </a>{' '}
-              <span className="text-gray-500">(Ms. Caylee)</span> via WhatsApp or phone call.
+              <span className="text-gray-500">(Mr. Bryan)</span> via WhatsApp or phone call.
             </p>
           </motion.div>
 
@@ -244,22 +230,29 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
                       </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex gap-3 mb-6">
+                    {/* Apply via email / WhatsApp */}
+                    <div className="flex flex-col sm:flex-row gap-4 mb-6 items-stretch sm:items-start">
+                      <div className="flex-1 rounded-lg border border-gray-200 bg-gray-50/80 px-4 py-3 text-sm text-gray-700 leading-relaxed">
+                        <p>
+                          To apply, send your resume and mention the role to{' '}
+                          <span className="font-semibold text-gray-900">bryan@mycomedic.com.my</span>
+                          {' '}or{' '}
+                          <a
+                            href="https://wa.me/60123375935?text=Hi%2C%20I%27d%20like%20to%20apply%20for%20a%20position%20at%20Myco%20Medic."
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-semibold text-primary hover:underline"
+                          >
+                            WhatsApp
+                          </a>
+                          .
+                        </p>
+                      </div>
                       <button
-                        onClick={() => {
-                          setFormData(prev => ({
-                            ...prev,
-                            position: jobs[selectedJob].title,
-                            employmentType: '' // Reset to allow user to choose
-                          }))
-                          setShowApplicationForm(true)
-                        }}
-                        className="flex-1 bg-teal-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors text-center"
+                        type="button"
+                        className="shrink-0 self-start p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                        aria-label="Share"
                       >
-                        Apply
-                      </button>
-                      <button className="p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
                         <Share2 className="w-5 h-5 text-gray-600" />
                       </button>
                     </div>
@@ -278,21 +271,18 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
                     <div className="mt-6 pt-6 border-t border-gray-200">
                       <h4 className="text-sm font-medium text-gray-900 mb-3">How to Apply</h4>
                       <div className="space-y-2 text-sm text-gray-600">
+                        <div className="flex items-center gap-2">
+                          <Mail className="w-4 h-4 flex-shrink-0" />
+                          <span className="font-medium text-gray-900">bryan@mycomedic.com.my</span>
+                        </div>
                         <a
-                          href="mailto:careers@mycomedic.com.my"
-                          className="flex items-center gap-2 hover:text-gray-900 transition-colors"
-                        >
-                          <Mail className="w-4 h-4" />
-                          <span>careers@mycomedic.com.my</span>
-                        </a>
-                        <a
-                          href="https://wa.me/60123822001"
+                          href="https://wa.me/60123375935"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center gap-2 hover:text-gray-900 transition-colors"
                         >
-                          <Phone className="w-4 h-4" />
-                          <span>+6012-382 2001 (Ms. Caylee)</span>
+                          <Phone className="w-4 h-4 flex-shrink-0" />
+                          <span>+60 12-337 5935 (Mr. Bryan)</span>
                         </a>
                       </div>
                     </div>
@@ -304,345 +294,10 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
         </div>
       </section>
 
-      {/* Application Form Modal */}
-      <AnimatePresence>
-        {showApplicationForm && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
-            onClick={() => !isSubmitting && setShowApplicationForm(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-            >
-              <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-                <h2 className="text-2xl font-medium text-gray-900">Job Application</h2>
-                <button
-                  onClick={() => !isSubmitting && setShowApplicationForm(false)}
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                  disabled={isSubmitting}
-                >
-                  <X className="w-5 h-5 text-gray-600" />
-                </button>
-              </div>
-
-              <form
-                onSubmit={handleApplicationSubmit}
-                className="p-6 space-y-6"
-              >
-                {submitMessage && (
-                  <div className={`p-4 rounded-lg ${
-                    submitMessage.includes('success') 
-                      ? 'bg-green-50 text-green-800 border border-green-200' 
-                      : 'bg-red-50 text-red-800 border border-red-200'
-                  }`}>
-                    {submitMessage}
-                  </div>
-                )}
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Full Name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleFormChange}
-                      required
-                      disabled={isSubmitting}
-                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent disabled:bg-gray-100"
-                      placeholder="Your full name"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleFormChange}
-                      required
-                      disabled={isSubmitting}
-                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent disabled:bg-gray-100"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleFormChange}
-                      required
-                      disabled={isSubmitting}
-                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent disabled:bg-gray-100"
-                      placeholder="+6012-345 6789"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Position <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="position"
-                      value={formData.position}
-                      onChange={handleFormChange}
-                      required
-                      disabled={isSubmitting}
-                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent disabled:bg-gray-100 bg-gray-50"
-                      readOnly
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Employment Type <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    name="employmentType"
-                    value={formData.employmentType}
-                    onChange={handleFormChange}
-                    required
-                    disabled={isSubmitting}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent disabled:bg-gray-100 bg-white"
-                  >
-                    <option value="">Select employment type</option>
-                    <option value="FULL TIME">Full Time</option>
-                    <option value="INTERNSHIP">Internship</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Resume/CV <span className="text-red-500">*</span>
-                  </label>
-                  <div className="mt-1 flex items-center gap-4">
-                    <label className="flex-1 cursor-pointer">
-                      <input
-                        type="file"
-                        accept=".pdf,.doc,.docx"
-                        onChange={handleFileChange}
-                        required={!resumeFile}
-                        disabled={isSubmitting}
-                        className="hidden"
-                      />
-                      <div className="flex items-center gap-3 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-teal-500 transition-colors">
-                        <Upload className="w-5 h-5 text-gray-400" />
-                        <div className="flex-1">
-                          <p className="text-sm text-gray-600">
-                            {resumeFile ? resumeFile.name : 'Click to upload resume (PDF, DOC, DOCX)'}
-                          </p>
-                          <p className="text-xs text-gray-400 mt-1">Max file size: 5MB</p>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Cover Letter (Optional)
-                  </label>
-                  <textarea
-                    name="coverLetter"
-                    value={formData.coverLetter}
-                    onChange={handleFormChange}
-                    disabled={isSubmitting}
-                    rows={5}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent disabled:bg-gray-100"
-                    placeholder="Tell us why you're interested in this position..."
-                  />
-                </div>
-
-                <div className="flex gap-3 pt-4">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="flex-1 bg-teal-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? 'Submitting...' : 'Submit Application'}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setShowApplicationForm(false)}
-                    disabled={isSubmitting}
-                    className="px-6 py-3 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </form>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       <Footer />
-      <WhatsAppFloat phone="+60123822001" message="Hi Myco Medic!" />
+      <WhatsAppFloat phone="+60123375935" message="Hi Myco Medic!" />
     </div>
   )
-
-  function handleFormChange(e) {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  function handleFileChange(e) {
-    const file = e.target.files[0]
-    if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        setSubmitMessage('File size must be less than 5MB')
-        return
-      }
-      setResumeFile(file)
-      setSubmitMessage('')
-    }
-  }
-
-  async function handleApplicationSubmit(e) {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitMessage('')
-
-    // Validate required fields
-    if (!formData.name || !formData.email || !formData.phone || !formData.position || !formData.employmentType) {
-      setSubmitMessage('Please fill in all required fields.')
-      setIsSubmitting(false)
-      return
-    }
-
-    if (!resumeFile) {
-      setSubmitMessage('Please upload your resume/CV.')
-      setIsSubmitting(false)
-      return
-    }
-
-    try {
-      // Determine API URL based on environment
-      // In production (on mycomedic.com.my), use production API URL
-      // In development (localhost), use localhost
-      let API_URL = import.meta.env.VITE_API_URL
-      
-      // Auto-detect production if VITE_API_URL is not set or is localhost
-      if (!API_URL || API_URL.includes('localhost')) {
-        // Check if we're running on production domain
-        if (window.location.hostname.includes('mycomedic.com')) {
-          API_URL = 'https://api.mycomedic.com'
-        } else {
-          API_URL = 'http://localhost:3001'
-        }
-      }
-      
-      console.log('Submitting application to:', `${API_URL}/api/career-application`)
-      console.log('Current environment:', import.meta.env.MODE)
-      console.log('Hostname:', window.location.hostname)
-      
-      const formDataToSend = new FormData()
-      formDataToSend.append('name', formData.name)
-      formDataToSend.append('email', formData.email)
-      formDataToSend.append('phone', formData.phone)
-      formDataToSend.append('position', formData.position)
-      formDataToSend.append('employmentType', formData.employmentType)
-      formDataToSend.append('coverLetter', formData.coverLetter || '')
-      if (resumeFile) {
-        formDataToSend.append('resume', resumeFile)
-      }
-
-      const response = await fetch(`${API_URL}/api/career-application`, {
-        method: 'POST',
-        body: formDataToSend,
-        // Add timeout to detect connection issues faster
-        signal: AbortSignal.timeout(30000) // 30 second timeout
-      })
-
-      // Check if response is ok before trying to parse JSON
-      if (!response.ok) {
-        let errorMessage = 'Failed to submit application. Please try again.'
-        try {
-          const errorData = await response.json()
-          errorMessage = errorData.error || errorMessage
-        } catch (parseError) {
-          // If response is not JSON, use status text
-          errorMessage = `Server error: ${response.status} ${response.statusText}`
-        }
-        setSubmitMessage(errorMessage)
-        setIsSubmitting(false)
-        return
-      }
-
-      const result = await response.json()
-
-      if (result.success || response.ok) {
-        setSubmitMessage('Application submitted successfully! We will contact you soon.')
-        setTimeout(() => {
-          setShowApplicationForm(false)
-          setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            position: '',
-            employmentType: '',
-            coverLetter: ''
-          })
-          setResumeFile(null)
-          setSubmitMessage('')
-        }, 2000)
-      } else {
-        setSubmitMessage(result.error || 'Failed to submit application. Please try again.')
-      }
-    } catch (error) {
-      console.error('Error submitting application:', error)
-      console.error('Error details:', {
-        name: error.name,
-        message: error.message,
-        stack: error.stack
-      })
-      
-      // Provide more specific error messages
-      if (error.name === 'AbortError' || error.name === 'TimeoutError') {
-        setSubmitMessage('Request timed out. The server may be slow or unavailable. Please try again.')
-      } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
-        // Determine API URL for error message
-        let API_URL = import.meta.env.VITE_API_URL
-        if (!API_URL || API_URL.includes('localhost')) {
-          if (window.location.hostname.includes('mycomedic.com')) {
-            API_URL = 'https://api.mycomedic.com'
-          } else {
-            API_URL = 'http://localhost:3001'
-          }
-        }
-        setSubmitMessage(`Unable to connect to server at ${API_URL}. Please ensure the backend server is running and accessible.`)
-      } else if (error.name === 'NetworkError' || error.message.includes('Failed to fetch')) {
-        setSubmitMessage('Network error. Please check your internet connection and try again.')
-      } else {
-        setSubmitMessage(`Error: ${error.message || 'An error occurred. Please try again later.'}`)
-      }
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
 }
 
 export default Career

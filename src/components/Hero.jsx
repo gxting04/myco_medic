@@ -28,7 +28,7 @@ function Hero() {
   }
 
   return (
-    <div className='relative h-[60vh] sm:h-[70vh] md:h-[80vh] w-full overflow-hidden mt-20 md:mt-24'>
+    <div className='relative h-[60vh] sm:h-[70vh] md:h-[80vh] w-full overflow-hidden mt-24 md:mt-28'>
       {/* Images - Fill the entire section */}
       {images.map((image, index) => (
         <div
