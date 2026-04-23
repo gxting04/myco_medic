@@ -25,6 +25,18 @@ import NasopharyngealAirwayPage from './nasopharyngeal_airway'
 import OropharyngealAirwayPage from './oropharyngeal_airway'
 import LaryngoscopesPage from './laryngoscopes'
 import UEScopeVideoLaryngoscopePage from './ue_scope_video_laryngoscope'
+import {
+  VideoLaryngoscopeUedaPage,
+  VideoLaryngoscopeUedcPage,
+  VideoLaryngoscopeUeddPage
+} from './video_laryngoscope_ued_models'
+import {
+  FlexibleVideoscopePage,
+  UEScopeVideoLaryngealMaskPage,
+  AirwayWorkstationPage,
+  VideoLaryngoscopeTdcKPage,
+  VideoLaryngoscopeTdcCPage
+} from './uescope_airway_products'
 import RechargeableAspiratorPage from './rechargeable_aspirator'
 import BreathingCircuitsPage from './breathing_circuits'
 import HMEFFilterPage from './hmef_filter'
@@ -157,6 +169,7 @@ import SensoryBrushPage from './sensory_brush'
 import HypafixAdhesiveNonWovenFabricReadyStockPage from './hypafix_adhesive_non_woven_fabric_ready_stock'
 import AdultPediatricTracheostomyTubeHolderNeckStrapPage from './adult_pediatric_tracheostomy_tube_holder_neck_strap'
 import SeluarSunatKhatanCircumcisionUnderwearPage from './seluar_sunat_khatan_circumcision_underwear'
+import VeinFinderPage from './vein_finder'
 
 const productContentRegistry = {
   // All products now use ProductDetailDefault for consistent structure
@@ -171,6 +184,14 @@ const productContentRegistry = {
   'disposable-manometer': DisposableManometerPage,
   'laryngoscopes': LaryngoscopesPage,
   'ue-scope-video-laryngoscope-vl300': UEScopeVideoLaryngoscopePage,
+  'video-laryngoscope-ueda': VideoLaryngoscopeUedaPage,
+  'video-laryngoscope-uedc': VideoLaryngoscopeUedcPage,
+  'video-laryngoscope-uedd': VideoLaryngoscopeUeddPage,
+  'airway-workstation': AirwayWorkstationPage,
+  'flexible-videoscope': FlexibleVideoscopePage,
+  'video-laryngeal-mask': UEScopeVideoLaryngealMaskPage,
+  'video-laryngoscope-tdc-k': VideoLaryngoscopeTdcKPage,
+  'video-laryngoscope-tdc-c': VideoLaryngoscopeTdcCPage,
   'asu-200-rechargeable-aspirator': RechargeableAspiratorPage,
   'breathing-circuits': BreathingCircuitsPage,
   'hmef-filter': HMEFFilterPage,
@@ -316,6 +337,7 @@ const productContentRegistry = {
   'hypafix-adhesive-non-woven-fabric-ready-stock': HypafixAdhesiveNonWovenFabricReadyStockPage,
   'adult-pediatric-tracheostomy-tube-holder-neck-strap': AdultPediatricTracheostomyTubeHolderNeckStrapPage,
   'seluar-sunat-khatan-circumcision-underwear': SeluarSunatKhatanCircumcisionUnderwearPage,
+  'vein-finder': VeinFinderPage,
   'ent-pack': ENTPackPage,
   'basic-sterile-kit': BasicSterileKitPage,
   'delivery-kit': DeliveryKitPage,

@@ -327,6 +327,14 @@
         'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800'
       ],
       description: 'Sterilization trays designed for organizing and sterilizing surgical instruments.'
+    },
+    {
+      id: 25,
+      groupId: 1,
+      name: 'UESCOPE',
+      icon: '/video_laryngoscope.png',
+      images: ['/video_laryngoscope.png'],
+      description: 'UE Scope video laryngoscope systems and related airway visualization products.'
     }
   ]
   
@@ -396,8 +404,7 @@
       id: 13, 
       name: 'UE Scope© Video Laryngoscope (VL300 Series)', 
       groupId: 1, 
-      category: null, 
-
+      category: 'UESCOPE',
       image: '/video_laryngoscope.png',
       pageId: 'ue-scope-video-laryngoscope-vl300'
     },
@@ -1747,6 +1754,128 @@
         '/delivery_kit_2.png'
       ],
       pageId: 'delivery-kit'
+    },
+    {
+      id: 164,
+      name: 'Airway Workstation',
+      groupId: 1,
+      category: 'UESCOPE',
+
+      image: '/airway_workstation.png',
+      pageId: 'airway-workstation'
+    },
+    {
+      id: 165,
+      name: 'Video Laryngoscope UED-A',
+      groupId: 1,
+      category: 'UESCOPE',
+
+      image: '/video_laryngoscope_ueda.png',
+      images: [
+        '/video_laryngoscope_ueda.png',
+        '/video_laryngoscope_ueda_blades.png'
+      ],
+      pageId: 'video-laryngoscope-ueda'
+    },
+    {
+      id: 166,
+      name: 'Video Laryngoscope UED-C',
+      groupId: 1,
+      category: 'UESCOPE',
+
+      image: '/video_laryngoscope_uedc.png',
+      images: [
+        '/video_laryngoscope_uedc.png',
+        '/video_laryngoscope_uedc_blade.png'
+      ],
+      pageId: 'video-laryngoscope-uedc'
+    },
+    {
+      id: 167,
+      name: 'Video Laryngoscope UE-D',
+      groupId: 1,
+      category: 'UESCOPE',
+
+      image: '/video_laryngoscope_uedd.png',
+      images: [
+        '/video_laryngoscope_uedd.png',
+        '/video_laryngoscope_uedd_blade.png'
+      ],
+      pageId: 'video-laryngoscope-uedd'
+    },
+    {
+      id: 168,
+      name: 'Flexible Videoscope',
+      groupId: 1,
+      category: 'UESCOPE',
+
+      image: '/flexible_videoscope.png',
+      images: [
+          '/flexible_videoscope.png',
+          '/flexible_videoscope_2.png',
+      ],
+      pageId: 'flexible-videoscope'
+    },
+    {
+      id: 169,
+      name: 'Video Laryngeal Mask',
+      groupId: 1,
+      category: 'UESCOPE',
+
+      image: '/video_laryngeal_mask.png',
+      pageId: 'video-laryngeal-mask'
+    },
+    {
+      id: 170,
+      name: 'Video Laryngoscope TDC-K',
+      groupId: 1,
+      category: 'UESCOPE',
+
+      image: '/video_laryngoscope_tdc_k.png',
+      images: [
+        '/video_laryngoscope_tdc_k.png',
+        '/video_laryngoscope_tdc_blade.png'
+      ],
+      pageId: 'video-laryngoscope-tdc-k'
+    },
+    {
+      id: 171,
+      name: 'Video Laryngoscope TDC-C',
+      groupId: 1,
+      category: 'UESCOPE',
+
+      image: '/video_laryngoscope_tdc_c.png',
+      images: [
+        '/video_laryngoscope_tdc_c.png',
+        '/video_laryngoscope_tdc_blade.png'
+      ],
+      pageId: 'video-laryngoscope-tdc-c'
+    },
+    {
+      id: 172,
+      name: 'Single Use Bronchoscope',
+      groupId: 1,
+      category: 'UESCOPE',
+
+      image: '/single_use_bronchoscope.png',
+      images: [
+        '/single_use_bronchoscope.png',
+        '/single_use_bronchoscope_2.png'
+      ],
+      pageId: 'single-use-bronchoscope'
+    },
+    {
+      id: 173,
+      name: 'Vein Finder',
+      groupId: 15,
+      category: null,
+
+      image: '/vein_finder.png',
+      images: [
+        '/vein_finder.png',
+        '/vein_finder_2.png'
+      ],
+      pageId: 'vein-finder'
     }
   ]
   

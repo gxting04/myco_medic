@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import AboutUs from './components/AboutUs'
+import HospitalDemo from './components/HospitalDemo'
 import Partners from './components/Partners'
 import Category from './components/Category'
 import WhatsAppFloat from './components/WhatsAppFloat'
@@ -18,6 +19,8 @@ function Home() {
 
       {/* About Us Section */}
       <AboutUs />
+
+      <HospitalDemo />
 
       {/* Partners Section */}
       <Partners />

@@ -59,9 +59,41 @@ function Contact() {
           <h2 className="text-2xl font-light text-gray-900 mb-8 tracking-wide">Locate Us</h2>
           
           <div className="relative rounded-2xl overflow-hidden shadow-sm border border-gray-200">
+            {/* Address card: top-left; embed uses coords so Google’s place panel stays minimal */}
+            <div className="pointer-events-auto absolute left-4 top-4 z-10 max-w-[min(calc(100%-2rem),280px)] rounded-lg border border-gray-200 bg-white/95 p-4 text-left shadow-lg backdrop-blur-sm">
+              <p className="text-sm font-semibold text-gray-900">Myco Medic Sdn Bhd</p>
+              <p className="mt-2 text-xs leading-relaxed text-gray-600">
+                No. 2A-G Jalan Sierra 10/3,
+                <br />
+                Section 16 Sierra,
+                <br />
+                47120 Puchong,
+                <br />
+                Selangor, Malaysia
+              </p>
+              <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-gray-100 pt-3">
+                <a
+                  href="https://www.google.com/maps/dir/?api=1&destination=No.+2A-G+Jalan+Sierra+10%2F3%2C+Section+16+Sierra%2C+47120+Puchong%2C+Selangor%2C+Malaysia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-medium text-primary hover:underline"
+                >
+                  Directions
+                </a>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Myco+Medic+Sdn+Bhd+Puchong"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-medium text-gray-500 hover:text-gray-900 hover:underline"
+                >
+                  Larger map
+                </a>
+              </div>
+            </div>
             <div className="w-full h-[400px] md:h-[500px]">
+              {/* Coordinate-centred embed avoids the large duplicate place card in the top-left */}
               <iframe
-                src="https://www.google.com/maps?q=Myco+Medic+Sdn+Bhd,+No.+2A-G+Jalan+Sierra+10/3,+Bandar+16+Sierra,+47120+Puchong,+Selangor,+Malaysia&output=embed"
+                src="https://www.google.com/maps?q=2.98605%2C101.62635&z=17&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
