@@ -170,6 +170,9 @@ import HypafixAdhesiveNonWovenFabricReadyStockPage from './hypafix_adhesive_non_
 import AdultPediatricTracheostomyTubeHolderNeckStrapPage from './adult_pediatric_tracheostomy_tube_holder_neck_strap'
 import SeluarSunatKhatanCircumcisionUnderwearPage from './seluar_sunat_khatan_circumcision_underwear'
 import VeinFinderPage from './vein_finder'
+import UeM8sPage from './ue_m8s'
+import UedM3sPage from './ued_m3s'
+import UeM10sPage from './ue_m10s'
 
 const productContentRegistry = {
   // All products now use ProductDetailDefault for consistent structure
@@ -338,6 +341,9 @@ const productContentRegistry = {
   'adult-pediatric-tracheostomy-tube-holder-neck-strap': AdultPediatricTracheostomyTubeHolderNeckStrapPage,
   'seluar-sunat-khatan-circumcision-underwear': SeluarSunatKhatanCircumcisionUnderwearPage,
   'vein-finder': VeinFinderPage,
+  'ue-m8s': UeM8sPage,
+  'ued-m3s': UedM3sPage,
+  'ue-m10s': UeM10sPage,
   'ent-pack': ENTPackPage,
   'basic-sterile-kit': BasicSterileKitPage,
   'delivery-kit': DeliveryKitPage,

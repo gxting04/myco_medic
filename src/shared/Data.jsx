@@ -1876,6 +1876,33 @@
         '/vein_finder_2.png'
       ],
       pageId: 'vein-finder'
+    },
+    {
+      id: 174,
+      name: 'UE-M8S',
+      groupId: 1,
+      category: 'UESCOPE',
+
+      image: '/ue_m8_s.png',
+      pageId: 'ue-m8s'
+    },
+    {
+      id: 175,
+      name: 'UED-M3S',
+      groupId: 1,
+      category: 'UESCOPE',
+
+      image: '/ued_m3_s.png',
+      pageId: 'ued-m3s'
+    },
+    {
+      id: 176,
+      name: 'UE-M10S',
+      groupId: 1,
+      category: 'UESCOPE',
+
+      image: '/ue-m10s.png',
+      pageId: 'ue-m10s'
     }
   ]
   
