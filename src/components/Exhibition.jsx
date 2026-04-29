@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const slides = Array.from({ length: 12 }, (_, i) => ({
   src: `/activity_${11 + i}.jpeg`,
-  alt: 'Exhibition'
+  alt: 'Perinatal Society of Malaysia congress'
 }))
 
 const SLIDE_MS = 5500
@@ -57,8 +57,8 @@ function Exhibition() {
             visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-3 md:mb-4">
-            Exhibition
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-gray-900 mb-3 md:mb-4 max-w-5xl mx-auto leading-snug">
+            32nd Regional Annual Congress of the Perinatal Society of Malaysia (PSM)
           </h2>
           <p className="text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto">
             Moments from our exhibitions, trade events, and industry showcases.
