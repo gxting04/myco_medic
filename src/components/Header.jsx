@@ -73,17 +73,40 @@ function Header() {
     }
   }
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [mobileMenuOpen])
+
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full transition-all duration-300 ${
+        mobileMenuOpen ? 'z-[110]' : 'z-50'
+      } ${
         isScrolled || mobileMenuOpen
           ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-200/50'
           : 'bg-white'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-24 md:h-28 flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 sm:gap-3 z-50">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 h-24 md:h-28 flex items-center justify-between">
+        <button
+          type="button"
+          className="md:hidden relative z-[60] flex-shrink-0 p-2.5 text-gray-500 hover:text-black transition-all duration-200 rounded-lg hover:bg-gray-100 active:scale-95"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-expanded={mobileMenuOpen}
+          aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+        >
+          {mobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+        </button>
+
+        <Link
+          to="/"
+          className="absolute left-1/2 top-1/2 z-50 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 sm:gap-3 md:static md:left-auto md:top-auto md:translate-x-0 md:translate-y-0"
+        >
           <img
             src="/Myco_Medic.png"
             alt="Myco Medic"
@@ -91,9 +114,7 @@ function Header() {
           />
         </Link>
 
-        {/* Right Side - Navigation + Actions */}
         <div className="flex items-center gap-2 sm:gap-4 md:gap-8 z-50">
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               link.name === 'Products' ? (
@@ -213,27 +234,7 @@ function Header() {
             <Search className="w-6 h-6" />
           </button>
 
-          {/* Cart icon hidden */}
-          {/* <Link
-            to="/cart"
-            className="relative p-2.5 text-gray-500 hover:text-black transition-colors"
-            aria-label="Cart"
-          >
-            <ShoppingBag className="w-6 h-6" />
-            {getCartCount() > 0 && (
-              <span className="absolute top-1 right-0 bg-primary text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                {getCartCount()}
-              </span>
-            )}
-          </Link> */}
-          
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden p-2.5 text-gray-500 hover:text-black transition-all duration-200 rounded-lg hover:bg-gray-100 active:scale-95"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-          </button>
+          <div className="md:hidden w-11 flex-shrink-0" aria-hidden="true" />
         </div>
       </div>
 
@@ -271,93 +272,102 @@ function Header() {
         </div>
       )}
 
-      {/* Mobile Menu - Slides from left */}
+      {/* Mobile Menu — fixed layer above page + WhatsApp (z-50) */}
       {mobileMenuOpen && (
-        <>
-          {/* Backdrop overlay */}
+        <div className="fixed left-0 right-0 bottom-0 top-24 z-[100] md:hidden pointer-events-none">
           <div
-            className="fixed inset-0 bg-black/50 z-40 md:hidden"
+            className="absolute inset-0 bg-black/50 pointer-events-auto"
             onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
           />
-          
-          {/* Side menu */}
-          <div
-            className={`fixed top-0 left-0 h-full w-64 bg-white z-50 flex flex-col pt-20 px-6 gap-6 transition-transform duration-300 md:hidden shadow-xl ${
-              mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
-            }`}
+
+          <aside
+            className="absolute left-0 top-0 bottom-0 w-[min(20rem,88vw)] max-w-full bg-white shadow-2xl flex flex-col pointer-events-auto border-r border-gray-100"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
           >
-            {/* Close button */}
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              className="absolute top-4 right-4 p-2 text-gray-500 hover:text-black"
-            >
-              <X className="w-6 h-6" />
-            </button>
+            <div className="flex h-14 shrink-0 items-center justify-between gap-2 px-4 border-b border-gray-100 bg-white">
+              <span className="text-sm font-semibold text-gray-900">Menu</span>
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                aria-label="Close menu"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
 
-            {/* Mobile Search */}
-            <form onSubmit={handleSearch} className="mb-4">
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Search products..."
-                  className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary text-sm"
-                />
-                <button
-                  type="submit"
-                  className="px-4 py-3 bg-primary text-white rounded-lg"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <Search className="w-5 h-5" />
-                </button>
-              </div>
-            </form>
-
-            {/* Navigation Links */}
-            {navLinks.map((link) => (
-              link.name === 'Products' ? (
-                <div key={link.name} className="space-y-2">
-                  <Link
-                    to="/products"
-                    className="text-xl font-medium text-gray-900 hover:text-primary transition-colors py-2 block"
+            <div className="shrink-0 p-4 border-b border-gray-100 bg-white">
+              <form onSubmit={handleSearch}>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    placeholder="Search products..."
+                    className="flex-1 min-w-0 px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-sm bg-white text-gray-900"
+                  />
+                  <button
+                    type="submit"
+                    className="shrink-0 px-3 py-2.5 bg-primary text-white rounded-lg hover:bg-primary/90"
                     onClick={() => setMobileMenuOpen(false)}
+                    aria-label="Search"
                   >
-                    Products
-                  </Link>
-                  <div className="pl-4 space-y-1 border-l-2 border-gray-200">
-                    <Link
-                      to="/products"
-                      className="block text-base text-gray-600 hover:text-primary py-1"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      All Products
-                    </Link>
-                    {dropdownGroups.map((group) => (
+                    <Search className="w-5 h-5" />
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <nav className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-4 py-4 pb-8 bg-white">
+              <div className="flex flex-col gap-1">
+                {navLinks.map((link) =>
+                  link.name === 'Products' ? (
+                    <div key={link.name} className="space-y-2 pb-4">
                       <Link
-                        key={group.id}
-                        to={`/products?groupId=${group.id}`}
-                        className="block text-base text-gray-600 hover:text-primary py-1"
+                        to="/products"
+                        className="text-lg font-semibold text-gray-900 hover:text-primary py-2 block"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        {group.name}
+                        Products
                       </Link>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className="text-xl font-medium text-gray-900 hover:text-primary transition-colors py-2"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              )
-            ))}
-          </div>
-        </>
+                      <div className="pl-3 space-y-1 border-l-2 border-gray-200">
+                        <Link
+                          to="/products"
+                          className="block text-sm text-gray-700 hover:text-primary py-1.5"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          All Products
+                        </Link>
+                        {dropdownGroups.map((group) => (
+                          <Link
+                            key={group.id}
+                            to={`/products?groupId=${group.id}`}
+                            className="block text-sm text-gray-700 hover:text-primary py-1.5 leading-snug"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {group.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <Link
+                      key={link.name}
+                      to={link.path}
+                      className="text-lg font-semibold text-gray-900 hover:text-primary py-3 border-b border-gray-100 last:border-0"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                  )
+                )}
+              </div>
+            </nav>
+          </aside>
+        </div>
       )}
     </header>
   )
