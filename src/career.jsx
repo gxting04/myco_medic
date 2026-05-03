@@ -6,19 +6,51 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Briefcase, FileText, MapPin, Clock, Share2, Mail, Phone } from 'lucide-react'
 
+function JobOverviewBody({ text }) {
+  return (
+    <>
+      {text.split('\n').map((line, index) => {
+        if (line.startsWith('**') && line.endsWith('**')) {
+          return (
+            <p key={index} className="font-semibold text-gray-900 mb-2 mt-5 first:mt-0">
+              {line.replace(/\*\*/g, '')}
+            </p>
+          )
+        }
+        if (line.trim().startsWith('•')) {
+          return (
+            <div key={index} className="flex items-start gap-2 mb-2">
+              <span className="text-teal-600 mt-0.5 shrink-0">•</span>
+              <span className="leading-relaxed">{line.replace(/^•\s*/, '')}</span>
+            </div>
+          )
+        }
+        if (line.trim()) {
+          return (
+            <p key={index} className="mb-3 text-gray-700 leading-relaxed last:mb-0">
+              {line}
+            </p>
+          )
+        }
+        return <br key={index} />
+      })}
+    </>
+  )
+}
+
 function Career() {
   const [selectedJob, setSelectedJob] = useState(0)
 
   const jobs = [
     {
       id: 1,
-      title: 'Admin - Full Time, Internship',
+      title: 'Admin — Full Time',
       location: 'Puchong, Selangor, Malaysia',
       categories: ['Administration', 'Operations', 'Business Support'],
       employmentType: 'FULL TIME',
-      employmentTypeAlt: 'INTERNSHIP',
+      track: 'fullTime',
       icon: FileText,
-      description: `We are looking for passionate and hard-working individuals to join our Admin team. This role offers opportunities for both Full Time employment and Internship positions.
+      description: `We are looking for passionate and hard-working individuals to join our Admin team in a full-time role.
 
 **Job Scopes:**
 • Help in filling forms and data
@@ -38,13 +70,51 @@ At Myco Medic, we value our people as a great asset for the company. We truly be
     },
     {
       id: 2,
-      title: 'Sales - Full Time, Internship',
+      title: 'Admin — Internship',
+      location: 'Puchong, Selangor, Malaysia',
+      categories: ['Administration', 'Operations', 'Business Support'],
+      employmentType: 'INTERNSHIP',
+      track: 'internship',
+      icon: FileText,
+      description: `This internship is designed to provide hands-on administrative experience within a medical device company. Interns work closely with the team and gain practical insight into day-to-day operations, internal processes, and business support in a regulated industry context.
+
+**Our commitment (CSR)**
+• Myco Medic is committed to nurturing future talent through structured internship opportunities. Learning objectives are agreed at the outset, tasks are aligned to those objectives, and progress is reviewed to ensure the placement supports meaningful development.
+• A structured induction covers documentation standards, reporting lines, and quality expectations. Supervisors provide ongoing guidance as workloads and priorities evolve.
+• Training addresses both correct procedure and underlying rationale, in order to develop sound professional judgment within a healthcare supply environment.
+• Assignments reflect genuine operational requirements, including data handling, inventory coordination, and administrative support, consistent with the service standards expected of the organisation by hospital and clinical customers.
+• Constructive feedback is provided at appropriate intervals to recognise performance and identify areas for improvement, enabling interns to document relevant experience for future applications.
+• The workplace maintains professional standards befitting the trust placed in the organisation by healthcare institutions. Investment in interns forms part of the company’s broader commitment to responsible corporate practice.
+
+The organisation values students and early-career professionals. Interns receive supervisory support, substantive assignments, and competencies applicable beyond the conclusion of the placement.
+
+**What you can gain**
+• Practical experience with administrative workflows, documentation, and coordination
+• Exposure to inventory, basic accounting, and product registration within an operating company
+• Greater clarity regarding career pathways in healthcare business support
+
+**Typical learning areas**
+• Help in filling forms and data
+• Inventory management
+• Simple accounting
+• Handle product registration
+• Support the sales team where appropriate
+
+**What we look for**
+• Proficiency in English and Bahasa Malaysia
+• Strong motivation to learn, reliability, and a collaborative approach
+• Accurate document handling and correspondence
+• Proficiency in Microsoft Office applications at a basic level`
+    },
+    {
+      id: 3,
+      title: 'Sales — Full Time',
       location: 'Puchong, Selangor, Malaysia',
       categories: ['Sales', 'Business Development', 'Healthcare'],
       employmentType: 'FULL TIME',
-      employmentTypeAlt: 'INTERNSHIP',
+      track: 'fullTime',
       icon: Briefcase,
-      description: `Join our Sales team and explore the medical world with Myco Medic Sdn Bhd! We focus on providing first-hand experience and field exposure to our staff.
+      description: `Join our Sales team full time and explore the medical world with Myco Medic Sdn Bhd. We focus on first-hand experience and field exposure for our people.
 
 **Job Scopes:**
 • Possess own transport - company will reimburse petrol, toll, parking for work related matters
@@ -59,7 +129,46 @@ At Myco Medic, we value our people as a great asset for the company. We truly be
 • Team player and proactive
 • Basic skill for Microsoft Office
 
-This is a unique opportunity to be part of a fast-evolving industry and learn from the ground up in a dynamic, supportive environment. Ready to take the first step in your career with us?`
+This is a unique opportunity to be part of a fast-evolving industry and learn from the ground up in a dynamic, supportive environment. Ready to take the next step in your career with us?`
+    },
+    {
+      id: 4,
+      title: 'Sales — Internship',
+      location: 'Puchong, Selangor, Malaysia',
+      categories: ['Sales', 'Business Development', 'Healthcare'],
+      employmentType: 'INTERNSHIP',
+      track: 'internship',
+      icon: Briefcase,
+      description: `This internship offers structured exposure to medical device sales and institutional customer engagement. Participants observe how products progress from training environments to clinical deployment and how constructive professional relationships with clinicians are established and maintained.
+
+**Our commitment (CSR)**
+• Myco Medic is committed to nurturing future talent through structured internship opportunities: defined learning outcomes, appropriately supervised exposure to customer-facing activities where applicable, and review sessions following site visits or training activities as appropriate.
+• Participation follows a phased approach: initial observation, followed by supervised involvement in presentations, in-service support, and designated customer interactions, conducted in accordance with safety requirements and professional standards.
+• Coaching emphasises preparation, active listening, and disciplined follow-up as foundational competencies for engagement with clinical stakeholders.
+• Senior staff contextualise product knowledge within hospital workflows, including intensive care and operating theatre environments where institutional approval and scheduling permit.
+• Structured debriefing following field activities supports continuous improvement and accurate articulation of experience in subsequent recruitment processes.
+• Investment in capable graduates supports the continuous improvement of healthcare delivery in Malaysia and the welfare of the communities served by our customers.
+
+Interns receive defined learning aims, documented feedback, and field exposure that complements academic preparation.
+
+**What you can gain**
+• Orientation to sales procedures, institutional dialogue, and hospital environments
+• Insight into post-sale clinical training and user support provided by the organisation
+• Strengthened communication, planning, and follow-up applicable to professional roles
+
+**Scope (under supervision)**
+• Where appropriate, accompany and observe sales activities and in-service support
+• Learn daily sales procedures and how presentations are delivered
+• Understand how product training is conducted for doctors and nurses
+• Awareness of work in clinical settings such as ICU and OT (as permitted and scheduled)
+
+**What we look for**
+• Proficiency in English and Bahasa Malaysia
+• Initiative, professional conduct, and a disciplined approach to learning
+• Collaborative style; possession of own transport is advantageous for field assignments
+• Proficiency in Microsoft Office applications at a basic level
+
+Interested candidates are invited to submit a curriculum vitae for consideration.`
     }
   ]
 
@@ -177,11 +286,14 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
                           <span className="truncate">{job.categories.join(', ')}</span>
                         </div>
                         <div className="flex flex-wrap gap-2">
-                          <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
+                          <span
+                            className={`px-3 py-1 text-xs font-medium rounded-full ${
+                              job.track === 'internship'
+                                ? 'bg-teal-100 text-teal-800 ring-1 ring-teal-200/80'
+                                : 'bg-gray-100 text-gray-700'
+                            }`}
+                          >
                             {job.employmentType}
-                          </span>
-                          <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
-                            {job.employmentTypeAlt}
                           </span>
                         </div>
                       </div>
@@ -224,11 +336,18 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
                         <div className="flex items-center gap-2 text-gray-600">
                           <Clock className="w-5 h-5 text-gray-400" />
                           <span>{jobs[selectedJob].employmentType}</span>
-                          <span className="text-gray-400">•</span>
-                          <span>{jobs[selectedJob].employmentTypeAlt}</span>
                         </div>
                       </div>
                     </div>
+
+                    {jobs[selectedJob].track === 'internship' && (
+                      <div className="mb-6 rounded-xl border border-teal-200/80 bg-gradient-to-br from-teal-50 to-white px-4 py-4 text-sm text-gray-800 leading-relaxed shadow-sm">
+                        <p className="font-medium text-teal-900 mb-1">Corporate responsibility and talent development</p>
+                        <p className="text-gray-700">
+                          Myco Medic treats internship placements as a formal investment in professional capability. Selected interns receive structured supervision, clearly defined learning expectations, and access to experienced personnel, in keeping with the organisation’s standards and its responsibilities toward the healthcare sector.
+                        </p>
+                      </div>
+                    )}
 
                     {/* Apply via email / WhatsApp */}
                     <div className="flex flex-col sm:flex-row gap-4 mb-6 items-stretch sm:items-start">
@@ -260,10 +379,8 @@ This is a unique opportunity to be part of a fast-evolving industry and learn fr
                     {/* Job Overview */}
                     <div className="border-t border-gray-200 pt-6">
                       <h3 className="text-lg font-medium text-gray-900 mb-4">Job Overview</h3>
-                      <div className="prose prose-sm max-w-none">
-                        <div className="text-gray-700 leading-relaxed whitespace-pre-line">
-                          {jobs[selectedJob].description}
-                        </div>
+                      <div className="prose prose-sm max-w-none text-gray-700">
+                        <JobOverviewBody text={jobs[selectedJob].description} />
                       </div>
                     </div>
 
