@@ -791,6 +791,11 @@
       category: null,
 
       image: '/cannula_instrument_pipe_cleaners.png',
+      images: [
+        '/cannula_instrument_pipe_cleaners.png',
+        '/cannula_instrument_pipe_cleaner_2.png',
+        '/cannula_instrument_pipe_cleaner_3.png'
+      ],
       pageId: 'cannula-instrument-pipe-cleaners'
     },
     {
@@ -804,16 +809,17 @@
     },
     {
       id: 60,
-      name: 'Surgical Scrub Brushes & Dispenser',
+      name: 'Surgical Scrub Brushes',
       groupId: 6,
       category: null,
 
-      image: '/surgical_scrub_brushes.png',
+      image: '/surgical_scrub_brushes_with_nail.png',
       images: [
-        '/surgical_scrub_brushes.png',
-        '/surgical_scrub_brush_dispenser.png'
+        '/surgical_scrub_brushes_with_nail.png',
+        '/surgical_scrub_brushes_without_nail_white.png',
+        '/surgical_scrub_brushes_without_nail_blue.png'
       ],
-      pageId: 'surgical-scrub-brushes-dispenser'
+      pageId: 'surgical-scrub-brushes'
     },
     
     {
@@ -1642,6 +1648,11 @@
       category: null,
 
       image: '/oral_swab_sensory_brush.png',
+      images: [
+        '/oral_swab_sensory_brush.png',
+        '/oral_swab_sensory_brush_2.png',
+        '/oral_swab_sensory_brush_3.png'
+      ],
       pageId: 'oral-swab-sensory-brush'
     },
     {
@@ -1903,6 +1914,104 @@
 
       image: '/ue-m10s.png',
       pageId: 'ue-m10s'
+    },
+    {
+      id: 177,
+      name: 'Rigid Bristle Channel Cleaning Brush',
+      groupId: 6,
+      category: null,
+
+      image: '/rigid_bristle_channel_cleaning_brush.png',
+      pageId: 'rigid-bristle-channel-cleaning-brush'
+    },
+    {
+      id: 178,
+      name: 'Nylon Bristle Tooth Brush',
+      groupId: 6,
+      category: null,
+
+      image: '/nylon_bristle_tooth_brush.png',
+      pageId: 'nylon-bristle-tooth-brush'
+    },
+    {
+      id: 179,
+      name: 'Surgical Scrub Brushes Dispenser',
+      groupId: 6,
+      category: null,
+
+      image: '/surgical_scrub_brushes_dispenser.png',
+      images: [
+        '/surgical_scrub_brushes_dispenser.png',
+        '/surgical_scrub_brushes_dispenser_2.png'
+      ],
+      pageId: 'surgical-scrub-brushes-dispenser'
+    },
+    {
+      id: 180,
+      name: 'Surgical Scrub Brush with Povidone Iodine',
+      groupId: 6,
+      category: null,
+
+      image: '/surgical_scrub_brush_with_povidone_iodine.png',
+      pageId: 'surgical-scrub-brush-with-povidone-iodine'
+    },
+    {
+      id: 181,
+      name: 'Surgical Sponge Brush',
+      groupId: 6,
+      category: null,
+      articleCode: 'MYSBB-B',
+
+      image: '/surgical_sponge_brush.png',
+      pageId: 'surgical-sponge-brush'
+    },
+    {
+      id: 182,
+      name: 'Large Instrument Cleaning Brush with Rubber Plastic Handle',
+      groupId: 6,
+      category: null,
+
+      image: '/large_instrument_cleaning_brush_with_rubber_plastic_handle.png',
+      pageId: 'large-instrument-cleaning-brush-with-rubber-plastic-handle'
+    },
+    {
+      id: 183,
+      name: 'Reusable Flat Brush',
+      groupId: 6,
+      category: null,
+
+      image: '/reusable_flat_brush.png',
+      images: [
+        '/reusable_flat_brush.png',
+        '/reusable_flat_brush_2.png'
+      ],
+      pageId: 'reusable-flat-brush'
+    },
+    {
+      id: 184,
+      name: 'White Flat Nylon Brush',
+      groupId: 6,
+      category: null,
+
+      image: '/white_flat_nylon_brush.png',
+      images: [
+        '/white_flat_nylon_brush.png',
+        '/white_flat_nylon_brush_2.png'
+      ],
+      pageId: 'white-flat-nylon-brush'
+    },
+    {
+      id: 185,
+      name: 'Stainless Steel Tooth Brush Style with Small Horn',
+      groupId: 6,
+      category: null,
+
+      image: '/stainless_steeltooth_brush_style_with_small_horn.png',
+      images: [
+        '/stainless_steeltooth_brush_style_with_small_horn.png',
+        '/stainless_steeltooth_brush_style_with_small_horn_2.png'
+      ],
+      pageId: 'stainless-steel-tooth-brush-style-with-small-horn'
     }
   ]
   

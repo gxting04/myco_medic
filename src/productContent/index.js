@@ -2,6 +2,7 @@ import DisposableCPAPPage from './disposable_cpap'
 import SurgicalMaskPage from './surgical-mask'
 import DisposableCPRResuscitationSystemPage from './disposable_cpr_resuscitation_system'
 import ReusableCPRResuscitationSystemPage from './reusable_cpr_resuscitation_system'
+import ReusableFlatBrushPage from './reusable_flat_brush'
 import InfantTPieceResuscitatorPage from './infant_t_piece_resuscitator'
 import DisposableManometerPage from './disposable_manometer'
 import DisposableStandardRotaTrachTracheostomyTubePage from './disposable_standard_rota_trach_tracheostomy_tube'
@@ -38,6 +39,7 @@ import {
   VideoLaryngoscopeTdcCPage
 } from './uescope_airway_products'
 import RechargeableAspiratorPage from './rechargeable_aspirator'
+import RigidBristleChannelCleaningBrushPage from './rigid_bristle_channel_cleaning_brush'
 import BreathingCircuitsPage from './breathing_circuits'
 import HMEFFilterPage from './hmef_filter'
 import BVFFilterPage from './bvf_filter'
@@ -70,8 +72,12 @@ import CannulaInstrumentPipeCleanersPage from './cannula_instrument_pipe_cleaner
 import WoundAndSkinWashGlovesPage from './wound_and_skin_wash_gloves'
 import DoubleEndedCleaningBrushNylonBristlesPage from './double_ended_cleaning_brush_nylon_bristles'
 import DoubleEndValveBrushesPage from './double_end_valve_brushes'
+import SurgicalScrubBrushesPage from './surgical_scrub_brushes'
 import SurgicalScrubBrushesDispenserPage from './surgical_scrub_brushes_dispenser'
+import SurgicalScrubBrushWithPovidoneIodinePage from './surgical_scrub_brush_with_povidone_iodine'
+import SurgicalSpongeBrushPage from './surgical_sponge_brush'
 import LargeInstrumentCleaningBrushPage from './large_instrument_cleaning_brush'
+import LargeInstrumentCleaningBrushWithRubberPlasticHandlePage from './large_instrument_cleaning_brush_with_rubber_plastic_handle'
 import MedicalBedPatientTransportTrolleyPage from './medical_bed_patient_transport_trolley'
 import HospitalCartPage from './hospital_cart'
 import HospitalTrolleysPage from './hospital_trolleys'
@@ -83,6 +89,7 @@ import JanitorRoomCSSDFurniturePage from './janitor_room_cssd_furniture'
 import ThreePlySurgicalFaceMaskPage from './3ply_surgical_face_mask'
 import MedicalProtectiveFaceShieldPage from './medical_protective_face_shield'
 import InfraredThermometerPage from './infrared_thermometer'
+import NylonBristleToothBrushPage from './nylon_bristle_tooth_brush'
 import NonSterileCoverallPage from './non_sterile_coverall'
 import SterileCoverallPage from './sterile_coverall'
 import MedicalProtectiveHoodCoverPage from './medical_protective_hood_cover'
@@ -146,6 +153,7 @@ import GallipotsPage from './gallipots'
 import LotionBowlsPage from './lotion_bowls'
 import KidneyDishesVomitBowlsPage from './kidney_dishes_vomit_bowls'
 import WashbowlPage from './washbowl'
+import WhiteFlatNylonBrushPage from './white_flat_nylon_brush'
 import BeakersFeederTopsPage from './beakers_feeder_tops'
 import FunnelsPage from './funnels'
 import StPetersBoatPage from './st_peters_boat'
@@ -159,6 +167,7 @@ import CompartmentedInstrumentTrayPage from './compartmented_instrument_tray'
 import InstrumentTrayLidPage from './instrument_tray_lid'
 import InstrumentTrayWithLidPage from './instrument_tray_with_lid'
 import StainlessSteelDinsPage from './stainless_steel_dins'
+import StainlessSteelToothBrushStyleWithSmallHornPage from './stainless_steel_tooth_brush_style_with_small_horn'
 import ShampooCapPage from './shampoo_cap'
 import BodyWipesPage from './body_wipes'
 import SuctionToothbrushPage from './suction_toothbrush'
@@ -183,6 +192,7 @@ const productContentRegistry = {
   // 'surgical-mask': SurgicalMaskPage,
   'disposable-cpr-resuscitation-system': DisposableCPRResuscitationSystemPage,
   'reusable-cpr-resuscitation-system': ReusableCPRResuscitationSystemPage,
+  'reusable-flat-brush': ReusableFlatBrushPage,
   'infant-t-piece-resuscitator': InfantTPieceResuscitatorPage,
   'disposable-manometer': DisposableManometerPage,
   'laryngoscopes': LaryngoscopesPage,
@@ -243,8 +253,13 @@ const productContentRegistry = {
   'cannula-instrument-pipe-cleaners': CannulaInstrumentPipeCleanersPage,
   //   'cannula-instrument-pipe-cleaners': CannulaInstrumentPipeCleanersPage,
   'double-end-valve-brushes': DoubleEndValveBrushesPage,
+  'surgical-scrub-brushes': SurgicalScrubBrushesPage,
   'surgical-scrub-brushes-dispenser': SurgicalScrubBrushesDispenserPage,
+  'surgical-scrub-brush-with-povidone-iodine': SurgicalScrubBrushWithPovidoneIodinePage,
+  'surgical-sponge-brush': SurgicalSpongeBrushPage,
   'large-instrument-cleaning-brush': LargeInstrumentCleaningBrushPage,
+  'large-instrument-cleaning-brush-with-rubber-plastic-handle': LargeInstrumentCleaningBrushWithRubberPlasticHandlePage,
+  'rigid-bristle-channel-cleaning-brush': RigidBristleChannelCleaningBrushPage,
   'double-ended-cleaning-brush-nylon-bristles': DoubleEndedCleaningBrushNylonBristlesPage,
   // 'medical-bed-patient-transport-trolley': MedicalBedPatientTransportTrolleyPage,
   // 'hospital-cart': HospitalCartPage,
@@ -257,6 +272,7 @@ const productContentRegistry = {
   // '3ply-surgical-face-mask': ThreePlySurgicalFaceMaskPage,
   'medical-protective-face-shield': MedicalProtectiveFaceShieldPage,
   'infrared-thermometer': InfraredThermometerPage,
+  'nylon-bristle-tooth-brush': NylonBristleToothBrushPage,
   'non-sterile-coverall': NonSterileCoverallPage,
   'sterile-coverall': SterileCoverallPage,
   'medical-protective-hood-cover': MedicalProtectiveHoodCoverPage,
@@ -320,6 +336,7 @@ const productContentRegistry = {
   'lotion-bowls': LotionBowlsPage,
   'kidney-dishes-vomit-bowls': KidneyDishesVomitBowlsPage,
   'washbowl': WashbowlPage,
+  'white-flat-nylon-brush': WhiteFlatNylonBrushPage,
   'beakers-feeder-tops': BeakersFeederTopsPage,
   'funnels': FunnelsPage,
   'st-peters-boat': StPetersBoatPage,
@@ -329,6 +346,7 @@ const productContentRegistry = {
   'instrument-tray-lid': InstrumentTrayLidPage,
   'instrument-tray-with-lid': InstrumentTrayWithLidPage,
   'stainless-steel-dins': StainlessSteelDinsPage,
+  'stainless-steel-tooth-brush-style-with-small-horn': StainlessSteelToothBrushStyleWithSmallHornPage,
   'shampoo-cap': ShampooCapPage,
   'body-wipes': BodyWipesPage,
   'suction-toothbrush': SuctionToothbrushPage,
