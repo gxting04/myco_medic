@@ -50,6 +50,17 @@ function ProductsPage() {
     return products.filter(p => p.groupId !== 2 && p.groupId !== 7)
   }, [])
 
+  const getCategoryNamesForGroup = (groupId) =>
+    Data.productCategories
+      .filter(cat => cat.groupId === groupId)
+      .map(cat => cat.name)
+
+  const productBelongsToGroup = (product, groupId) => {
+    if (product.groupId === groupId) return true
+    const groupCategories = getCategoryNamesForGroup(groupId)
+    return Boolean(product.category && groupCategories.includes(product.category))
+  }
+
   // Filter and sort products based on selection
   const filteredProducts = useMemo(() => {
     let products = allProducts
@@ -62,8 +73,7 @@ function ProductsPage() {
         products = products.filter(p => p.category === selectedCategory.name)
       }
     } else if (selectedGroupId) {
-      // Show ALL products in the group (both with and without categories)
-      products = products.filter(p => p.groupId === selectedGroupId)
+      products = products.filter(p => productBelongsToGroup(p, selectedGroupId))
     }
 
     if (searchTerm.trim()) {
@@ -167,18 +177,7 @@ function ProductsPage() {
 
   // Get total products count for a group (both direct and in categories)
   const getTotalProductsCount = (groupId) => {
-    // Get categories that belong to this group
-    const groupCategories = Data.productCategories
-      .filter(cat => cat.groupId === groupId)
-      .map(cat => cat.name)
-    
-    // Count products that either:
-    // 1. Have this groupId directly, OR
-    // 2. Have a category that belongs to this group
-    return allProducts.filter(p => 
-      p.groupId === groupId || 
-      (p.category && groupCategories.includes(p.category))
-    ).length
+    return allProducts.filter(p => productBelongsToGroup(p, groupId)).length
   }
 
   // Get direct products for a group (products without category, sorted alphabetically)

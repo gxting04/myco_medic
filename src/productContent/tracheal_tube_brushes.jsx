@@ -88,38 +88,19 @@ function TrachealTubeBrushesPage({ product }) {
   }, [product])
 
   // Product description defined in this page
-  const description = `The Tracheal Tube Brushes are specialized cleaning tools designed for thorough cleaning and maintenance of tracheal and endotracheal tubes. These brushes effectively remove secretions, debris, and biological material from tube lumens, ensuring proper hygiene and device functionality.
+  const description = `Cleaning brush for test tube / tracheostomy tube.
 
-**Key Features:**
-• Tube-specific design – sized for tracheal and endotracheal tube cleaning
-• Effective cleaning – removes secretions and biological material
-• Durable bristles – withstands repeated use and sterilization
-• Multiple sizes available – accommodates various tube sizes
-• Flexible design – accommodates tube curvature
-• Reusable design – can be sterilized for multiple uses
+**Item code: FBC3-70042L**
+• Material: nylon cleaning brush with stainless steel handle
+• Brush length: 13 cm
+• Brush head: 13 mm × 50 mm
 
-**Clinical Applications:**
-• Tracheal tube cleaning and maintenance
-• Endotracheal tube cleaning
-• Reusable tube reprocessing
-• Medical device maintenance
-• Central sterile supply cleaning
-• Device reprocessing departments
+**Item code: FBC3-70042S**
+• Material: nylon cleaning brush with stainless steel handle
+• Brush length: 13.5 cm
+• Brush head: 10 mm × 40 mm
 
-**Clinical Benefits:**
-• Effective cleaning – ensures thorough removal of secretions
-• Device maintenance – prolongs device lifespan
-• Infection control – proper cleaning reduces infection risk
-• Cost-effective – reusable design provides long-term value
-
-**Technical Specifications:**
-• Tube-specific brush design
-• Durable bristle construction
-• Multiple sizes available
-• Flexible construction
-• Designed for sterilization and reuse
-
-The Tracheal Tube Brushes provide healthcare professionals with effective tools for maintaining cleanliness and functionality of tracheal and endotracheal tubes, ensuring proper device care and infection control.`
+Contact us for pricing, availability, and the size best suited to your tubes.`
 
   const handleAddToCart = () => {
     const selectedColorObj = colors.find(c => c.value === selectedColor)

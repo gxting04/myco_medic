@@ -89,38 +89,14 @@ function SuctionToothbrushPage({ product }) {
   }, [product])
 
   // Product description defined in this page
-  const description = `The Suction Toothbrush is a specialized oral care device designed for patients who are unable to perform routine oral hygiene independently. This innovative toothbrush features integrated suction capability to remove saliva and debris during brushing, preventing aspiration.
+  const description = `Individually packed suction toothbrush treated with sodium bicarbonate.
 
-**Key Features:**
-• Integrated suction – removes saliva and debris during brushing
-• Oral care design – provides effective tooth brushing
-• Aspiration prevention – suction prevents aspiration of oral contents
-• Easy to use – simple operation for healthcare providers
-• Patient comfort – gentle brushing action
-• Disposable and reusable options – accommodates various clinical preferences
-
-**Clinical Applications:**
-• Patient oral care
-• Bedridden patient care
-• Intensive care unit oral hygiene
-• Post-surgical oral care
-• Long-term care facilities
-• Patients unable to perform oral hygiene
-
-**Clinical Benefits:**
-• Aspiration prevention – suction prevents aspiration of oral contents
-• Effective oral care – provides thorough tooth brushing
-• Patient comfort – gentle brushing action
-• Easy operation – simple use for healthcare providers
-
-**Technical Specifications:**
-• Integrated suction capability
-• Oral care brush design
-• Compatible with standard suction systems
-• Available in disposable and reusable configurations
-• Suitable for various patient populations
-
-The Suction Toothbrush provides healthcare professionals with an effective solution for patient oral care, ensuring thorough cleaning while preventing aspiration risks.`
+**Features**
+• Two-sided: foam on one side and super-soft bristles on the other
+• Easy to control with thumb-port suction when removing secretions from the oral cavity
+• Can be connected to standard suction tubing
+• Suitable for ICU, bedridden patients, and patients with a sore mouth
+• Helps lower the risk of infections and contributes to an overall sense of patient well-being`
 
   const handleAddToCart = () => {
     const selectedColorObj = colors.find(c => c.value === selectedColor)

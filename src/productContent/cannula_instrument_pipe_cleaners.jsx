@@ -88,38 +88,21 @@ function CannulaInstrumentPipeCleanersPage({ product }) {
   }, [product])
 
   // Product description defined in this page
-  const description = `The Cannula Instrument Pipe Cleaners are specialized cleaning tools designed for thorough cleaning of narrow-bore medical devices, cannulas, and instrument lumens. These flexible cleaners effectively remove debris and biological material from small-diameter passages, ensuring proper hygiene and device functionality.
+  const description = `Designed for effective and gentle cleaning of cannulas and narrow instruments. Durable nylon bristles on a flexible steel shaft allow smooth access and reliable cleaning performance. Available in various sizes and lengths to meet different cleaning requirements.
 
-**Key Features:**
-• Narrow-bore design – specifically sized for small-diameter cleaning
-• Flexible construction – accommodates curved and angled passages
-• Effective cleaning – removes debris and biological material
-• Multiple sizes available – accommodates various device sizes
-• Easy to use – simple insertion and cleaning process
-• Reusable design – can be sterilized for multiple uses
+**Length options**
+• 30 cm, 40 cm, 60 cm
 
-**Clinical Applications:**
-• Cannula cleaning and maintenance
-• Small-bore device cleaning
-• Instrument lumen cleaning
-• Endoscopy equipment maintenance
-• Medical device reprocessing
-• Central sterile supply cleaning
+**Tip dimensions / diameter**
+• 1.5 mm, 1.8 mm, 2.0 mm, 2.5 mm, 3.0 mm, 4.0 mm, 5.0 mm, 6.0 mm, 7.0 mm, 8.0 mm
 
-**Clinical Benefits:**
-• Effective cleaning – ensures thorough removal of debris
-• Device maintenance – prolongs device lifespan
-• Infection control – proper cleaning reduces infection risk
-• Versatile application – suitable for various small-bore devices
+**Material**
+• Nylon bristle brush + stainless steel
 
-**Technical Specifications:**
-• Narrow-bore flexible design
-• Multiple sizes available
-• Durable construction
-• Designed for sterilization and reuse
-• Compatible with standard cleaning protocols
+**Suitable for**
+• Hospital (medical grade product), medical centre, clinics, dermatology, veterinary, laboratory, household, and similar settings
 
-The Cannula Instrument Pipe Cleaners provide healthcare professionals with effective tools for maintaining cleanliness and functionality of narrow-bore medical devices, ensuring proper device care and infection control.`
+Contact us for the length and tip size best suited to your devices.`
 
   const handleAddToCart = () => {
     const selectedColorObj = colors.find(c => c.value === selectedColor)

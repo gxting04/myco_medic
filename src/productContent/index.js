@@ -69,6 +69,7 @@ import TrachealTubeBrushesPage from './tracheal_tube_brushes'
 import InstrumentCleaningBrushesPage from './instrument_cleaning_brushes'
 import SuctionTubeCleaningBrushesPage from './suction_tube_cleaning_brushes'
 import CannulaInstrumentPipeCleanersPage from './cannula_instrument_pipe_cleaners'
+import PipeCleanerPage from './pipe_cleaner'
 import WoundAndSkinWashGlovesPage from './wound_and_skin_wash_gloves'
 import DoubleEndedCleaningBrushNylonBristlesPage from './double_ended_cleaning_brush_nylon_bristles'
 import DoubleEndValveBrushesPage from './double_end_valve_brushes'
@@ -251,6 +252,7 @@ const productContentRegistry = {
   'instrument-cleaning-brushes': InstrumentCleaningBrushesPage,
   'suction-tube-cleaning-brushes': SuctionTubeCleaningBrushesPage,
   'cannula-instrument-pipe-cleaners': CannulaInstrumentPipeCleanersPage,
+  'pipe-cleaner': PipeCleanerPage,
   //   'cannula-instrument-pipe-cleaners': CannulaInstrumentPipeCleanersPage,
   'double-end-valve-brushes': DoubleEndValveBrushesPage,
   'surgical-scrub-brushes': SurgicalScrubBrushesPage,
