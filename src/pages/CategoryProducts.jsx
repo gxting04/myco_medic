@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import WhatsAppFloat from '../components/WhatsAppFloat'
 import Data from '../shared/Data'
+import PageSEO from '../components/PageSEO'
 
 function CategoryProducts() {
   const { categoryName } = useParams()
@@ -51,6 +52,11 @@ function CategoryProducts() {
 
   return (
     <div>
+      <PageSEO
+        title={category.name}
+        description={category.description || `${category.name} medical products from Myco Medic Malaysia.`}
+        path={`/products/category/${categoryName}`}
+      />
       <Header/>
       
       <div className='pt-24 md:pt-32 pb-8 md:pb-16 bg-white'>

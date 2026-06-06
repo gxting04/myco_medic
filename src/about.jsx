@@ -14,6 +14,7 @@ import {
   TrendingUp,
   ArrowRight
 } from 'lucide-react'
+import PageSEO from './components/PageSEO'
 
 function About() {
   const statsRef = useRef(null)
@@ -45,6 +46,11 @@ function About() {
 
   return (
     <div className="bg-white text-gray-800">
+      <PageSEO
+        title="About Us"
+        description="Learn about Myco Medic — trusted medical supplies and equipment partner serving hospitals, clinics, and healthcare providers in Malaysia."
+        path="/about"
+      />
       <Header />
 
       {/* Hero Section - Minimalist */}

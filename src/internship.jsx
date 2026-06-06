@@ -5,10 +5,16 @@ import WhatsAppFloat from './components/WhatsAppFloat'
 import { motion } from 'framer-motion'
 import { GraduationCap, Briefcase, FileText, Users, CheckCircle, Mail, Phone } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import PageSEO from './components/PageSEO'
 
 function Internship() {
   return (
     <div className="bg-white min-h-screen">
+      <PageSEO
+        title="Internship"
+        description="Myco Medic internship programme for students interested in medical supplies, sales, and healthcare business in Malaysia."
+        path="/internship"
+      />
       <Header />
 
       {/* Hero Section */}

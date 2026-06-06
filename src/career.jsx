@@ -5,6 +5,7 @@ import WhatsAppFloat from './components/WhatsAppFloat'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Briefcase, FileText, MapPin, Clock, Share2, Mail, Phone } from 'lucide-react'
+import PageSEO from './components/PageSEO'
 
 function JobOverviewBody({ text }) {
   return (
@@ -174,6 +175,11 @@ Interested candidates are invited to submit a curriculum vitae for consideration
 
   return (
     <div className="bg-white min-h-screen">
+      <PageSEO
+        title="Careers"
+        description="Join Myco Medic — career opportunities in medical supplies and healthcare distribution across Malaysia."
+        path="/career"
+      />
       <Header />
 
       {/* Hero Section */}

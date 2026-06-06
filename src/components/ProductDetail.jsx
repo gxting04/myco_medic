@@ -6,6 +6,8 @@ import productContentRegistry from '@/productContent'
 import slugify from '@/utils/slugify'
 import Header from './Header'
 import Footer from './Footer'
+import PageSEO from './PageSEO'
+import { productJsonLd } from '@/utils/seo'
 
 function ProductDetail() {
   const { id } = useParams()
@@ -30,6 +32,7 @@ function ProductDetail() {
   if (!product) {
     return (
       <div>
+        <PageSEO title="Product Not Found" description="The requested product could not be found." path={`/product/${id}`} noindex />
         <Header/>
         <div className='py-16 bg-white'>
           <div className='max-w-4xl mx-auto px-6 text-center'>
@@ -47,12 +50,35 @@ function ProductDetail() {
 
   const pageId = product.pageId || slugify(product.name)
   const CustomPage = productContentRegistry[pageId]
+  const productDescription = product.description || product.longDescription || `${product.name} — medical supply from Myco Medic Malaysia.`
+  const seoImage = product.images?.[0] || product.image
+
+  const seo = (
+    <PageSEO
+      title={product.name}
+      description={productDescription}
+      path={`/product/${product.id}`}
+      image={seoImage}
+      type="product"
+      jsonLd={productJsonLd(product, productDescription)}
+    />
+  )
 
   if (CustomPage) {
-    return <CustomPage product={product} />
+    return (
+      <>
+        {seo}
+        <CustomPage product={product} />
+      </>
+    )
   }
 
-  return <ProductDetailDefault product={product} />
+  return (
+    <>
+      {seo}
+      <ProductDetailDefault product={product} />
+    </>
+  )
 }
 
 export default ProductDetail

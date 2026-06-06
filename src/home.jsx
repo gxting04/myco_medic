@@ -8,10 +8,18 @@ import Partners from './components/Partners'
 import Category from './components/Category'
 import WhatsAppFloat from './components/WhatsAppFloat'
 import Footer from "./components/Footer"
+import PageSEO from './components/PageSEO'
+import { DEFAULT_DESCRIPTION, organizationJsonLd } from './utils/seo'
 
 function Home() {
   return (
     <div>
+      <PageSEO
+        title="Medical Supplies & Equipment Malaysia"
+        description={DEFAULT_DESCRIPTION}
+        path="/"
+        jsonLd={organizationJsonLd()}
+      />
       {/* Header */}
       <Header />
 

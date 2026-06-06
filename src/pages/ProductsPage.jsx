@@ -7,6 +7,7 @@ import Data from '../shared/Data'
 import slugify from '../utils/slugify'
 import { ChevronDown, ChevronRight, Search, Filter, X } from 'lucide-react'
 import { isPurchasableProduct } from '@/utils/purchasableProducts'
+import PageSEO from '../components/PageSEO'
 
 function ProductsPage() {
   const [searchParams] = useSearchParams()
@@ -187,8 +188,37 @@ function ProductsPage() {
       .sort((a, b) => a.name.localeCompare(b.name))
   }
 
+  const seoMeta = useMemo(() => {
+    if (selectedCategoryId) {
+      const cat = Data.productCategories.find(c => c.id === selectedCategoryId)
+      if (cat) {
+        return {
+          title: cat.name,
+          description: cat.description || `Browse ${cat.name} products from Myco Medic — medical supplies and equipment in Malaysia.`,
+          path: `/products?groupId=${cat.groupId}&categoryId=${cat.id}`
+        }
+      }
+    }
+    if (selectedGroupId) {
+      const group = Data.productGroups.find(g => g.id === selectedGroupId)
+      if (group) {
+        return {
+          title: group.name,
+          description: group.description || `Browse ${group.name} from Myco Medic — medical supplies and equipment in Malaysia.`,
+          path: `/products?groupId=${group.id}`
+        }
+      }
+    }
+    return {
+      title: 'Products',
+      description: 'Browse Myco Medic medical supplies — airway management, patient hygiene, PPE, procedure packs, positioning devices, and more.',
+      path: '/products'
+    }
+  }, [selectedGroupId, selectedCategoryId])
+
   return (
     <div className="bg-gray-50 min-h-screen">
+      <PageSEO {...seoMeta} />
       <Header/>
       
       <div className="pt-24 md:pt-32 pb-8">
