@@ -993,7 +993,10 @@
       category: 'Head and Neck Pads',
 
       image: '/prostrate_head_pad.png',
-      pageId: 'prostrate-head-pads'
+      pageId: 'prostrate-head-pads',
+      seoTitle: 'Prostrate Head Pads | Medical Prone Positioning Pad Malaysia',
+      seoDescription: 'Medical prostrate head pads for prone surgery positioning. Face and airway access with pressure relief. Supplied by Myco Medic Malaysia.',
+      imageAlt: 'Medical prostrate head pad for prone surgery positioning'
     },
     {
       id: 82,
@@ -1002,7 +1005,10 @@
       category: 'Head and Neck Pads',
 
       image: '/contoured_supine_head_pad.png',
-      pageId: 'contoured-supine-head-pads'
+      pageId: 'contoured-supine-head-pads',
+      seoTitle: 'Contoured Supine Head Pads | Medical Head Pad Malaysia',
+      seoDescription: 'Contoured supine medical head pads for face-up surgical positioning. Anatomical support and pressure relief from Myco Medic.',
+      imageAlt: 'Contoured supine medical head pad for surgery'
     },
     {
       id: 83,
@@ -1011,7 +1017,10 @@
       category: 'Head and Neck Pads',
 
       image: '/donut_head_pad.png',
-      pageId: 'donut-head-pads'
+      pageId: 'donut-head-pads',
+      seoTitle: 'Donut Head Pads | Medical Head Positioning Pad Malaysia',
+      seoDescription: 'Medical donut head pads for surgery and OR positioning. Occipital pressure relief with stable head support. Myco Medic Malaysia.',
+      imageAlt: 'Medical donut head pad for surgery positioning'
     },
     {
       id: 84,
@@ -1020,7 +1029,10 @@
       category: 'Head and Neck Pads',
 
       image: '/ophthalmic_head_pad.png',
-      pageId: 'ophthalmic-head-pads'
+      pageId: 'ophthalmic-head-pads',
+      seoTitle: 'Ophthalmic Head Pads | Medical Eye Surgery Head Pad Malaysia',
+      seoDescription: 'Ophthalmic medical head pads for eye surgery positioning. Secure head support with optimal surgical access. Myco Medic Malaysia.',
+      imageAlt: 'Ophthalmic medical head pad for eye surgery'
     },
     {
       id: 85,
@@ -1029,7 +1041,10 @@
       category: 'Head and Neck Pads',
 
       image: '/horseshoe_head_pad.png',
-      pageId: 'horseshoe-head-pads'
+      pageId: 'horseshoe-head-pads',
+      seoTitle: 'Horseshoe Head Pads | Medical U-Shaped Head Pad Malaysia',
+      seoDescription: 'Horseshoe medical head pads for surgery with face and airway access. U-shaped head support and pressure relief. Myco Medic Malaysia.',
+      imageAlt: 'Horseshoe medical head pad for surgery positioning'
     },
     {
       id: 86,
@@ -1038,7 +1053,10 @@
       category: 'Head and Neck Pads',
 
       image: '/flat_supine_head_pad.png',
-      pageId: 'flat-supine-head-pads'
+      pageId: 'flat-supine-head-pads',
+      seoTitle: 'Flat Supine Head Pads | Medical Head Pad Malaysia',
+      seoDescription: 'Flat supine medical head pads for face-up surgical positioning. Level head support and pressure injury prevention. Myco Medic.',
+      imageAlt: 'Flat supine medical head pad for surgery'
     },
     {
       id: 87,
@@ -1047,7 +1065,10 @@
       category: 'Head and Neck Pads',
 
       image: '/bowl_shaped_head_pad.png',
-      pageId: 'bowl-shaped-head-pads'
+      pageId: 'bowl-shaped-head-pads',
+      seoTitle: 'Bowl Shaped Head Pads | Medical Head Cradle Pad Malaysia',
+      seoDescription: 'Bowl shaped medical head pads that cradle the head during surgery. Secure positioning and patient comfort. Myco Medic Malaysia.',
+      imageAlt: 'Bowl shaped medical head pad for surgery'
     },
     {
       id: 88,
@@ -1065,7 +1086,10 @@
       category: 'Head and Neck Pads',
 
       image: '/bowl_shaped_horseshoe_head_pad.png',
-      pageId: 'bowl-shaped-horseshoe-head-pads'
+      pageId: 'bowl-shaped-horseshoe-head-pads',
+      seoTitle: 'Bowl Shaped Horseshoe Head Pads | Medical Head Pad Malaysia',
+      seoDescription: 'Bowl shaped horseshoe medical head pads combining cradle support with face access for surgical procedures. Myco Medic Malaysia.',
+      imageAlt: 'Bowl shaped horseshoe medical head pad for surgery'
     },
     {
       id: 90,
@@ -1074,7 +1098,10 @@
       category: 'Head and Neck Pads',
 
       image: '/donut_head_pads_with_cissoid.png',
-      pageId: 'donut-head-pads-with-cissoid'
+      pageId: 'donut-head-pads-with-cissoid',
+      seoTitle: 'Donut Head Pads with Cissoid | Medical Head Pad Malaysia',
+      seoDescription: 'Donut head pads with cissoid curve for enhanced occipital support during medical procedures. Myco Medic Malaysia.',
+      imageAlt: 'Donut medical head pad with cissoid for surgery positioning'
     },
     {
       id: 91,
@@ -1300,7 +1327,10 @@
       category: 'Memory Head and Neck Pads',
 
       image: '/memory_supine_head_pads.png',
-      pageId: 'memory-supine-head-pads'
+      pageId: 'memory-supine-head-pads',
+      seoTitle: 'Memory Supine Head Pads | Medical Memory Foam Head Pad Malaysia',
+      seoDescription: 'Memory foam supine medical head pads for pressure redistribution during surgery. Conforms to head contours. Myco Medic Malaysia.',
+      imageAlt: 'Memory foam supine medical head pad for surgery'
     },
     {
       id: 115,
@@ -1379,7 +1409,10 @@
       category: 'Memory Head and Neck Pads',
 
       image: '/memory_horsseshoe_head_pads.png',
-      pageId: 'memory-horsseshoe-head-pads'
+      pageId: 'memory-horsseshoe-head-pads',
+      seoTitle: 'Memory Horseshoe Head Pads | Medical Gel Head Pad Malaysia',
+      seoDescription: 'Memory foam horseshoe medical head pads with airway access for OR positioning. Pressure relief and comfort. Myco Medic Malaysia.',
+      imageAlt: 'Memory horseshoe medical head pad for surgery positioning'
     },
     {
       id: 121,
@@ -1388,7 +1421,10 @@
       category: 'Memory Head and Neck Pads',
 
       image: 'memory_donut_head_pads.png',
-      pageId: 'memory-donut-head-pads'
+      pageId: 'memory-donut-head-pads',
+      seoTitle: 'Memory Donut Head Pads | Medical Gel Donut Head Pad Malaysia',
+      seoDescription: 'Memory foam donut medical head pads for occipital pressure relief during surgery. Myco Medic Malaysia supplier.',
+      imageAlt: 'Memory donut medical head pad for surgery positioning'
     },
     {
       id: 122,

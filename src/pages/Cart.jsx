@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import WhatsAppFloat from '../components/WhatsAppFloat'
 import { useCart } from '../context/CartContext'
 import { isPurchasableProduct } from '@/utils/purchasableProducts'
+import { getProductPath } from '@/utils/productUrl'
 
 function Cart() {
   const navigate = useNavigate()
@@ -53,7 +54,7 @@ function Cart() {
                   />
                   <div className='flex-1'>
                     <Link 
-                      to={`/product/${item.id}`}
+                      to={getProductPath(item)}
                       className='text-xl font-semibold text-gray-900 hover:text-primary transition-colors'
                     >
                       {item.name}

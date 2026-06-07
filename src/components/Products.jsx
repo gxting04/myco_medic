@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Data from '@/shared/Data'
 import ProductForm from './ProductForm'
 import { Link } from 'react-router-dom'
+import { getProductPath } from '@/utils/productUrl'
 
 function Products() {
   const [products, setProducts] = useState(() => {
@@ -26,7 +27,7 @@ function Products() {
           <h2 className='font-bold text-2xl sm:text-3xl mb-6'>Products</h2>
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6'>
             {products.map(p => (
-              <Link to={`/product/${p.id}`} key={p.id} className='border rounded-xl overflow-hidden p-3 h-full flex flex-col hover:shadow-md transition-shadow'>
+              <Link to={getProductPath(p)} key={p.id} className='border rounded-xl overflow-hidden p-3 h-full flex flex-col hover:shadow-md transition-shadow'>
                 <img src={p.image} className='w-full h-40 object-cover rounded-md'/>
                 <div className='mt-3'>
                   <h3 className='font-semibold'>{p.name}</h3>

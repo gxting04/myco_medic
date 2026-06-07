@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import WhatsAppFloat from '../components/WhatsAppFloat'
 import Data from '../shared/Data'
 import PageSEO from '../components/PageSEO'
+import { getProductPath } from '@/utils/productUrl'
 
 function CategoryProducts() {
   const { categoryName } = useParams()
@@ -94,7 +95,7 @@ function CategoryProducts() {
               {products.map((product) => (
                 <Link
                   key={product.id}
-                  to={`/product/${product.id}`}
+                  to={getProductPath(product)}
                   className='group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100 overflow-hidden'
                 >
                   <div className='relative overflow-hidden'>

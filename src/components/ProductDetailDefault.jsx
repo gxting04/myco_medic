@@ -9,6 +9,7 @@ import Button from './ui/button'
 import { ArrowLeft } from 'lucide-react'
 import { isPurchasableProduct } from '@/utils/purchasableProducts'
 import ShopeeButton from './ShopeeButton'
+import { getProductImageAlt } from '@/utils/productUrl'
 
 function ProductDetailDefault({ product }) {
   const navigate = useNavigate()
@@ -188,7 +189,7 @@ function ProductDetailDefault({ product }) {
                 <div className='relative overflow-hidden rounded-xl bg-white aspect-square group shadow-lg'>
                   <img 
                     src={productImages[selectedImageIndex]} 
-                    alt={product.name}
+                    alt={getProductImageAlt(product)}
                     className='w-full h-full object-contain transition-transform duration-500 group-hover:scale-105'
                   />
                   {productImages.length > 1 && (
@@ -218,7 +219,7 @@ function ProductDetailDefault({ product }) {
                     >
                       <img 
                         src={img} 
-                        alt={`${product.name} view ${index + 1}`}
+                        alt={getProductImageAlt(product, `view ${index + 1}`)}
                         className='w-full h-full object-cover'
                       />
                       {selectedImageIndex === index && (

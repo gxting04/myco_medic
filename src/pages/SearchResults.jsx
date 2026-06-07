@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import WhatsAppFloat from '../components/WhatsAppFloat'
 import Data from '../shared/Data'
+import { getProductPath } from '@/utils/productUrl'
 
 function SearchResults() {
   const [searchParams] = useSearchParams()
@@ -96,7 +97,7 @@ function SearchResults() {
                 {filteredProducts.map((product) => (
                     <Link
                       key={product.id}
-                      to={`/product/${product.id}`}
+                      to={getProductPath(product)}
                       className='group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100 overflow-hidden flex flex-col'
                     >
                       <div className='relative overflow-hidden bg-gray-50 p-6'>

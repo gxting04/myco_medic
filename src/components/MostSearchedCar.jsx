@@ -1,6 +1,7 @@
 import Data from '@/shared/Data'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getProductPath } from '@/utils/productUrl'
 import {
   Carousel,
   CarouselContent,
@@ -23,7 +24,7 @@ function MostSearchedCar() {
         <CarouselContent>
         {products.map((product,index)=>(
           <CarouselItem className='basis-1/4'>
-            <Link to={`/product/${product.id}`} className='border rounded-xl overflow-hidden p-3 h-full flex flex-col hover:shadow-md transition-shadow'>
+            <Link to={getProductPath(product)} className='border rounded-xl overflow-hidden p-3 h-full flex flex-col hover:shadow-md transition-shadow'>
               <img src={product.image} className='w-full h-40 object-cover rounded-md'/>
               <div className='mt-3'>
                 <h3 className='font-semibold'>{product.name}</h3>

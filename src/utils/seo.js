@@ -1,3 +1,5 @@
+import { getProductPath } from './productUrl'
+
 const SITE_NAME = 'Myco Medic'
 const DEFAULT_TITLE = 'Myco Medic | Medical Supplies & Equipment Malaysia'
 const DEFAULT_DESCRIPTION =
@@ -117,14 +119,14 @@ export function productJsonLd(product, description) {
     name: product.name,
     description: truncate(description || product.description || product.name, 500),
     image: images.map((img) => absoluteUrl(img)),
-    url: absoluteUrl(`/product/${product.id}`),
+    url: absoluteUrl(getProductPath(product)),
     brand: {
       '@type': 'Brand',
       name: SITE_NAME
     },
     offers: {
       '@type': 'Offer',
-      url: absoluteUrl(`/product/${product.id}`),
+      url: absoluteUrl(getProductPath(product)),
       priceCurrency: 'MYR',
       availability: 'https://schema.org/InStock',
       seller: {

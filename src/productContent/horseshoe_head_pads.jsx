@@ -201,7 +201,7 @@ The Horseshoe Head Pads provide healthcare professionals with comfortable head s
                 <div className='relative overflow-hidden rounded-xl bg-white aspect-square group shadow-lg'>
                   <img 
                     src={productImages[selectedImageIndex]} 
-                    alt={product.name}
+                    alt={product.imageAlt || product.name}
                     className='w-full h-full object-contain transition-transform duration-500 group-hover:scale-105'
                   />
                   {productImages.length > 1 && (
@@ -231,7 +231,7 @@ The Horseshoe Head Pads provide healthcare professionals with comfortable head s
                     >
                       <img 
                         src={img} 
-                        alt={`${product.name} view ${index + 1}`}
+                        alt={product.imageAlt ? `${product.imageAlt} — view ${index + 1}` : `${product.name} view ${index + 1}`}
                         className='w-full h-full object-cover'
                       />
                       {selectedImageIndex === index && (

@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import WhatsAppFloat from '../components/WhatsAppFloat'
 import Data from '../shared/Data'
 import slugify from '../utils/slugify'
+import { getProductPath } from '@/utils/productUrl'
 
 function GroupCategories() {
   const { groupName } = useParams()
@@ -118,7 +119,7 @@ function GroupCategories() {
                 {directProducts.map((product) => (
                   <Link
                     key={product.id}
-                    to={`/product/${product.id}`}
+                    to={getProductPath(product)}
                     className='group bg-white rounded-3xl p-4 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col'
                   >
                     <div className='aspect-square rounded-2xl overflow-hidden mb-4 bg-gray-50 p-4 flex items-center justify-center'>

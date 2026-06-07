@@ -205,7 +205,7 @@ The Donut Head Pads with Cissoid provide healthcare professionals with enhanced 
                 <div className='relative overflow-hidden rounded-xl bg-white aspect-square group shadow-lg'>
                   <img 
                     src={productImages[selectedImageIndex]} 
-                    alt={product.name}
+                    alt={product.imageAlt || product.name}
                     className='w-full h-full object-contain transition-transform duration-500 group-hover:scale-105'
                   />
                   {productImages.length > 1 && (
@@ -235,7 +235,7 @@ The Donut Head Pads with Cissoid provide healthcare professionals with enhanced 
                     >
                       <img 
                         src={img} 
-                        alt={`${product.name} view ${index + 1}`}
+                        alt={product.imageAlt ? `${product.imageAlt} — view ${index + 1}` : `${product.name} view ${index + 1}`}
                         className='w-full h-full object-cover'
                       />
                       {selectedImageIndex === index && (

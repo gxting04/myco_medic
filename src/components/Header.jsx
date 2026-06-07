@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { ShoppingBag, Menu, X, Search, ChevronRight } from 'lucide-react'
 import Data from '../shared/Data'
+import { getProductPath } from '@/utils/productUrl'
 
 function Header() {
   // Cart functionality hidden
@@ -183,7 +184,7 @@ function Header() {
                                 displayedProducts.map((product) => (
                                   <Link
                                     key={product.id}
-                                    to={`/product/${product.id}`}
+                                    to={getProductPath(product)}
                                     className="text-sm text-gray-600 hover:text-primary py-1.5 truncate transition-colors flex items-center gap-1 group"
                                     onClick={() => setProductsDropdownOpen(false)}
                                   >

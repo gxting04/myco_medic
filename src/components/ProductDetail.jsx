@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, Navigate } from 'react-router-dom'
 import Data from '@/shared/Data'
 import ProductDetailDefault from './ProductDetailDefault'
 import productContentRegistry from '@/productContent'
@@ -8,26 +8,27 @@ import Header from './Header'
 import Footer from './Footer'
 import PageSEO from './PageSEO'
 import { productJsonLd } from '@/utils/seo'
+import {
+  findProductByRouteParam,
+  getProductPath,
+  getProductSeoDescription,
+  getProductSeoTitle,
+  getProductSlug
+} from '@/utils/productUrl'
 
 function ProductDetail() {
   const { id } = useParams()
-  // Support IDs that may include variant codes from cart items, e.g. "121-OKT-T01"
-  const productId = useMemo(() => {
-    if (!id) return NaN
-    const base = String(id).split('-')[0]
-    return Number(base)
-  }, [id])
 
   const product = useMemo(() => {
-    const fromInitial = Data.initialProducts.find(p => Number(p.id) === productId)
+    const fromInitial = findProductByRouteParam(id, Data.initialProducts)
     const saved = localStorage.getItem('myco_products')
     const list = saved ? JSON.parse(saved) : []
-    const fromStorage = list.find(p => Number(p.id) === productId)
+    const fromStorage = findProductByRouteParam(id, list)
     if (!fromInitial && !fromStorage) return null
     if (!fromInitial) return fromStorage
     if (!fromStorage) return fromInitial
     return { ...fromInitial, ...fromStorage }
-  }, [productId])
+  }, [id])
 
   if (!product) {
     return (
@@ -48,16 +49,23 @@ function ProductDetail() {
     )
   }
 
+  const canonicalSlug = getProductSlug(product)
+  const canonicalPath = getProductPath(product)
+
+  if (String(id) !== canonicalSlug) {
+    return <Navigate to={canonicalPath} replace />
+  }
+
   const pageId = product.pageId || slugify(product.name)
   const CustomPage = productContentRegistry[pageId]
-  const productDescription = product.description || product.longDescription || `${product.name} — medical supply from Myco Medic Malaysia.`
+  const productDescription = getProductSeoDescription(product)
   const seoImage = product.images?.[0] || product.image
 
   const seo = (
     <PageSEO
-      title={product.name}
+      title={getProductSeoTitle(product)}
       description={productDescription}
-      path={`/product/${product.id}`}
+      path={canonicalPath}
       image={seoImage}
       type="product"
       jsonLd={productJsonLd(product, productDescription)}

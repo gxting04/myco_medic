@@ -8,6 +8,7 @@ import slugify from '../utils/slugify'
 import { ChevronDown, ChevronRight, Search, Filter, X } from 'lucide-react'
 import { isPurchasableProduct } from '@/utils/purchasableProducts'
 import PageSEO from '../components/PageSEO'
+import { getProductPath } from '@/utils/productUrl'
 
 function ProductsPage() {
   const [searchParams] = useSearchParams()
@@ -353,7 +354,7 @@ function ProductsPage() {
                                 return (
                                   <Link
                                     key={product.id}
-                                    to={`/product/${product.id}`}
+                                    to={getProductPath(product)}
                                     className="w-full text-left px-10 py-2.5 transition-all duration-200 flex items-center justify-between group text-gray-600 hover:bg-white hover:border-l-4 hover:border-gray-400 border-l-4 border-transparent"
                                   >
                                     <span className="text-sm font-normal truncate">{product.name}</span>
@@ -447,7 +448,7 @@ function ProductsPage() {
                   {filteredProducts.map((product) => (
                       <Link
                         key={product.id}
-                        to={`/product/${product.id}`}
+                        to={getProductPath(product)}
                         className="group bg-white rounded-lg hover:shadow-lg transition-all overflow-hidden flex flex-col"
                       >
                         <div className="aspect-square bg-white p-4 flex items-center justify-center overflow-hidden">

@@ -4,6 +4,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import WhatsAppFloat from '@/components/WhatsAppFloat'
 import Data from '@/shared/Data'
+import { getProductPath } from '@/utils/productUrl'
 
 // Based on the official Myco Medic page:
 // https://www.mycomedic.com.my/memory-universal-positioners.html
@@ -55,7 +56,7 @@ function MemoryUniversalPositionersPage({ product }) {
         <div className='grid grid-cols-1 md:grid-cols-2 gap-10'>
           {/* Memory Universal Square Pads */}
           <Link
-            to={squarePadsProduct ? `/product/${squarePadsProduct.id}` : '/products'}
+            to={squarePadsProduct ? getProductPath(squarePadsProduct) : '/products'}
             className='group bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col'
           >
             <div className='aspect-video bg-gray-50 flex items-center justify-center'>
@@ -79,7 +80,7 @@ function MemoryUniversalPositionersPage({ product }) {
 
           {/* Memory Pillow Shaped Pads */}
           <Link
-            to={pillowPadsProduct ? `/product/${pillowPadsProduct.id}` : '/products'}
+            to={pillowPadsProduct ? getProductPath(pillowPadsProduct) : '/products'}
             className='group bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col'
           >
             <div className='aspect-video bg-gray-50 flex items-center justify-center'>

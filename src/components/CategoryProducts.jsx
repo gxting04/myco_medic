@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import Data from '@/shared/Data'
 import Header from './Header'
 import Footer from './Footer'
+import { getProductPath } from '@/utils/productUrl'
 
 function CategoryProducts() {
   const { categoryName } = useParams()
@@ -32,7 +33,7 @@ function CategoryProducts() {
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
             {filteredProducts.map(p => (
               <Link 
-                to={`/product/${p.id}`} 
+                to={getProductPath(p)} 
                 key={p.id} 
                 className='border rounded-xl overflow-hidden p-3 h-full flex flex-col hover:shadow-md transition-shadow'
               >
