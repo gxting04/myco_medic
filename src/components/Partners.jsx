@@ -85,11 +85,16 @@ function Partners() {
   const duplicatedPartners = [...partners, ...partners]
 
   return (
-    <section className='py-12 bg-white border-t border-gray-100 overflow-hidden'>
+    <section className='py-14 md:py-16 bg-white border-t border-gray-100 overflow-hidden'>
       <div className='max-w-7xl mx-auto px-6'>
-        <p className='text-center text-sm font-semibold text-gray-500 uppercase tracking-wider mb-8'>
-          Trusted by Industry Leaders
-        </p>
+        <div className='text-center mb-10'>
+          <p className='text-sm font-semibold text-primary uppercase tracking-wider'>
+            Our Partners
+          </p>
+          <h2 className='mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900'>
+            Trusted by Industry Leaders
+          </h2>
+        </div>
 
         <div className='relative'>
           {/* Gradient overlays for fade effect on edges */}
@@ -114,12 +119,12 @@ function Partners() {
                   onClick={handleLinkClick}
                   draggable={false}
                   onDragStart={(e) => e.preventDefault()}
-                  className='group flex items-center justify-center flex-shrink-0 px-6 md:px-8 lg:px-12'
+                  className='group flex items-center justify-center flex-shrink-0 px-8 md:px-12 lg:px-16'
                 >
                   <img
                     src={partner.logo}
-                    alt={partner.name}
-                    className='h-32 md:h-40 lg:h-52 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300'
+                    alt={`${partner.name} logo`}
+                    className='h-16 md:h-20 lg:h-24 w-auto max-w-full object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300'
                     onError={(e) => {
                       console.error(`Failed to load logo for ${partner.name}:`, partner.logo);
                       e.target.style.display = 'none';

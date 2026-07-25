@@ -12,10 +12,13 @@ function Category() {
   }, [])
 
   return (
-    <section className="py-16 md:py-32 bg-[#f5f5f7]">
+    <section className="py-16 md:py-28 bg-[#f5f5f7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12 md:mb-20">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-4 md:mb-6">
+        <div className="text-center mb-12 md:mb-16">
+          <span className="inline-block text-sm font-semibold uppercase tracking-wider text-primary mb-3">
+            Browse by Category
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-4">
             Our Medical Categories
           </h2>
           <p className="text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto px-4">

@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import AboutUs from './components/AboutUs'
+import VideoShowcase from './components/VideoShowcase'
 import HospitalDemo from './components/HospitalDemo'
 import Events from './components/Events'
 import Partners from './components/Partners'
@@ -28,6 +29,9 @@ function Home() {
 
       {/* About Us Section */}
       <AboutUs />
+
+      {/* Marketing Video Section */}
+      <VideoShowcase />
 
       <Events />
 

@@ -1,6 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Check, ArrowRight } from 'lucide-react'
+
+const highlights = [
+  'Trusted by hospitals & clinics nationwide',
+  'Specialists in OT, ICU & critical care supplies',
+  'Quality products from global manufacturers'
+]
 
 function AboutUs() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -103,41 +109,59 @@ function AboutUs() {
 
         {/* ===== Right Text Section ===== */}
         <div
-          className={`space-y-8 transition-all duration-1000 delay-200 ${
+          className={`space-y-6 transition-all duration-1000 delay-200 ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
           }`}
         >
+          <span className="inline-block text-sm font-semibold uppercase tracking-wider text-primary">
+            About Myco Medic
+          </span>
+
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
             Transforming <span className="text-primary">Healthcare Solutions</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-            Since <strong>2010</strong>, <span className="text-primary font-semibold">Myco Medic</span>{' '}
-            has been at the forefront of delivering high-quality medical devices and surgical
-            equipment across Malaysia. Our dedication ensures that every hospital and clinic we
-            serve receives dependable, innovative tools that enhance patient outcomes and clinical
-            efficiency.
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+            Since <strong className="text-gray-900">2010</strong>,{' '}
+            <span className="text-primary font-semibold">Myco Medic</span> has delivered
+            high-quality medical devices and surgical equipment across Malaysia — dependable,
+            innovative tools that enhance patient outcomes and clinical efficiency.
           </p>
 
-          <p className="text-lg text-gray-700 leading-relaxed">
-            With over a decade of expertise, we continue to push boundaries in medical technology —
-            from critical care to operating theatres — providing trusted solutions for modern
-            healthcare professionals.
-          </p>
+          {/* Highlights */}
+          <ul className="space-y-3">
+            {highlights.map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Check className="h-4 w-4" strokeWidth={3} />
+                </span>
+                <span className="text-base text-gray-700">{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+            <div>
+              <div className="text-3xl font-bold text-gray-900">13+</div>
+              <div className="text-sm text-gray-500">Years of expertise</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-gray-900">180+</div>
+              <div className="text-sm text-gray-500">Products available</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-gray-900">10+</div>
+              <div className="text-sm text-gray-500">Brand partners</div>
+            </div>
+          </div>
 
           <Link
             to="/about"
-            className="inline-flex items-center text-primary font-medium group hover:text-primary/80 transition-all"
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:-translate-y-0.5 group"
           >
             Learn more about us
-            <svg
-              className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </div>
