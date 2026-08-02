@@ -273,9 +273,12 @@ function Header() {
         </div>
       )}
 
-      {/* Mobile Menu — fixed layer above page + WhatsApp (z-50) */}
+      {/* Mobile Menu — fixed layer above page + WhatsApp (z-50).
+          Height is set explicitly instead of with bottom-0: the header's backdrop-blur
+          makes it the containing block for fixed children, so bottom-0 would resolve
+          against the 6rem header and collapse this layer to 0px. */}
       {mobileMenuOpen && (
-        <div className="fixed left-0 right-0 bottom-0 top-24 z-[100] md:hidden pointer-events-none">
+        <div className="fixed left-0 right-0 top-24 h-[calc(100dvh-6rem)] z-[100] md:hidden pointer-events-none">
           <div
             className="absolute inset-0 bg-black/50 pointer-events-auto"
             onClick={() => setMobileMenuOpen(false)}

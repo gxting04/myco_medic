@@ -17,6 +17,31 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Smooth in-page scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Branded text selection */
+::selection {
+  background-color: rgba(0, 113, 227, 0.15);
+  color: #1d1d1f;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
 a {
   font-weight: 400;
   color: inherit;

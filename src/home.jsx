@@ -10,6 +10,7 @@ import Category from './components/Category'
 import WhatsAppFloat from './components/WhatsAppFloat'
 import Footer from "./components/Footer"
 import PageSEO from './components/PageSEO'
+import { ScrollProgress } from './lib/motion'
 import { DEFAULT_DESCRIPTION, organizationJsonLd } from './utils/seo'
 
 function Home() {
@@ -21,6 +22,9 @@ function Home() {
         path="/"
         jsonLd={organizationJsonLd()}
       />
+      {/* Scroll progress indicator */}
+      <ScrollProgress />
+
       {/* Header */}
       <Header />
 
