@@ -273,9 +273,13 @@ function Header() {
         </div>
       )}
 
-      {/* Mobile Menu — fixed layer above page + WhatsApp (z-50) */}
+      {/* Mobile Menu — full-height drawer, painted over the header (z-[100] beats the
+          header's own children) so the panel runs edge to edge, top to bottom.
+          Size is set explicitly rather than with inset-0/bottom-0: the header's
+          backdrop-blur makes it the containing block for fixed children, so those
+          would resolve against the 6rem header and collapse this layer to 0px. */}
       {mobileMenuOpen && (
-        <div className="fixed left-0 right-0 bottom-0 top-24 z-[100] md:hidden pointer-events-none">
+        <div className="fixed left-0 top-0 w-full h-[100dvh] z-[100] md:hidden pointer-events-none">
           <div
             className="absolute inset-0 bg-black/50 pointer-events-auto"
             onClick={() => setMobileMenuOpen(false)}
@@ -284,6 +288,7 @@ function Header() {
 
           <aside
             className="absolute left-0 top-0 bottom-0 w-[min(20rem,88vw)] max-w-full bg-white shadow-2xl flex flex-col pointer-events-auto border-r border-gray-100"
+            style={{ paddingTop: 'env(safe-area-inset-top)' }}
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"

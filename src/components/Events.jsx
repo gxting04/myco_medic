@@ -176,7 +176,7 @@ function Events() {
               <button
                 type="button"
                 onClick={goPrev}
-                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-md transition hover:bg-white"
+                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-md transition hover:bg-white"
                 aria-label="Previous slide"
               >
                 <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -184,7 +184,7 @@ function Events() {
               <button
                 type="button"
                 onClick={goNext}
-                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-md transition hover:bg-white"
+                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-md transition hover:bg-white"
                 aria-label="Next slide"
               >
                 <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -199,7 +199,9 @@ function Events() {
                   key={`${selected.id}-${item.src}-${i}`}
                   type="button"
                   onClick={() => setSlide(i)}
-                  className={`h-2 rounded-full transition-all ${
+                  /* before: lifts the 8px dot to a 32px-tall tap area on touch
+                     without changing the row's layout */
+                  className={`relative h-2 rounded-full transition-all before:absolute before:content-[''] before:-inset-y-3 before:-inset-x-1 sm:before:hidden ${
                     i === slide
                       ? 'w-7 sm:w-8 bg-primary'
                       : 'w-2 bg-gray-300 hover:bg-gray-400'

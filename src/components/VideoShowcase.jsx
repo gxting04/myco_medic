@@ -3,7 +3,9 @@ import { Play, Pause, Volume2, VolumeX } from 'lucide-react'
 
 function VideoShowcase() {
   const [isVisible, setIsVisible] = useState(false)
-  const [isPlaying, setIsPlaying] = useState(true)
+  // false until onPlay fires — iOS Low Power Mode blocks autoplay outright, and a
+  // Pause icon over a stopped video does the opposite of what it promises
+  const [isPlaying, setIsPlaying] = useState(false)
   const [isMuted, setIsMuted] = useState(true)
   const sectionRef = useRef(null)
   const videoRef = useRef(null)
@@ -40,7 +42,7 @@ function VideoShowcase() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden"
+      className="relative py-16 sm:py-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden"
     >
       {/* Subtle background shapes */}
       <div className="absolute top-1/4 -left-40 w-96 h-96 bg-primary/5 blur-3xl rounded-full"></div>
@@ -67,14 +69,16 @@ function VideoShowcase() {
 
         {/* Video */}
         <div
-          className={`group relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-black/5 transition-all duration-1000 delay-200 ${
+          className={`group relative aspect-[5/8] sm:aspect-auto rounded-3xl overflow-hidden shadow-2xl ring-1 ring-black/5 transition-all duration-1000 delay-200 ${
             isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
           }`}
         >
           <video
             ref={videoRef}
             src="/myco_medic_video.mp4"
-            className="w-full h-auto block bg-black"
+            /* The mp4 is a 832x464 landscape file with a portrait clip pillarboxed
+               inside it. On phones we crop to the clip instead of showing the bars. */
+            className="w-full h-full sm:h-auto object-cover block bg-black rounded-3xl"
             autoPlay
             loop
             muted
@@ -84,7 +88,8 @@ function VideoShowcase() {
           />
 
           {/* Controls overlay */}
-          <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          {/* bottom-left on phones: bottom-right is where the WhatsApp bubble sits */}
+          <div className="absolute bottom-4 left-4 sm:left-auto sm:right-4 flex gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
             <button
               onClick={togglePlay}
               className="bg-white/80 hover:bg-white rounded-full p-3 shadow-lg transition-all hover:scale-110"

@@ -57,7 +57,7 @@ function Footer() {
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-sm text-gray-500 hover:text-blue-600 hover:underline transition-colors"
+                    className="inline-block py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:underline transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -73,7 +73,7 @@ function Footer() {
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-sm text-gray-500 hover:text-blue-600 hover:underline transition-colors"
+                    className="inline-block py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:underline transition-colors"
                   >
                     {link.name}
                   </Link>

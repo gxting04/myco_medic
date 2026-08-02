@@ -12,6 +12,9 @@ function AboutUs() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const [scrollY, setScrollY] = useState(0)
+  // Parallax is desktop-only: shifting the image inside its rounded, clipped card
+  // left a blank strip at the bottom of the card on phones.
+  const [parallaxOn, setParallaxOn] = useState(false)
   const sectionRef = useRef(null)
 
   const images = [
@@ -38,8 +41,20 @@ function AboutUs() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)')
+    const apply = () => setParallaxOn(mq.matches)
+    apply()
+    mq.addEventListener('change', apply)
+    return () => mq.removeEventListener('change', apply)
+  }, [])
+
   // Track scroll for parallax
   useEffect(() => {
+    if (!parallaxOn) {
+      setScrollY(0)
+      return
+    }
     const handleScroll = () => {
       const rect = sectionRef.current?.getBoundingClientRect()
       if (rect) {
@@ -49,7 +64,7 @@ function AboutUs() {
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [parallaxOn])
 
   const next = () => setCurrentImageIndex((p) => (p + 1) % images.length)
   const prev = () => setCurrentImageIndex((p) => (p - 1 + images.length) % images.length)
@@ -57,7 +72,7 @@ function AboutUs() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 bg-gradient-to-b from-white to-gray-50 overflow-hidden"
+      className="relative py-16 sm:py-24 bg-gradient-to-b from-white to-gray-50 overflow-hidden"
     >
       {/* Subtle background shapes */}
       <div className="absolute -top-20 -left-20 w-72 h-72 bg-primary/10 blur-3xl rounded-full"></div>
@@ -94,13 +109,15 @@ function AboutUs() {
             {/* Navigation Arrows */}
             <button
               onClick={prev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-all shadow-lg"
+              aria-label="Previous photo"
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white rounded-full p-3 sm:p-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all shadow-lg"
             >
               <ChevronLeft className="w-5 h-5 text-gray-700" />
             </button>
             <button
               onClick={next}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-all shadow-lg"
+              aria-label="Next photo"
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white rounded-full p-3 sm:p-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all shadow-lg"
             >
               <ChevronRight className="w-5 h-5 text-gray-700" />
             </button>
@@ -110,7 +127,9 @@ function AboutUs() {
         {/* ===== Right Text Section ===== */}
         <div
           className={`space-y-6 transition-all duration-1000 delay-200 ${
-            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+            isVisible
+              ? 'opacity-100 translate-y-0 lg:translate-x-0'
+              : 'opacity-0 translate-y-8 lg:translate-y-0 lg:translate-x-8'
           }`}
         >
           <span className="inline-block text-sm font-semibold uppercase tracking-wider text-primary">

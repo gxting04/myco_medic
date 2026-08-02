@@ -2,6 +2,8 @@ import React, { useMemo, useState, useEffect } from 'react'
 import Data from '@/shared/Data'
 import { Link } from 'react-router-dom'
 import { Search } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Reveal, staggerContainer, fadeUpItem } from '../lib/motion'
 
 function Category() {
   // Get products from localStorage or initial data, excluding Medical Furniture (groupId: 7) and Medical Equipment (groupId: 2)
@@ -14,7 +16,7 @@ function Category() {
   return (
     <section className="py-16 md:py-28 bg-[#f5f5f7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12 md:mb-16">
+        <Reveal className="text-center mb-12 md:mb-16">
           <span className="inline-block text-sm font-semibold uppercase tracking-wider text-primary mb-3">
             Browse by Category
           </span>
@@ -24,9 +26,15 @@ function Category() {
           <p className="text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto px-4">
             Find the essential medical supplies designed for performance and reliability.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8"
+          variants={staggerContainer(0.08)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-60px' }}
+        >
           {Data.productGroups
             .filter(group => !['Medical Equipment', 'Safety & Protection'].includes(group.name))
             .filter(group => group.id !== 5 && group.id !== 7)
@@ -54,7 +62,7 @@ function Category() {
               <ProductGroupCard key={group.id} group={group} images={images} />
             )
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -75,11 +83,18 @@ function ProductGroupCard({ group, images }) {
   }, [images.length])
 
   return (
+    <motion.div
+      variants={fadeUpItem}
+      whileHover={{ y: -8 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+    >
     <Link
       to={`/products?groupId=${group.id}`}
-      className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-md border border-gray-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+      className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-md border border-gray-200/80 transition-shadow duration-300 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
     >
-      <div className="relative w-full aspect-[3/4] sm:aspect-[4/5] bg-white">
+      {/* 4:3 on phones: a portrait face made 570px-tall cards and left the mostly
+          landscape product shots floating in dead space */}
+      <div className="relative w-full aspect-[4/3] sm:aspect-[4/5] bg-white">
         {images.map((image, index) => (
           <img
             key={index}
@@ -124,6 +139,7 @@ function ProductGroupCard({ group, images }) {
         </span>
       </div>
     </Link>
+    </motion.div>
   )
 }
 
