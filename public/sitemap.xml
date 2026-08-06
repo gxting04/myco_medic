@@ -721,6 +721,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.mycomedic.com.my/product/trubaby-x-lite</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.mycomedic.com.my/products/category/protective-wear</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -837,6 +842,11 @@
   </url>
   <url>
     <loc>https://www.mycomedic.com.my/products/category/medical-burshes-and-accesories</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.mycomedic.com.my/products/category/training-manikins</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>

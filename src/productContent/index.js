@@ -183,6 +183,7 @@ import VeinFinderPage from './vein_finder'
 import UeM8sPage from './ue_m8s'
 import UedM3sPage from './ued_m3s'
 import UeM10sPage from './ue_m10s'
+import TruBabyXLitePage from './trubaby_x_lite'
 
 const productContentRegistry = {
   // All products now use ProductDetailDefault for consistent structure
@@ -367,6 +368,7 @@ const productContentRegistry = {
   'ent-pack': ENTPackPage,
   'basic-sterile-kit': BasicSterileKitPage,
   'delivery-kit': DeliveryKitPage,
+  'trubaby-x-lite': TruBabyXLitePage,
   // 'double-ended-cleaning-brush-nylon-bristles': DoubleEndedCleaningBrushNylonBristlesPage
 }
 
