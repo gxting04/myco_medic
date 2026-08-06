@@ -6,10 +6,13 @@ function Footer() {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
+    // Query-param form, matching what Header and the homepage Category cards emit.
+    // These previously pointed at /products/group/<Name With Spaces>, which never
+    // matched GroupCategories' slug comparison and always rendered "Group Not Found".
     Products: [
-      { name: "Airway Management", href: "/products/group/Airway Management" },
-      { name: "Medical Equipment", href: "/products/group/Medical Equipment" },
-      { name: "Safety & Protection", href: "/products/group/Safety & Protection" },
+      { name: "Airway Management", href: "/products?groupId=1" },
+      { name: "Personal Protective Equipment", href: "/products?groupId=8" },
+      { name: "Positioning Devices", href: "/products?groupId=9" },
     ],
     Company: [
       { name: "About Us", href: "/about" },
