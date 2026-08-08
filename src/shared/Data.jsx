@@ -346,6 +346,14 @@
         'https://images.unsplash.com/photo-1580281657521-9386d8465a5e?q=80&w=800'
       ],
       description: 'Medical cleaning brushes and accessories for instruments, tubes, and clinical hygiene.'
+    },
+    {
+      id: 27,
+      groupId: 1,
+      name: 'Training Manikins',
+      icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
+      images: ['/trubaby_x_lite.jpg'],
+      description: 'Lifelike patient simulators for airway management, CPR, vascular access, and nursing skills training.'
     }
   ]
   
@@ -2068,6 +2076,39 @@
 
       image: '/pipe_cleaner.png',
       pageId: 'pipe-cleaner'
+    },
+    {
+      id: 187,
+      name: 'TruBaby X Lite Pediatric Training Manikin',
+      groupId: 1,
+      category: 'Training Manikins',
+
+      image: '/trubaby_x_lite.jpg',
+      images: [
+        '/trubaby_x_lite.jpg',
+        '/trubaby_x_lite_2.jpg',
+        '/trubaby_x_lite_3.jpg',
+        '/trubaby_x_lite_4.jpg'
+      ],
+      pageId: 'trubaby-x-lite',
+      // Also feeds on-site search (SearchResults matches name/category/group/description).
+      // The detail page overrides this with the fuller copy in productContent/trubaby_x_lite.jsx.
+      description: 'TruBaby X Lite pediatric training manikin by TruCorp. A lifelike 5-month old infant simulator for airway management, intubation, CPR, IV cannulation, IO tibia, intramuscular injection and urethral catheterization training.',
+      articleCode: 'TBL10001X',
+      youtubeUrl: 'https://youtu.be/aj72ONEztbs',
+      specifications: {
+        'Product Code': 'TBL10001X',
+        'Dimensions': '79 x 46 x 28 cm',
+        'Weight': '8.5 kg',
+        'Patient Profile': '50th percentile 5-month old infant',
+        'Intubation Cycles': 'Certified for 80,000+ cycles without fail',
+        'Set-up Time': 'Under 5 minutes',
+        'Warranty': '2 years',
+        'Brand': 'TruCorp'
+      },
+      seoTitle: 'TruBaby X Lite Pediatric Training Manikin | Infant Simulator Malaysia',
+      seoDescription: 'TruBaby X Lite pediatric training manikin by TruCorp. Airway management, CPR, IV cannulation, IO tibia, IM injection and urethral catheterization training in one 5-month old infant simulator. Supplied by Myco Medic Malaysia.',
+      imageAlt: 'TruBaby X Lite pediatric training manikin for airway management and nursing skills training'
     }
   ]
   
