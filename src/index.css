@@ -7,7 +7,10 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  /* light only — the site ships no dark-mode styles. Declaring "light dark" let
+     iOS/Android dark mode paint form controls dark while the inherited near-black
+     colour below stayed put, giving black text on a black input. */
+  color-scheme: light;
   color: #1d1d1f;
   background-color: #f5f5f7;
 
