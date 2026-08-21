@@ -535,13 +535,14 @@
       image: '/pvc_oral_endotracheal_tube.png',
       pageId: 'pvc-oral-endotracheal-tube'
     },
-    { 
-      id: 27, 
-      name: 'PVC Endotracheal Tube (Cuffed & Uncuffed)', 
+    {
+      id: 27,
+      name: 'PVC Endotracheal Tube (Cuffed & Uncuffed)',
       category: 'Endotracheal Tube',
 
       image: '/pvc_endotracheal_tube.png',
-      pageId: 'pvc-endotracheal-tube'
+      pageId: 'pvc-endotracheal-tube',
+      readyStock: true
     },
     { 
       id: 28, 

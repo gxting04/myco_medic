@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
+import FeaturedReadyStock from './components/FeaturedReadyStock'
 import AboutUs from './components/AboutUs'
 import VideoShowcase from './components/VideoShowcase'
 import HospitalDemo from './components/HospitalDemo'
@@ -30,6 +31,9 @@ function Home() {
 
       {/* Hero Section */}
       <Hero />
+
+      {/* Promoted ready-stock line */}
+      <FeaturedReadyStock />
 
       {/* About Us Section */}
       <AboutUs />
