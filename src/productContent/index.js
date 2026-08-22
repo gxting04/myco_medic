@@ -184,6 +184,8 @@ import UeM8sPage from './ue_m8s'
 import UedM3sPage from './ued_m3s'
 import UeM10sPage from './ue_m10s'
 import TruBabyXLitePage from './trubaby_x_lite'
+import TruALSAdultPage from './truals_adult'
+import SmartTruALSAdultPage from './smart_truals_adult'
 
 const productContentRegistry = {
   // All products now use ProductDetailDefault for consistent structure
@@ -369,6 +371,8 @@ const productContentRegistry = {
   'basic-sterile-kit': BasicSterileKitPage,
   'delivery-kit': DeliveryKitPage,
   'trubaby-x-lite': TruBabyXLitePage,
+  'truals-adult': TruALSAdultPage,
+  'smart-truals-adult': SmartTruALSAdultPage,
   // 'double-ended-cleaning-brush-nylon-bristles': DoubleEndedCleaningBrushNylonBristlesPage
 }
 
