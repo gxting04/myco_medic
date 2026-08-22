@@ -2110,6 +2110,64 @@
       seoTitle: 'TruBaby X Lite Pediatric Training Manikin | Infant Simulator Malaysia',
       seoDescription: 'TruBaby X Lite pediatric training manikin by TruCorp. Airway management, CPR, IV cannulation, IO tibia, IM injection and urethral catheterization training in one 5-month old infant simulator. Supplied by Myco Medic Malaysia.',
       imageAlt: 'TruBaby X Lite pediatric training manikin for airway management and nursing skills training'
+    },
+    {
+      id: 188,
+      name: 'TruALS Adult ACLS & ALS Training Manikin',
+      groupId: 1,
+      category: 'Training Manikins',
+
+      // PLACEHOLDER IMAGERY: these are Smart TruALS Adult photos, pending the
+      // TruALS Adult brochure. The hero shot therefore includes the SmartRESUS
+      // monitor bag, which this model does not ship with — swap when available.
+      image: '/smart_truals_adult.jpg',
+      images: [
+        '/smart_truals_adult.jpg',
+        '/smart_truals_adult_2.jpg'
+      ],
+      pageId: 'truals-adult',
+      description: 'TruALS Adult full-body ACLS and ALS training manikin by TruCorp. Advanced airway management, CPR, needle decompression, humeral and tibial intraosseous access, and IV/IM drug administration in one modular adult manikin. Without CPR feedback.',
+      specifications: {
+        'Durability': 'Tested to 80,000+ intubations and 250,000+ chest compressions',
+        'Assembly Time': 'Under 5 minutes',
+        'CPR Feedback': 'Not included — see Smart TruALS Adult for app-based feedback',
+        'Warranty': '2 years',
+        'Brand': 'TruCorp'
+      },
+      seoTitle: 'TruALS Adult ACLS & ALS Training Manikin | Adult Simulator Malaysia',
+      seoDescription: 'TruALS Adult full-body ACLS and ALS training manikin by TruCorp. Airway management, CPR, needle decompression, intraosseous access and IV/IM administration. Supplied by Myco Medic Malaysia.',
+      imageAlt: 'TruALS Adult full-body ACLS and ALS training manikin'
+    },
+    {
+      id: 189,
+      name: 'Smart TruALS Adult ALS Simulator',
+      groupId: 1,
+      category: 'Training Manikins',
+
+      image: '/smart_truals_adult.jpg',
+      images: [
+        '/smart_truals_adult.jpg',
+        '/smart_truals_adult_2.jpg',
+        '/smart_truals_adult_3.jpg',
+        '/smart_truals_adult_4.jpg'
+      ],
+      pageId: 'smart-truals-adult',
+      description: 'Smart TruALS Adult ALS simulator by TruCorp. A full-body Advanced Life Support manikin with integrated smart sensor technology, delivering real-time CPR and airflow feedback wirelessly to the SmartRESUS app, with a monitor bag for 3-lead ECG, SpO2, BP, ETCO2 and AED pads.',
+      articleCode: 'ALSAS01',
+      specifications: {
+        'Product Code': 'ALSAS01',
+        'Dimensions': '113 x 57 x 60 cm',
+        'Weight': '50 kg',
+        'Patient Profile': 'Adult male',
+        'App': 'SmartRESUS — Android and iOS',
+        'Monitoring': '3-lead ECG, SpO2, BP, ETCO2 and AED pads',
+        'Power': 'AC mains adapter or DC power bank',
+        'Warranty': '1 year',
+        'Brand': 'TruCorp'
+      },
+      seoTitle: 'Smart TruALS Adult ALS Simulator | ACLS Training Manikin Malaysia',
+      seoDescription: 'Smart TruALS Adult ALS simulator by TruCorp. Full-body ALS and ACLS manikin with smart sensors, real-time CPR feedback via the SmartRESUS app, monitor bag, cardiac pacing and defibrillation training. Supplied by Myco Medic Malaysia.',
+      imageAlt: 'Smart TruALS Adult ALS simulator with SmartRESUS monitor bag'
     }
   ]
   
