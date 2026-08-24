@@ -84,7 +84,8 @@ function Partners() {
     { name: 'OKLand Medical', logo: '/okland.png', website: 'https://en.okltj.com/' },
     { name: 'UE Scope', logo: '/uescope.png', website: 'https://uescope.com/' },
     { name: 'Vitaltec', logo: '/vital.png', website: 'https://www.vitaltec-corp.com/en' },
-    { name: 'WTK', logo: '/wtk.png', website: 'https://www.wtktechnologies.com.my/index.html' }
+    { name: 'WTK', logo: '/wtk.png', website: 'https://www.wtktechnologies.com.my/index.html' },
+    { name: 'Trucorp', logo: '/trucorp.png', website: 'https://trucorp.com/' }
   ]
 
   // Duplicate partners array for seamless infinite loop
