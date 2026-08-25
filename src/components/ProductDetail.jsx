@@ -7,7 +7,7 @@ import slugify from '@/utils/slugify'
 import Header from './Header'
 import Footer from './Footer'
 import PageSEO from './PageSEO'
-import { productJsonLd } from '@/utils/seo'
+import { breadcrumbJsonLd, productJsonLd } from '@/utils/seo'
 import {
   findProductByRouteParam,
   getProductPath,
@@ -61,6 +61,24 @@ function ProductDetail() {
   const productDescription = getProductSeoDescription(product)
   const seoImage = product.images?.[0] || product.image
 
+  // Home → Products → [Category] → this product. Emitted alongside the Product
+  // node as a top-level JSON-LD array so the search result shows a readable
+  // trail instead of a bare URL.
+  const breadcrumbTrail = [
+    { name: 'Home', path: '/' },
+    { name: 'Products', path: '/products' },
+    product.category && {
+      name: product.category,
+      path: `/products/category/${product.category.toLowerCase().replace(/\s+/g, '-')}`
+    },
+    { name: product.name, path: canonicalPath }
+  ].filter(Boolean)
+
+  const jsonLd = [
+    productJsonLd(product, productDescription),
+    breadcrumbJsonLd(breadcrumbTrail)
+  ].filter(Boolean)
+
   const seo = (
     <PageSEO
       title={getProductSeoTitle(product)}
@@ -68,7 +86,7 @@ function ProductDetail() {
       path={canonicalPath}
       image={seoImage}
       type="product"
-      jsonLd={productJsonLd(product, productDescription)}
+      jsonLd={jsonLd}
     />
   )
 

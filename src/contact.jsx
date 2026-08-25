@@ -5,6 +5,7 @@ import WhatsAppFloat from './components/WhatsAppFloat';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Send, Clock, Building2 } from 'lucide-react';
 import PageSEO from './components/PageSEO';
+import { localBusinessJsonLd } from './utils/seo';
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -32,6 +33,7 @@ function Contact() {
         title="Contact Us"
         description="Contact Myco Medic for medical supply enquiries, product quotes, and support. Email sales@mycomedic.com.my or reach us in Puchong, Selangor."
         path="/contact"
+        jsonLd={localBusinessJsonLd()}
       />
       <Header/>
       
