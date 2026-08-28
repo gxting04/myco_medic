@@ -22,13 +22,37 @@ const content = fs.readFileSync(dataPath, 'utf8')
 
 const productsBlock = content.match(/const initialProducts = \[([\s\S]*?)\n\s*\]\s*\n\s*export default/)?.[1] || ''
 const productSlugs = []
-const productChunks = productsBlock.split(/\n    \{\n/).slice(1)
+
+// Split on each product's leading `id:` field rather than on its opening brace.
+// The previous separator was the literal "\n    {\n", which silently dropped any
+// entry whose brace carried a trailing space: that product was folded into the
+// preceding chunk, and since only the FIRST pageId per chunk is read, it never
+// got a URL. 48 of the entries were formatted that way, so ~47 product pages
+// were missing from the sitemap entirely.
+const productChunks = productsBlock
+  .split(/(?=\n\s+id:\s*\d+,)/)
+  .filter((chunk) => /\bid:\s*\d+,/.test(chunk))
 
 for (const chunk of productChunks) {
   const pageId = chunk.match(/pageId:\s*'([^']+)'/)?.[1]
   const name = chunk.match(/name:\s*'([^']+)'/)?.[1]
   if (pageId) productSlugs.push(pageId)
   else if (name) productSlugs.push(slugify(name))
+}
+
+// Fail the build rather than quietly shipping a short sitemap: a silent shortfall
+// is what hid the bug above for so long.
+const declaredProducts = (productsBlock.match(/\n\s+id:\s*\d+,/g) || []).length
+if (productSlugs.length !== declaredProducts) {
+  throw new Error(
+    `Sitemap: parsed ${productSlugs.length} product slugs but Data.jsx declares ${declaredProducts} products. ` +
+      'Every product must yield a URL — check the chunk separator against recent Data.jsx edits.'
+  )
+}
+
+const duplicateSlugs = productSlugs.filter((slug, i) => productSlugs.indexOf(slug) !== i)
+if (duplicateSlugs.length) {
+  throw new Error(`Sitemap: duplicate product slugs would emit duplicate <loc> entries: ${[...new Set(duplicateSlugs)].join(', ')}`)
 }
 
 const categoriesBlock = content.match(/const productCategories = \[([\s\S]*?)\n\s*\]\s*\n\s*const initialProducts/)?.[1] || ''

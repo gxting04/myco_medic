@@ -93,16 +93,36 @@ export function applySEO({
   upsertJsonLd('page-json-ld', jsonLd)
 }
 
+// Single source of truth for the trading address, mirrored from the contact page.
+const POSTAL_ADDRESS = {
+  '@type': 'PostalAddress',
+  streetAddress: 'No. 2A-G Jalan Sierra 10/3, Section 16 Sierra',
+  addressLocality: 'Puchong',
+  addressRegion: 'Selangor',
+  postalCode: '47120',
+  addressCountry: 'MY'
+}
+
+const TELEPHONE = '+60389570599'
+const SHOPEE_URL = 'https://shopee.com.my/healthcare_marts'
+
 export function organizationJsonLd() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: SITE_NAME,
+    legalName: 'Myco Medic Sdn Bhd',
     url: SITE_URL,
     logo: absoluteUrl(DEFAULT_IMAGE),
+    address: POSTAL_ADDRESS,
+    telephone: TELEPHONE,
+    email: 'sales@mycomedic.com.my',
+    areaServed: 'MY',
+    sameAs: [SHOPEE_URL],
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'sales',
+      telephone: TELEPHONE,
       email: 'sales@mycomedic.com.my',
       areaServed: 'MY',
       availableLanguage: ['English', 'Malay']
@@ -110,31 +130,101 @@ export function organizationJsonLd() {
   }
 }
 
+/**
+ * LocalBusiness node for the contact page — the address and map are the point of
+ * that page, and this is what feeds local ("medical supplies Puchong") results.
+ * No openingHoursSpecification: the site publishes no opening hours, and guessing
+ * them would send buyers to a closed door.
+ */
+export function localBusinessJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `${SITE_URL}/#office`,
+    name: SITE_NAME,
+    legalName: 'Myco Medic Sdn Bhd',
+    url: SITE_URL,
+    image: absoluteUrl(DEFAULT_IMAGE),
+    logo: absoluteUrl(DEFAULT_IMAGE),
+    address: POSTAL_ADDRESS,
+    telephone: TELEPHONE,
+    email: 'sales@mycomedic.com.my',
+    areaServed: 'MY',
+    sameAs: [SHOPEE_URL]
+  }
+}
+
+/**
+ * BreadcrumbList — gives Google the catalogue hierarchy for a product page and
+ * replaces the bare URL in the search result with a readable trail.
+ */
+export function breadcrumbJsonLd(trail = []) {
+  const items = trail.filter((item) => item && item.name && item.path)
+  if (!items.length) return null
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: absoluteUrl(item.path)
+    }))
+  }
+}
+
 export function productJsonLd(product, description) {
   if (!product) return null
   const images = product.images?.length ? product.images : product.image ? [product.image] : []
-  return {
+  const url = absoluteUrl(getProductPath(product))
+
+  const node = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.name,
     description: truncate(description || product.description || product.name, 500),
     image: images.map((img) => absoluteUrl(img)),
-    url: absoluteUrl(getProductPath(product)),
-    brand: {
-      '@type': 'Brand',
-      name: SITE_NAME
-    },
-    offers: {
-      '@type': 'Offer',
-      url: absoluteUrl(getProductPath(product)),
-      priceCurrency: 'MYR',
-      availability: 'https://schema.org/InStock',
-      seller: {
-        '@type': 'Organization',
-        name: SITE_NAME
-      }
-    }
+    url
   }
+
+  const sku = product.articleCode || product.specifications?.['Product Code']
+  if (sku) node.sku = sku
+
+  // The manufacturer, not the shop. This previously claimed every item was
+  // branded 'Myco Medic', which is wrong for a distributor — a TruCorp manikin
+  // is a TruCorp product that Myco Medic sells. Omitted when unknown rather
+  // than misattributed.
+  const brandName = product.brand || product.specifications?.Brand
+  if (brandName) node.brand = { '@type': 'Brand', name: brandName }
+
+  // schema.org Offer requires a price; emitting priceCurrency without one is
+  // invalid markup and shows up as an error in Search Console. The catalogue is
+  // quote-based, so an offer is attached only when a real price exists. Google
+  // may note a missing 'offers' field — that is a warning, and preferable to
+  // asserting a price and stock status that were never set.
+  if (product.price != null) {
+    const offer = {
+      '@type': 'Offer',
+      url,
+      priceCurrency: product.priceCurrency || 'MYR',
+      price: product.price,
+      seller: { '@type': 'Organization', name: SITE_NAME }
+    }
+    // Only claim availability we actually hold as data — this used to say
+    // InStock for all ~175 products unconditionally.
+    if (product.readyStock) offer.availability = 'https://schema.org/InStock'
+    node.offers = offer
+  }
+
+  return node
 }
 
-export { DEFAULT_DESCRIPTION, DEFAULT_TITLE, SITE_NAME, truncate }
+export {
+  DEFAULT_DESCRIPTION,
+  DEFAULT_IMAGE,
+  DEFAULT_KEYWORDS,
+  DEFAULT_TITLE,
+  SITE_NAME,
+  absoluteUrl,
+  truncate
+}

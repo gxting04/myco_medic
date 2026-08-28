@@ -29,6 +29,18 @@ function Home() {
       {/* Header */}
       <Header />
 
+      {/*
+        The homepage had no <h1> at all: the hero's headline is baked into the
+        banner PNGs, so crawlers and screen readers saw an untitled page. The
+        banners already carry their own wording, and overlaying live text would
+        collide with it, so the heading is exposed to assistive tech and search
+        only. Replacing the baked-in banner text with real markup is the better
+        long-term fix.
+      */}
+      <h1 className="sr-only">
+        Myco Medic — Medical Supplies &amp; Equipment Distributor in Malaysia
+      </h1>
+
       {/* Hero Section */}
       <Hero />
 
