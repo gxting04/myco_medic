@@ -11,6 +11,20 @@ import { isPurchasableProduct } from '@/utils/purchasableProducts'
 import ShopeeButton from './ShopeeButton'
 import { getProductImageAlt } from '@/utils/productUrl'
 
+// Normalise the various YouTube URL shapes into an /embed/ URL for the iframe.
+function toYouTubeEmbedUrl(url) {
+  if (url.includes('youtu.be/')) {
+    return `https://www.youtube.com/embed/${url.split('youtu.be/')[1].split('?')[0]}`
+  }
+  if (url.includes('youtube.com/watch?v=')) {
+    return `https://www.youtube.com/embed/${url.split('v=')[1].split('&')[0]}`
+  }
+  if (url.includes('youtube.com/embed/')) {
+    return url
+  }
+  return `https://www.youtube.com/embed/${url.split('/').pop().split('?')[0]}`
+}
+
 function ProductDetailDefault({ product }) {
   const navigate = useNavigate()
   const { addToCart } = useCart()
@@ -47,6 +61,18 @@ function ProductDetailDefault({ product }) {
       return product.images
     }
     return product.image ? [product.image] : []
+  }, [product])
+
+  // Get product videos - support a `videos` array of { src | youtubeUrl, title },
+  // or fall back to the single `youtubeUrl` / `video` fields
+  const productVideos = useMemo(() => {
+    if (product.videos && Array.isArray(product.videos)) {
+      const videos = product.videos.filter(v => v && (v.src || v.youtubeUrl))
+      if (videos.length > 0) return videos
+    }
+    if (product.youtubeUrl) return [{ youtubeUrl: product.youtubeUrl }]
+    if (product.video) return [{ src: product.video }]
+    return []
   }, [product])
 
   // Get variants (colors and sizes) - support product variants or use defaults
@@ -373,54 +399,46 @@ function ProductDetailDefault({ product }) {
                       return <br key={index} />
                     })}
                   </div>
-                  {(product.video || product.youtubeUrl) && (
+                  {productVideos.length > 0 && (
                     <div className='mt-8 pt-8 border-t border-gray-200'>
                       <h3 className='font-bold text-gray-900 mb-6 text-xl flex items-center gap-2'>
                         <svg className='w-6 h-6 text-primary' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                           <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z' />
                         </svg>
-                        Product Video
+                        {productVideos.length > 1 ? 'Product Videos' : 'Product Video'}
                       </h3>
-                      {product.youtubeUrl ? (
-                        <div className='rounded-xl overflow-hidden bg-gray-100 aspect-video shadow-lg border border-gray-200'>
-                          <iframe
-                            src={(() => {
-                              const url = product.youtubeUrl
-                              // Handle youtu.be format
-                              if (url.includes('youtu.be/')) {
-                                const videoId = url.split('youtu.be/')[1].split('?')[0]
-                                return `https://www.youtube.com/embed/${videoId}`
-                              }
-                              // Handle youtube.com format
-                              if (url.includes('youtube.com/watch?v=')) {
-                                const videoId = url.split('v=')[1].split('&')[0]
-                                return `https://www.youtube.com/embed/${videoId}`
-                              }
-                              // Handle youtube.com/embed format (already correct)
-                              if (url.includes('youtube.com/embed/')) {
-                                return url
-                              }
-                              // Default: try to extract ID from end of URL
-                              return `https://www.youtube.com/embed/${url.split('/').pop().split('?')[0]}`
-                            })()}
-                            title={`${product.name} - Product Video`}
-                            className='w-full h-full'
-                            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                            allowFullScreen
-                          ></iframe>
-                        </div>
-                      ) : (
-                        <div className='rounded-xl overflow-hidden bg-gray-100 shadow-lg border border-gray-200'>
-                          <video 
-                            src={product.video}
-                            controls
-                            className='w-full h-auto max-h-[600px]'
-                            preload='metadata'
-                          >
-                            Your browser does not support the video tag.
-                          </video>
-                        </div>
-                      )}
+                      <div className='space-y-8'>
+                        {productVideos.map((video, index) => (
+                          <div key={video.src || video.youtubeUrl || index}>
+                            {video.title && (
+                              <h4 className='font-semibold text-gray-900 mb-3 text-base'>{video.title}</h4>
+                            )}
+                            {video.youtubeUrl ? (
+                              <div className='rounded-xl overflow-hidden bg-gray-100 aspect-video shadow-lg border border-gray-200'>
+                                <iframe
+                                  src={toYouTubeEmbedUrl(video.youtubeUrl)}
+                                  title={video.title || `${product.name} - Product Video`}
+                                  className='w-full h-full'
+                                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                                  allowFullScreen
+                                ></iframe>
+                              </div>
+                            ) : (
+                              <div className='rounded-xl overflow-hidden bg-gray-100 shadow-lg border border-gray-200'>
+                                <video
+                                  src={video.src}
+                                  poster={video.poster}
+                                  controls
+                                  className='w-full h-auto max-h-[600px]'
+                                  preload='metadata'
+                                >
+                                  Your browser does not support the video tag.
+                                </video>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   )}
                   {product.specifications && (
