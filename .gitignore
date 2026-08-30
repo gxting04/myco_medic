@@ -29,3 +29,13 @@ dist-ssr
 
 # Uploaded career resumes (do not commit)
 uploads/
+
+# Raw video masters dropped into public/ (hundreds of MB each). Re-encode for web
+# before committing — see the `videos` entries in src/shared/Data.jsx.
+# Exact names only: core.ignorecase is true on macOS, so a pattern like
+# *Walkthrough*.mp4 would also swallow the lowercase web encodes we want tracked.
+/public/Smart TruALS Adult Walkthrough with Dr McKenna.mp4
+/public/Smart TruALS Adult Promo Video 1080p (1).mp4
+/public/Smart TruALS Adult Promo Video 4k (1).mp4
+/public/Smart TruALS Adult Promo Video 4k (1) (1).mp4
+/public/ALS Set Up & Maintenance.mp4

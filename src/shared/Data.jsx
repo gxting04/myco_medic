@@ -2126,6 +2126,11 @@
         '/smart_truals_adult_2.jpg'
       ],
       pageId: 'truals-adult',
+      // Self-hosted, re-encoded for web from the ~1 GB masters (1080p H.264,
+      // CRF 23, faststart). Re-encode rather than drop in a master if replacing.
+      videos: [
+        { src: '/truals_setup_and_maintenance.mp4', title: 'ALS set up and maintenance' }
+      ],
       description: 'TruALS Adult full-body ACLS and ALS training manikin by TruCorp. Advanced airway management, CPR, needle decompression, humeral and tibial intraosseous access, and IV/IM drug administration in one modular adult manikin. Without CPR feedback.',
       specifications: {
         'Durability': 'Tested to 80,000+ intubations and 250,000+ chest compressions',
@@ -2152,6 +2157,13 @@
         '/smart_truals_adult_4.jpg'
       ],
       pageId: 'smart-truals-adult',
+      // Self-hosted, re-encoded for web from the ~1 GB masters (1080p H.264,
+      // CRF 23, faststart). Re-encode rather than drop in a master if replacing.
+      videos: [
+        { src: '/smart_truals_adult_promo.mp4', title: 'Smart TruALS Adult overview' },
+        { src: '/smart_truals_adult_walkthrough.mp4', title: 'Full walkthrough with Dr McKenna' },
+        { src: '/truals_setup_and_maintenance.mp4', title: 'ALS set up and maintenance' }
+      ],
       description: 'Smart TruALS Adult ALS simulator by TruCorp. A full-body Advanced Life Support manikin with integrated smart sensor technology, delivering real-time CPR and airflow feedback wirelessly to the SmartRESUS app, with a monitor bag for 3-lead ECG, SpO2, BP, ETCO2 and AED pads.',
       articleCode: 'ALSAS01',
       specifications: {
