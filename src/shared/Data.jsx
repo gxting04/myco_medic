@@ -339,7 +339,7 @@
     {
       id: 26,
       groupId: 15,
-      name: 'Medical Burshes and Accesories',
+      name: 'Medical Brushes and Accessories',
       icon: 'https://cdn-icons-png.flaticon.com/128/2966/2966327.png',
       images: [
         'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800',
@@ -766,7 +766,7 @@
       id: 54,
       name: 'Cannula Cleaning Brushes',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/cannula_cleaning_brushes.png',
       pageId: 'cannula-cleaning-brushes'
@@ -775,7 +775,7 @@
       id: 55,
       name: 'Tracheal Tube Brushes',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/tracheal_tube_brushes.png',
       pageId: 'tracheal-tube-brushes'
@@ -784,7 +784,7 @@
       id: 56,
       name: 'Instrument Cleaning Brushes',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/stainless_bristles.png',
       images: [
@@ -799,7 +799,7 @@
       id: 57,
       name: 'Suction Tube Cleaning Brushes (Baron & Frazier)',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/suction_tube_cleaning_brushes.png',
       pageId: 'suction-tube-cleaning-brushes'
@@ -808,7 +808,7 @@
       id: 58,
       name: 'Cannula Instrument Pipe Cleaners',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/cannula_instrument_pipe_cleaners.png',
       images: [
@@ -822,7 +822,7 @@
       id: 59,
       name: 'Double End Valve Brushes',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/double_end_valve_brushes.png',
       pageId: 'double-end-valve-brushes'
@@ -831,7 +831,7 @@
       id: 60,
       name: 'Surgical Scrub Brushes',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/surgical_scrub_brushes_with_nail.png',
       images: [
@@ -846,7 +846,7 @@
       id: 61,
       name: 'Large Instrument Cleaning Brush',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/large_instrument_cleaning_brush.png',
       pageId: 'large-instrument-cleaning-brush'
@@ -1352,7 +1352,7 @@
     },
     {
       id: 116,
-      name: 'Memory Lower Limb ProtectorPads',
+      name: 'Memory Lower Limb Protector Pads',
       groupId: 9,
       category: null,
 
@@ -1379,7 +1379,7 @@
       groupId: 9,
       category: 'Universal Square Pads',
 
-      image: 'memory_universal_square_pads.png',
+      image: '/memory_universal_square_pads.png',
       pageId: 'memory-universal-square-pads'
     },
     {
@@ -1388,7 +1388,7 @@
       groupId: 9,
       category: 'Universal Square Pads',
 
-      image: 'memory_pillow_shaped_pads.png',
+      image: '/memory_pillow_shaped_pads.png',
       pageId: 'memory-pillow-shaped-pads'
     },
     
@@ -1398,7 +1398,7 @@
       groupId: 9,
       category: 'Memory Lower Limb Pads',
 
-      image: 'memory_heel_pads.png',
+      image: '/memory_heel_pads.png',
       pageId: 'memory-heel-pads'
     },
     {
@@ -1408,7 +1408,7 @@
       category: 'Memory Lower Limb Pads',
 
       // The "memory tunnel pads" image isn't shown in the snippet; reuse a related tunnel-pad visual for now.
-      image: 'memory_tunnel_pads.png',
+      image: '/memory_tunnel_pads.png',
       pageId: 'memory-tunnel-pads'
     },
     {
@@ -1429,7 +1429,7 @@
       groupId: 9,
       category: 'Memory Head and Neck Pads',
 
-      image: 'memory_donut_head_pads.png',
+      image: '/memory_donut_head_pads.png',
       pageId: 'memory-donut-head-pads',
       seoTitle: 'Memory Donut Head Pads | Medical Gel Donut Head Pad Malaysia',
       seoDescription: 'Memory foam donut medical head pads for occipital pressure relief during surgery. Myco Medic Malaysia supplier.',
@@ -1442,7 +1442,7 @@
       category: 'Memory Chest and Body Pads',
 
       image:
-        'memory_waist_pads.png',
+        '/memory_waist_pads.png',
       pageId: 'memory-waist-pads'
     },
     {
@@ -1452,7 +1452,7 @@
       category: 'Memory Chest and Body Pads',
 
       image:
-        'memory_roll_shaped_pads.png',
+        '/memory_roll_shaped_pads.png',
       pageId: 'memory-roll-shaped-pads'
     },
     {
@@ -1462,7 +1462,7 @@
       category: 'Memory Chest and Body Pads',
 
       image:
-        'memory_chest_hipbone_pads.png',
+        '/memory_chest_hipbone_pads.png',
       pageId: 'memory-chest-hipbone-pads'
     },
     {
@@ -1472,7 +1472,7 @@
       category: 'Memory Chest and Body Pads',
 
       image:
-        'memory_fracture_table_post_pads.png',
+        '/memory_fracture_table_post_pads.png',
       pageId: 'memory-fracture-table-post-pads'
     },
     {
@@ -1482,7 +1482,7 @@
       category: 'Memory Chest and Body Pads',
 
       image:
-        'memory_lateral_pads.png',
+        '/memory_lateral_pads.png',
       pageId: 'memory-lateral-pads'
     },
     {
@@ -1491,7 +1491,7 @@
       groupId: 9,
       category: 'Memory Chest and Body Pads',
 
-      image: 'memory_dome_shaped_pads.png',
+      image: '/memory_dome_shaped_pads.png',
       pageId: 'memory-dome-shaped-pads'
     },
     {
@@ -1501,7 +1501,7 @@
       category: 'Memory Chest and Body Pads',
 
       image:
-        'memory_pillar_shaped_pads.png',
+        '/memory_pillar_shaped_pads.png',
       pageId: 'memory-pillar-shaped-pads'
     },
     {
@@ -1511,7 +1511,7 @@
       category: 'Memory Chest and Body Pads',
 
       image:
-        'memory_slanting_shaped_pads.png',
+        '/memory_slanting_shaped_pads.png',
       pageId: 'memory-slanting-shaped-pads'
     },
     {
@@ -1775,7 +1775,7 @@
       id: 160,
       name: 'Double Ended Cleaning Brush | Nylon Bristles',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/double-ended-cleaning-brush.jpeg',
       pageId: 'double-ended-cleaning-brush-nylon-bristles'
@@ -1975,7 +1975,7 @@
       id: 177,
       name: 'Rigid Bristle Channel Cleaning Brush',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/rigid_bristle_channel_cleaning_brush.png',
       pageId: 'rigid-bristle-channel-cleaning-brush'
@@ -1984,7 +1984,7 @@
       id: 178,
       name: 'Nylon Bristle Tooth Brush',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/nylon_bristle_tooth_brush.png',
       pageId: 'nylon-bristle-tooth-brush'
@@ -1993,7 +1993,7 @@
       id: 179,
       name: 'Surgical Scrub Brushes Dispenser',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/surgical_scrub_brushes_dispenser.png',
       images: [
@@ -2006,7 +2006,7 @@
       id: 180,
       name: 'Surgical Scrub Brush with Povidone Iodine',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/surgical_scrub_brush_with_povidone_iodine.png',
       pageId: 'surgical-scrub-brush-with-povidone-iodine'
@@ -2015,7 +2015,7 @@
       id: 181,
       name: 'Surgical Sponge Brush',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
       articleCode: 'MYSBB-B',
 
       image: '/surgical_sponge_brush.png',
@@ -2025,7 +2025,7 @@
       id: 182,
       name: 'Large Instrument Cleaning Brush with Rubber Plastic Handle',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/large_instrument_cleaning_brush_with_rubber_plastic_handle.png',
       pageId: 'large-instrument-cleaning-brush-with-rubber-plastic-handle'
@@ -2034,7 +2034,7 @@
       id: 183,
       name: 'Reusable Flat Brush',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/reusable_flat_brush.png',
       images: [
@@ -2047,7 +2047,7 @@
       id: 184,
       name: 'White Flat Nylon Brush',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/white_flat_nylon_brush.png',
       images: [
@@ -2060,7 +2060,7 @@
       id: 185,
       name: 'Stainless Steel Tooth Brush Style with Small Horn',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/stainless_steeltooth_brush_style_with_small_horn.png',
       images: [
@@ -2071,9 +2071,9 @@
     },
     {
       id: 186,
-      name: 'Stainless Steel Tooth Brush Style with Small Horn',
+      name: 'Pipe Cleaner',
       groupId: 15,
-      category: 'Medical Burshes and Accesories',
+      category: 'Medical Brushes and Accessories',
 
       image: '/pipe_cleaner.png',
       pageId: 'pipe-cleaner'

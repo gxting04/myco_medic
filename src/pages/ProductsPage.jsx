@@ -1,213 +1,165 @@
-import React, { useState, useMemo, useEffect } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import WhatsAppFloat from '../components/WhatsAppFloat'
+import React, { useEffect, useMemo, useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ChevronDown, SlidersHorizontal, Search, X } from 'lucide-react'
 import Data from '../shared/Data'
-import slugify from '../utils/slugify'
-import { ChevronDown, ChevronRight, Search, Filter, X } from 'lucide-react'
-import { isPurchasableProduct } from '@/utils/purchasableProducts'
 import PageSEO from '../components/PageSEO'
-import { getProductPath } from '@/utils/productUrl'
+import ProductCard from '../components/ProductCard'
+import { getCatalogProducts, getNavGroups, productInGroup, searchProducts } from '@/lib/catalog'
+import { useEscapeKey, useLockBodyScroll } from '@/lib/hooks'
+
+const SORTS = [
+  { value: 'default', label: 'Featured' },
+  { value: 'name-asc', label: 'Name: A to Z' },
+  { value: 'name-desc', label: 'Name: Z to A' }
+]
+
+function FilterNav({ groups, products, groupId, categoryId, onSelect }) {
+  const [expanded, setExpanded] = useState(() => (groupId ? [groupId] : []))
+
+  useEffect(() => {
+    if (groupId) setExpanded((prev) => (prev.includes(groupId) ? prev : [...prev, groupId]))
+  }, [groupId])
+
+  const toggle = (id) => setExpanded((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
+
+  const itemClass = (active) =>
+    `flex w-full min-w-0 items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors ${
+      active ? 'bg-gray-900 font-medium text-white' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+    }`
+
+  return (
+    <nav aria-label="Product categories" className="space-y-0.5">
+      <button type="button" onClick={() => onSelect(null, null)} className={itemClass(!groupId && !categoryId)}>
+        All products
+        <span className={`text-xs ${!groupId && !categoryId ? 'text-white/70' : 'text-gray-400'}`}>{products.length}</span>
+      </button>
+      {groups.map((group) => {
+        const categories = Data.productCategories
+          .filter((c) => c.groupId === group.id)
+          .map((c) => ({ ...c, count: products.filter((p) => p.category === c.name).length }))
+          .filter((c) => c.count > 0)
+          .sort((a, b) => a.name.localeCompare(b.name))
+        const count = products.filter((p) => productInGroup(p, group.id)).length
+        const isOpen = expanded.includes(group.id)
+        const active = groupId === group.id && !categoryId
+        return (
+          <div key={group.id}>
+            <div className="flex items-center gap-1">
+              <button type="button" onClick={() => onSelect(group.id, null)} className={itemClass(active)} aria-current={active || undefined}>
+                <span className="leading-snug">{group.name}</span>
+                <span className={`text-xs ${active ? 'text-white/70' : 'text-gray-400'}`}>{count}</span>
+              </button>
+              {categories.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => toggle(group.id)}
+                  className="shrink-0 rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-700"
+                  aria-label={`${isOpen ? 'Collapse' : 'Expand'} ${group.name}`}
+                  aria-expanded={isOpen}
+                >
+                  <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                </button>
+              )}
+            </div>
+            {isOpen && categories.length > 0 && (
+              <div className="my-1 ml-3 space-y-0.5 border-l border-gray-200 pl-2">
+                {categories.map((c) => {
+                  const catActive = categoryId === c.id
+                  return (
+                    <button
+                      key={c.id}
+                      type="button"
+                      onClick={() => onSelect(group.id, c.id)}
+                      className={itemClass(catActive)}
+                      aria-current={catActive || undefined}
+                    >
+                      <span className="leading-snug">{c.name}</span>
+                      <span className={`text-xs ${catActive ? 'text-white/70' : 'text-gray-400'}`}>{c.count}</span>
+                    </button>
+                  )
+                })}
+              </div>
+            )}
+          </div>
+        )
+      })}
+    </nav>
+  )
+}
 
 function ProductsPage() {
-  const [searchParams] = useSearchParams()
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedGroupId, setSelectedGroupId] = useState(() => {
-    const groupIdParam = searchParams.get('groupId')
-    return groupIdParam ? parseInt(groupIdParam) : null
-  })
-  const [selectedCategoryId, setSelectedCategoryId] = useState(() => {
-    const categoryIdParam = searchParams.get('categoryId')
-    return categoryIdParam ? parseInt(categoryIdParam) : null
-  })
-  const [expandedGroups, setExpandedGroups] = useState([])
-  const [sortBy, setSortBy] = useState('default')
-  const [showFilters, setShowFilters] = useState(false)
-  const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [filtersOpen, setFiltersOpen] = useState(false)
 
-  // Auto-show filters on desktop
+  // Filter state lives in the URL, so header/footer links, the back button and
+  // shared links all land on the right view. It used to be copied into local
+  // state on mount only, which ignored any later navigation to /products?….
+  const groupId = Number.parseInt(searchParams.get('groupId'), 10) || null
+  const categoryId = Number.parseInt(searchParams.get('categoryId'), 10) || null
+  const query = searchParams.get('q') || ''
+  const sortBy = searchParams.get('sort') || 'default'
+  const [draft, setDraft] = useState(query)
+
+  useEffect(() => setDraft(query), [query])
+
+  // Debounce typing into the URL so history is not flooded.
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setShowFilters(true)
-      }
-    }
-    handleResize() // Check on mount
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+    if (draft === query) return
+    const t = setTimeout(() => updateParams({ q: draft.trim() || null }), 200)
+    return () => clearTimeout(t)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [draft])
 
-  // Expand group if selected from URL params
-  useEffect(() => {
-    if (selectedGroupId && !expandedGroups.includes(selectedGroupId)) {
-      setExpandedGroups(prev => [...prev, selectedGroupId])
-    }
-  }, [selectedGroupId])
+  useLockBodyScroll(filtersOpen)
+  useEscapeKey(filtersOpen, () => setFiltersOpen(false))
 
-  // Get products from localStorage or initial data, excluding Medical Furniture (groupId: 7) and Medical Equipment (groupId: 2)
-  const allProducts = useMemo(() => {
-    const saved = localStorage.getItem('myco_products')
-    const products = saved ? JSON.parse(saved) : Data.initialProducts
-    return products.filter(p => p.groupId !== 2 && p.groupId !== 7)
-  }, [])
-
-  const getCategoryNamesForGroup = (groupId) =>
-    Data.productCategories
-      .filter(cat => cat.groupId === groupId)
-      .map(cat => cat.name)
-
-  const productBelongsToGroup = (product, groupId) => {
-    if (product.groupId === groupId) return true
-    const groupCategories = getCategoryNamesForGroup(groupId)
-    return Boolean(product.category && groupCategories.includes(product.category))
+  const updateParams = (changes) => {
+    const next = new URLSearchParams(searchParams)
+    Object.entries(changes).forEach(([k, v]) => {
+      if (v === null || v === undefined || v === '' || (k === 'sort' && v === 'default')) next.delete(k)
+      else next.set(k, String(v))
+    })
+    setSearchParams(next, { replace: true, preventScrollReset: true })
   }
 
-  // Filter and sort products based on selection
+  const selectFilter = (gid, cid) => {
+    updateParams({ groupId: gid, categoryId: cid })
+    setFiltersOpen(false)
+  }
+
+  const allProducts = useMemo(() => getCatalogProducts(), [])
+  const groups = useMemo(() => getNavGroups(), [])
+  const selectedGroup = Data.productGroups.find((g) => g.id === groupId) || null
+  const selectedCategory = Data.productCategories.find((c) => c.id === categoryId) || null
+
   const filteredProducts = useMemo(() => {
     let products = allProducts
+    if (selectedCategory) products = products.filter((p) => p.category === selectedCategory.name)
+    else if (groupId) products = products.filter((p) => productInGroup(p, groupId))
 
-    if (selectedCategoryId) {
-      // Find the category name by ID
-      const selectedCategory = Data.productCategories.find(c => c.id === selectedCategoryId)
-      if (selectedCategory) {
-        // Filter products that match the category name (products store category as string name)
-        products = products.filter(p => p.category === selectedCategory.name)
-      }
-    } else if (selectedGroupId) {
-      products = products.filter(p => productBelongsToGroup(p, selectedGroupId))
-    }
+    if (query.trim()) products = searchProducts(query, products)
 
-    if (searchTerm.trim()) {
-      const term = searchTerm.toLowerCase()
-      products = products.filter(p => {
-        const nameMatch = p.name.toLowerCase().includes(term)
-        
-        // Check category name if category is set
-        let categoryMatch = false
-        if (p.category && typeof p.category === 'string') {
-          // Products store category as string name, so check directly
-          if (p.category.toLowerCase().includes(term)) {
-            categoryMatch = true
-          }
-        }
-        
-        // Check group name
-        let groupMatch = false
-        if (p.groupId) {
-          const group = Data.productGroups.find(g => g.id === p.groupId)
-          if (group && group.name.toLowerCase().includes(term)) {
-            groupMatch = true
-          }
-        }
-        
-        return nameMatch || categoryMatch || groupMatch
-      })
-    }
-
-    // Sort products
-    const sortedProducts = [...products]
-    switch (sortBy) {
-      case 'name-asc':
-        sortedProducts.sort((a, b) => a.name.localeCompare(b.name))
-        break
-      case 'name-desc':
-        sortedProducts.sort((a, b) => b.name.localeCompare(a.name))
-        break
-      default:
-        // Keep original order
-        break
-    }
-
-    return sortedProducts
-  }, [allProducts, selectedGroupId, selectedCategoryId, searchTerm, sortBy])
-
-  const handleSearch = (e) => {
-    e.preventDefault()
-    if (searchTerm.trim()) {
-      navigate(`/search?q=${encodeURIComponent(searchTerm.trim())}`)
-    }
-  }
-
-  const toggleGroup = (groupId) => {
-    setExpandedGroups(prev => 
-      prev.includes(groupId) 
-        ? prev.filter(id => id !== groupId)
-        : [...prev, groupId]
-    )
-  }
-
-  const handleGroupClick = (groupId) => {
-    setSelectedGroupId(groupId)
-    setSelectedCategoryId(null)
-    // Update URL with groupId
-    navigate(`/products?groupId=${groupId}`, { replace: true })
-    // Expand the group if not already expanded
-    if (!expandedGroups.includes(groupId)) {
-      setExpandedGroups(prev => [...prev, groupId])
-    }
-  }
-
-  const handleCategoryClick = (categoryId, groupId) => {
-    setSelectedCategoryId(categoryId)
-    setSelectedGroupId(groupId)
-    // Update URL with groupId and categoryId
-    navigate(`/products?groupId=${groupId}&categoryId=${categoryId}`, { replace: true })
-    // Expand the group if not already expanded
-    if (!expandedGroups.includes(groupId)) {
-      setExpandedGroups(prev => [...prev, groupId])
-    }
-  }
-
-  const handleShowAll = () => {
-    setSelectedGroupId(null)
-    setSelectedCategoryId(null)
-    navigate('/products', { replace: true })
-  }
-
-  // Get categories for each group (sorted alphabetically)
-  const getCategoriesForGroup = (groupId) => {
-    return Data.productCategories
-      .filter(cat => cat.groupId === groupId)
-      .sort((a, b) => a.name.localeCompare(b.name))
-  }
-
-  // Get direct products count for a group (products without category)
-  const getDirectProductsCount = (groupId) => {
-    return allProducts.filter(p => p.groupId === groupId && (!p.category || p.category === null)).length
-  }
-
-  // Get total products count for a group (both direct and in categories)
-  const getTotalProductsCount = (groupId) => {
-    return allProducts.filter(p => productBelongsToGroup(p, groupId)).length
-  }
-
-  // Get direct products for a group (products without category, sorted alphabetically)
-  const getDirectProducts = (groupId) => {
-    return allProducts
-      .filter(p => p.groupId === groupId && (!p.category || p.category === null))
-      .sort((a, b) => a.name.localeCompare(b.name))
-  }
+    const sorted = [...products]
+    if (sortBy === 'name-asc') sorted.sort((a, b) => a.name.localeCompare(b.name))
+    if (sortBy === 'name-desc') sorted.sort((a, b) => b.name.localeCompare(a.name))
+    return sorted
+  }, [allProducts, selectedCategory, groupId, query, sortBy])
 
   const seoMeta = useMemo(() => {
-    if (selectedCategoryId) {
-      const cat = Data.productCategories.find(c => c.id === selectedCategoryId)
-      if (cat) {
-        return {
-          title: cat.name,
-          description: cat.description || `Browse ${cat.name} products from Myco Medic — medical supplies and equipment in Malaysia.`,
-          path: `/products?groupId=${cat.groupId}&categoryId=${cat.id}`
-        }
+    if (selectedCategory) {
+      return {
+        title: selectedCategory.name,
+        description:
+          selectedCategory.description || `Browse ${selectedCategory.name} products from Myco Medic — medical supplies and equipment in Malaysia.`,
+        path: `/products?groupId=${selectedCategory.groupId}&categoryId=${selectedCategory.id}`
       }
     }
-    if (selectedGroupId) {
-      const group = Data.productGroups.find(g => g.id === selectedGroupId)
-      if (group) {
-        return {
-          title: group.name,
-          description: group.description || `Browse ${group.name} from Myco Medic — medical supplies and equipment in Malaysia.`,
-          path: `/products?groupId=${group.id}`
-        }
+    if (selectedGroup) {
+      return {
+        title: selectedGroup.name,
+        description: selectedGroup.description || `Browse ${selectedGroup.name} from Myco Medic — medical supplies and equipment in Malaysia.`,
+        path: `/products?groupId=${selectedGroup.id}`
       }
     }
     return {
@@ -215,287 +167,181 @@ function ProductsPage() {
       description: 'Browse Myco Medic medical supplies — airway management, patient hygiene, PPE, procedure packs, positioning devices, and more.',
       path: '/products'
     }
-  }, [selectedGroupId, selectedCategoryId])
+  }, [selectedGroup, selectedCategory])
+
+  const title = selectedCategory?.name || selectedGroup?.name || 'All products'
+  const subtitle =
+    selectedCategory?.description ||
+    selectedGroup?.description ||
+    'Medical devices and consumables for operating theatres, ICUs, wards and clinics.'
+
+  const activeChips = [
+    selectedGroup && !selectedCategory && { key: 'group', label: selectedGroup.name, clear: () => updateParams({ groupId: null, categoryId: null }) },
+    selectedCategory && { key: 'cat', label: selectedCategory.name, clear: () => updateParams({ categoryId: null }) },
+    query && { key: 'q', label: `“${query}”`, clear: () => updateParams({ q: null }) }
+  ].filter(Boolean)
+
+  const filterNav = <FilterNav groups={groups} products={allProducts} groupId={groupId} categoryId={categoryId} onSelect={selectFilter} />
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-white">
       <PageSEO {...seoMeta} />
-      <Header/>
-      
-      <div className="pt-24 md:pt-32 pb-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          {/* Page Header */}
-            <div className="mb-8">
-            <h1 className="text-3xl sm:text-4xl font-light text-gray-900 mb-2">Products</h1>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <p className="text-gray-500 text-sm">
-                Showing {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
-              </p>
-              
-              {/* Search Bar */}
-              <form onSubmit={handleSearch} className="flex gap-2 w-full sm:max-w-md">
-                <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                  <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Search products..."
-                    className="w-full pl-10 pr-4 py-2 bg-white text-gray-900 placeholder-gray-400 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-900 focus:border-gray-900"
-                  />
-                </div>
+
+      <header className="border-b border-gray-100 bg-gray-50/60">
+        <div className="container-page py-10 md:py-14">
+          <nav aria-label="Breadcrumb" className="text-sm text-gray-500">
+            <Link to="/" className="hover:text-gray-900">
+              Home
+            </Link>
+            <span className="mx-2 text-gray-300">/</span>
+            {selectedGroup || selectedCategory ? (
+              <Link to="/products" className="hover:text-gray-900">
+                Products
+              </Link>
+            ) : (
+              <span className="text-gray-900">Products</span>
+            )}
+          </nav>
+          <h1 className="heading-lg mt-4">{title}</h1>
+          <p className="lead mt-3 max-w-2xl">{subtitle}</p>
+        </div>
+      </header>
+
+      <div className="container-page grid gap-8 py-8 md:py-10 lg:grid-cols-[17rem,1fr] lg:gap-10">
+        <aside className="hidden lg:block">
+          <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto overflow-x-hidden pb-6 pr-1">
+            <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-gray-400">Categories</p>
+            {filterNav}
+          </div>
+        </aside>
+
+        <div className="min-w-0">
+          {/* Toolbar */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="relative flex-1">
+              <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+              <input
+                type="search"
+                value={draft}
+                onChange={(e) => setDraft(e.target.value)}
+                placeholder={`Search within ${selectedCategory || selectedGroup ? title : 'all products'}…`}
+                className="input pl-10 [&::-webkit-search-cancel-button]:hidden"
+                aria-label="Filter products"
+              />
+              {draft && (
                 <button
-                  type="submit"
-                  className="px-6 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors font-medium"
+                  type="button"
+                  onClick={() => setDraft('')}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-md p-1 text-gray-400 hover:text-gray-700"
+                  aria-label="Clear search"
                 >
-                  Search
+                  <X className="h-4 w-4" />
                 </button>
-              </form>
+              )}
+            </div>
+            <div className="flex gap-3">
+              <button type="button" onClick={() => setFiltersOpen(true)} className="btn-outline flex-1 py-2.5 lg:hidden">
+                <SlidersHorizontal className="h-4 w-4" />
+                Categories
+              </button>
+              <label className="relative flex-1 sm:flex-none">
+                <span className="sr-only">Sort products</span>
+                <select
+                  value={sortBy}
+                  onChange={(e) => updateParams({ sort: e.target.value })}
+                  className="input w-full cursor-pointer appearance-none py-2.5 pr-9 sm:w-auto"
+                >
+                  {SORTS.map((s) => (
+                    <option key={s.value} value={s.value}>
+                      {s.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+              </label>
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-4 md:gap-8">
-            {/* Left Sidebar - Product Groups & Categories */}
-            <aside className="w-full md:w-80 flex-shrink-0">
-              <div className={`bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden ${showFilters ? 'block' : 'hidden md:block'} md:sticky md:top-28`}>
-                {/* Header */}
-                <div className="px-6 py-5 border-b border-gray-100">
-                  <div className="flex items-center justify-between">
-                    <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wider">Categories</h2>
-                    {(selectedGroupId || selectedCategoryId) && (
-                      <button
-                        onClick={handleShowAll}
-                        className="text-xs text-gray-500 hover:text-gray-900 font-medium transition-colors"
-                      >
-                        Reset
-                      </button>
-                    )}
-                  </div>
-                </div>
-
-                <nav className="py-2 max-h-[calc(100vh-200px)] overflow-y-auto">
-                  {/* Show All Products Option */}
-                  <button
-                    onClick={handleShowAll}
-                    className={`w-full text-left px-6 py-3 transition-all duration-200 flex items-center gap-3 group ${
-                      !selectedGroupId && !selectedCategoryId
-                        ? 'bg-gray-900 text-white border-l-4 border-gray-900'
-                        : 'text-gray-700 hover:bg-gray-50 hover:border-l-4 hover:border-gray-300 border-l-4 border-transparent'
-                    }`}
-                  >
-                    <span className="font-medium text-sm">All Products</span>
-                  </button>
-
-                  {/* Product Groups */}
-                  {Data.productGroups
-                    .filter(group => group.id !== 2 && group.id !== 5 && group.id !== 7)
-                    .map((group) => {
-                      const categories = getCategoriesForGroup(group.id)
-                      const directProductsCount = getDirectProductsCount(group.id)
-                      const totalProductsCount = getTotalProductsCount(group.id)
-                      const directProducts = getDirectProducts(group.id)
-                      const isExpanded = expandedGroups.includes(group.id)
-                      const isSelected = selectedGroupId === group.id && !selectedCategoryId
-
-                      return (
-                        <div key={group.id} className="border-b border-gray-50 last:border-0">
-                          {/* Group Header */}
-                          <button
-                            onClick={() => {
-                              // If group has categories or direct products, allow toggling
-                              if (categories.length > 0 || directProducts.length > 0) {
-                                // If group is already selected and expanded, just toggle expansion
-                                // Otherwise, select the group and expand it
-                                if (selectedGroupId === group.id && isExpanded) {
-                                  toggleGroup(group.id)
-                                } else {
-                                  handleGroupClick(group.id)
-                                  if (!isExpanded) {
-                                    toggleGroup(group.id)
-                                  }
-                                }
-                              } else {
-                                handleGroupClick(group.id)
-                              }
-                            }}
-                            className={`w-full text-left px-6 py-3 transition-all duration-200 flex items-center justify-between group ${
-                              isSelected
-                                ? 'bg-gray-900 text-white border-l-4 border-gray-900'
-                                : 'text-gray-700 hover:bg-gray-50 hover:border-l-4 hover:border-gray-300 border-l-4 border-transparent'
-                            }`}
-                          >
-                            <div className="flex items-center gap-3 flex-1 min-w-0">
-                              <span className="font-medium text-sm truncate">{group.name}</span>
-                            </div>
-                            {(categories.length > 0 || totalProductsCount > 0) && (
-                              <div className="flex items-center gap-2 flex-shrink-0">
-                                {totalProductsCount > 0 && (
-                                  <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                                    isSelected 
-                                      ? 'bg-white/20 text-white' 
-                                      : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'
-                                  }`}>
-                                    {totalProductsCount}
-                                  </span>
-                                )}
-                                {(categories.length > 0 || directProducts.length > 0) && (
-                                  <div className={`transition-transform duration-200 ${isExpanded ? 'rotate-0' : '-rotate-90'}`}>
-                                    <ChevronDown className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-gray-400'}`} />
-                                  </div>
-                                )}
-                              </div>
-                            )}
-                          </button>
-
-                          {/* Direct Products under Group (products without category) */}
-                          {isExpanded && directProducts.length > 0 && (
-                            <div className="bg-gray-50/50 border-l-4 border-gray-200 ml-0">
-                              {directProducts.map((product) => {
-                                return (
-                                  <Link
-                                    key={product.id}
-                                    to={getProductPath(product)}
-                                    className="w-full text-left px-10 py-2.5 transition-all duration-200 flex items-center justify-between group text-gray-600 hover:bg-white hover:border-l-4 hover:border-gray-400 border-l-4 border-transparent"
-                                  >
-                                    <span className="text-sm font-normal truncate">{product.name}</span>
-                                  </Link>
-                                )
-                              })}
-                            </div>
-                          )}
-
-                          {/* Categories under Group */}
-                          {isExpanded && categories.length > 0 && (
-                            <div className="bg-gray-50/50 border-l-4 border-gray-200 ml-0">
-                              {categories.map((category, idx) => {
-                                const categoryProducts = allProducts.filter(
-                                  p => p.category === category.name
-                                )
-                                const isCategorySelected = selectedCategoryId === category.id
-
-                                return (
-                                  <button
-                                    key={category.id}
-                                    onClick={() => handleCategoryClick(category.id, group.id)}
-                                    className={`w-full text-left px-10 py-2.5 transition-all duration-200 flex items-center justify-between group ${
-                                      isCategorySelected
-                                        ? 'bg-gray-900 text-white border-l-4 border-gray-900'
-                                        : 'text-gray-600 hover:bg-white hover:border-l-4 hover:border-gray-400 border-l-4 border-transparent'
-                                    }`}
-                                  >
-                                    <span className="text-sm font-normal truncate">{category.name}</span>
-                                    {categoryProducts.length > 0 && (
-                                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium ml-2 flex-shrink-0 ${
-                                        isCategorySelected 
-                                          ? 'bg-white/20 text-white' 
-                                          : 'bg-white text-gray-500 group-hover:bg-gray-100'
-                                      }`}>
-                                        {categoryProducts.length}
-                                      </span>
-                                    )}
-                                  </button>
-                                )
-                              })}
-                            </div>
-                          )}
-                        </div>
-                      )
-                    })}
-                </nav>
-              </div>
-            </aside>
-
-            {/* Right Side - Products Grid */}
-            <main className="flex-1 min-w-0 bg-white rounded-xl p-6">
-              {/* Filter Bar */}
-              <div className="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-                <div className="flex items-center gap-4 flex-wrap">
-                  {/* Filter Toggle Button - Mobile */}
-                  <button
-                    onClick={() => setShowFilters(!showFilters)}
-                    className="md:hidden flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                  >
-                    <Filter className="w-4 h-4" />
-                    <span className="text-sm font-medium">Filters</span>
-                  </button>
-
-                  {/* Sort Dropdown */}
-                  <div className="flex items-center gap-2">
-                    <label htmlFor="sort" className="text-sm text-gray-600 font-medium whitespace-nowrap">
-                      Sort by:
-                    </label>
-                    <select
-                      id="sort"
-                      value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value)}
-                      className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                    >
-                      <option value="default">Default</option>
-                      <option value="name-asc">Name: A to Z</option>
-                      <option value="name-desc">Name: Z to A</option>
-                    </select>
-                  </div>
-
-                  {/* Results Count */}
-                  <div className="text-sm text-gray-600">
-                    <span className="font-medium">{filteredProducts.length}</span> product{filteredProducts.length !== 1 ? 's' : ''} found
-                  </div>
-                </div>
-              </div>
-
-              {filteredProducts.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {filteredProducts.map((product) => (
-                      <Link
-                        key={product.id}
-                        to={getProductPath(product)}
-                        className="group bg-white rounded-lg hover:shadow-lg transition-all overflow-hidden flex flex-col"
-                      >
-                        <div className="aspect-square bg-white p-4 flex items-center justify-center overflow-hidden">
-                          <img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
-                          />
-                        </div>
-                        
-                        <div className="p-4 flex flex-col flex-1 text-center">
-                          <h3 className="font-medium text-gray-900 mb-2 group-hover:text-primary transition-colors text-sm">
-                            {product.name}
-                          </h3>
-                        </div>
-                      </Link>
-                    )
-                  )}
-                </div>
-              ) : (
-                <div className="bg-white rounded-lg border border-gray-200 p-12 text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
-                    <Search className="w-8 h-8 text-gray-400" />
-                  </div>
-                  <h3 className="text-xl font-medium text-gray-900 mb-2">No Products Found</h3>
-                  <p className="text-gray-500 mb-6">
-                    {searchTerm 
-                      ? `No products match "${searchTerm}". Try a different search term.`
-                      : 'No products available in this category.'}
-                  </p>
-                  {(selectedGroupId || selectedCategoryId) && (
-                    <button
-                      onClick={handleShowAll}
-                      className="px-6 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
-                    >
-                      Show All Products
-                    </button>
-                  )}
-                </div>
-              )}
-            </main>
+          <div className="mt-4 flex min-h-[28px] flex-wrap items-center gap-2 text-sm text-gray-500">
+            <span aria-live="polite">
+              {filteredProducts.length} product{filteredProducts.length === 1 ? '' : 's'}
+            </span>
+            {activeChips.map((chip) => (
+              <button
+                key={chip.key}
+                type="button"
+                onClick={chip.clear}
+                className="inline-flex items-center gap-1 rounded-full border border-gray-200 bg-white py-0.5 pl-2.5 pr-1.5 text-xs text-gray-700 hover:border-gray-300"
+              >
+                {chip.label}
+                <X className="h-3 w-3 text-gray-400" aria-label="Remove filter" />
+              </button>
+            ))}
+            {activeChips.length > 1 && (
+              <button type="button" onClick={() => setSearchParams({}, { replace: true })} className="text-xs font-medium text-gray-500 underline-offset-2 hover:text-gray-900 hover:underline">
+                Clear all
+              </button>
+            )}
           </div>
+
+          {filteredProducts.length > 0 ? (
+            <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4">
+              {filteredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} showLabel={!selectedCategory} />
+              ))}
+            </div>
+          ) : (
+            <div className="mt-5 rounded-2xl border border-dashed border-gray-300 px-6 py-16 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
+                <Search className="h-5 w-5 text-gray-400" />
+              </div>
+              <h2 className="text-base font-semibold text-gray-900">No products found</h2>
+              <p className="mx-auto mt-1 max-w-sm text-sm text-gray-500">
+                {query ? `Nothing matches “${query}” here. Try a broader term or search all categories.` : 'There are no products in this category yet.'}
+              </p>
+              <div className="mt-6 flex justify-center gap-3">
+                {(groupId || categoryId) && query && (
+                  <button type="button" onClick={() => updateParams({ groupId: null, categoryId: null })} className="btn-outline py-2.5">
+                    Search all categories
+                  </button>
+                )}
+                <button type="button" onClick={() => setSearchParams({}, { replace: true })} className="btn-dark py-2.5">
+                  Show all products
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
-      
-      <Footer/>
-      <WhatsAppFloat phone='+60123822001' message='Hi Myco Medic!' />
+
+      {/* Mobile filter sheet */}
+      <AnimatePresence>
+        {filtersOpen && (
+          <motion.div className="fixed inset-0 z-[150] lg:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <div className="absolute inset-0 bg-gray-900/40" onClick={() => setFiltersOpen(false)} aria-hidden />
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-label="Product categories"
+              className="absolute inset-x-0 bottom-0 flex max-h-[85vh] flex-col rounded-t-2xl bg-white"
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'tween', duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
+                <h2 className="text-base font-semibold text-gray-900">Categories</h2>
+                <button type="button" onClick={() => setFiltersOpen(false)} className="rounded-lg p-1.5 text-gray-500 hover:bg-gray-100" aria-label="Close">
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+              <div className="overflow-y-auto overscroll-contain p-3" style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}>
+                {filterNav}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

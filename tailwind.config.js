@@ -4,6 +4,9 @@ module.exports = {
     content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
   	extend: {
+  		fontFamily: {
+  			sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif']
+  		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
@@ -20,10 +23,17 @@ module.exports = {
   				DEFAULT: 'hsl(var(--popover))',
   				foreground: 'hsl(var(--popover-foreground))'
   			},
+			// Brand blue, sampled from the logo swoosh and deepened one step so white
+			// text on it clears WCAG AA.
 			primary: {
-				DEFAULT: '#0071e3', // Apple blue
+				DEFAULT: '#1a6fc4',
+				50: '#eef5fc',
+				100: '#d9e8f7',
+				600: '#1a6fc4',
+				700: '#155a9f',
 				foreground: 'hsl(var(--primary-foreground))'
 			},
+			ink: '#0f172a',
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
   				foreground: 'hsl(var(--secondary-foreground))'

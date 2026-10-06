@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 import { useCart } from '../context/CartContext'
 
 function Success() {
@@ -42,7 +40,6 @@ function Success() {
 
   return (
     <div>
-      <Header />
       <div className='min-h-screen bg-gray-50 flex items-center justify-center py-16 px-6'>
         <div className='max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center'>
           <div className='mb-6'>
@@ -103,7 +100,6 @@ function Success() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

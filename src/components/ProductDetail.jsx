@@ -4,8 +4,6 @@ import Data from '@/shared/Data'
 import ProductDetailDefault from './ProductDetailDefault'
 import productContentRegistry from '@/productContent'
 import slugify from '@/utils/slugify'
-import Header from './Header'
-import Footer from './Footer'
 import PageSEO from './PageSEO'
 import { breadcrumbJsonLd, productJsonLd } from '@/utils/seo'
 import {
@@ -34,17 +32,13 @@ function ProductDetail() {
     return (
       <div>
         <PageSEO title="Product Not Found" description="The requested product could not be found." path={`/product/${id}`} noindex />
-        <Header/>
-        <div className='py-16 bg-white'>
-          <div className='max-w-4xl mx-auto px-6 text-center'>
-            <h1 className='text-4xl font-bold text-gray-900 mb-4'>Product Not Found</h1>
-            <p className='text-gray-600 mb-8'>The requested product could not be found.</p>
-            <Link to='/products' className='text-primary hover:text-primary/80 font-medium'>
-              ← Back to Products
-            </Link>
-          </div>
-        </div>
-        <Footer/>
+        <section className="container-page flex min-h-[50vh] flex-col items-center justify-center py-24 text-center">
+          <h1 className="heading-lg">Product not found</h1>
+          <p className="lead mt-3 max-w-md">This product may have been renamed or discontinued. Try searching the catalogue, or ask us directly.</p>
+          <Link to="/products" className="btn-primary mt-8">
+            Browse all products
+          </Link>
+        </section>
       </div>
     )
   }

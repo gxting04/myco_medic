@@ -24,11 +24,10 @@ function VideoShowcase() {
     const video = videoRef.current
     if (!video) return
     if (video.paused) {
-      video.play()
-      setIsPlaying(true)
+      // onPlay/onPause keep the icon honest; play() rejects if the browser blocks it
+      video.play().catch(() => setIsPlaying(false))
     } else {
       video.pause()
-      setIsPlaying(false)
     }
   }
 
@@ -40,37 +39,23 @@ function VideoShowcase() {
   }
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative py-16 sm:py-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden"
-    >
-      {/* Subtle background shapes */}
-      <div className="absolute top-1/4 -left-40 w-96 h-96 bg-primary/5 blur-3xl rounded-full"></div>
-      <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-primary/10 blur-3xl rounded-full"></div>
-
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Heading */}
+    <section ref={sectionRef} className="section bg-gray-950 text-white" aria-labelledby="video-title">
+      <div className="container-page grid items-center gap-10 lg:grid-cols-[1fr,1.6fr] lg:gap-16">
         <div
-          className={`text-center max-w-2xl mx-auto mb-12 transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}
         >
-          <span className="inline-block text-sm font-semibold uppercase tracking-wider text-primary">
-            Who We Are
-          </span>
-          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-            See Myco Medic <span className="text-primary">in Action</span>
+          <span className="inline-block text-xs font-semibold uppercase tracking-[0.14em] text-sky-300">Who we are</span>
+          <h2 id="video-title" className="mt-3 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+            See Myco Medic in action
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-gray-600 leading-relaxed">
-            A closer look at how we deliver trusted medical supplies and equipment to
-            hospitals and clinics across Malaysia.
+          <p className="mt-5 text-base leading-relaxed text-gray-400 sm:text-lg">
+            A closer look at how we deliver trusted medical supplies and equipment to hospitals and clinics across Malaysia.
           </p>
         </div>
 
-        {/* Video */}
         <div
-          className={`group relative aspect-[5/8] sm:aspect-auto rounded-3xl overflow-hidden shadow-2xl ring-1 ring-black/5 transition-all duration-1000 delay-200 ${
-            isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+          className={`group relative aspect-[5/8] overflow-hidden rounded-2xl bg-black ring-1 ring-white/10 transition-all delay-150 duration-700 sm:aspect-auto ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
           }`}
         >
           <video
@@ -78,39 +63,33 @@ function VideoShowcase() {
             src="/myco_medic_video.mp4"
             /* The mp4 is a 832x464 landscape file with a portrait clip pillarboxed
                inside it. On phones we crop to the clip instead of showing the bars. */
-            className="w-full h-full sm:h-auto object-cover block bg-black rounded-3xl"
+            className="block h-full w-full object-cover sm:h-auto"
             autoPlay
             loop
             muted
             playsInline
+            preload="metadata"
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
           />
 
-          {/* Controls overlay */}
           {/* bottom-left on phones: bottom-right is where the WhatsApp bubble sits */}
-          <div className="absolute bottom-4 left-4 sm:left-auto sm:right-4 flex gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
+          <div className="absolute bottom-4 left-4 flex gap-2 transition-opacity duration-300 sm:left-auto sm:right-4 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100">
             <button
+              type="button"
               onClick={togglePlay}
-              className="bg-white/80 hover:bg-white rounded-full p-3 shadow-lg transition-all hover:scale-110"
+              className="rounded-full bg-white/90 p-2.5 text-gray-900 shadow-lg transition hover:bg-white"
               aria-label={isPlaying ? 'Pause video' : 'Play video'}
             >
-              {isPlaying ? (
-                <Pause className="w-5 h-5 text-gray-800" />
-              ) : (
-                <Play className="w-5 h-5 text-gray-800" />
-              )}
+              {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
             </button>
             <button
+              type="button"
               onClick={toggleMute}
-              className="bg-white/80 hover:bg-white rounded-full p-3 shadow-lg transition-all hover:scale-110"
+              className="rounded-full bg-white/90 p-2.5 text-gray-900 shadow-lg transition hover:bg-white"
               aria-label={isMuted ? 'Unmute video' : 'Mute video'}
             >
-              {isMuted ? (
-                <VolumeX className="w-5 h-5 text-gray-800" />
-              ) : (
-                <Volume2 className="w-5 h-5 text-gray-800" />
-              )}
+              {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
             </button>
           </div>
         </div>

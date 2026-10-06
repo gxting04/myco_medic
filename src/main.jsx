@@ -17,61 +17,32 @@ import { CartProvider } from './context/CartContext'
 // import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
 import Success from './pages/Success'
+import NotFound from './pages/NotFound'
+import RootLayout from './components/site/RootLayout'
+import { QuoteProvider } from './context/QuoteContext'
+import { UIProvider } from './context/UIContext'
 
 
 const router = createBrowserRouter([
   {
-    path:'/',
-    element:<Home/>
-  },
-  {
-    path:'/contact',
-    element:<Contact/>
-  },
-  {
-    path:'/about',
-    element:<About/>
-  },
-  {
-    path:'/career',
-    element:<Career/>
-  },
-  {
-    path:'/internship',
-    element:<Internship/>
-  },
-  {
-    path:'/products',
-    element:<ProductsPage/>
-  },
-  {
-    path:'/products/group/:groupName',
-    element:<GroupCategories/>
-  },
-  {
-    path:'/products/category/:categoryName',
-    element:<CategoryProducts/>
-  },
-  {
-    path:'/product/:id',
-    element:<ProductDetail/>
-  },
-  {
-    path:'/search',
-    element:<SearchResults/>
-  },
-  // Cart page hidden
-  // {
-  //   path:'/cart',
-  //   element:<Cart/>
-  // },
-  {
-    path:'/checkout',
-    element:<Checkout/>
-  },
-  {
-    path:'/success',
-    element:<Success/>
+    element: <RootLayout />,
+    children: [
+      { path: '/', element: <Home /> },
+      { path: '/contact', element: <Contact /> },
+      { path: '/about', element: <About /> },
+      { path: '/career', element: <Career /> },
+      { path: '/internship', element: <Internship /> },
+      { path: '/products', element: <ProductsPage /> },
+      { path: '/products/group/:groupName', element: <GroupCategories /> },
+      { path: '/products/category/:categoryName', element: <CategoryProducts /> },
+      { path: '/product/:id', element: <ProductDetail /> },
+      { path: '/search', element: <SearchResults /> },
+      // Cart page hidden
+      // { path: '/cart', element: <Cart /> },
+      { path: '/checkout', element: <Checkout /> },
+      { path: '/success', element: <Success /> },
+      { path: '*', element: <NotFound /> }
+    ]
   }
 ])
 
@@ -86,7 +57,11 @@ try {
   createRoot(rootElement).render(
     <StrictMode>
       <CartProvider>
-        <RouterProvider router={router} /> 
+        <QuoteProvider>
+          <UIProvider>
+            <RouterProvider router={router} />
+          </UIProvider>
+        </QuoteProvider>
       </CartProvider>
     </StrictMode>,
   )
