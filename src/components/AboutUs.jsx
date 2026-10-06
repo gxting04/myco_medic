@@ -1,188 +1,75 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { ChevronLeft, ChevronRight, Check, ArrowRight } from 'lucide-react'
+import { ArrowRight, GraduationCap, ShieldCheck, Stethoscope } from 'lucide-react'
+import { Reveal } from '../lib/motion'
+import { COMPANY } from '@/lib/site'
 
-const highlights = [
-  'Trusted by hospitals & clinics nationwide',
-  'Specialists in OT, ICU & critical care supplies',
-  'Quality products from global manufacturers'
+const PILLARS = [
+  {
+    icon: Stethoscope,
+    title: 'Specialists in OT, ICU & critical care',
+    text: 'Our range is built around the operating theatre, intensive care and CSSD — the departments we know best.'
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Quality from established manufacturers',
+    text: 'We work directly with manufacturers in Asia, Europe and the US, and stand behind every line we carry.'
+  },
+  {
+    icon: GraduationCap,
+    title: 'Training and on-site support',
+    text: 'Product demonstrations, in-service sessions and CME support for clinical teams, delivered by our own staff.'
+  }
 ]
 
 function AboutUs() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [isVisible, setIsVisible] = useState(false)
-  const [scrollY, setScrollY] = useState(0)
-  // Parallax is desktop-only: shifting the image inside its rounded, clipped card
-  // left a blank strip at the bottom of the card on phones.
-  const [parallaxOn, setParallaxOn] = useState(false)
-  const sectionRef = useRef(null)
-
-  const images = [
-    '/header_2.png',
-    '/header_3.jpg',
-    '/header_4.jpg',
-  ]
-
-  // Auto-slide
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % images.length)
-    }, 4000)
-    return () => clearInterval(timer)
-  }, [])
-
-  // Reveal on intersection
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => entry.isIntersecting && setIsVisible(true),
-      { threshold: 0.3 }
-    )
-    if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    const mq = window.matchMedia('(min-width: 1024px)')
-    const apply = () => setParallaxOn(mq.matches)
-    apply()
-    mq.addEventListener('change', apply)
-    return () => mq.removeEventListener('change', apply)
-  }, [])
-
-  // Track scroll for parallax
-  useEffect(() => {
-    if (!parallaxOn) {
-      setScrollY(0)
-      return
-    }
-    const handleScroll = () => {
-      const rect = sectionRef.current?.getBoundingClientRect()
-      if (rect) {
-        const progress = Math.min(Math.max(0, 1 - rect.top / window.innerHeight), 1)
-        setScrollY(progress)
-      }
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [parallaxOn])
-
-  const next = () => setCurrentImageIndex((p) => (p + 1) % images.length)
-  const prev = () => setCurrentImageIndex((p) => (p - 1 + images.length) % images.length)
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative py-16 sm:py-24 bg-gradient-to-b from-white to-gray-50 overflow-hidden"
-    >
-      {/* Subtle background shapes */}
-      <div className="absolute -top-20 -left-20 w-72 h-72 bg-primary/10 blur-3xl rounded-full"></div>
-      <div className="absolute top-1/3 -right-40 w-96 h-96 bg-primary/5 blur-3xl rounded-full"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center relative z-10">
-        {/* ===== Left Image Section ===== */}
-        <div
-          className={`relative transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <div className="relative group rounded-3xl overflow-hidden shadow-xl">
-            <div
-              className="relative h-[420px] lg:h-[550px]"
-              style={{
-                transform: `translateY(${scrollY * -30}px) scale(${1 + scrollY * 0.03})`,
-                transition: 'transform 0.3s ease-out',
-              }}
-            >
-              {images.map((img, i) => (
-                <div
-                  key={i}
-                  className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                    i === currentImageIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
-                  }`}
-                >
-                  <img src={img} alt={`About ${i}`} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-                </div>
-              ))}
-            </div>
-
-            {/* Navigation Arrows */}
-            <button
-              onClick={prev}
-              aria-label="Previous photo"
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white rounded-full p-3 sm:p-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all shadow-lg"
-            >
-              <ChevronLeft className="w-5 h-5 text-gray-700" />
-            </button>
-            <button
-              onClick={next}
-              aria-label="Next photo"
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white rounded-full p-3 sm:p-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all shadow-lg"
-            >
-              <ChevronRight className="w-5 h-5 text-gray-700" />
-            </button>
+    <section className="section border-t border-gray-100 bg-white" aria-labelledby="about-title">
+      <div className="container-page grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+        <Reveal className="relative">
+          <div className="overflow-hidden rounded-3xl border border-gray-200">
+            <img
+              src="/header_3.jpg"
+              alt="Clinicians in discussion in a hospital corridor"
+              loading="lazy"
+              className="aspect-[4/3] w-full object-cover lg:aspect-[5/6]"
+            />
           </div>
-        </div>
+          <div className="absolute -bottom-5 left-5 rounded-2xl border border-gray-200 bg-white px-5 py-4 shadow-[0_12px_32px_-16px_rgba(15,23,42,0.3)] sm:left-8">
+            <p className="text-xs text-gray-500">Serving Malaysian healthcare since</p>
+            <p className="text-3xl font-semibold tracking-tight text-gray-900">{COMPANY.since}</p>
+          </div>
+        </Reveal>
 
-        {/* ===== Right Text Section ===== */}
-        <div
-          className={`space-y-6 transition-all duration-1000 delay-200 ${
-            isVisible
-              ? 'opacity-100 translate-y-0 lg:translate-x-0'
-              : 'opacity-0 translate-y-8 lg:translate-y-0 lg:translate-x-8'
-          }`}
-        >
-          <span className="inline-block text-sm font-semibold uppercase tracking-wider text-primary">
-            About Myco Medic
-          </span>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-            Transforming <span className="text-primary">Healthcare Solutions</span>
+        <Reveal delay={0.1}>
+          <span className="eyebrow">Why Myco Medic</span>
+          <h2 id="about-title" className="heading-lg mt-3">
+            A partner for clinical teams, not just a supplier
           </h2>
-
-          <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-            Since <strong className="text-gray-900">2010</strong>,{' '}
-            <span className="text-primary font-semibold">Myco Medic</span> has delivered
-            high-quality medical devices and surgical equipment across Malaysia — dependable,
-            innovative tools that enhance patient outcomes and clinical efficiency.
+          <p className="lead mt-5">
+            For over a decade we have supplied dependable medical devices and surgical consumables to hospitals and clinics across Malaysia —
+            with the product knowledge to back them up.
           </p>
 
-          {/* Highlights */}
-          <ul className="space-y-3">
-            {highlights.map((item) => (
-              <li key={item} className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <Check className="h-4 w-4" strokeWidth={3} />
+          <ul className="mt-10 space-y-7">
+            {PILLARS.map(({ icon: Icon, title, text }) => (
+              <li key={title} className="flex gap-4">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gray-200 bg-gray-50 text-gray-700">
+                  <Icon className="h-5 w-5" strokeWidth={1.75} />
                 </span>
-                <span className="text-base text-gray-700">{item}</span>
+                <div>
+                  <h3 className="text-[15px] font-semibold text-gray-900">{title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-gray-500">{text}</p>
+                </div>
               </li>
             ))}
           </ul>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200">
-            <div>
-              <div className="text-3xl font-bold text-gray-900">13+</div>
-              <div className="text-sm text-gray-500">Years of expertise</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-gray-900">180+</div>
-              <div className="text-sm text-gray-500">Products available</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-gray-900">10+</div>
-              <div className="text-sm text-gray-500">Brand partners</div>
-            </div>
-          </div>
-
-          <Link
-            to="/about"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:-translate-y-0.5 group"
-          >
-            Learn more about us
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          <Link to="/about" className="group mt-10 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-700">
+            More about our company
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

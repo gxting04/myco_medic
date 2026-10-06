@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import { Navigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 
 function Checkout() {
-  const navigate = useNavigate()
   const { cartItems, getCartTotal, clearCart } = useCart()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -165,15 +162,15 @@ function Checkout() {
   }
 
 
+  // Calling navigate() during render is ignored by React Router (the page just
+  // rendered blank), and /cart is not routed while the cart is hidden.
   if (cartItems.length === 0) {
-    navigate('/cart')
-    return null
+    return <Navigate to="/products" replace />
   }
 
   return (
     <div>
-      <Header />
-      <div className='pt-32 pb-16 bg-gray-50 min-h-screen'>
+      <div className='pt-10 pb-16 bg-gray-50 min-h-screen'>
         <div className='max-w-6xl mx-auto px-6'>
           <h1 className='text-4xl font-bold text-gray-900 mb-8'>Checkout</h1>
           
@@ -403,7 +400,6 @@ function Checkout() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

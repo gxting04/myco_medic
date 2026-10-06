@@ -1,174 +1,100 @@
-import React, { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import WhatsAppFloat from '../components/WhatsAppFloat'
+import React, { useMemo } from 'react'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import Data from '../shared/Data'
 import PageSEO from '../components/PageSEO'
-import { getProductPath } from '@/utils/productUrl'
+import ProductCard from '../components/ProductCard'
+import { getCatalogProducts, getGroup } from '@/lib/catalog'
+
+const categorySlug = (name) => name.toLowerCase().replace(/\s+/g, '-')
+
+// Old slugs that are still linked from outside after a category was renamed.
+const LEGACY_SLUGS = {
+  'medical-burshes-and-accesories': 'medical-brushes-and-accessories'
+}
 
 function CategoryProducts() {
-  const { categoryName } = useParams()
-  const [products, setProducts] = useState([])
-  const [category, setCategory] = useState(null)
+  const { categoryName = '' } = useParams()
+  const category = useMemo(() => Data.productCategories.find((c) => categorySlug(c.name) === categoryName) || null, [categoryName])
+  const products = useMemo(
+    () => (category ? getCatalogProducts().filter((p) => p.category && p.category.toLowerCase() === category.name.toLowerCase()) : []),
+    [category]
+  )
 
-  useEffect(() => {
-    // Get saved products from localStorage, excluding Medical Furniture (groupId: 7) and Medical Equipment (groupId: 2)
-    const savedProducts = localStorage.getItem('myco_products')
-    const allProducts = (savedProducts ? JSON.parse(savedProducts) : Data.initialProducts)
-      .filter(p => p.groupId !== 2 && p.groupId !== 7)
-
-    // Find the category
-    const foundCategory = Data.productCategories.find(cat => 
-      cat.name.toLowerCase().replace(/\s+/g, '-') === categoryName
-    )
-
-    if (foundCategory) {
-      setCategory(foundCategory)
-      // Filter products by category (case-insensitive), only products that have a category
-      const categoryProducts = allProducts.filter(product => 
-        product.category && product.category.toLowerCase() === foundCategory.name.toLowerCase()
-      )
-      setProducts(categoryProducts)
-    }
-  }, [categoryName])
+  if (LEGACY_SLUGS[categoryName]) {
+    return <Navigate to={`/products/category/${LEGACY_SLUGS[categoryName]}`} replace />
+  }
 
   if (!category) {
     return (
-      <div>
-        <Header/>
-        <div className='py-16 bg-white'>
-          <div className='max-w-4xl mx-auto px-6 text-center'>
-            <h1 className='text-4xl font-bold text-gray-900 mb-4'>Category Not Found</h1>
-            <p className='text-gray-600 mb-8'>The requested category could not be found.</p>
-            <Link to='/products' className='text-primary hover:text-primary/80 font-medium'>
-              ← Back to Products
-            </Link>
-          </div>
-        </div>
-        <Footer/>
-      </div>
+      <section className="container-page flex min-h-[50vh] flex-col items-center justify-center py-24 text-center">
+        <PageSEO title="Category not found" description="The requested category could not be found." path={`/products/category/${categoryName}`} noindex />
+        <h1 className="heading-lg">Category not found</h1>
+        <p className="lead mt-3">The category you were looking for doesn’t exist or has moved.</p>
+        <Link to="/products" className="btn-primary mt-8">
+          Browse all products
+        </Link>
+      </section>
     )
   }
 
+  const group = getGroup(category.groupId)
+
   return (
-    <div>
+    <div className="bg-white">
       <PageSEO
         title={category.name}
         description={category.description || `${category.name} medical products from Myco Medic Malaysia.`}
         path={`/products/category/${categoryName}`}
       />
-      <Header/>
-      
-      <div className='pt-24 md:pt-32 pb-8 md:pb-16 bg-white'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6'>
-          {/* Breadcrumb */}
-          <nav className='mb-8'>
-            <div className='flex items-center space-x-2 text-sm text-gray-500'>
-              <Link to='/' className='hover:text-primary'>Home</Link>
-              <span>›</span>
-              <Link to='/products' className='hover:text-primary'>Products</Link>
-              <span>›</span>
-              <span className='text-gray-900 font-medium'>{category.name}</span>
-            </div>
-          </nav>
-
-          {/* Page Header */}
-          <div className='text-center mb-12'>
-            <div className='w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center'>
-              <img 
-                src={category.icon} 
-                alt={`${category.name} icon`}
-                className='w-12 h-12 object-contain'
-              />
-            </div>
-            <h1 className='text-3xl sm:text-4xl font-bold text-gray-900 mb-4'>{category.name} Products</h1>
-            <p className='text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4'>
-              Discover our range of {category.name.toLowerCase()} equipment and devices
-            </p>
-            <div className='w-24 h-1 bg-primary mx-auto mt-4'></div>
-          </div>
-
-          {/* Products Grid */}
-          {products.length > 0 ? (
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8'>
-              {products.map((product) => (
-                <Link
-                  key={product.id}
-                  to={getProductPath(product)}
-                  className='group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100 overflow-hidden'
-                >
-                  <div className='relative overflow-hidden'>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className='w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300'
-                    />
-                    <div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity'></div>
-                  </div>
-                  
-                  <div className='p-6'>
-                    <h3 className='text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors'>
-                      {product.name}
-                    </h3>
-                    
-                    <div className='flex items-center text-primary opacity-0 group-hover:opacity-100 transition-opacity'>
-                      <span className='text-sm font-medium mr-2'>View Details</span>
-                      <svg className='w-4 h-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                        <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <div className='text-center py-16'>
-              <div className='w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center'>
-                <svg className='w-12 h-12 text-gray-400' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2M4 13h2m13-8l-4 4m0 0l-4-4m4 4V3' />
-                </svg>
-              </div>
-              <h3 className='text-2xl font-bold text-gray-900 mb-4'>No Products Found</h3>
-              <p className='text-gray-600 mb-8'>
-                We don't have any products in this category yet. Check back soon or contact us for more information.
-              </p>
-              <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-                <Link 
-                  to='/products'
-                  className='bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors font-medium'
-                >
-                  Browse All Categories
-                </Link>
-                <a 
-                  href='https://wa.me/60123822001' 
-                  target='_blank' 
-                  rel='noopener noreferrer'
-                  className='border border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors font-medium'
-                >
-                  Contact Us
-                </a>
-              </div>
-            </div>
-          )}
-
-          {/* Back to Products */}
-          <div className='mt-12 text-center'>
-            <Link 
-              to='/products'
-              className='inline-flex items-center text-primary hover:text-primary/80 font-medium transition-colors'
-            >
-              <svg className='mr-2 w-4 h-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M15 19l-7-7 7-7' />
-              </svg>
-              Back to All Products
+      <header className="border-b border-gray-100 bg-gray-50/60">
+        <div className="container-page py-10 md:py-14">
+          <nav aria-label="Breadcrumb" className="text-sm text-gray-500">
+            <Link to="/" className="hover:text-gray-900">
+              Home
             </Link>
-          </div>
+            <span className="mx-2 text-gray-300">/</span>
+            <Link to="/products" className="hover:text-gray-900">
+              Products
+            </Link>
+            {group && (
+              <>
+                <span className="mx-2 text-gray-300">/</span>
+                <Link to={`/products?groupId=${group.id}`} className="hover:text-gray-900">
+                  {group.name}
+                </Link>
+              </>
+            )}
+          </nav>
+          <h1 className="heading-lg mt-4">{category.name}</h1>
+          {category.description && <p className="lead mt-3 max-w-2xl">{category.description}</p>}
+          <p className="mt-4 text-sm text-gray-500">
+            {products.length} product{products.length === 1 ? '' : 's'}
+          </p>
         </div>
+      </header>
+
+      <div className="container-page py-10 md:py-12">
+        {products.length > 0 ? (
+          <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} showLabel={false} />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-dashed border-gray-300 px-6 py-16 text-center">
+            <h2 className="text-base font-semibold text-gray-900">No products in this category yet</h2>
+            <p className="mt-1 text-sm text-gray-500">Contact us — we may still be able to source what you need.</p>
+            <div className="mt-6 flex justify-center gap-3">
+              <Link to="/products" className="btn-outline py-2.5">
+                Browse all products
+              </Link>
+              <Link to="/contact" className="btn-dark py-2.5">
+                Contact us
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
-      
-      <Footer/>
-      <WhatsAppFloat phone='+60123822001' message='Hi Myco Medic!' />
     </div>
   )
 }

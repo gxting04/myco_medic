@@ -1,46 +1,16 @@
-import React, { useState } from 'react'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import WhatsAppFloat from './components/WhatsAppFloat'
-import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { Briefcase, FileText, MapPin, Clock, Share2, Mail, Phone } from 'lucide-react'
+import React, { useEffect, useRef, useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
+import { Briefcase, Check, ChevronRight, Clock, FileText, Link2, Mail, MapPin, Share2 } from 'lucide-react'
+import { FaWhatsapp } from 'react-icons/fa'
 import PageSEO from './components/PageSEO'
-
-function JobOverviewBody({ text }) {
-  return (
-    <>
-      {text.split('\n').map((line, index) => {
-        if (line.startsWith('**') && line.endsWith('**')) {
-          return (
-            <p key={index} className="font-semibold text-gray-900 mb-2 mt-5 first:mt-0">
-              {line.replace(/\*\*/g, '')}
-            </p>
-          )
-        }
-        if (line.trim().startsWith('•')) {
-          return (
-            <div key={index} className="flex items-start gap-2 mb-2">
-              <span className="text-teal-600 mt-0.5 shrink-0">•</span>
-              <span className="leading-relaxed">{line.replace(/^•\s*/, '')}</span>
-            </div>
-          )
-        }
-        if (line.trim()) {
-          return (
-            <p key={index} className="mb-3 text-gray-700 leading-relaxed last:mb-0">
-              {line}
-            </p>
-          )
-        }
-        return <br key={index} />
-      })}
-    </>
-  )
-}
+import RichText from './components/RichText'
+import { Reveal } from './lib/motion'
+import { CAREERS, mailtoLink, whatsappLink } from './lib/site'
 
 function Career() {
-  const [selectedJob, setSelectedJob] = useState(0)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [copied, setCopied] = useState(false)
+  const detailRef = useRef(null)
 
   const jobs = [
     {
@@ -173,252 +143,174 @@ Interested candidates are invited to submit a curriculum vitae for consideration
     }
   ]
 
+  // The selected role lives in the URL (?role=3) so a specific opening can be
+  // shared — the old Share button had no handler and did nothing.
+  const roleId = Number.parseInt(searchParams.get('role'), 10)
+  const selectedIndex = Math.max(0, jobs.findIndex((j) => j.id === roleId))
+  const job = jobs[selectedIndex]
+
+  useEffect(() => {
+    if (!copied) return
+    const t = setTimeout(() => setCopied(false), 2000)
+    return () => clearTimeout(t)
+  }, [copied])
+
+  const selectJob = (id) => {
+    setSearchParams({ role: String(id) }, { replace: true, preventScrollReset: true })
+    // On phones the details sit below the list; bring them into view.
+    if (window.matchMedia('(max-width: 1023px)').matches) {
+      requestAnimationFrame(() => detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }))
+    }
+  }
+
+  const share = async () => {
+    const url = `${window.location.origin}/career?role=${job.id}`
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: `${job.title} — Myco Medic`, url })
+        return
+      } catch (err) {
+        if (err?.name === 'AbortError') return
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(url)
+      setCopied(true)
+    } catch {
+      window.prompt('Copy this link', url)
+    }
+  }
+
+  const applyEmail = mailtoLink(
+    CAREERS.email,
+    `Application: ${job.title}`,
+    `Hi ${CAREERS.contactName},\n\nI would like to apply for the ${job.title} position at Myco Medic. Please find my resume attached.\n\nName:\nPhone:\n\nThank you.`
+  )
+  const applyWhatsApp = whatsappLink(`Hi ${CAREERS.contactName}, I'd like to apply for the ${job.title} position at Myco Medic.`, CAREERS.whatsapp)
+
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white">
       <PageSEO
         title="Careers"
         description="Join Myco Medic — career opportunities in medical supplies and healthcare distribution across Malaysia."
         path="/career"
       />
-      <Header />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-12 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-8"
-          >
-            <h1 className="text-5xl md:text-6xl font-light text-gray-900 mb-4 tracking-tight">
-              Career Opportunity
-            </h1>
-            <p className="text-lg text-gray-500 max-w-3xl mx-auto font-light">
-              Join us in advancing healthcare standards across Malaysia
+      <header className="border-b border-gray-100 bg-gray-50/60">
+        <div className="container-page grid gap-8 py-12 md:py-16 lg:grid-cols-[1.3fr,1fr] lg:items-end">
+          <div>
+            <span className="eyebrow">Careers</span>
+            <h1 className="heading-xl mt-3">Build your career in healthcare</h1>
+            <p className="lead mt-4 max-w-2xl">
+              We are looking for passionate, hard-working people to help us grow. At Myco Medic we value our people as our greatest asset — the work
+              you put in shapes your own career path.
             </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Why Join Us Section */}
-      <section className="py-12 bg-gray-50 border-y border-gray-200">
-        <div className="max-w-4xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-8"
-          >
-            <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-4 tracking-tight">
-              Why Join Us?
-            </h2>
-            <p className="text-base text-gray-600 leading-relaxed font-light mb-4">
-              We are looking for individuals who are passionate and hard-working to be part of us to help us explore and expand our business market. We value our people as a great asset for the company.
+          </div>
+          <div className="rounded-2xl border border-gray-200 bg-white p-5 text-sm text-gray-600">
+            <p className="font-medium text-gray-900">How to apply</p>
+            <p className="mt-1">
+              Send your resume and the role you are applying for to{' '}
+              <a href={mailtoLink(CAREERS.email, 'Job application')} className="font-medium text-primary hover:text-primary-700">
+                {CAREERS.email}
+              </a>
+              , or WhatsApp {CAREERS.contactName} at{' '}
+              <a href={whatsappLink('', CAREERS.whatsapp)} target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:text-primary-700">
+                {CAREERS.whatsappDisplay}
+              </a>
+              .
             </p>
-            <p className="text-base text-gray-600 leading-relaxed font-light">
-              At Myco Medic, we truly believe that hard work pays off, every hard work you put in will deliver results and determine your own career future. Build your career path with us, today.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Career Application Section */}
-      <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-8"
-          >
-            <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-2 tracking-tight">
-              Career Application
-            </h2>
-            <p className="text-sm text-gray-500 mb-6">
-              For direct job application or internship related queries, kindly drop your resume and email us at{' '}
-              <span className="text-gray-900 font-medium">bryan@mycomedic.com.my</span>
-              {' '}or contact us at{' '}
-              <a href="https://wa.me/60123375935" target="_blank" rel="noopener noreferrer" className="text-gray-900 font-medium hover:underline">
-                +60 12-337 5935
-              </a>{' '}
-              <span className="text-gray-500">(Mr. Bryan)</span> via WhatsApp or phone call.
-            </p>
-          </motion.div>
-
-          {/* Split View Layout */}
-          <div className="grid lg:grid-cols-[1fr,1.5fr] gap-6">
-            {/* Left Panel - Job Listings */}
-            <div className="space-y-4">
-              <div className="mb-4">
-                <h3 className="text-lg font-medium text-gray-900 mb-1">Position Available</h3>
-                <p className="text-sm text-gray-500">
-                  There are currently a total of <span className="text-teal-600 font-medium">{jobs.length}</span> position(s) available.
-                </p>
-              </div>
-
-              {jobs.map((job, index) => {
-                const Icon = job.icon
-                return (
-                  <motion.div
-                    key={job.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    onClick={() => setSelectedJob(index)}
-                    className={`p-5 rounded-lg border-2 cursor-pointer transition-all ${
-                      selectedJob === index
-                        ? 'border-teal-600 bg-teal-50'
-                        : 'border-gray-200 hover:border-gray-300 bg-white'
-                    }`}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Icon className="w-6 h-6 text-white" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-base font-medium text-gray-900 mb-2 line-clamp-2">
-                          {job.title}
-                        </h4>
-                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-                          <MapPin className="w-4 h-4 flex-shrink-0" />
-                          <span className="truncate">{job.location}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                          <Briefcase className="w-4 h-4 flex-shrink-0" />
-                          <span className="truncate">{job.categories.join(', ')}</span>
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          <span
-                            className={`px-3 py-1 text-xs font-medium rounded-full ${
-                              job.track === 'internship'
-                                ? 'bg-teal-100 text-teal-800 ring-1 ring-teal-200/80'
-                                : 'bg-gray-100 text-gray-700'
-                            }`}
-                          >
-                            {job.employmentType}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                )
-              })}
-            </div>
-
-            {/* Right Panel - Job Details */}
-            <div className="lg:sticky lg:top-24 lg:h-fit">
-              {jobs[selectedJob] && (
-                <motion.div
-                  key={selectedJob}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="bg-white rounded-lg border border-gray-200 overflow-hidden"
-                >
-                  {/* Company Banner */}
-                  <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
-                    <img
-                      src="/Myco_Medic.png"
-                      alt="Myco Medic"
-                      className="w-full h-full object-contain object-center opacity-30"
-                    />
-                  </div>
-
-                  {/* Job Details */}
-                  <div className="p-6">
-                    <div className="mb-6">
-                      <h2 className="text-2xl font-medium text-gray-900 mb-4">
-                        {jobs[selectedJob].title}
-                      </h2>
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-2 text-gray-600">
-                          <MapPin className="w-5 h-5 text-gray-400" />
-                          <span>{jobs[selectedJob].location}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-gray-600">
-                          <Clock className="w-5 h-5 text-gray-400" />
-                          <span>{jobs[selectedJob].employmentType}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {jobs[selectedJob].track === 'internship' && (
-                      <div className="mb-6 rounded-xl border border-teal-200/80 bg-gradient-to-br from-teal-50 to-white px-4 py-4 text-sm text-gray-800 leading-relaxed shadow-sm">
-                        <p className="font-medium text-teal-900 mb-1">Corporate responsibility and talent development</p>
-                        <p className="text-gray-700">
-                          Myco Medic treats internship placements as a formal investment in professional capability. Selected interns receive structured supervision, clearly defined learning expectations, and access to experienced personnel, in keeping with the organisation’s standards and its responsibilities toward the healthcare sector.
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Apply via email / WhatsApp */}
-                    <div className="flex flex-col sm:flex-row gap-4 mb-6 items-stretch sm:items-start">
-                      <div className="flex-1 rounded-lg border border-gray-200 bg-gray-50/80 px-4 py-3 text-sm text-gray-700 leading-relaxed">
-                        <p>
-                          To apply, send your resume and mention the role to{' '}
-                          <span className="font-semibold text-gray-900">bryan@mycomedic.com.my</span>
-                          {' '}or{' '}
-                          <a
-                            href="https://wa.me/60123375935?text=Hi%2C%20I%27d%20like%20to%20apply%20for%20a%20position%20at%20Myco%20Medic."
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-semibold text-primary hover:underline"
-                          >
-                            WhatsApp
-                          </a>
-                          .
-                        </p>
-                      </div>
-                      <button
-                        type="button"
-                        className="shrink-0 self-start p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                        aria-label="Share"
-                      >
-                        <Share2 className="w-5 h-5 text-gray-600" />
-                      </button>
-                    </div>
-
-                    {/* Job Overview */}
-                    <div className="border-t border-gray-200 pt-6">
-                      <h3 className="text-lg font-medium text-gray-900 mb-4">Job Overview</h3>
-                      <div className="prose prose-sm max-w-none text-gray-700">
-                        <JobOverviewBody text={jobs[selectedJob].description} />
-                      </div>
-                    </div>
-
-                    {/* Contact Information */}
-                    <div className="mt-6 pt-6 border-t border-gray-200">
-                      <h4 className="text-sm font-medium text-gray-900 mb-3">How to Apply</h4>
-                      <div className="space-y-2 text-sm text-gray-600">
-                        <div className="flex items-center gap-2">
-                          <Mail className="w-4 h-4 flex-shrink-0" />
-                          <span className="font-medium text-gray-900">bryan@mycomedic.com.my</span>
-                        </div>
-                        <a
-                          href="https://wa.me/60123375935"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 hover:text-gray-900 transition-colors"
-                        >
-                          <Phone className="w-4 h-4 flex-shrink-0" />
-                          <span>+60 12-337 5935 (Mr. Bryan)</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </div>
+            <Link to="/internship" className="mt-3 inline-flex items-center gap-1 font-medium text-gray-900 hover:text-primary">
+              About our internship programme <ChevronRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
-      </section>
+      </header>
 
-      <Footer />
-      <WhatsAppFloat phone="+60123375935" message="Hi Myco Medic!" />
+      <section className="container-page grid gap-8 py-12 md:py-16 lg:grid-cols-[22rem,1fr] lg:gap-12" aria-label="Open positions">
+        <div>
+          <p className="mb-4 text-sm text-gray-500">
+            <span className="font-medium text-gray-900">{jobs.length}</span> open position{jobs.length === 1 ? '' : 's'}
+          </p>
+          <ul className="space-y-3" role="list">
+            {jobs.map((j) => {
+              const Icon = j.icon
+              const active = j.id === job.id
+              return (
+                <li key={j.id}>
+                  <button
+                    type="button"
+                    onClick={() => selectJob(j.id)}
+                    aria-pressed={active}
+                    className={`flex w-full items-start gap-4 rounded-2xl border p-4 text-left transition-colors ${
+                      active ? 'border-primary bg-primary-50/60 ring-1 ring-primary' : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                    }`}
+                  >
+                    <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${active ? 'border-primary/20 bg-white text-primary' : 'border-gray-200 bg-gray-50 text-gray-600'}`}>
+                      <Icon className="h-5 w-5" strokeWidth={1.75} />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[15px] font-semibold text-gray-900">{j.title}</span>
+                      <span className="mt-1 block truncate text-xs text-gray-500">{j.categories.join(' · ')}</span>
+                      <span
+                        className={`mt-2 inline-block rounded-full px-2 py-0.5 text-[11px] font-medium ${
+                          j.track === 'internship' ? 'bg-amber-50 text-amber-700 ring-1 ring-amber-200' : 'bg-gray-100 text-gray-700'
+                        }`}
+                      >
+                        {j.track === 'internship' ? 'Internship' : 'Full time'}
+                      </span>
+                    </span>
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+
+        <div ref={detailRef} className="scroll-mt-24">
+          <Reveal key={job.id} y={12} duration={0.4} className="rounded-2xl border border-gray-200 lg:sticky lg:top-24">
+            <div className="border-b border-gray-100 p-6 md:p-8">
+              <div className="flex items-start justify-between gap-4">
+                <h2 className="heading-md">{job.title}</h2>
+                <button type="button" onClick={share} className="btn-ghost shrink-0 px-3 py-2 text-xs" aria-label="Share this position">
+                  {copied ? <Check className="h-4 w-4 text-emerald-600" /> : typeof navigator !== 'undefined' && navigator.share ? <Share2 className="h-4 w-4" /> : <Link2 className="h-4 w-4" />}
+                  {copied ? 'Link copied' : 'Share'}
+                </button>
+              </div>
+              <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500">
+                <span className="inline-flex items-center gap-1.5">
+                  <MapPin className="h-4 w-4 text-gray-400" /> {job.location}
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Clock className="h-4 w-4 text-gray-400" /> {job.track === 'internship' ? 'Internship' : 'Full time'}
+                </span>
+              </div>
+              <div className="mt-6 flex flex-col gap-2 sm:flex-row">
+                <a href={applyEmail} className="btn-primary">
+                  <Mail className="h-4 w-4" /> Apply by email
+                </a>
+                <a href={applyWhatsApp} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
+                  <FaWhatsapp className="h-4 w-4" /> Apply via WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8">
+              {job.track === 'internship' && (
+                <div className="mb-6 rounded-xl border border-gray-200 bg-gray-50/60 p-4 text-sm leading-relaxed text-gray-600">
+                  <p className="font-medium text-gray-900">Corporate responsibility and talent development</p>
+                  <p className="mt-1">
+                    Myco Medic treats internship placements as a formal investment in professional capability. Selected interns receive structured
+                    supervision, clearly defined learning expectations, and access to experienced personnel, in keeping with the organisation’s standards
+                    and its responsibilities toward the healthcare sector.
+                  </p>
+                </div>
+              )}
+              <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-400">Job overview</h3>
+              <RichText text={job.description} />
+            </div>
+          </Reveal>
+        </div>
+      </section>
     </div>
   )
 }

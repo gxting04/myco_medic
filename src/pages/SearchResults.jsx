@@ -1,193 +1,118 @@
-import React, { useState, useEffect, useMemo } from 'react'
-import { useSearchParams, Link } from 'react-router-dom'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import WhatsAppFloat from '../components/WhatsAppFloat'
-import Data from '../shared/Data'
-import { getProductPath } from '@/utils/productUrl'
+import React, { useEffect, useMemo, useState } from 'react'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { Search, X } from 'lucide-react'
+import PageSEO from '../components/PageSEO'
+import ProductCard from '../components/ProductCard'
+import { getNavGroups, searchProducts } from '@/lib/catalog'
+import { COMPANY, whatsappLink } from '@/lib/site'
 
 function SearchResults() {
   const [searchParams] = useSearchParams()
+  const navigate = useNavigate()
   const query = searchParams.get('q') || ''
-  const [searchTerm, setSearchTerm] = useState(query)
+  const [term, setTerm] = useState(query)
 
-  const filteredProducts = useMemo(() => {
-    if (!query.trim()) return []
+  // Keep the box in sync when the query changes via header search or back/forward.
+  useEffect(() => setTerm(query), [query])
 
-    const saved = localStorage.getItem('myco_products')
-    const allProducts = saved ? JSON.parse(saved) : Data.initialProducts
-    
-    const lowerQuery = query.toLowerCase().trim()
-    
-    return allProducts.filter(product => {
-      // Exclude Medical Furniture (groupId: 7) and Medical Equipment (groupId: 2) products
-      if (product.groupId === 2 || product.groupId === 7) return false
-      
-      // Search in product name
-      const nameMatch = product.name?.toLowerCase().includes(lowerQuery)
-      
-      // Search in category
-      const categoryMatch = product.category?.toLowerCase().includes(lowerQuery)
-      
-      // Search in group name
-      const group = Data.productGroups.find(g => g.id === product.groupId)
-      const groupMatch = group?.name.toLowerCase().includes(lowerQuery)
-      
-      // Search in description (if available)
-      const descMatch = product.description?.toLowerCase().includes(lowerQuery)
-      
-      return nameMatch || categoryMatch || groupMatch || descMatch
-    })
-  }, [query])
+  const results = useMemo(() => searchProducts(query), [query])
+  const groups = useMemo(() => getNavGroups(), [])
 
-  const handleSearch = (e) => {
+  const submit = (e) => {
     e.preventDefault()
-    if (searchTerm.trim()) {
-      window.location.href = `/search?q=${encodeURIComponent(searchTerm.trim())}`
-    }
+    const q = term.trim()
+    // In-app navigation; this used to set window.location and reload the whole site.
+    if (q) navigate(`/search?q=${encodeURIComponent(q)}`)
   }
 
   return (
-    <div>
-      <Header />
-      
-      <div className='pt-24 md:pt-32 pb-8 md:pb-16 bg-white min-h-screen'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6'>
-          {/* Search Header */}
-          <div className='mb-8 md:mb-12'>
-            <h1 className='text-3xl sm:text-4xl font-bold text-gray-900 mb-4 md:mb-6'>Search Results</h1>
-            
-            {/* Search Bar */}
-            <form onSubmit={handleSearch} className='max-w-2xl'>
-              <div className='flex flex-col sm:flex-row gap-2 sm:gap-4'>
-                <input
-                  type='text'
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder='Search for products...'
-                  className='flex-1 px-4 sm:px-6 py-3 sm:py-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary text-base sm:text-lg'
-                />
+    <div className="bg-white">
+      <PageSEO title={query ? `Search: ${query}` : 'Search'} description="Search the Myco Medic product catalogue." path="/search" noindex />
+
+      <header className="border-b border-gray-100 bg-gray-50/60">
+        <div className="container-page py-10 md:py-14">
+          <h1 className="heading-lg">{query ? 'Search results' : 'Search the catalogue'}</h1>
+          <form onSubmit={submit} className="mt-6 flex max-w-2xl gap-2" role="search">
+            <div className="relative flex-1">
+              <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+              <input
+                type="search"
+                value={term}
+                onChange={(e) => setTerm(e.target.value)}
+                placeholder="Product name, type or category"
+                className="input py-3.5 pl-12 text-base [&::-webkit-search-cancel-button]:hidden"
+                aria-label="Search products"
+                autoFocus={!query}
+              />
+              {term && (
                 <button
-                  type='submit'
-                  className='px-6 sm:px-8 py-3 sm:py-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium flex items-center justify-center gap-2'
+                  type="button"
+                  onClick={() => setTerm('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-gray-400 hover:text-gray-700"
+                  aria-label="Clear"
                 >
-                  <svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />
-                  </svg>
-                  Search
+                  <X className="h-4 w-4" />
                 </button>
-              </div>
-            </form>
-
-            {query && (
-              <p className='mt-4 text-gray-600'>
-                {filteredProducts.length > 0 ? (
-                  <>Found <strong>{filteredProducts.length}</strong> {filteredProducts.length === 1 ? 'product' : 'products'} for "<strong>{query}</strong>"</>
-                ) : (
-                  <>No products found for "<strong>{query}</strong>"</>
-                )}
-              </p>
-            )}
-          </div>
-
-          {/* Search Results */}
-          {query ? (
-            filteredProducts.length > 0 ? (
-              <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8'>
-                {filteredProducts.map((product) => (
-                    <Link
-                      key={product.id}
-                      to={getProductPath(product)}
-                      className='group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100 overflow-hidden flex flex-col'
-                    >
-                      <div className='relative overflow-hidden bg-gray-50 p-6'>
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className='w-full h-48 object-contain group-hover:scale-110 transition-transform duration-300'
-                        />
-                        <div className='absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity'></div>
-                      </div>
-                      
-                      <div className='p-6 flex flex-col flex-1'>
-                        <h3 className='text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2'>
-                          {product.name}
-                        </h3>
-                        
-                        <div className='mt-4 flex items-center text-primary opacity-0 group-hover:opacity-100 transition-opacity'>
-                          <span className='text-sm font-medium mr-2'>View Details</span>
-                          <svg className='w-4 h-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
-                          </svg>
-                        </div>
-                      </div>
-                    </Link>
-                  )
-                )}
-              </div>
-            ) : (
-              <div className='text-center py-16 bg-gray-50 rounded-2xl'>
-                <div className='w-24 h-24 mx-auto mb-6 bg-gray-200 rounded-full flex items-center justify-center'>
-                  <svg className='w-12 h-12 text-gray-400' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />
-                  </svg>
-                </div>
-                <h3 className='text-2xl font-bold text-gray-900 mb-4'>No Products Found</h3>
-                <p className='text-gray-600 mb-8 max-w-md mx-auto'>
-                  We couldn't find any products matching "<strong>{query}</strong>". Try different keywords or browse our product categories.
-                </p>
-                <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-                  <Link 
-                    to='/products'
-                    className='bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors font-medium'
-                  >
-                    Browse All Products
-                  </Link>
-                  <a 
-                    href='https://wa.me/60123822001' 
-                    target='_blank' 
-                    rel='noopener noreferrer'
-                    className='border border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors font-medium'
-                  >
-                    Contact Us
-                  </a>
-                </div>
-              </div>
-            )
-          ) : (
-            <div className='text-center py-16'>
-              <div className='w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center'>
-                <svg className='w-12 h-12 text-gray-400' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />
-                </svg>
-              </div>
-              <h3 className='text-2xl font-bold text-gray-900 mb-4'>Start Your Search</h3>
-              <p className='text-gray-600 mb-8'>
-                Enter a product name, category, or keyword above to find what you're looking for.
-              </p>
+              )}
             </div>
+            <button type="submit" className="btn-primary px-6">
+              Search
+            </button>
+          </form>
+          {query && (
+            <p className="mt-4 text-sm text-gray-500" aria-live="polite">
+              {results.length} result{results.length === 1 ? '' : 's'} for <span className="font-medium text-gray-900">“{query}”</span>
+            </p>
           )}
-
-          {/* Back to Products */}
-          <div className='mt-12 text-center'>
-            <Link 
-              to='/products'
-              className='inline-flex items-center text-primary hover:text-primary/80 font-medium transition-colors'
-            >
-              <svg className='mr-2 w-4 h-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M15 19l-7-7 7-7' />
-              </svg>
-              Back to All Products
-            </Link>
-          </div>
         </div>
+      </header>
+
+      <div className="container-page py-10 md:py-12">
+        {query && results.length > 0 && (
+          <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
+            {results.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
+
+        {query && results.length === 0 && (
+          <div className="rounded-2xl border border-dashed border-gray-300 px-6 py-14 text-center">
+            <h2 className="text-base font-semibold text-gray-900">No products match “{query}”</h2>
+            <p className="mx-auto mt-1 max-w-md text-sm text-gray-500">
+              Check the spelling, try a more general term, or ask us — we may be able to source it for you.
+            </p>
+            <a
+              href={whatsappLink(`Hi Myco Medic, do you supply "${query}"?`)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-whatsapp mt-6"
+            >
+              Ask on WhatsApp
+            </a>
+            <p className="mt-3 text-xs text-gray-400">or call {COMPANY.phone}</p>
+          </div>
+        )}
+
+        {(!query || results.length === 0) && (
+          <div className={query ? 'mt-12' : ''}>
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-400">Browse by category</h2>
+            <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {groups.map((g) => (
+                <Link
+                  key={g.id}
+                  to={`/products?groupId=${g.id}`}
+                  className="rounded-xl border border-gray-200 px-4 py-3 text-sm font-medium text-gray-700 transition-colors hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900"
+                >
+                  {g.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
-      
-      <Footer />
-      <WhatsAppFloat phone='+60123822001' message='Hi Myco Medic!' />
     </div>
   )
 }
 
 export default SearchResults
-

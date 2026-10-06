@@ -1,8 +1,5 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import WhatsAppFloat from '../components/WhatsAppFloat'
 import { useCart } from '../context/CartContext'
 import { isPurchasableProduct } from '@/utils/purchasableProducts'
 import { getProductPath } from '@/utils/productUrl'
@@ -14,7 +11,6 @@ function Cart() {
   if (cartItems.length === 0) {
     return (
       <div>
-        <Header />
         <div className='pt-32 pb-16 bg-white min-h-screen'>
           <div className='max-w-4xl mx-auto px-6 text-center'>
             <svg className='w-24 h-24 mx-auto mb-6 text-gray-400' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
@@ -30,14 +26,12 @@ function Cart() {
             </Link>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }
 
   return (
     <div>
-      <Header />
       <div className='py-16 bg-white min-h-screen'>
         <div className='max-w-6xl mx-auto px-6'>
           <h1 className='text-4xl font-bold text-gray-900 mb-8'>Shopping Cart</h1>
@@ -148,8 +142,6 @@ function Cart() {
           </div>
         </div>
       </div>
-      <Footer />
-      <WhatsAppFloat phone='+60123822001' message='Hi, I want to inquire about my cart items' />
     </div>
   )
 }

@@ -1,48 +1,62 @@
-import React, { useEffect, useRef, useState } from 'react'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import WhatsAppFloat from './components/WhatsAppFloat'
-import { motion, useInView } from 'framer-motion'
-import { 
-  ShieldCheck, 
-  Users, 
-  Stethoscope, 
-  Globe2, 
-  Star, 
-  Target,
-  Award,
-  TrendingUp,
-  ArrowRight
-} from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { ArrowRight, Award, Globe2, ShieldCheck, Star, Stethoscope, Target, TrendingUp, Users } from 'lucide-react'
 import PageSEO from './components/PageSEO'
+import { Reveal } from './lib/motion'
+import { COMPANY } from './lib/site'
+
+const VALUES = [
+  { icon: ShieldCheck, title: 'Integrity', desc: 'Building long-term trust through honest and transparent practices.' },
+  { icon: Target, title: 'Innovation', desc: 'Bringing cutting-edge medical solutions that redefine patient care.' },
+  { icon: Star, title: 'Commitment', desc: 'Dedicated support for hospitals and healthcare professionals.' },
+  { icon: Award, title: 'Excellence', desc: 'Maintaining the highest standards in products and customer service.' }
+]
+
+const EXPERTISE = [
+  'Neurosurgery',
+  'Orthopedics',
+  'Urology',
+  'Operating Theatre',
+  'Critical Care',
+  'Intensive Care',
+  'CSSD Departments',
+  'Medical Innovations'
+]
+
+function IconTile({ icon: Icon }) {
+  return (
+    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gray-200 bg-gray-50 text-gray-700">
+      <Icon className="h-5 w-5" strokeWidth={1.75} />
+    </span>
+  )
+}
 
 function About() {
-  const statsRef = useRef(null)
-  const isStatsInView = useInView(statsRef, { once: true, margin: '-100px' })
+  const yearsExperience = new Date().getFullYear() - COMPANY.since
 
-  // Animated counter for stats
-  const useCountUp = (end, duration = 2000, inView) => {
-    const [count, setCount] = useState(0)
-    
-    useEffect(() => {
-      if (!inView) return
-      let startTime = null
-      const animate = (currentTime) => {
-        if (!startTime) startTime = currentTime
-        const progress = Math.min((currentTime - startTime) / duration, 1)
-        setCount(Math.floor(progress * end))
-        if (progress < 1) {
-          requestAnimationFrame(animate)
-        }
-      }
-      requestAnimationFrame(animate)
-    }, [inView, end, duration])
-    
-    return count
-  }
+  const stats = [
+    { icon: Users, value: '50+', label: 'Trusted Hospitals' },
+    { icon: Globe2, value: 'Nationwide', label: 'Presence' },
+    { icon: Star, value: '#1', label: 'Patient Priority' },
+    { icon: Award, value: `${yearsExperience}+`, label: 'Years Excellence' }
+  ]
 
-  const trustedHospitals = useCountUp(50, 2000, isStatsInView)
-  const yearsExperience = useCountUp(13, 2000, isStatsInView)
+  const reasons = [
+    {
+      icon: TrendingUp,
+      title: 'Proven Track Record',
+      desc: `${yearsExperience}+ years of consistent excellence in medical device distribution across Malaysia.`
+    },
+    {
+      icon: ShieldCheck,
+      title: 'Quality Assured',
+      desc: 'All products meet international standards with comprehensive quality assurance protocols.'
+    },
+    {
+      icon: Users,
+      title: 'Expert Support',
+      desc: 'Dedicated team of healthcare professionals providing ongoing support and training.'
+    }
+  ]
 
   return (
     <div className="bg-white text-gray-800">
@@ -51,319 +65,169 @@ function About() {
         description="Learn about Myco Medic — trusted medical supplies and equipment partner serving hospitals, clinics, and healthcare providers in Malaysia."
         path="/about"
       />
-      <Header />
 
-      {/* Hero Section - Minimalist */}
-      <section className="relative pt-32 pb-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Content */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full mb-6">
-                <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">Since 2010</span>
-              </div>
-
-              <h1 className="text-5xl md:text-6xl font-light text-gray-900 leading-tight mb-6 tracking-tight">
-                Advancing Healthcare Standards in Malaysia
-              </h1>
-
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed font-light">
-                <strong className="font-medium text-gray-900">Myco Medic Sdn. Bhd.</strong> has been a trusted name in Malaysia's healthcare industry, delivering reliable, high-quality medical solutions that empower hospitals and healthcare professionals nationwide.
-              </p>
-            </motion.div>
-
-            {/* Right Image */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="relative rounded-2xl overflow-hidden shadow-sm border border-gray-200">
-                <img
-                  src="/Header.png"
-                  alt="Myco Medic"
-                  className="w-full h-[500px] object-cover"
-                />
-                
-                {/* Floating Badge - Minimalist */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-200"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center">
-                      <Award className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-xl font-medium text-gray-900">{yearsExperience}+</div>
-                      <div className="text-xs text-gray-500">Years Experience</div>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
+      {/* Page header */}
+      <header className="border-b border-gray-100 bg-gray-50/60">
+        <div className="container-page grid items-center gap-10 py-12 md:py-16 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <span className="eyebrow">About us · Since {COMPANY.since}</span>
+            <h1 className="heading-xl mt-3 max-w-2xl">Advancing Healthcare Standards in Malaysia</h1>
+            <p className="lead mt-4 max-w-2xl">
+              <strong className="font-semibold text-gray-900">Myco Medic Sdn. Bhd.</strong> has been a trusted name in Malaysia’s healthcare
+              industry, delivering reliable, high-quality medical solutions that empower hospitals and healthcare professionals nationwide.
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* Stats Section - Minimalist List */}
-      <section ref={statsRef} className="py-20 bg-gray-50 border-y border-gray-200">
-        <div className="max-w-4xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl font-light text-gray-900 mb-3 tracking-wide">Our Impact</h2>
-            <p className="text-gray-500 font-light">Numbers that reflect our commitment to excellence</p>
-          </motion.div>
-
-          <div className="space-y-8">
-            {[
-              { icon: Users, value: `${trustedHospitals}+`, label: 'Trusted Hospitals' },
-              { icon: Globe2, value: 'Nationwide', label: 'Presence' },
-              { icon: Star, value: '#1', label: 'Patient Priority' },
-              { icon: Award, value: `${yearsExperience}+`, label: 'Years Excellence' },
-            ].map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="flex items-center gap-8 py-6 border-b border-gray-200 last:border-0"
-              >
-                <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <stat.icon className="w-5 h-5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <div className="text-3xl font-light text-gray-900 mb-1">{stat.value}</div>
-                  <div className="text-sm text-gray-500 font-medium uppercase tracking-wide">{stat.label}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Values - Minimalist List */}
-      <section className="py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-block px-3 py-1.5 bg-gray-100 rounded-full mb-4">
-              <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">Our Foundation</span>
+          <div className="relative">
+            <img
+              src="/header_4.jpg"
+              alt="Surgical team at work in an operating theatre"
+              width="1600"
+              height="896"
+              className="aspect-[16/10] w-full rounded-3xl border border-gray-200 object-cover"
+            />
+            <div className="absolute -bottom-5 left-5 flex items-center gap-3 rounded-2xl border border-gray-200 bg-white px-4 py-3 shadow-[0_12px_32px_-16px_rgba(15,23,42,0.3)] sm:left-8 sm:px-5 sm:py-4">
+              <IconTile icon={Award} />
+              <div>
+                <p className="text-2xl font-semibold tracking-tight text-gray-900">{yearsExperience}+</p>
+                <p className="text-xs text-gray-500">Years Experience</p>
+              </div>
             </div>
-            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-4 tracking-tight">
+          </div>
+        </div>
+      </header>
+
+      {/* Our impact */}
+      <section className="section bg-white" aria-labelledby="impact-title">
+        <div className="container-page">
+          <Reveal className="max-w-2xl">
+            <span className="eyebrow">Our Impact</span>
+            <h2 id="impact-title" className="heading-lg mt-3">
+              Numbers that reflect our commitment to excellence
+            </h2>
+          </Reveal>
+
+          <Reveal delay={0.05}>
+            <dl className="mt-10 grid grid-cols-2 overflow-hidden rounded-2xl border border-gray-200 lg:grid-cols-4">
+              {stats.map(({ icon, value, label }, i) => (
+                <div
+                  key={label}
+                  className={`flex flex-col gap-4 p-5 sm:p-6 ${i % 2 === 1 ? 'border-l border-gray-200' : ''} ${
+                    i >= 2 ? 'border-t border-gray-200 lg:border-t-0' : ''
+                  } ${i === 2 ? 'lg:border-l' : ''}`}
+                >
+                  <IconTile icon={icon} />
+                  <div className="flex min-w-0 flex-col-reverse">
+                    <dt className="mt-1 text-xs font-medium uppercase tracking-wide text-gray-500">{label}</dt>
+                    <dd className="text-xl font-semibold tracking-tight text-gray-900 sm:text-3xl">{value}</dd>
+                  </div>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Mission & values */}
+      <section className="section border-t border-gray-100 bg-gray-50/60" aria-labelledby="values-title">
+        <div className="container-page grid gap-12 lg:grid-cols-[1fr,1.3fr] lg:gap-20">
+          <Reveal>
+            <span className="eyebrow">Our Foundation</span>
+            <h2 id="values-title" className="heading-lg mt-3">
               Mission & Core Values
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto font-light mb-12">
-              Guided by integrity and innovation, we strive to bring the most advanced medical technologies and dependable service to Malaysia's healthcare ecosystem.
+            <p className="lead mt-5">
+              Guided by integrity and innovation, we strive to bring the most advanced medical technologies and dependable service to
+              Malaysia’s healthcare ecosystem.
             </p>
-          </motion.div>
+          </Reveal>
 
-          <div className="space-y-12">
-            {[
-              {
-                title: 'Integrity',
-                desc: 'Building long-term trust through honest and transparent practices.',
-                icon: ShieldCheck,
-                delay: 0.1
-              },
-              {
-                title: 'Innovation',
-                desc: 'Bringing cutting-edge medical solutions that redefine patient care.',
-                icon: Target,
-                delay: 0.2
-              },
-              {
-                title: 'Commitment',
-                desc: 'Dedicated support for hospitals and healthcare professionals.',
-                icon: Star,
-                delay: 0.3
-              },
-              {
-                title: 'Excellence',
-                desc: 'Maintaining the highest standards in products and customer service.',
-                icon: Award,
-                delay: 0.4
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: item.delay }}
-                className="flex items-start gap-6"
-              >
-                <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                  <item.icon className="w-5 h-5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-light text-gray-900 mb-2 tracking-tight">{item.title}</h3>
-                  <p className="text-gray-600 leading-relaxed font-light">{item.desc}</p>
-                </div>
-              </motion.div>
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {VALUES.map(({ icon, title, desc }, i) => (
+              <Reveal as="li" key={title} delay={i * 0.05} className="card p-6">
+                <IconTile icon={icon} />
+                <h3 className="mt-5 text-base font-semibold text-gray-900">{title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-gray-500">{desc}</p>
+              </Reveal>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      {/* Areas of Expertise - Minimalist Grid */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-4 tracking-tight">
+      {/* Areas of expertise */}
+      <section className="section border-t border-gray-100 bg-white" aria-labelledby="expertise-title">
+        <div className="container-page">
+          <Reveal className="max-w-2xl">
+            <span className="eyebrow">Specialties</span>
+            <h2 id="expertise-title" className="heading-lg mt-3">
               Areas of Expertise
             </h2>
-            <p className="text-lg text-gray-500 font-light">Serving diverse medical specialties across Malaysia</p>
-          </motion.div>
+            <p className="lead mt-4">Serving diverse medical specialties across Malaysia</p>
+          </Reveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {[
-              'Neurosurgery',
-              'Orthopedics',
-              'Urology',
-              'Operating Theatre',
-              'Critical Care',
-              'Intensive Care',
-              'CSSD Departments',
-              'Medical Innovations',
-            ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                whileHover={{ y: -2 }}
-                className="bg-white rounded-lg p-5 border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Stethoscope className="w-4 h-4 text-white" />
-                  </div>
-                  <span className="font-medium text-gray-800 text-sm">{item}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <Reveal delay={0.05}>
+            <ul className="mt-10 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 lg:grid-cols-4">
+              {EXPERTISE.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3.5 transition-colors hover:border-gray-300"
+                >
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-gray-50 text-gray-700">
+                    <Stethoscope className="h-4 w-4" strokeWidth={1.75} />
+                  </span>
+                  <span className="min-w-0 text-sm font-medium text-gray-800">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </section>
 
-      {/* Why Choose Us - Minimalist */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-4 tracking-tight">
+      {/* Why choose us */}
+      <section className="section border-t border-gray-100 bg-gray-50/60" aria-labelledby="why-title">
+        <div className="container-page">
+          <Reveal className="max-w-2xl">
+            <span className="eyebrow">Why Myco Medic</span>
+            <h2 id="why-title" className="heading-lg mt-3">
               Why Choose Myco Medic?
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto font-light">
+            <p className="lead mt-4">
               With over a decade of experience and nationwide partnerships, Myco Medic stands for reliability, precision, and compassion.
             </p>
-          </motion.div>
+          </Reveal>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: TrendingUp,
-                title: 'Proven Track Record',
-                desc: '13+ years of consistent excellence in medical device distribution across Malaysia.'
-              },
-              {
-                icon: ShieldCheck,
-                title: 'Quality Assured',
-                desc: 'All products meet international standards with comprehensive quality assurance protocols.'
-              },
-              {
-                icon: Users,
-                title: 'Expert Support',
-                desc: 'Dedicated team of healthcare professionals providing ongoing support and training.'
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="bg-white rounded-xl p-8 border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all"
-              >
-                <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center mb-6">
-                  <item.icon className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl font-medium text-gray-900 mb-3">{item.title}</h3>
-                <p className="text-gray-600 leading-relaxed text-sm font-light">{item.desc}</p>
-              </motion.div>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {reasons.map(({ icon, title, desc }, i) => (
+              <Reveal key={title} delay={i * 0.05} className="card p-6 sm:p-8">
+                <IconTile icon={icon} />
+                <h3 className="mt-5 text-base font-semibold text-gray-900">{title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-gray-500">{desc}</p>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section - Minimalist */}
-      <section className="py-24 bg-gray-900 border-t border-gray-800">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-light text-white mb-6 tracking-tight">
-              Ready to Transform Your Healthcare Solutions?
-            </h2>
-            <p className="text-lg text-gray-400 mb-8 font-light">
+      {/* Call to action */}
+      <section className="section border-t border-gray-100 bg-white">
+        <div className="container-page">
+          <Reveal className="rounded-3xl border border-gray-200 bg-gray-50/60 px-6 py-12 text-center sm:px-12 md:py-16">
+            <h2 className="heading-lg mx-auto max-w-2xl">Ready to Transform Your Healthcare Solutions?</h2>
+            <p className="lead mx-auto mt-4 max-w-xl">
               Partner with Myco Medic and experience the difference that quality and expertise make.
             </p>
-            <motion.div
-              className="flex flex-wrap justify-center gap-4"
-            >
-              <motion.button
-                whileHover={{ opacity: 0.9 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 bg-white text-gray-900 rounded-lg font-medium hover:bg-gray-100 transition-all flex items-center gap-2"
-              >
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link to="/contact" className="btn-primary">
                 Get Started
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
-              <motion.button
-                whileHover={{ opacity: 0.9 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 bg-transparent border border-gray-700 text-white rounded-lg font-medium hover:bg-gray-800 transition-all"
-              >
-                Learn More
-              </motion.button>
-            </motion.div>
-          </motion.div>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link to="/products" className="btn-outline">
+                Explore our products
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
-
-      <Footer />
-      <WhatsAppFloat phone="+60123822001" message="Hi Myco Medic!" />
     </div>
   )
 }
