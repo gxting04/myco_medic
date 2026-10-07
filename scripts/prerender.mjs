@@ -1,230 +1,168 @@
 /**
- * Bakes a real <head> into a static HTML file for every route.
+ * Prerenders every indexable route to static HTML, after `vite build`.
  *
- * The app is a client-rendered SPA behind a catch-all rewrite, so before this
- * script every URL served the same shell: the homepage's title, the homepage's
- * description, and — most damagingly — <link rel="canonical"> pointing at the
- * homepage. Every product page was therefore telling crawlers that the canonical
- * version of itself was the front page. Titles and canonicals only became
- * correct once React mounted and applySEO ran in a useEffect, which is invisible
- * to anything that does not execute JavaScript (link unfurlers in WhatsApp,
- * Facebook and LinkedIn among them) and is deprioritised even by crawlers that do.
+ * The app is a client-rendered SPA, so without this every URL served the same
+ * empty shell: <div id="root"></div> and the homepage's <head>. Google renders
+ * JavaScript eventually, but link unfurlers (WhatsApp, Facebook, LinkedIn), most
+ * AI crawlers and many smaller search engines never do, and even Google indexes
+ * raw HTML first. Each route now ships its real content and its own head.
  *
- * Output: dist/<route>/index.html per route. Vercel checks the filesystem before
- * applying rewrites, so these win over the SPA fallback; the rewrite stays as the
- * catch-all for anything not prerendered. The same JS bundle still hydrates each
- * file, and applySEO recomputes identical values, so there is no flicker or drift.
+ * How: src/entry-server.jsx renders the same route tree the browser uses, via
+ * Vite's SSR module loader (so the @/ alias, JSX and env all behave as in the
+ * app). <PageSEO> reports its props to a collector during that render, and the
+ * head is built with the same getSeoTags() the browser uses — the static head
+ * cannot drift from the runtime one, and there is no route table to keep in sync.
  *
- * Metadata is imported from the app's own modules via esbuild rather than parsed
- * out of the source, so the prerendered head cannot drift from the runtime head.
+ * Output (dist/):
+ *   <route>/index.html  one per indexable route; Vercel serves files before rewrites
+ *   404.html            the not-found page; Vercel serves it, with a 404 status,
+ *                       for any URL that matches no file, redirect or rewrite
+ *   app.html            empty, noindex shell for client-only routes (search,
+ *                       checkout, legacy redirects) — see vercel.json rewrites
+ *   sitemap.xml         exactly the routes that rendered as indexable
+ *
+ * The browser bundle replaces the prerendered markup on load (createRoot in
+ * main.jsx), so per-browser state such as the quote list appears as before.
  */
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { build } from 'esbuild'
+
+// Load React's production build for the render, as the shipped bundle does.
+process.env.NODE_ENV = 'production'
+
+const { createServer } = await import('vite')
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.join(__dirname, '..')
 const dist = path.join(root, 'dist')
-const SITE_URL = (process.env.VITE_SITE_URL || 'https://www.mycomedic.com.my').replace(/\/$/, '')
 
-if (!fs.existsSync(path.join(dist, 'index.html'))) {
+const templatePath = path.join(dist, 'index.html')
+if (!fs.existsSync(templatePath)) {
   throw new Error('prerender: dist/index.html not found — run vite build first.')
 }
+const template = fs.readFileSync(templatePath, 'utf8')
 
-// ---------------------------------------------------------------------------
-// Load the app's real data and SEO helpers. They are browser modules, but the
-// pure functions used here never touch document; only applySEO does, and it is
-// not called. import.meta.env is stubbed for Node.
-// ---------------------------------------------------------------------------
-const tmpEntry = path.join(root, '.prerender-entry.mjs')
-const tmpOut = path.join(root, '.prerender-bundle.mjs')
-
-fs.writeFileSync(
-  tmpEntry,
-  `export { default as Data } from './src/shared/Data.jsx'
-export * from './src/utils/seo.js'
-export { getProductPath, getProductSeoTitle, getProductSeoDescription } from './src/utils/productUrl.js'
-`
-)
-
-await build({
-  entryPoints: [tmpEntry],
-  bundle: true,
-  format: 'esm',
-  platform: 'node',
-  outfile: tmpOut,
-  logLevel: 'silent',
-  external: ['react', 'react-dom', 'react-router-dom'],
-  define: { 'import.meta.env.VITE_SITE_URL': JSON.stringify(SITE_URL) }
-})
-
-const mod = await import(`${tmpOut}?t=${Date.now()}`)
-fs.rmSync(tmpEntry, { force: true })
-fs.rmSync(tmpOut, { force: true })
-
-const {
-  Data,
-  DEFAULT_DESCRIPTION,
-  DEFAULT_IMAGE,
-  DEFAULT_KEYWORDS,
-  DEFAULT_TITLE,
-  SITE_NAME,
-  absoluteUrl,
-  truncate,
-  organizationJsonLd,
-  localBusinessJsonLd,
-  productJsonLd,
-  breadcrumbJsonLd,
-  getProductPath,
-  getProductSeoTitle,
-  getProductSeoDescription
-} = mod
-
-const categorySlug = (name) => name.toLowerCase().replace(/\s+/g, '-')
-
-// ---------------------------------------------------------------------------
-// Route table — mirrors the props each page hands to <PageSEO> so the static
-// head matches the runtime head exactly.
-// ---------------------------------------------------------------------------
-const routes = [
-  {
-    path: '/',
-    title: 'Medical Supplies & Equipment Malaysia',
-    description: DEFAULT_DESCRIPTION,
-    jsonLd: organizationJsonLd()
-  },
-  {
-    path: '/about',
-    title: 'About Us',
-    description:
-      'Learn about Myco Medic — trusted medical supplies and equipment partner serving hospitals, clinics, and healthcare providers in Malaysia.'
-  },
-  {
-    path: '/contact',
-    title: 'Contact Us',
-    description:
-      'Contact Myco Medic for medical supply enquiries, product quotes, and support. Email sales@mycomedic.com.my or reach us in Puchong, Selangor.',
-    jsonLd: localBusinessJsonLd()
-  },
-  {
-    path: '/career',
-    title: 'Careers',
-    description:
-      'Join Myco Medic — career opportunities in medical supplies and healthcare distribution across Malaysia.'
-  },
-  {
-    path: '/internship',
-    title: 'Internship',
-    description:
-      'Myco Medic internship programme for students interested in medical supplies, sales, and healthcare business in Malaysia.'
-  },
-  { path: '/products', title: 'Products', description: DEFAULT_DESCRIPTION }
-]
-
-for (const category of Data.productCategories) {
-  routes.push({
-    path: `/products/category/${categorySlug(category.name)}`,
-    title: category.name,
-    description: category.description || `${category.name} medical products from Myco Medic Malaysia.`
-  })
+const ROOT_DIV = '<div id="root"></div>'
+const headMatch = template.match(/<head>([\s\S]*?)<\/head>/i)
+if (!headMatch || !template.includes(ROOT_DIV)) {
+  throw new Error(
+    `prerender: dist/index.html has no empty ${ROOT_DIV} — it is either not Vite's output or was already prerendered. Run \`npm run build\`.`
+  )
 }
 
-for (const product of Data.initialProducts) {
-  const productPath = getProductPath(product)
-  const description = getProductSeoDescription(product)
-  const trail = [
-    { name: 'Home', path: '/' },
-    { name: 'Products', path: '/products' },
-    product.category && {
-      name: product.category,
-      path: `/products/category/${categorySlug(product.category)}`
-    },
-    { name: product.name, path: productPath }
-  ].filter(Boolean)
+// Strip the tags getSeoTags() owns, so the shell's homepage defaults cannot
+// survive into another page's head.
+const baseHead = headMatch[1]
+  .replace(/[ \t]*<title>[\s\S]*?<\/title>\r?\n?/gi, '')
+  .replace(/[ \t]*<meta\s+name="(description|keywords|robots|twitter:[^"]*)"[^>]*>\r?\n?/gi, '')
+  .replace(/[ \t]*<meta\s+property="og:[^"]*"[^>]*>\r?\n?/gi, '')
+  .replace(/[ \t]*<link\s+rel="canonical"[^>]*>\r?\n?/gi, '')
+  .replace(/[ \t]*<script[^>]*id="page-json-ld"[\s\S]*?<\/script>\r?\n?/gi, '')
+  .replace(/\s*$/, '')
 
-  routes.push({
-    path: productPath,
-    title: getProductSeoTitle(product),
-    description,
-    image: product.images?.[0] || product.image,
-    type: 'product',
-    jsonLd: [productJsonLd(product, description), breadcrumbJsonLd(trail)].filter(Boolean)
-  })
+function page(headTags, body = '') {
+  const head = `${baseHead}\n${headTags.map((tag) => `    ${tag}`).join('\n')}\n  `
+  return template.replace(headMatch[0], `<head>${head}</head>`).replace(ROOT_DIV, `<div id="root">${body}</div>`)
 }
 
-// ---------------------------------------------------------------------------
-// Head construction
-// ---------------------------------------------------------------------------
-const esc = (value) =>
-  String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
-
-function buildHead({ title, description, path: routePath, image, type = 'website', jsonLd }) {
-  const pageTitle = title ? `${title} | ${SITE_NAME}` : DEFAULT_TITLE
-  const pageDescription = truncate(description || DEFAULT_DESCRIPTION)
-  const pageImage = absoluteUrl(image || DEFAULT_IMAGE)
-  const canonical = absoluteUrl(routePath)
-
-  const tags = [
-    `<title>${esc(pageTitle)}</title>`,
-    `<meta name="description" content="${esc(pageDescription)}" />`,
-    `<meta name="keywords" content="${esc(DEFAULT_KEYWORDS)}" />`,
-    `<meta name="robots" content="index, follow" />`,
-    `<meta name="author" content="${esc(SITE_NAME)}" />`,
-    `<link rel="canonical" href="${esc(canonical)}" />`,
-    `<meta property="og:title" content="${esc(pageTitle)}" />`,
-    `<meta property="og:description" content="${esc(pageDescription)}" />`,
-    `<meta property="og:type" content="${esc(type)}" />`,
-    `<meta property="og:url" content="${esc(canonical)}" />`,
-    `<meta property="og:image" content="${esc(pageImage)}" />`,
-    `<meta property="og:site_name" content="${esc(SITE_NAME)}" />`,
-    `<meta property="og:locale" content="en_MY" />`,
-    `<meta name="twitter:card" content="summary_large_image" />`,
-    `<meta name="twitter:title" content="${esc(pageTitle)}" />`,
-    `<meta name="twitter:description" content="${esc(pageDescription)}" />`,
-    `<meta name="twitter:image" content="${esc(pageImage)}" />`
-  ]
-
-  if (jsonLd && (!Array.isArray(jsonLd) || jsonLd.length)) {
-    // </script> inside JSON would close the tag early.
-    const json = JSON.stringify(jsonLd).replace(/</g, '\\u003c')
-    tags.push(`<script type="application/ld+json" id="page-json-ld">${json}</script>`)
-  }
-
-  return tags.map((tag) => `    ${tag}`).join('\n')
-}
-
-// Strip the tags applySEO owns, so the shell's homepage defaults cannot survive
-// into a product page's head.
-function stripManagedTags(head) {
-  return head
-    .replace(/[ \t]*<title>[\s\S]*?<\/title>\r?\n?/gi, '')
-    .replace(/[ \t]*<meta\s+name="(description|keywords|robots|author|twitter:[^"]*)"[^>]*>\r?\n?/gi, '')
-    .replace(/[ \t]*<meta\s+property="og:[^"]*"[^>]*>\r?\n?/gi, '')
-    .replace(/[ \t]*<link\s+rel="canonical"[^>]*>\r?\n?/gi, '')
-    .replace(/[ \t]*<script[^>]*id="page-json-ld"[\s\S]*?<\/script>\r?\n?/gi, '')
-}
-
-const shell = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
-const headMatch = shell.match(/<head>([\s\S]*?)<\/head>/i)
-if (!headMatch) throw new Error('prerender: could not locate <head> in dist/index.html')
-
-let written = 0
-const seen = new Set()
-
-for (const route of routes) {
-  if (seen.has(route.path)) {
-    throw new Error(`prerender: duplicate route ${route.path} — two entries would overwrite each other.`)
-  }
-  seen.add(route.path)
-
-  const head = `${stripManagedTags(headMatch[1]).replace(/\s*$/, '')}\n${buildHead(route)}\n  `
-  const html = shell.replace(headMatch[0], `<head>${head}</head>`)
-
-  const outDir = route.path === '/' ? dist : path.join(dist, route.path)
+function writeRoute(routePath, html) {
+  const outDir = routePath === '/' ? dist : path.join(dist, routePath)
   fs.mkdirSync(outDir, { recursive: true })
   fs.writeFileSync(path.join(outDir, 'index.html'), html)
-  written += 1
 }
 
-console.log(`Prerendered ${written} routes with per-page head → dist/`)
+const xmlEscape = (value) =>
+  String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+
+const vite = await createServer({
+  root,
+  mode: 'production',
+  logLevel: 'error',
+  appType: 'custom',
+  server: { middlewareMode: true, hmr: false, watch: null },
+  optimizeDeps: { noDiscovery: true, include: [] },
+  // react-router-dom's "node" export is CommonJS unless module-sync is asked
+  // for, and its named exports cannot be imported from the CJS build.
+  ssr: { resolve: { externalConditions: ['module-sync'] } }
+})
+
+try {
+  const { render, getPrerenderRoutes, PRODUCT_COUNT } = await vite.ssrLoadModule('/src/entry-server.jsx')
+  const { getSeoTags, seoHeadHtml, absoluteUrl } = await vite.ssrLoadModule('/src/utils/seo.js')
+
+  const routes = getPrerenderRoutes()
+
+  const seen = new Set()
+  for (const { path: routePath } of routes) {
+    if (seen.has(routePath)) {
+      throw new Error(`prerender: duplicate route ${routePath} — two entries would overwrite each other.`)
+    }
+    seen.add(routePath)
+  }
+  const productRoutes = routes.filter((r) => r.path.startsWith('/product/')).length
+  if (productRoutes !== PRODUCT_COUNT) {
+    throw new Error(`prerender: ${productRoutes} product routes for ${PRODUCT_COUNT} products — every product needs a URL.`)
+  }
+
+  const sitemap = []
+  const warnings = []
+
+  for (const route of routes) {
+    let result
+    try {
+      result = await render(route.path)
+    } catch (error) {
+      // Failing the build keeps the last good deployment live, instead of
+      // quietly shipping a page with no content or head.
+      throw new Error(`prerender: ${route.path} failed to render — ${error.message}`, { cause: error })
+    }
+    const { html, seoProps } = result
+
+    if (!seoProps) throw new Error(`prerender: ${route.path} rendered no <PageSEO>`)
+    const seo = getSeoTags(seoProps)
+    if (!seo.title) throw new Error(`prerender: ${route.path} has no title`)
+    if (seo.canonical && seo.canonical !== absoluteUrl(route.path)) {
+      throw new Error(`prerender: ${route.path} declares canonical ${seo.canonical} — prerendered routes must be canonical`)
+    }
+
+    const h1s = (html.match(/<h1[\s>]/g) || []).length
+    if (h1s !== 1) warnings.push(`${route.path}: ${h1s} <h1> elements (expected 1)`)
+
+    writeRoute(route.path, page(seoHeadHtml(seo), html))
+    if (seo.canonical) sitemap.push({ loc: seo.canonical, images: route.images })
+  }
+
+  // 404 page: any path the router does not know renders <NotFound>.
+  const notFound = await render('/__prerender-not-found__')
+  fs.writeFileSync(path.join(dist, '404.html'), page(seoHeadHtml(getSeoTags(notFound.seoProps)), notFound.html))
+
+  // Shell for routes that only make sense in the browser. noindex in the raw
+  // HTML is right for all of them: search results, checkout, and URLs that
+  // redirect client-side to their canonical page.
+  fs.writeFileSync(
+    path.join(dist, 'app.html'),
+    page(['<title>Myco Medic</title>', '<meta name="robots" content="noindex, follow" />'])
+  )
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${sitemap
+  .map(({ loc, images }) => {
+    const imageTags = images
+      .map((src) => `\n    <image:image>\n      <image:loc>${xmlEscape(encodeURI(absoluteUrl(src)))}</image:loc>\n    </image:image>`)
+      .join('')
+    return `  <url>\n    <loc>${xmlEscape(loc)}</loc>${imageTags}\n  </url>`
+  })
+  .join('\n')}
+</urlset>
+`
+  fs.writeFileSync(path.join(dist, 'sitemap.xml'), xml)
+
+  for (const warning of warnings) console.warn(`prerender warning: ${warning}`)
+  console.log(
+    `Prerendered ${routes.length} routes (+404.html, app.html); sitemap.xml lists ${sitemap.length} indexable URLs → dist/`
+  )
+} finally {
+  await vite.close()
+}

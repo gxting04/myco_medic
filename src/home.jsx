@@ -8,12 +8,17 @@ import VideoShowcase from './components/VideoShowcase'
 import Events from './components/Events'
 import CtaBand from './components/CtaBand'
 import PageSEO from './components/PageSEO'
-import { DEFAULT_DESCRIPTION, organizationJsonLd } from './utils/seo'
+import { DEFAULT_DESCRIPTION, organizationJsonLd, websiteJsonLd } from './utils/seo'
 
 function Home() {
   return (
     <>
-      <PageSEO title="Medical Supplies & Equipment Malaysia" description={DEFAULT_DESCRIPTION} path="/" jsonLd={organizationJsonLd()} />
+      <PageSEO
+        title="Medical Supplies & Equipment Malaysia"
+        description={DEFAULT_DESCRIPTION}
+        path="/"
+        jsonLd={[organizationJsonLd(), websiteJsonLd()]}
+      />
       <Hero />
       <Partners />
       <Category />

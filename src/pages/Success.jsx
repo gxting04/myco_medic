@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import PageSEO from '../components/PageSEO'
 
 function Success() {
   const navigate = useNavigate()
@@ -40,6 +41,7 @@ function Success() {
 
   return (
     <div>
+      <PageSEO title="Order confirmed" path="/success" noindex />
       <div className='min-h-screen bg-gray-50 flex items-center justify-center py-16 px-6'>
         <div className='max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center'>
           <div className='mb-6'>

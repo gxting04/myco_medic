@@ -1,9 +1,1077 @@
 {
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "mycomedic.com.my"
+        }
+      ],
+      "destination": "https://www.mycomedic.com.my/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/products/category/medical-burshes-and-accesories",
+      "destination": "/products/category/medical-brushes-and-accessories",
+      "permanent": true
+    },
+    {
+      "source": "/store/c1/Featured_Products.html",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/3ply-face-mask.html",
+      "destination": "/products?groupId=8",
+      "permanent": true
+    },
+    {
+      "source": "/8203hypafixreg-non-woven-fabric.html",
+      "destination": "/product/hypafix-adhesive-non-woven-fabric-ready-stock",
+      "permanent": true
+    },
+    {
+      "source": "/actions-products.html",
+      "destination": "/products?groupId=9",
+      "permanent": true
+    },
+    {
+      "source": "/adjustable-stirrups-for-lithotomy-surgeries.html",
+      "destination": "/product/adjustable-stirrups-for-lithotomy-surgeries",
+      "permanent": true
+    },
+    {
+      "source": "/airway-management.html",
+      "destination": "/products?groupId=1",
+      "permanent": true
+    },
+    {
+      "source": "/all-purpose-brush-set.html",
+      "destination": "/products/category/medical-brushes-and-accessories",
+      "permanent": true
+    },
+    {
+      "source": "/ankle-protectors.html",
+      "destination": "/product/ankle-protectors",
+      "permanent": true
+    },
+    {
+      "source": "/arm-and-shoulder-pads.html",
+      "destination": "/products/category/arm-and-shoulder-pads",
+      "permanent": true
+    },
+    {
+      "source": "/arm-shield-pads.html",
+      "destination": "/product/arm-shield-pads",
+      "permanent": true
+    },
+    {
+      "source": "/aspirator.html",
+      "destination": "/product/asu-200-rechargeable-aspirator",
+      "permanent": true
+    },
+    {
+      "source": "/asu-200-battery-and-rechargeable-aspirator.html",
+      "destination": "/product/asu-200-rechargeable-aspirator",
+      "permanent": true
+    },
+    {
+      "source": "/auto-inflation-endobronchial-blocker-tube.html",
+      "destination": "/product/auto-inflation-endobronchial-blocker-tube",
+      "permanent": true
+    },
+    {
+      "source": "/autoclave-cleaning-brush.html",
+      "destination": "/products/category/medical-brushes-and-accessories",
+      "permanent": true
+    },
+    {
+      "source": "/autoclave-cleaning-brush-set.html",
+      "destination": "/products/category/medical-brushes-and-accessories",
+      "permanent": true
+    },
+    {
+      "source": "/bacterial-virus-filterbvf.html",
+      "destination": "/product/bvf-filter",
+      "permanent": true
+    },
+    {
+      "source": "/bite-block-silicone-reinforced-endotracheal-tubecuffed--uncuffed.html",
+      "destination": "/product/bite-block-silicone-reinforced-endotracheal-tube",
+      "permanent": true
+    },
+    {
+      "source": "/body-protectors.html",
+      "destination": "/product/body-protectors",
+      "permanent": true
+    },
+    {
+      "source": "/boots-cover.html",
+      "destination": "/product/boots-cover",
+      "permanent": true
+    },
+    {
+      "source": "/bowl-shaped-head-pads.html",
+      "destination": "/product/bowl-shaped-head-pads",
+      "permanent": true
+    },
+    {
+      "source": "/bowl-shaped-horseshoe-head-pads.html",
+      "destination": "/product/bowl-shaped-horseshoe-head-pads",
+      "permanent": true
+    },
+    {
+      "source": "/breathing-circuit.html",
+      "destination": "/product/breathing-circuits",
+      "permanent": true
+    },
+    {
+      "source": "/breathing-circuit1.html",
+      "destination": "/product/breathing-circuits",
+      "permanent": true
+    },
+    {
+      "source": "/breathing-system-filter.html",
+      "destination": "/products/category/breathing-system-filter",
+      "permanent": true
+    },
+    {
+      "source": "/brush-drying-rack--brush-holder.html",
+      "destination": "/products/category/medical-brushes-and-accessories",
+      "permanent": true
+    },
+    {
+      "source": "/c-bona-closed-suction-system.html",
+      "destination": "/product/c-bona-closed-suction-systems",
+      "permanent": true
+    },
+    {
+      "source": "/c-bona-closed-suction-system-pediatric.html",
+      "destination": "/product/c-bona-closed-suction-systems-pediatric",
+      "permanent": true
+    },
+    {
+      "source": "/c-bona-closed-suction-systems.html",
+      "destination": "/product/c-bona-closed-suction-systems",
+      "permanent": true
+    },
+    {
+      "source": "/c-bona-closed-suction-systems-adult.html",
+      "destination": "/product/c-bona-closed-suction-systems",
+      "permanent": true
+    },
+    {
+      "source": "/cannula-cleaning-brushes.html",
+      "destination": "/product/cannula-cleaning-brushes",
+      "permanent": true
+    },
+    {
+      "source": "/cannula-instrument-pipe-cleaners.html",
+      "destination": "/product/cannula-instrument-pipe-cleaners",
+      "permanent": true
+    },
+    {
+      "source": "/careers.html",
+      "destination": "/career",
+      "permanent": true
+    },
+    {
+      "source": "/catheter-mount.html",
+      "destination": "/product/catheter-mount",
+      "permanent": true
+    },
+    {
+      "source": "/catheter-mount1.html",
+      "destination": "/product/catheter-mount",
+      "permanent": true
+    },
+    {
+      "source": "/central-venous-catheter.html",
+      "destination": "/product/central-venous-catheter",
+      "permanent": true
+    },
+    {
+      "source": "/chest-and-body-pads.html",
+      "destination": "/products/category/chest-and-body-pads",
+      "permanent": true
+    },
+    {
+      "source": "/chest-hipbone-pads.html",
+      "destination": "/product/chest-hipbone-pads",
+      "permanent": true
+    },
+    {
+      "source": "/circumcision-underwear.html",
+      "destination": "/product/seluar-sunat-khatan-circumcision-underwear",
+      "permanent": true
+    },
+    {
+      "source": "/close-suction.html",
+      "destination": "/product/c-bona-closed-suction-systems",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us.html",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contoured-armleg-pads.html",
+      "destination": "/product/contoured-armleg-pads",
+      "permanent": true
+    },
+    {
+      "source": "/contoured-supine-head-pads.html",
+      "destination": "/product/contoured-supine-head-pads",
+      "permanent": true
+    },
+    {
+      "source": "/cpe-apron.html",
+      "destination": "/product/cpe-apron-gown",
+      "permanent": true
+    },
+    {
+      "source": "/critical-careday-care.html",
+      "destination": "/products?groupId=4",
+      "permanent": true
+    },
+    {
+      "source": "/disinfection-tanks.html",
+      "destination": "/product/disinfection-tanks",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-air-cushion-face-mask.html",
+      "destination": "/product/disposable-air-cushion-face-mask",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-air-cushion-face-mask1.html",
+      "destination": "/product/disposable-air-cushion-face-mask",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-basic-pack.html",
+      "destination": "/product/disposable-basic-pack",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-circumcision-pack.html",
+      "destination": "/product/disposable-circumcision-pack",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-cpap-system.html",
+      "destination": "/product/disposable-cpap-system",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-emergency-suture-pack.html",
+      "destination": "/product/disposable-emergency-suture-pack",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-infant-t-piece-resuscitation.html",
+      "destination": "/product/infant-t-piece-resuscitator",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-inner-cannula-rota-trachtrade-tracheostomy-tube.html",
+      "destination": "/product/disposable-inner-cannula-rota-trach-tracheostomy-tube",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-manometer.html",
+      "destination": "/product/disposable-manometer",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-pack.html",
+      "destination": "/products?groupId=5",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-pediatric-rota-trachtrade-tracheostomy-tube.html",
+      "destination": "/product/disposable-pediatric-rota-trach-tracheostomy-tube",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-plastic-apron.html",
+      "destination": "/product/disposable-plastic-apron",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-pre-epidural-set.html",
+      "destination": "/product/disposable-pre-epidural-set",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-standard-rota-trachtrade-tracheostomy-tube.html",
+      "destination": "/product/disposable-standard-rota-trach-tracheostomy-tube",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-tracheal-tube-kit.html",
+      "destination": "/product/disposable-tracheal-tube-kit",
+      "permanent": true
+    },
+    {
+      "source": "/disposable-tracheostomy-tube.html",
+      "destination": "/products/category/disposable-tracheostomy-tube",
+      "permanent": true
+    },
+    {
+      "source": "/dome-shaped-pads.html",
+      "destination": "/product/dome-shaped-pads",
+      "permanent": true
+    },
+    {
+      "source": "/donut-head-pads.html",
+      "destination": "/product/donut-head-pads",
+      "permanent": true
+    },
+    {
+      "source": "/donut-head-pads-with-cissoid.html",
+      "destination": "/product/donut-head-pads-with-cissoid",
+      "permanent": true
+    },
+    {
+      "source": "/double-end-valve-brushes.html",
+      "destination": "/product/double-end-valve-brushes",
+      "permanent": true
+    },
+    {
+      "source": "/double-lumen-endobronchial.html",
+      "destination": "/products/category/double-lumen-endobronchial",
+      "permanent": true
+    },
+    {
+      "source": "/easydrop-flow-regulator.html",
+      "destination": "/product/easydrop-flow-regulator",
+      "permanent": true
+    },
+    {
+      "source": "/elbow-protectors.html",
+      "destination": "/product/elbow-protectors",
+      "permanent": true
+    },
+    {
+      "source": "/enbronchial-brocker-tube.html",
+      "destination": "/products/category/endobronchial-blocker-tube",
+      "permanent": true
+    },
+    {
+      "source": "/endobronchial-blocker-tube.html",
+      "destination": "/products/category/endobronchial-blocker-tube",
+      "permanent": true
+    },
+    {
+      "source": "/endobronchial-blocker-tubewithout-auto-inflation.html",
+      "destination": "/product/endobronchial-blocker-tube-without-auto-inflation",
+      "permanent": true
+    },
+    {
+      "source": "/endoscopic-brush-set.html",
+      "destination": "/products/category/medical-brushes-and-accessories",
+      "permanent": true
+    },
+    {
+      "source": "/endotracheal-tube.html",
+      "destination": "/products/category/endotracheal-tube",
+      "permanent": true
+    },
+    {
+      "source": "/endotracheal-tube-with-evacuation-lumen.html",
+      "destination": "/product/endotracheal-tube-evacuation-lumen",
+      "permanent": true
+    },
+    {
+      "source": "/examination-room-items.html",
+      "destination": "/product/examination-room-items",
+      "permanent": true
+    },
+    {
+      "source": "/face-cradle.html",
+      "destination": "/product/face-cradle-prone-support-system",
+      "permanent": true
+    },
+    {
+      "source": "/face-cradlereg-prone-support-system.html",
+      "destination": "/product/face-cradle-prone-support-system",
+      "permanent": true
+    },
+    {
+      "source": "/face-shield.html",
+      "destination": "/product/medical-protective-face-shield",
+      "permanent": true
+    },
+    {
+      "source": "/flat-supine-head-pads.html",
+      "destination": "/product/flat-supine-head-pads",
+      "permanent": true
+    },
+    {
+      "source": "/fracture-table-post-pads.html",
+      "destination": "/product/fracture-table-post-pads",
+      "permanent": true
+    },
+    {
+      "source": "/full-time.html",
+      "destination": "/career",
+      "permanent": true
+    },
+    {
+      "source": "/general-cleaning-brushes--accessories.html",
+      "destination": "/products/category/medical-brushes-and-accessories",
+      "permanent": true
+    },
+    {
+      "source": "/general-cleaning-brushes--accessories1.html",
+      "destination": "/products/category/medical-brushes-and-accessories",
+      "permanent": true
+    },
+    {
+      "source": "/head-and-neck-pads.html",
+      "destination": "/products/category/head-and-neck-pads",
+      "permanent": true
+    },
+    {
+      "source": "/head-pads.html",
+      "destination": "/products/category/head-and-neck-pads",
+      "permanent": true
+    },
+    {
+      "source": "/heel-pads.html",
+      "destination": "/product/heel-pads",
+      "permanent": true
+    },
+    {
+      "source": "/hip-pads.html",
+      "destination": "/product/hip-pads",
+      "permanent": true
+    },
+    {
+      "source": "/hmef-heat-and-moisture-exchanger-filter.html",
+      "destination": "/product/hmef-filter",
+      "permanent": true
+    },
+    {
+      "source": "/hmefheat-and-moisture-exchanger-filter.html",
+      "destination": "/product/hmef-filter",
+      "permanent": true
+    },
+    {
+      "source": "/hood-cover.html",
+      "destination": "/product/medical-protective-hood-cover",
+      "permanent": true
+    },
+    {
+      "source": "/horseshoe-head-pads.html",
+      "destination": "/product/horseshoe-head-pads",
+      "permanent": true
+    },
+    {
+      "source": "/hospital-carts.html",
+      "destination": "/product/hospital-cart",
+      "permanent": true
+    },
+    {
+      "source": "/hospital-curve-curtain-tracking-system.html",
+      "destination": "/product/hospital-curve-curtain-tracking-system",
+      "permanent": true
+    },
+    {
+      "source": "/hospital-trolleys.html",
+      "destination": "/product/hospital-trolleys",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/infusion-pump.html",
+      "destination": "/product/medcaptain-infusion-pump",
+      "permanent": true
+    },
+    {
+      "source": "/instrument-cleaning-brush-set.html",
+      "destination": "/product/instrument-cleaning-brushes",
+      "permanent": true
+    },
+    {
+      "source": "/instrument-cleaning-brushes.html",
+      "destination": "/product/instrument-cleaning-brushes",
+      "permanent": true
+    },
+    {
+      "source": "/internship.html",
+      "destination": "/internship",
+      "permanent": true
+    },
+    {
+      "source": "/intubating-stylet.html",
+      "destination": "/product/intubating-stylet",
+      "permanent": true
+    },
+    {
+      "source": "/intubating-stylet1.html",
+      "destination": "/product/intubating-stylet",
+      "permanent": true
+    },
+    {
+      "source": "/iob-forced-air-warming-system.html",
+      "destination": "/product/iob-forced-air-warming-system",
+      "permanent": true
+    },
+    {
+      "source": "/isolation-gown.html",
+      "destination": "/product/isolation-gown",
+      "permanent": true
+    },
+    {
+      "source": "/janitor-room-itemdirty-utility-room-cssd-furniture.html",
+      "destination": "/product/janitor-room-cssd-furniture",
+      "permanent": true
+    },
+    {
+      "source": "/large-instrument-cleaning-brush.html",
+      "destination": "/product/large-instrument-cleaning-brush",
+      "permanent": true
+    },
+    {
+      "source": "/laryngeal-mask.html",
+      "destination": "/products/category/laryngeal-mask",
+      "permanent": true
+    },
+    {
+      "source": "/laryngoscope.html",
+      "destination": "/product/laryngoscopes",
+      "permanent": true
+    },
+    {
+      "source": "/lateral-pads.html",
+      "destination": "/product/lateral-pads",
+      "permanent": true
+    },
+    {
+      "source": "/lower-limb-pads.html",
+      "destination": "/products/category/lower-limb-pads",
+      "permanent": true
+    },
+    {
+      "source": "/medical-bedpatient-transport-trolley.html",
+      "destination": "/product/medical-bed-patient-transport-trolley",
+      "permanent": true
+    },
+    {
+      "source": "/medical-furniture.html",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/memory-arm-pads.html",
+      "destination": "/product/memory-arm-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-chest-and-body-pads.html",
+      "destination": "/products/category/memory-chest-and-body-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-chest-hipbone-pads.html",
+      "destination": "/product/memory-chest-hipbone-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-dome-shaped-pads.html",
+      "destination": "/product/memory-dome-shaped-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-donut-head-pads.html",
+      "destination": "/product/memory-donut-head-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-foam-positioners.html",
+      "destination": "/products?groupId=9",
+      "permanent": true
+    },
+    {
+      "source": "/memory-fracture-table-post-pads.html",
+      "destination": "/product/memory-fracture-table-post-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-head-and-neck-pads.html",
+      "destination": "/products/category/memory-head-and-neck-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-heel-pads.html",
+      "destination": "/product/memory-heel-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-horsseshoe-head-pads.html",
+      "destination": "/product/memory-horsseshoe-head-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-lateral-pads.html",
+      "destination": "/product/memory-lateral-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-lateral-positioining.html",
+      "destination": "/products?groupId=9",
+      "permanent": true
+    },
+    {
+      "source": "/memory-lateral-prostrate-positioning.html",
+      "destination": "/products?groupId=9",
+      "permanent": true
+    },
+    {
+      "source": "/memory-lower-limb-pads.html",
+      "destination": "/products/category/memory-lower-limb-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-lower-limb-protector-pads.html",
+      "destination": "/product/memory-lower-limb-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-o-r-table-pads.html",
+      "destination": "/products?groupId=9",
+      "permanent": true
+    },
+    {
+      "source": "/memory-pillar-shaped-pads.html",
+      "destination": "/product/memory-pillar-shaped-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-pillow-shaped-pads.html",
+      "destination": "/product/memory-pillow-shaped-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-positioning-tables-pads.html",
+      "destination": "/products?groupId=9",
+      "permanent": true
+    },
+    {
+      "source": "/memory-prone-positioning.html",
+      "destination": "/products?groupId=9",
+      "permanent": true
+    },
+    {
+      "source": "/memory-prostrate-pads.html",
+      "destination": "/product/memory-prostrate-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-roll-shaped-pads.html",
+      "destination": "/product/memory-roll-shaped-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-slanting-shaped-pads.html",
+      "destination": "/product/memory-slanting-shaped-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-supine-head-pads.html",
+      "destination": "/product/memory-supine-head-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-supine-positioning.html",
+      "destination": "/products?groupId=9",
+      "permanent": true
+    },
+    {
+      "source": "/memory-tunnel-pads.html",
+      "destination": "/product/memory-tunnel-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-universal-positioners.html",
+      "destination": "/products?groupId=9",
+      "permanent": true
+    },
+    {
+      "source": "/memory-universal-square-pads.html",
+      "destination": "/product/memory-universal-square-pads",
+      "permanent": true
+    },
+    {
+      "source": "/memory-waist-pads.html",
+      "destination": "/product/memory-waist-pads",
+      "permanent": true
+    },
+    {
+      "source": "/micro-ophthalmic-brush-set.html",
+      "destination": "/products/category/medical-brushes-and-accessories",
+      "permanent": true
+    },
+    {
+      "source": "/moistened-shampoo-cap.html",
+      "destination": "/product/shampoo-cap",
+      "permanent": true
+    },
+    {
+      "source": "/nasopharyngeal-airway.html",
+      "destination": "/product/nasopharyngeal-airway",
+      "permanent": true
+    },
+    {
+      "source": "/nasopharyngeal-airway1.html",
+      "destination": "/product/nasopharyngeal-airway",
+      "permanent": true
+    },
+    {
+      "source": "/non-sterile-coverall.html",
+      "destination": "/product/non-sterile-coverall",
+      "permanent": true
+    },
+    {
+      "source": "/one-way-silicone-laryngeal-mask.html",
+      "destination": "/product/one-way-silicone-laryngeal-mask",
+      "permanent": true
+    },
+    {
+      "source": "/one-way-steel-reinforced-laryngeal-mask.html",
+      "destination": "/product/one-way-steel-reinforced-laryngeal-mask",
+      "permanent": true
+    },
+    {
+      "source": "/ophthalmic-head-pads.html",
+      "destination": "/product/ophthalmic-head-pads",
+      "permanent": true
+    },
+    {
+      "source": "/or-table-pads.html",
+      "destination": "/product/or-table-pads",
+      "permanent": true
+    },
+    {
+      "source": "/oral-swab-sensory-brush.html",
+      "destination": "/product/oral-swab-sensory-brush",
+      "permanent": true
+    },
+    {
+      "source": "/oropharyngeal-airway.html",
+      "destination": "/product/oropharyngeal-airway",
+      "permanent": true
+    },
+    {
+      "source": "/oropharyngeal-airway1.html",
+      "destination": "/product/oropharyngeal-airway",
+      "permanent": true
+    },
+    {
+      "source": "/other-products.html",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/others.html",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/patient-room-items.html",
+      "destination": "/product/patient-room-items",
+      "permanent": true
+    },
+    {
+      "source": "/patient-warming-system.html",
+      "destination": "/product/iob-forced-air-warming-system",
+      "permanent": true
+    },
+    {
+      "source": "/personal-protective-equipment.html",
+      "destination": "/products?groupId=8",
+      "permanent": true
+    },
+    {
+      "source": "/pillar-shaped-pads.html",
+      "destination": "/product/pillar-shaped-pads",
+      "permanent": true
+    },
+    {
+      "source": "/pillow-shaped-pad.html",
+      "destination": "/product/pillow-shaped-pad",
+      "permanent": true
+    },
+    {
+      "source": "/plastic-holloware.html",
+      "destination": "/products/category/plastic-holloware",
+      "permanent": true
+    },
+    {
+      "source": "/portable-breathing-oxygen-inhaler.html",
+      "destination": "/product/aweld-portable-breathing-oxygen-inhaler",
+      "permanent": true
+    },
+    {
+      "source": "/positioning-devices.html",
+      "destination": "/products?groupId=9",
+      "permanent": true
+    },
+    {
+      "source": "/presentation-gel-pads.html",
+      "destination": "/product/presentation-gel-pads",
+      "permanent": true
+    },
+    {
+      "source": "/pressure-transducer.html",
+      "destination": "/product/pressure-transducer",
+      "permanent": true
+    },
+    {
+      "source": "/product.html",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/products.html",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/prostrate-head-pads.html",
+      "destination": "/product/prostrate-head-pads",
+      "permanent": true
+    },
+    {
+      "source": "/prostrate-pads.html",
+      "destination": "/product/prostrate-pads",
+      "permanent": true
+    },
+    {
+      "source": "/pvc-double-lumen-endobronchial-tubeleft-side--right-side--left-side-with-carina.html",
+      "destination": "/product/pvc-double-lumen-endobronchial-tube",
+      "permanent": true
+    },
+    {
+      "source": "/pvc-endotracheal-tubecuffed--uncuffed.html",
+      "destination": "/product/pvc-endotracheal-tube",
+      "permanent": true
+    },
+    {
+      "source": "/pvc-nasal-endotracheal-tubecuffed--uncuffed.html",
+      "destination": "/product/pvc-nasal-endotracheal-tube",
+      "permanent": true
+    },
+    {
+      "source": "/pvc-oral-endotracheal-tubecuffed--uncuffed.html",
+      "destination": "/product/pvc-oral-endotracheal-tube",
+      "permanent": true
+    },
+    {
+      "source": "/pvc-wire-reinforced-endotracheal-tubecuffed--uncuffed.html",
+      "destination": "/product/pvc-wire-reinforced-endotracheal-tube",
+      "permanent": true
+    },
+    {
+      "source": "/ready-bath-body-wipe.html",
+      "destination": "/product/body-wipes",
+      "permanent": true
+    },
+    {
+      "source": "/reusable-cpr-resuscitation-system.html",
+      "destination": "/product/reusable-cpr-resuscitation-system",
+      "permanent": true
+    },
+    {
+      "source": "/sensory-brush.html",
+      "destination": "/product/sensory-brush",
+      "permanent": true
+    },
+    {
+      "source": "/sensory-brush-20.html",
+      "destination": "/product/sensory-brush-2-0",
+      "permanent": true
+    },
+    {
+      "source": "/shampoo-cap.html",
+      "destination": "/product/shampoo-cap",
+      "permanent": true
+    },
+    {
+      "source": "/silicone-double-lumen-endobronchial-tube.html",
+      "destination": "/product/silicone-double-lumen-endobronchial-tube",
+      "permanent": true
+    },
+    {
+      "source": "/silicone-reinforced-endotracheal-tubecuffed--uncuffed.html",
+      "destination": "/product/silicone-reinforced-endotracheal-tube",
+      "permanent": true
+    },
+    {
+      "source": "/sleeperrehabrockingreclining-chair.html",
+      "destination": "/product/sleeper-rehab-rocking-reclining-chair",
+      "permanent": true
+    },
+    {
+      "source": "/stainless-steel-dins.html",
+      "destination": "/products/category/stainless-steel-dins",
+      "permanent": true
+    },
+    {
+      "source": "/sterile-coverall.html",
+      "destination": "/product/sterile-coverall",
+      "permanent": true
+    },
+    {
+      "source": "/stirrups-for-lithotomy-surgeries.html",
+      "destination": "/product/adjustable-stirrups-for-lithotomy-surgeries",
+      "permanent": true
+    },
+    {
+      "source": "/suction-swab.html",
+      "destination": "/product/suction-swab",
+      "permanent": true
+    },
+    {
+      "source": "/suction-toothbrush.html",
+      "destination": "/product/suction-toothbrush",
+      "permanent": true
+    },
+    {
+      "source": "/suction-tube-cleaning-brushes-baron--frazier.html",
+      "destination": "/product/suction-tube-cleaning-brushes",
+      "permanent": true
+    },
+    {
+      "source": "/surface-cleaning-brush.html",
+      "destination": "/products/category/medical-brushes-and-accessories",
+      "permanent": true
+    },
+    {
+      "source": "/surgical-instrument-trays.html",
+      "destination": "/products/category/surgical-instrument-trays",
+      "permanent": true
+    },
+    {
+      "source": "/surgical-instruments.html",
+      "destination": "/products?groupId=5",
+      "permanent": true
+    },
+    {
+      "source": "/surgical-scrub-brushes--dispenser.html",
+      "destination": "/product/surgical-scrub-brushes-dispenser",
+      "permanent": true
+    },
+    {
+      "source": "/syringe-pump.html",
+      "destination": "/product/medcaptain-syringe-pump",
+      "permanent": true
+    },
+    {
+      "source": "/therapeutic-brushing.html",
+      "destination": "/product/sensory-brush",
+      "permanent": true
+    },
+    {
+      "source": "/thyroid-gland-positioning-pads.html",
+      "destination": "/product/thyroid-gland-positioning-pads",
+      "permanent": true
+    },
+    {
+      "source": "/tracheal-tube-brushes.html",
+      "destination": "/product/tracheal-tube-brushes",
+      "permanent": true
+    },
+    {
+      "source": "/tracheal-tube-kit.html",
+      "destination": "/product/disposable-tracheal-tube-kit",
+      "permanent": true
+    },
+    {
+      "source": "/tracheal-tubes-holder.html",
+      "destination": "/product/tracheal-tubes-holder",
+      "permanent": true
+    },
+    {
+      "source": "/tracheal-tubes-holder1.html",
+      "destination": "/product/tracheal-tubes-holder",
+      "permanent": true
+    },
+    {
+      "source": "/troop-elevation-pillow.html",
+      "destination": "/products?groupId=9",
+      "permanent": true
+    },
+    {
+      "source": "/troop-elevation-pillowreg-and-accessories.html",
+      "destination": "/products?groupId=9",
+      "permanent": true
+    },
+    {
+      "source": "/tunnel-pads.html",
+      "destination": "/product/tunnel-pads",
+      "permanent": true
+    },
+    {
+      "source": "/universal-armboard-pads.html",
+      "destination": "/product/universal-armboard-pads",
+      "permanent": true
+    },
+    {
+      "source": "/universal-square-pads.html",
+      "destination": "/products/category/universal-square-pads",
+      "permanent": true
+    },
+    {
+      "source": "/video-laryngoscope.html",
+      "destination": "/products/category/uescope",
+      "permanent": true
+    },
+    {
+      "source": "/wound-and-skin-wash-gloves.html",
+      "destination": "/products?groupId=15",
+      "permanent": true
+    },
+    {
+      "source": "/wrist-protectors.html",
+      "destination": "/product/wrist-protectors",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/product/:slug",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/products/:path*",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/search",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/checkout",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/success",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/cart",
+      "destination": "/app.html"
     }
   ]
 }
-

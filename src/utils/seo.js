@@ -1,14 +1,112 @@
+import { createContext } from 'react'
 import { getProductPath } from './productUrl'
+import { COMPANY } from '@/lib/site'
 
 const SITE_NAME = 'Myco Medic'
 const DEFAULT_TITLE = 'Myco Medic | Medical Supplies & Equipment Malaysia'
 const DEFAULT_DESCRIPTION =
   'Myco Medic supplies medical devices, airway management products, patient hygiene care, PPE, and hospital essentials across Malaysia. Browse our catalogue or contact us for quotes.'
 const DEFAULT_IMAGE = '/Myco_Medic.png'
-const DEFAULT_KEYWORDS =
-  'Myco Medic, medical supplies Malaysia, hospital equipment, airway management, medical devices, patient hygiene, surgical supplies'
 
 export const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://www.mycomedic.com.my').replace(/\/$/, '')
+
+// Stable node ids so the Organization, WebSite and LocalBusiness graphs on
+// different pages are understood as one entity rather than three.
+const ORGANIZATION_ID = `${SITE_URL}/#organization`
+const WEBSITE_ID = `${SITE_URL}/#website`
+// References repeat the type and name: a bare {'@id'} only resolves when the
+// full node is on the same page, which it is not on most of them.
+const ORGANIZATION_REF = { '@type': 'Organization', '@id': ORGANIZATION_ID, name: SITE_NAME }
+const WEBSITE_REF = { '@type': 'WebSite', '@id': WEBSITE_ID, name: SITE_NAME, url: `${SITE_URL}/` }
+
+/**
+ * Set by the build-time prerenderer (src/entry-server.jsx). Effects never run
+ * there, so PageSEO hands its props to this collector during render instead,
+ * and the static <head> is built from exactly what the page asked for.
+ */
+export const SeoCollectorContext = createContext(null)
+
+export function categorySlug(name = '') {
+  return name.toLowerCase().replace(/\s+/g, '-')
+}
+
+export function categoryPath(name = '') {
+  return `/products/category/${categorySlug(name)}`
+}
+
+// "Laryngeal Mask Supplier in Malaysia" matches how buyers search for a
+// category; the bare name alone gave the title no commercial or local intent.
+export function categorySeoTitle(name = '') {
+  return `${name} Supplier in Malaysia`
+}
+
+function absoluteUrl(path = '/') {
+  if (!path) return SITE_URL
+  if (path.startsWith('http://') || path.startsWith('https://')) return path
+  return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`
+}
+
+function truncate(text, max = 160) {
+  if (!text) return DEFAULT_DESCRIPTION
+  const plain = text.replace(/\*\*/g, '').replace(/^•\s*/gm, '').replace(/\s+/g, ' ').trim()
+  if (plain.length <= max) return plain
+  return `${plain.slice(0, max - 1).trim()}…`
+}
+
+/**
+ * The one definition of a page's head tags, used by applySEO in the browser
+ * and by scripts/prerender.mjs at build time, so the two cannot drift.
+ *
+ * noindex pages get no canonical: "don't index this" and "the real version is
+ * over there" are contradictory signals, and the 404 page used to send both.
+ * There is no keywords meta — search engines ignore it, and one identical list
+ * on every page said nothing about any of them.
+ */
+export function getSeoTags({ title, description, path = '/', image, type = 'website', noindex = false, jsonLd = null } = {}) {
+  const pageTitle = title ? `${title} | ${SITE_NAME}` : DEFAULT_TITLE
+  const pageDescription = truncate(description || DEFAULT_DESCRIPTION)
+  const pageImage = absoluteUrl(image || DEFAULT_IMAGE)
+  const url = absoluteUrl(path)
+
+  return {
+    title: pageTitle,
+    canonical: noindex ? null : url,
+    jsonLd: jsonLd && (!Array.isArray(jsonLd) || jsonLd.length) ? jsonLd : null,
+    meta: [
+      ['name', 'description', pageDescription],
+      ['name', 'robots', noindex ? 'noindex, follow' : 'index, follow'],
+      ['property', 'og:title', pageTitle],
+      ['property', 'og:description', pageDescription],
+      ['property', 'og:type', type],
+      ['property', 'og:url', url],
+      ['property', 'og:image', pageImage],
+      ['property', 'og:site_name', SITE_NAME],
+      ['property', 'og:locale', 'en_MY'],
+      ['name', 'twitter:card', 'summary_large_image'],
+      ['name', 'twitter:title', pageTitle],
+      ['name', 'twitter:description', pageDescription],
+      ['name', 'twitter:image', pageImage]
+    ]
+  }
+}
+
+const escapeHtml = (value) =>
+  String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+
+/** getSeoTags() serialised for a static HTML <head>. */
+export function seoHeadHtml(seo) {
+  const tags = [`<title>${escapeHtml(seo.title)}</title>`]
+  for (const [attr, key, content] of seo.meta) {
+    tags.push(`<meta ${attr}="${key}" content="${escapeHtml(content)}" />`)
+  }
+  if (seo.canonical) tags.push(`<link rel="canonical" href="${escapeHtml(seo.canonical)}" />`)
+  if (seo.jsonLd) {
+    // </script> inside JSON would close the tag early.
+    const json = JSON.stringify(seo.jsonLd).replace(/</g, '\\u003c')
+    tags.push(`<script type="application/ld+json" id="page-json-ld">${json}</script>`)
+  }
+  return tags
+}
 
 function upsertMeta(attr, key, content) {
   if (!content) return
@@ -22,8 +120,11 @@ function upsertMeta(attr, key, content) {
 }
 
 function upsertLink(rel, href) {
-  if (!href) return
   let el = document.querySelector(`link[rel="${rel}"]`)
+  if (!href) {
+    el?.remove()
+    return
+  }
   if (!el) {
     el = document.createElement('link')
     el.setAttribute('rel', rel)
@@ -43,54 +144,12 @@ function upsertJsonLd(id, data) {
   document.head.appendChild(script)
 }
 
-function absoluteUrl(path = '/') {
-  if (!path) return SITE_URL
-  if (path.startsWith('http://') || path.startsWith('https://')) return path
-  return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`
-}
-
-function truncate(text, max = 160) {
-  if (!text) return DEFAULT_DESCRIPTION
-  const plain = text.replace(/\*\*/g, '').replace(/^•\s*/gm, '').replace(/\s+/g, ' ').trim()
-  if (plain.length <= max) return plain
-  return `${plain.slice(0, max - 1).trim()}…`
-}
-
-export function applySEO({
-  title,
-  description,
-  path = '/',
-  image,
-  type = 'website',
-  noindex = false,
-  jsonLd = null
-} = {}) {
-  const pageTitle = title ? `${title} | ${SITE_NAME}` : DEFAULT_TITLE
-  const pageDescription = truncate(description || DEFAULT_DESCRIPTION)
-  const pageImage = absoluteUrl(image || DEFAULT_IMAGE)
-  const canonical = absoluteUrl(path)
-
-  document.title = pageTitle
-
-  upsertMeta('name', 'description', pageDescription)
-  upsertMeta('name', 'keywords', DEFAULT_KEYWORDS)
-  upsertMeta('name', 'robots', noindex ? 'noindex, nofollow' : 'index, follow')
-
-  upsertMeta('property', 'og:title', pageTitle)
-  upsertMeta('property', 'og:description', pageDescription)
-  upsertMeta('property', 'og:type', type)
-  upsertMeta('property', 'og:url', canonical)
-  upsertMeta('property', 'og:image', pageImage)
-  upsertMeta('property', 'og:site_name', SITE_NAME)
-  upsertMeta('property', 'og:locale', 'en_MY')
-
-  upsertMeta('name', 'twitter:card', 'summary_large_image')
-  upsertMeta('name', 'twitter:title', pageTitle)
-  upsertMeta('name', 'twitter:description', pageDescription)
-  upsertMeta('name', 'twitter:image', pageImage)
-
-  upsertLink('canonical', canonical)
-  upsertJsonLd('page-json-ld', jsonLd)
+export function applySEO(props) {
+  const seo = getSeoTags(props)
+  document.title = seo.title
+  for (const [attr, key, content] of seo.meta) upsertMeta(attr, key, content)
+  upsertLink('canonical', seo.canonical)
+  upsertJsonLd('page-json-ld', seo.jsonLd)
 }
 
 // Single source of truth for the trading address, mirrored from the contact page.
@@ -110,10 +169,12 @@ export function organizationJsonLd() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': ORGANIZATION_ID,
     name: SITE_NAME,
     legalName: 'Myco Medic Sdn Bhd',
     url: SITE_URL,
     logo: absoluteUrl(DEFAULT_IMAGE),
+    foundingDate: String(COMPANY.since),
     address: POSTAL_ADDRESS,
     telephone: TELEPHONE,
     email: 'sales@mycomedic.com.my',
@@ -131,10 +192,26 @@ export function organizationJsonLd() {
 }
 
 /**
+ * WebSite node for the homepage — this is what Google reads to show
+ * "Myco Medic" as the site name above results instead of the bare domain.
+ */
+export function websiteJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': WEBSITE_ID,
+    name: SITE_NAME,
+    alternateName: ['Myco Medic Sdn Bhd', 'MycoMedic'],
+    url: `${SITE_URL}/`,
+    inLanguage: 'en-MY',
+    publisher: ORGANIZATION_REF
+  }
+}
+
+/**
  * LocalBusiness node for the contact page — the address and map are the point of
  * that page, and this is what feeds local ("medical supplies Puchong") results.
- * No openingHoursSpecification: the site publishes no opening hours, and guessing
- * them would send buyers to a closed door.
+ * Opening hours come from COMPANY.hours, the same data the page displays.
  */
 export function localBusinessJsonLd() {
   return {
@@ -147,9 +224,17 @@ export function localBusinessJsonLd() {
     image: absoluteUrl(DEFAULT_IMAGE),
     logo: absoluteUrl(DEFAULT_IMAGE),
     address: POSTAL_ADDRESS,
+    hasMap: COMPANY.mapUrl,
     telephone: TELEPHONE,
     email: 'sales@mycomedic.com.my',
     areaServed: 'MY',
+    openingHoursSpecification: COMPANY.hours.map((h) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: h.dayOfWeek,
+      opens: h.opens,
+      closes: h.closes
+    })),
+    parentOrganization: ORGANIZATION_REF,
     sameAs: [SHOPEE_URL]
   }
 }
@@ -173,6 +258,28 @@ export function breadcrumbJsonLd(trail = []) {
   }
 }
 
+/** CollectionPage + ItemList for a category listing: which products it holds, in order. */
+export function collectionPageJsonLd({ name, description, path, products = [] }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name,
+    description: truncate(description, 500),
+    url: absoluteUrl(path),
+    isPartOf: WEBSITE_REF,
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: products.length,
+      itemListElement: products.map((product, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: absoluteUrl(getProductPath(product)),
+        name: product.name
+      }))
+    }
+  }
+}
+
 export function productJsonLd(product, description) {
   if (!product) return null
   const images = product.images?.length ? product.images : product.image ? [product.image] : []
@@ -186,6 +293,8 @@ export function productJsonLd(product, description) {
     image: images.map((img) => absoluteUrl(img)),
     url
   }
+
+  if (product.category) node.category = product.category
 
   const sku = product.articleCode || product.specifications?.['Product Code']
   if (sku) node.sku = sku
@@ -208,7 +317,7 @@ export function productJsonLd(product, description) {
       url,
       priceCurrency: product.priceCurrency || 'MYR',
       price: product.price,
-      seller: { '@type': 'Organization', name: SITE_NAME }
+      seller: ORGANIZATION_REF
     }
     // Only claim availability we actually hold as data — this used to say
     // InStock for all ~175 products unconditionally.
@@ -219,12 +328,4 @@ export function productJsonLd(product, description) {
   return node
 }
 
-export {
-  DEFAULT_DESCRIPTION,
-  DEFAULT_IMAGE,
-  DEFAULT_KEYWORDS,
-  DEFAULT_TITLE,
-  SITE_NAME,
-  absoluteUrl,
-  truncate
-}
+export { DEFAULT_DESCRIPTION, DEFAULT_IMAGE, DEFAULT_TITLE, SITE_NAME, absoluteUrl, truncate }

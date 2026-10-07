@@ -12,7 +12,8 @@ export const useCart = () => {
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(() => {
-    const saved = localStorage.getItem('myco_cart')
+    // No localStorage when the page is prerendered at build time.
+    const saved = typeof window !== 'undefined' ? window.localStorage.getItem('myco_cart') : null
     return saved ? JSON.parse(saved) : []
   })
 

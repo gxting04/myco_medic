@@ -96,6 +96,7 @@ function Hero() {
               alt="A modern operating theatre with surgical lights and monitoring equipment"
               width="1600"
               height="900"
+              fetchpriority="high"
               className="aspect-[4/3] w-full object-cover lg:aspect-[5/6]"
             />
           </div>

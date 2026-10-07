@@ -8,17 +8,23 @@ export const NAV_HIDDEN_GROUP_IDS = new Set([2, 5, 7])
 
 // The catalogue can be overridden from localStorage (legacy admin tooling).
 // A malformed value used to throw inside render and blank the whole page.
-export function getAllProducts() {
+// Returns [] when there is no override, or no window (build-time prerender).
+export function getStoredProducts() {
   try {
     const saved = typeof window !== 'undefined' ? window.localStorage.getItem('myco_products') : null
     if (saved) {
       const parsed = JSON.parse(saved)
-      if (Array.isArray(parsed) && parsed.length) return parsed
+      if (Array.isArray(parsed)) return parsed
     }
   } catch {
-    /* fall through to the bundled catalogue */
+    /* fall through */
   }
-  return Data.initialProducts
+  return []
+}
+
+export function getAllProducts() {
+  const stored = getStoredProducts()
+  return stored.length ? stored : Data.initialProducts
 }
 
 export function getCatalogProducts() {

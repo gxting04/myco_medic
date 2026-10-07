@@ -4,8 +4,7 @@ import Data from '../shared/Data'
 import PageSEO from '../components/PageSEO'
 import ProductCard from '../components/ProductCard'
 import { getCatalogProducts, getGroup } from '@/lib/catalog'
-
-const categorySlug = (name) => name.toLowerCase().replace(/\s+/g, '-')
+import { breadcrumbJsonLd, categoryPath, categorySeoTitle, categorySlug, collectionPageJsonLd } from '@/utils/seo'
 
 // Old slugs that are still linked from outside after a category was renamed.
 const LEGACY_SLUGS = {
@@ -38,13 +37,25 @@ function CategoryProducts() {
   }
 
   const group = getGroup(category.groupId)
+  const path = categoryPath(category.name)
+  const description = category.description || `${category.name} medical products from Myco Medic Malaysia.`
 
   return (
     <div className="bg-white">
+      {/* An empty listing is a thin page — kept reachable, but out of the index. */}
       <PageSEO
-        title={category.name}
-        description={category.description || `${category.name} medical products from Myco Medic Malaysia.`}
-        path={`/products/category/${categoryName}`}
+        title={categorySeoTitle(category.name)}
+        description={description}
+        path={path}
+        noindex={products.length === 0}
+        jsonLd={[
+          collectionPageJsonLd({ name: category.name, description, path, products }),
+          breadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'Products', path: '/products' },
+            { name: category.name, path }
+          ])
+        ]}
       />
       <header className="border-b border-gray-100 bg-gray-50/60">
         <div className="container-page py-10 md:py-14">

@@ -2,49 +2,13 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import {RouterProvider, createBrowserRouter} from 'react-router-dom'
-import Home from './home'
-import Contact from './contact'
-import About from './about'
-import Career from './career'
-import Internship from './internship'
-import ProductsPage from './pages/ProductsPage'
-import CategoryProducts from './pages/CategoryProducts'
-import GroupCategories from './pages/GroupCategories'
-import ProductDetail from './components/ProductDetail'
-import SearchResults from './pages/SearchResults'
 import { CartProvider } from './context/CartContext'
-// Cart page hidden
-// import Cart from './pages/Cart'
-import Checkout from './pages/Checkout'
-import Success from './pages/Success'
-import NotFound from './pages/NotFound'
-import RootLayout from './components/site/RootLayout'
 import { QuoteProvider } from './context/QuoteContext'
 import { UIProvider } from './context/UIContext'
+import { routes } from './routes'
 
 
-const router = createBrowserRouter([
-  {
-    element: <RootLayout />,
-    children: [
-      { path: '/', element: <Home /> },
-      { path: '/contact', element: <Contact /> },
-      { path: '/about', element: <About /> },
-      { path: '/career', element: <Career /> },
-      { path: '/internship', element: <Internship /> },
-      { path: '/products', element: <ProductsPage /> },
-      { path: '/products/group/:groupName', element: <GroupCategories /> },
-      { path: '/products/category/:categoryName', element: <CategoryProducts /> },
-      { path: '/product/:id', element: <ProductDetail /> },
-      { path: '/search', element: <SearchResults /> },
-      // Cart page hidden
-      // { path: '/cart', element: <Cart /> },
-      { path: '/checkout', element: <Checkout /> },
-      { path: '/success', element: <Success /> },
-      { path: '*', element: <NotFound /> }
-    ]
-  }
-])
+const router = createBrowserRouter(routes)
 
 
 const rootElement = document.getElementById('root')
@@ -53,6 +17,10 @@ if (!rootElement) {
   throw new Error('Root element not found')
 }
 
+// The prerendered HTML inside #root (see scripts/prerender.mjs) exists for
+// crawlers and first paint. createRoot replaces it on mount rather than
+// hydrating: the quote list and other per-browser state read localStorage, so
+// the client's first render legitimately differs from the build-time one.
 try {
   createRoot(rootElement).render(
     <StrictMode>

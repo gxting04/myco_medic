@@ -274,7 +274,7 @@ function Header() {
 
       {/* Mobile drawer — portalled to <body>: the header's backdrop-filter makes it
           the containing block for fixed descendants, which would clip the drawer. */}
-      {createPortal(
+      {typeof document !== 'undefined' && createPortal(
       <AnimatePresence>
         {mobileOpen && (
           <motion.div className="fixed inset-0 z-[110] h-[100dvh] md:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>

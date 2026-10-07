@@ -15,9 +15,17 @@ export const COMPANY = {
     'https://www.google.com/maps/dir/?api=1&destination=No.+2A-G+Jalan+Sierra+10%2F3%2C+Section+16+Sierra%2C+47120+Puchong%2C+Selangor%2C+Malaysia',
   mapUrl: 'https://www.google.com/maps/search/?api=1&query=Myco+Medic+Sdn+Bhd+Puchong',
   shopeeUrl: 'https://shopee.com.my/healthcare_marts?categoryId=100001&entryPoint=ShopByPDP&itemId=8606053109',
+  // days/time are display text; dayOfWeek/opens/closes feed the LocalBusiness
+  // structured data, so search results show the same hours as the page.
   hours: [
-    { days: 'Monday – Friday', time: '9:00 AM – 6:00 PM' },
-    { days: 'Saturday', time: '9:00 AM – 1:00 PM' }
+    {
+      days: 'Monday – Friday',
+      time: '9:00 AM – 6:00 PM',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '18:00'
+    },
+    { days: 'Saturday', time: '9:00 AM – 1:00 PM', dayOfWeek: ['Saturday'], opens: '09:00', closes: '13:00' }
   ]
 }
 

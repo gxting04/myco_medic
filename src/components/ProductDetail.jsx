@@ -5,7 +5,8 @@ import ProductDetailDefault from './ProductDetailDefault'
 import productContentRegistry from '@/productContent'
 import slugify from '@/utils/slugify'
 import PageSEO from './PageSEO'
-import { breadcrumbJsonLd, productJsonLd } from '@/utils/seo'
+import { breadcrumbJsonLd, categoryPath, productJsonLd } from '@/utils/seo'
+import { getStoredProducts } from '@/lib/catalog'
 import {
   findProductByRouteParam,
   getProductPath,
@@ -19,8 +20,7 @@ function ProductDetail() {
 
   const product = useMemo(() => {
     const fromInitial = findProductByRouteParam(id, Data.initialProducts)
-    const saved = localStorage.getItem('myco_products')
-    const list = saved ? JSON.parse(saved) : []
+    const list = getStoredProducts()
     const fromStorage = findProductByRouteParam(id, list)
     if (!fromInitial && !fromStorage) return null
     if (!fromInitial) return fromStorage
@@ -63,7 +63,7 @@ function ProductDetail() {
     { name: 'Products', path: '/products' },
     product.category && {
       name: product.category,
-      path: `/products/category/${product.category.toLowerCase().replace(/\s+/g, '-')}`
+      path: categoryPath(product.category)
     },
     { name: product.name, path: canonicalPath }
   ].filter(Boolean)

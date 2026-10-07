@@ -7,6 +7,7 @@ import PageSEO from '../components/PageSEO'
 import ProductCard from '../components/ProductCard'
 import { getCatalogProducts, getNavGroups, productInGroup, searchProducts } from '@/lib/catalog'
 import { useEscapeKey, useLockBodyScroll } from '@/lib/hooks'
+import { categoryPath, categorySeoTitle } from '@/utils/seo'
 
 const SORTS = [
   { value: 'default', label: 'Featured' },
@@ -146,25 +147,30 @@ function ProductsPage() {
     return sorted
   }, [allProducts, selectedCategory, groupId, query, sortBy])
 
+  // Filtered views are query strings on one prerendered file, whose static
+  // canonical is /products. A category view points at its own dedicated page
+  // (same products, own URL); every other filter folds into /products rather
+  // than contradicting the static canonical with a ?groupId= one.
   const seoMeta = useMemo(() => {
     if (selectedCategory) {
       return {
-        title: selectedCategory.name,
+        title: categorySeoTitle(selectedCategory.name),
         description:
           selectedCategory.description || `Browse ${selectedCategory.name} products from Myco Medic — medical supplies and equipment in Malaysia.`,
-        path: `/products?groupId=${selectedCategory.groupId}&categoryId=${selectedCategory.id}`
+        path: categoryPath(selectedCategory.name)
       }
     }
     if (selectedGroup) {
       return {
         title: selectedGroup.name,
         description: selectedGroup.description || `Browse ${selectedGroup.name} from Myco Medic — medical supplies and equipment in Malaysia.`,
-        path: `/products?groupId=${selectedGroup.id}`
+        path: '/products'
       }
     }
     return {
-      title: 'Products',
-      description: 'Browse Myco Medic medical supplies — airway management, patient hygiene, PPE, procedure packs, positioning devices, and more.',
+      title: 'Medical Supplies & Equipment Catalogue',
+      description:
+        'Browse the Myco Medic catalogue of medical supplies in Malaysia — airway management, positioning devices, PPE, procedure packs, patient hygiene and more.',
       path: '/products'
     }
   }, [selectedGroup, selectedCategory])

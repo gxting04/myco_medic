@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+# Per-visitor pages with nothing to index; they also carry noindex.
+Disallow: /search
+Disallow: /checkout
+Disallow: /success
+Disallow: /cart
 
 Sitemap: https://www.mycomedic.com.my/sitemap.xml

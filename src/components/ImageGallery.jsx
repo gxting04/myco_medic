@@ -101,7 +101,7 @@ function ImageGallery({ images, alt }) {
         </div>
       )}
 
-      {createPortal(
+      {typeof document !== 'undefined' && createPortal(
         <AnimatePresence>
           {lightbox && (
             <motion.div
