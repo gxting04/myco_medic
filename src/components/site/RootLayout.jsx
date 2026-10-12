@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import WhatsAppFloat from '@/components/WhatsAppFloat'
 import SearchPalette from './SearchPalette'
 import QuoteDrawer, { QuoteToast } from './QuoteDrawer'
+import HcpNotice from './HcpNotice'
 import { CAREERS } from '@/lib/site'
 
 /**
@@ -37,6 +38,7 @@ function RootLayout() {
       <SearchPalette />
       <QuoteDrawer />
       <QuoteToast />
+      <HcpNotice />
       {/* Per-history-entry: new links start at the top, Back restores the old position.
           Catalogue filter changes pass preventScrollReset so they stay put. */}
       <ScrollRestoration />
